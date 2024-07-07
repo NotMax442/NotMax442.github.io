@@ -12,12 +12,23 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            overflow: hidden;
         }
         .heart {
             font-size: 50px;
             color: red;
             cursor: pointer;
             position: absolute;
+        }
+        .confetti {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: fall 1s linear;
+        }
+        @keyframes fall {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(100vh); }
         }
     </style>
 </head>
@@ -30,13 +41,28 @@
         heart.addEventListener('click', () => {
             clickCount++;
             if (clickCount >= 100) {
-                alert('I love you');
+                alert('I love you a lot');
                 return;
             }
             const x = Math.random() * (window.innerWidth - heart.offsetWidth);
             const y = Math.random() * (window.innerHeight - heart.offsetHeight);
             heart.style.left = `${x}px`;
             heart.style.top = `${y}px`;
+
+            // Create confetti hearts
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.innerText = '❤️';
+                confetti.style.left = `${x + Math.random() * 50 - 25}px`;
+                confetti.style.top = `${y + Math.random() * 50 - 25}px`;
+                document.body.appendChild(confetti);
+
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 1000);
+            }
         });
     </script>
 </body>
