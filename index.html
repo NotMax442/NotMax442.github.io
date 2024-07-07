@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counting Forever</title>
-    <script>
-        let count = 0;
-        function startCounting() {
-            setInterval(() => {
-                document.getElementById('counter').innerText = count++;
-            }, 0.001);
+    <title>Heart Clicker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
         }
-    </script>
+        .heart {
+            font-size: 50px;
+            color: red;
+            cursor: pointer;
+            position: absolute;
+        }
+    </style>
 </head>
-<body onload="startCounting()">
-    <h1>Counting Forever</h1>
-    <div id="counter">0</div>
+<body>
+    <div class="heart" id="heart">❤️</div>
+    <script>
+        const heart = document.getElementById('heart');
+        let clickCount = 0;
+
+        heart.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount >= 100) {
+                alert('I love you');
+                return;
+            }
+            const x = Math.random() * (window.innerWidth - heart.offsetWidth);
+            const y = Math.random() * (window.innerHeight - heart.offsetHeight);
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+        });
+    </script>
 </body>
 </html>
