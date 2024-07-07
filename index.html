@@ -24,11 +24,11 @@
             position: absolute;
             font-size: 20px;
             color: red;
-            animation: fall 1s linear;
+            animation: explode 1s linear;
         }
-        @keyframes fall {
-            0% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(100vh); }
+        @keyframes explode {
+            0% { opacity: 1; transform: translate(0, 0); }
+            100% { opacity: 0; transform: translate(var(--x), var(--y)); }
         }
     </style>
 </head>
@@ -38,10 +38,10 @@
         const heart = document.getElementById('heart');
         let clickCount = 0;
 
-        heart.addEventListener('click', () => {
+        heart.addEventListener('click', (event) => {
             clickCount++;
             if (clickCount >= 100) {
-                alert('I love you a lot');
+                alert('I love you');
                 return;
             }
             const x = Math.random() * (window.innerWidth - heart.offsetWidth);
@@ -49,13 +49,22 @@
             heart.style.left = `${x}px`;
             heart.style.top = `${y}px`;
 
-            // Create confetti hearts
+            // Create confetti hearts at the click position
+            const clickX = event.clientX;
+            const clickY = event.clientY;
             for (let i = 0; i < 10; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.innerText = '❤️';
-                confetti.style.left = `${x + Math.random() * 50 - 25}px`;
-                confetti.style.top = `${y + Math.random() * 50 - 25}px`;
+                confetti.style.left = `${clickX}px`;
+                confetti.style.top = `${clickY}px`;
+
+                // Random direction for explosion
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * 200;
+                confetti.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+                confetti.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
+
                 document.body.appendChild(confetti);
 
                 // Remove confetti after animation
