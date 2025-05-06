@@ -3,111 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Clicker</title>
+    <title>Real-time Morse Code Translator</title>
     <style>
         body {
+            font-family: sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            gap: 20px;
+            padding: 20px;
+            background: radial-gradient(circle, #ffffff, #aed6f1); /* Shiny radial gradient */
+            color: #333; /* Default text color */
+            min-height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
-            overflow: hidden;
-            position: relative;
         }
-        .heart {
-            color: red;
+        .translator-box {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white box */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        textarea, #output { /* Apply shared styles */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-family: monospace;
+            width: 100%;
+            box-sizing: border-box;
+            color: #333;
+            background-color: #f9f9f9; /* Light background for input/output */
+        }
+        #output-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        #output {
+            white-space: pre-wrap;
+            height: auto;
+            min-height: 100px;
+        }
+        #copyButton {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            color: white;
             cursor: pointer;
-            position: absolute;
-            transition: transform 0.2s;
+            font-size: 16px;
+            transition: transform 0.2s ease-in-out;
+            animation: rainbow-shine 2s infinite alternate;
+            background-size: 400% 100%;
         }
-        .confetti {
-            position: absolute;
-            font-size: 20px;
-            animation: explode 1s linear;
+        #copyButton:hover {
+            transform: scale(1.05);
         }
-        @keyframes explode {
-            0% { opacity: 1; transform: translate(0, 0); }
-            100% { opacity: 0; transform: translate(var(--x), var(--y)); }
-        }
-        .floating-balloon {
-            position: absolute;
-            font-size: 20px;
-            color: blue;
-            animation: floatUp 5s linear infinite;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh); }
-            100% { transform: translateY(-100vh); }
+        @keyframes rainbow-shine {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
     </style>
 </head>
 <body>
-    <div class="heart" id="heart">❤️</div>
-    <audio id="click-sound" src="click-sound.mp3"></audio>
+    <h1>Real-time Morse Code Translator</h1>
+
+    <div class="translator-box">
+        <label for="inputText">Enter Text or Morse Code:</label>
+        <textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
+
+        <label for="output">Translation:</label>
+        <div id="output-container">
+            <pre id="output"></pre>
+            <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+        </div>
+    </div>
+
     <script>
-        const heart = document.getElementById('heart');
-        const clickSound = document.getElementById('click-sound');
-        let clickCount = 0;
+        const morseCode = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+            'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+            'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+            'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+            'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+            'Z': '--..',
+            '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+            '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+            ' ': '/', '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.',
+            '!': '-.-.--', '/': '-..-.-', '(': '-.--.', ')': '-.--.-', '&': '.-...',
+            ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-',
+            '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
+        };
 
-        heart.addEventListener('click', (event) => {
-            clickSound.play();
-            clickCount++;
-            if (clickCount >= 100) {
-                alert('I love you');
-                return;
-            }
-            const x = Math.random() * (window.innerWidth - heart.offsetWidth);
-            const y = Math.random() * (window.innerHeight - heart.offsetHeight);
-            heart.style.left = `${x}px`;
-            heart.style.top = `${y}px`;
+        const reverseMorseCode = Object.fromEntries(Object.entries(morseCode).map(([key, value]) => [value, key]));
 
-            // Random heart size
-            const size = Math.random() * 50 + 30; // Random size between 30px and 80px
-            heart.style.fontSize = `${size}px`;
+        const inputText = document.getElementById("inputText");
+        const outputElement = document.getElementById("output");
 
-            // Create confetti hearts at the click position
-            const clickX = event.clientX;
-            const clickY = event.clientY;
-            for (let i = 0; i < 10; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.innerText = '❤️';
-                confetti.style.left = `${clickX}px`;
-                confetti.style.top = `${clickY}px`;
-
-                // Random direction for explosion
-                const angle = Math.random() * 2 * Math.PI;
-                const distance = Math.random() * 200;
-                confetti.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
-                confetti.style.setProperty('--y', `${Math.sin(angle) * distance}px`);
-
-                // Random color for confetti
-                const colors = ['red', 'pink', 'purple', 'orange', 'yellow'];
-                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
-
-                document.body.appendChild(confetti);
-
-                // Remove confetti after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 1000);
+        inputText.addEventListener('input', function() {
+            const text = inputText.value;
+            if (isMorse(text)) {
+                outputElement.textContent = decodeMorseLive(text);
+            } else {
+                outputElement.textContent = encodeTextLive(text);
             }
         });
 
-        // Create floating balloons
-        function createFloatingBalloons() {
-            for (let i = 0; i < 20; i++) {
-                const floatingBalloon = document.createElement('div');
-                floatingBalloon.className = 'floating-balloon';
-                floatingBalloon.innerText = '🎈';
-                floatingBalloon.style.left = `${Math.random() * 100}vw`;
-                floatingBalloon.style.animationDuration = `${Math.random() * 5 + 5}s`; // Random duration between 5s and 10s
-                document.body.appendChild(floatingBalloon);
+        function encodeTextLive(text) {
+            const upperText = text.toUpperCase();
+            let encodedWords = [];
+            const words = upperText.split(' ');
+            for (const word of words) {
+                let encodedLetters = [];
+                for (const char of word) {
+                    if (morseCode[char]) {
+                        encodedLetters.push(morseCode[char]);
+                    } else {
+                        encodedLetters.push(char); // Keep non-Morse characters as is
+                    }
+                }
+                encodedWords.push(encodedLetters.join(" "));
+            }
+            return encodedWords.join(" / ");
+        }
+
+        function decodeMorseLive(morseText) {
+            const words = morseText.split(" / ");
+            let decodedText = [];
+            for (const word of words) {
+                const letters = word.split(" ");
+                let decodedWord = "";
+                for (const letter of letters) {
+                    if (reverseMorseCode[letter]) {
+                        decodedWord += reverseMorseCode[letter];
+                    } else {
+                        decodedWord += "?"; // Indicate unknown Morse code
+                    }
+                }
+                decodedText.push(decodedWord);
+            }
+            return decodedText.join(" ");
+        }
+
+        function copyToClipboard() {
+            const outputTextElement = document.getElementById("output");
+            const textToCopy = outputTextElement.textContent;
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        console.log('Text copied to clipboard');
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        fallbackCopyToClipboard(textToCopy);
+                    });
+            } else {
+                fallbackCopyToClipboard(textToCopy);
             }
         }
 
-        createFloatingBalloons();
+        function fallbackCopyToClipboard(text) {
+            const tempInput = document.createElement("textarea");
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            console.log('Text copied to clipboard (fallback)');
+        }
+
+        function isMorse(text) {
+            const morseChars = ['.', '-', '/'];
+            let morseCount = 0;
+            let otherCount = 0;
+            for (const char of text) {
+                if (morseChars.includes(char)) {
+                    morseCount++;
+                } else if (char.trim() !== '') {
+                    otherCount++;
+                }
+            }
+            return morseCount > otherCount;
+        }
     </script>
 </body>
 </html>
