@@ -1,206 +1,303 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morse Code Translator</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-            background: radial-gradient(circle, #ffffff, #aed6f1); /* Shiny radial gradient */
-            color: #333; /* Default text color */
-            min-height: 100vh;
-            margin: 0;
-        }
-        .translator-box {
-            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white box */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            color: #555;
-        }
-        textarea, #output { /* Apply shared styles */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-            font-family: monospace;
-            width: 100%;
-            box-sizing: border-box;
-            color: #333;
-            background-color: #f9f9f9; /* Light background for input/output */
-        }
-        #output-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 100%;
-        }
-        #output {
-            white-space: pre-wrap;
-            height: auto;
-            min-height: 100px;
-        }
-        .button-container {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end; /* Align buttons to the right */
-        }
-        .action-button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.2s ease-in-out;
-        }
-        #copyButton {
-            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-            color: white;
-            animation: rainbow-shine 2s infinite alternate;
-            background-size: 400% 100%;
-        }
-        #clearButton {
-            background-color: #f44336; /* Red color for clear */
-            color: white;
-        }
-        .playback-options {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .playback-button {
-            padding: 10px 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #eee;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .playback-button:hover {
-            background-color: #ddd;
-        }
-        .playback-controls label {
-            font-weight: normal;
-        }
-        .playback-controls input[type="number"] {
-            width: 60px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .action-button:hover, .playback-button:hover {
-            transform: scale(1.05);
-        }
-        @keyframes rainbow-shine {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-    </style>
-</head>
-<body>
-    <h1>Morse Code Translator</h1>
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morse Code Translator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Lato:wght@400;700&family=Montserrat:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+   :root{--bg-color:#222;--box-bg:linear-gradient(to bottom,#333,#444);--text-color:#eee;--heading-color:#fff;--label-color:#ccc;--input-bg:#444;--input-border:#666;--button-bg-copy:#64b5f6;--button-bg-clear:#f48fb1;--button-hover:#90caf9;--shadow-color:rgba(255,255,255,.1);--inner-shadow:rgba(255,255,255,.05);--button-shadow:rgba(255,255,255,.2);--button-hover-shadow:rgba(255,255,255,.3);--star-color:#fdd835;--rating-bar-bg:#555;--rating-bar-fill:#fdd835;--theme-switch-bg:#666;--theme-switch-icon:#eee}
+   body{font-family:var(--font-family-body);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;background:var(--bg-color);color:var(--text-color);transition:background-color var(--transition-duration),color var(--transition-duration)}
+   .translator-box{background:var(--box-bg);padding:30px;border-radius:12px;box-shadow:0 4px 12px var(--shadow-color);width:80%;max-width:600px;display:flex;flex-direction:column;gap:20px;transition:background var(--transition-duration),box-shadow var(--transition-duration)}
+   h1{font-family:var(--font-family-heading);text-align:center;color:var(--heading-color);margin-bottom:0;transition:color var(--transition-duration);font-size:2.2em}
+   label{font-weight:600;color:var(--label-color);margin-bottom:8px;transition:color var(--transition-duration);display:block}
+   textarea,#output{padding:12px;border:1px solid var(--input-border);border-radius:8px;resize:vertical;font-family:var(--font-family-mono);width:100%;box-sizing:border-box;background-color:var(--input-bg);color:var(--text-color);box-shadow:inset 0 1px 3px var(--inner-shadow);transition:background-color var(--transition-duration),border-color var(--transition-duration),color var(--transition-duration);outline:none}
+   textarea:focus,#output:focus{border-color:#88b3f4;box-shadow:0 0 5px rgba(136,179,244,.5)}
+   #output{white-space:pre-wrap;min-height:100px;margin-bottom:20px}
+   .button-container{display:flex;justify-content:flex-end;gap:10px;margin-bottom:20px}
+   .action-button{padding:12px 20px;border:none;border-radius:8px;cursor:pointer;font-size:16px;transition:background-color var(--transition-duration),box-shadow var(--transition-duration),transform .2s ease-in-out;box-shadow:0 2px 4px var(--button-shadow)}
+   #copyButton{background-color:var(--button-bg-copy);color:#fff}
+   #clearButton{background-color:var(--button-bg-clear);color:#fff}
+   .action-button:hover{background-color:var(--button-hover);box-shadow:0 3px 6px var(--button-hover-shadow);transform:scale(1.05)}
+   .action-button:focus{outline:2px solid rgba(0,0,0,.3);outline-offset:2px}
+   .action-button::after{content:"";position:absolute;bottom:-25px;left:50%;transform:translateX(-50%);background-color:rgba(0,0,0,.8);color:#fff;padding:5px 10px;border-radius:5px;font-size:.8em;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+   #copyButton::after{content:"Copy to Clipboard"}
+   #clearButton::after{content:"Clear Text"}
+   .action-button:hover::after{opacity:1;visibility:visible}
+   #output-container{opacity:0;animation:fadeIn .5s ease-in-out forwards}
+   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+   .rating-container{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:15px;margin-bottom: 30px;}
+   .star-rating{display:flex;gap:8px}
+   .star-input{display:none}
+   .star-label{font-size:var(--star-size);color:#ccc;cursor:pointer;transition:color .2s ease-in-out,transform .2s ease-in-out}
+   .star-input:checked~.star-label{color:var(--star-color)}
+   .rating-bars{display:grid;grid-template-columns:auto 1fr auto;gap:10px;width:100%;max-width:300px}
+   .rating-bar-label{font-size:.9em;color:var(--label-color)}
+   .rating-bar-bg{background-color:var(--rating-bar-bg);border-radius:5px;height:8px;overflow:hidden}
+   .rating-bar-fill{background-color:var(--rating-bar-fill);height:100%;border-radius:5px;width:0%;transition:width .3s ease-in-out}
+   .rating-count{font-size:.9em;color:var(--label-color)}
+   #average-rating{font-size:1.5em;font-weight:bold;color:var(--heading-color)}
+   #rating-message{font-size:.9em;color:var(--label-color)}
 
-    <div class="translator-box">
-        <label for="inputText">Enter Text or Morse Code:</label>
-        <textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
+   .donation-container {
+    text-align: center;
+    margin-bottom: 30px;
+   }
 
-        <div class="button-container">
-            <button id="clearButton" class="action-button" onclick="clearText()">Clear</button>
-        </div>
+   .donate-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #4caf50; /* Example green color */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+   }
 
-        <label for="output">Translation:</label>
-        <div id="output-container">
-            <pre id="output"></pre>
-            <button id="copyButton" class="action-button" onclick="copyToClipboard()">Copy</button>
-        </div>
-    </div>
+   .donate-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+   }
 
-    <div class="playback-options">
-        <button id="soundButton" class="playback-button" onclick="playSound()">Play Sound</button>
-        <div class="playback-controls">
-            <label for="speed">Speed (WPM):</label>
-            <input type="number" id="speed" value="20" min="5" max="40">
-            <label for="frequency">Frequency (Hz):</label>
-            <input type="number" id="frequency" value="600" min="200" max="1000">
-        </div>
-    </div>
+   .donate-button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.3);
+    outline-offset: 2px;
+   }
+  </style>
+ </head>
+ <body>
+  <h1>Morse Code Translator</h1>
+  <div class="translator-box">
+   <label for="inputText">Enter Text or Morse Code:</label>
+   <textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
+   <label for="output">Translation:</label>
+   <div id="output-container">
+    <pre id="output"></pre>
+   </div>
+   <div class="button-container">
+    <button id="clearButton" class="action-button" onclick="clearText()">Clear</button>
+    <button id="copyButton" class="action-button" onclick="copyToClipboard()">Copy</button>
+   </div>
+  </div>
 
-    <script>
-        const morseCode = { /* ... your existing Morse code dictionary ... */ };
-        const reverseMorseCode = { /* ... your existing reverse Morse code dictionary ... */ };
-        const inputText = document.getElementById("inputText");
-        const outputElement = document.getElementById("output");
-        const speedInput = document.getElementById("speed");
-        const frequencyInput = document.getElementById("frequency");
+  <div class="rating-container">
+   <h2>Rate & Review</h2>
+   <div id="average-rating">--</div>
+   <div class="star-rating">
+    <input type="radio" id="star5" name="rating" class="star-input" value="5">
+    <label for="star5" class="star-label" title="5 stars">&#9733;</label>
+    <input type="radio" id="star4" name="rating" class="star-input" value="4">
+    <label for="star4" class="star-label" title="4 stars">&#9733;</label>
+    <input type="radio" id="star3" name="rating" class="star-input" value="3">
+    <label for="star3" class="star-label" title="3 stars">&#9733;</label>
+    <input type="radio" id="star2" name="rating" class="star-input" value="2">
+    <label for="star2" class="star-label" title="2 stars">&#9733;</label>
+    <input type="radio" id="star1" name="rating" class="star-input" value="1">
+    <label for="star1" class="star-label" title="1 star">&#9733;</label>
+   </div>
+   <div class="rating-bars">
+    <span class="rating-bar-label">5 Stars</span>
+    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-5"></div></div>
+    <span class="rating-count" id="rating-count-5">0</span>
+    <span class="rating-bar-label">4 Stars</span>
+    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-4"></div></div>
+    <span class="rating-count" id="rating-count-4">0</span>
+    <span class="rating-bar-label">3 Stars</span>
+    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-3"></div></div>
+    <span class="rating-count" id="rating-count-3">0</span>
+    <span class="rating-bar-label">2 Stars</span>
+    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-2"></div></div>
+    <span class="rating-count" id="rating-count-2">0</span>
+    <span class="rating-bar-label">1 Star</span>
+    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-1"></div></div>
+    <span class="rating-count" id="rating-count-1">0</span>
+   </div>
+   <div id="rating-message"></div>
+  </div>
 
-        inputText.addEventListener('input', function() { /* ... your existing input event listener ... */ });
-        function encodeTextLive(text) { /* ... your existing encode function ... */ }
-        function decodeMorseLive(morseText) { /* ... your existing decode function ... */ }
-        function isMorse(text) { /* ... your existing isMorse function ... */ }
-        function copyToClipboard() { /* ... your existing copy function ... */ }
-        function fallbackCopyToClipboard(text) { /* ... your existing fallback copy function ... */ }
-        function clearText() { /* ... your existing clear function ... */ }
+  <div class="donation-container">
+   <a href="https://pay.ababank.com/rZDrRAZrNiVjB3FK9" class="donate-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-donate"></i> Donate with ABA Pay
+   </a>
+   <p style="font-size: 0.8em; color: var(--label-color); margin-top: 5px;">Support this translator!</p>
+  </div>
 
-        function playSound() {
-            const morse = outputElement.textContent;
-            const speedWPM = parseInt(speedInput.value);
-            const frequencyHz = parseInt(frequencyInput.value);
+  <script>
+   const morseCode = {
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+    'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+    'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+    'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+    'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+    'Z': '--..',
+    '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+    ' ': '/', '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.',
+    '!': '-.-.--', '/': '-..-.-', '(': '-.--.', ')': '-.--.-', '&': '.-...',
+    ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-',
+    '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
+   };
 
-            // Basic timing calculation (approximate)
-            const ditDurationMs = 60000 / (speedWPM * 50); // 50 units per word (average)
+   const reverseMorseCode = Object.fromEntries(Object.entries(morseCode).map(([key, value]) => [value, key]));
 
-            // Placeholder for actual sound generation logic using Web Audio API
-            if (morse) {
-                alert("Playing sound for: " + morse + "\nSpeed: " + speedWPM + " WPM\nFrequency: " + frequencyHz + " Hz\n(Sound implementation needs to be added here)");
-                // Example of how you might iterate through the Morse code:
-                // for (const char of morse) {
-                //     if (char === '.') {
-                //         // Play 'dit' sound for ditDurationMs
-                //     } else if (char === '-') {
-                //         // Play 'dah' sound for 3 * ditDurationMs
-                //     } else if (char === ' ') {
-                //         // Pause for 3 * ditDurationMs (letter space)
-                //     } else if (char === '/') {
-                //         // Pause for 7 * ditDurationMs (word space)
-                //     }
-                // }
-            } else {
-                alert("No Morse code to play.");
-            }
-        }
+   const inputText = document.getElementById("inputText");
+   const outputElement = document.getElementById("output");
+   const ratingInputs = document.querySelectorAll('.star-input');
+   const ratingBarsFill = {
+    5: document.getElementById('rating-bar-5'),
+    4: document.getElementById('rating-bar-4'),
+    3: document.getElementById('rating-bar-3'),
+    2: document.getElementById('rating-bar-2'),
+    1: document.getElementById('rating-bar-1')
+   };
+   const ratingCounts = {
+    5: document.getElementById('rating-count-5'),
+    4: document.getElementById('rating-count-4'),
+    3: document.getElementById('rating-count-3'),
+    2: document.getElementById('rating-count-2'),
+    1: document.getElementById('rating-count-1')
+   };
+   const averageRatingDisplay = document.getElementById('average-rating');
+   const ratingMessage = document.getElementById('rating-message');
+   let currentRating = 0;
+   let ratingsData = {
+    5: 12,
+    4: 8,
+    3: 5,
+    2: 2,
+    1: 1
+   };
 
-        // Placeholder functions for Flashlight and Vibration (implementation needed)
-        // function flashMorse() {
-        //     const morse = outputElement.textContent;
-        //     alert("Flashlight Morse for: " + morse + " (Flashlight implementation needed)");
-        //     // Use browser APIs to control the device's flashlight
-        // }
+   inputText.addEventListener('input', function () {
+    const text = inputText.value;
+    if (isMorse(text)) {
+     outputElement.textContent = decodeMorseLive(text);
+    } else {
+     outputElement.textContent = encodeTextLive(text);
+    }
+   });
 
-        // function vibrateMorse() {
-        //     const morse = outputElement.textContent;
-        //     alert("Vibrating Morse for: " + morse + " (Vibration implementation needed)");
-        //     // Use browser Vibration API
-        // }
-    </script>
-</body>
-</html>
+   function encodeTextLive(text) {
+    const upperText = text.toUpperCase();
+    let encodedWords = [];
+    const words = upperText.split(' ');
+    for (const word of words) {
+     let encodedLetters = [];
+     for (const char of word) {
+      if (morseCode[char]) {
+       encodedLetters.push(morseCode[char]);
+      } else {
+       encodedLetters.push(char);
+      }
+     }
+     encodedWords.push(encodedLetters.join(" "));
+    }
+    return encodedWords.join(" / ");
+   }
+
+   function decodeMorseLive(morseText) {
+    const words = morseText.split(" / ");
+    let decodedText = [];
+    for (const word of words) {
+     const letters = word.split(" ");
+     let decodedWord = "";
+     for (const letter of letters) {
+      if (reverseMorseCode[letter]) {
+       decodedWord += reverseMorseCode[letter];
+      } else {
+       decodedWord += "?";
+      }
+     }
+     decodedText.push(decodedWord);
+    }
+    return decodedText.join(" ");
+   }
+
+   function isMorse(text) {
+    const morseChars    = ['.', '-', '/'];
+    let morseCount = 0;
+    let otherCount = 0;
+    for (const char of text) {
+     if (morseChars.includes(char)) {
+      morseCount++;
+     } else if (char.trim() !== '') {
+      otherCount++;
+     }
+    }
+    return morseCount > otherCount;
+   }
+
+   function copyToClipboard() {
+    const outputTextElement = document.getElementById("output");
+    const textToCopy = outputTextElement.textContent;
+    navigator.clipboard.writeText(textToCopy);
+
+    const copyButton =     document.getElementById("copyButton");
+    copyButton.classList.add("copied");
+    copyButton.textContent = "Copied!";
+    setTimeout(() => {
+     copyButton.classList.remove("copied");
+     copyButton.textContent = "Copy";
+    }, 1500);
+   }
+
+   function clearText() {
+    document.getElementById("inputText").value = "";
+    outputElement.textContent = "";
+    outputElement.style.animation = 'none';
+    outputElement.offsetHeight;
+    outputElement.style.animation = null;
+   }
+
+   function updateRatingDisplay() {
+    let totalRatings = 0;
+    let ratingSum = 0;
+    for (const star in ratingsData) {
+     totalRatings += ratingsData[star];
+     ratingSum += parseInt(star) * ratingsData[star];
+     ratingCounts[star].textContent = ratingsData[star];
+     const percentage = totalRatings > 0 ? (ratingsData[star] / totalRatings) * 100 + '%' : '0%';
+     ratingBarsFill[star].style.width = percentage;
+    }
+    const average = totalRatings > 0 ? (ratingSum / totalRatings).toFixed(1) : '--';
+    averageRatingDisplay.textContent = average;
+   }
+
+   ratingInputs.forEach(star => {
+    star.addEventListener('change', function () {
+     const ratingValue = parseInt(this.value);
+     if (currentRating !== ratingValue) {
+      if (currentRating > 0) {
+       ratingsData[currentRating]--;
+      }
+      ratingsData[ratingValue]++;
+      currentRating = ratingValue;
+      updateRatingDisplay();
+      ratingMessage.textContent = `You rated this ${ratingValue} star${ratingValue > 1 ? 's' : ''}.`;
+      // In a real application, you would send this rating to a server
+     } else {
+      // User unselected the current rating
+      ratingsData[currentRating]--;
+      currentRating = 0;
+      updateRatingDisplay();
+      ratingMessage.textContent = "Rating removed.";
+      this.checked = false;
+     }
+     // Uncheck other radio buttons if the current one is unchecked
+     ratingInputs.forEach(otherStar => {
+      if (otherStar !== this && !this.checked) {
+       otherStar.checked = false;
+      }
+     });
+    });
+   });
+
+   updateRatingDisplay();
+  </script>
+ </body>
+ </html>
+
