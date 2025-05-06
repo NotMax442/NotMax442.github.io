@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morse code translator</title>
+    <title>Morse Code Translator</title>
     <style>
         body {
             font-family: sans-serif;
@@ -81,7 +81,34 @@
             background-color: #f44336; /* Red color for clear */
             color: white;
         }
-        .action-button:hover {
+        .playback-options {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .playback-button {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #eee;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .playback-button:hover {
+            background-color: #ddd;
+        }
+        .playback-controls label {
+            font-weight: normal;
+        }
+        .playback-controls input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .action-button:hover, .playback-button:hover {
             transform: scale(1.05);
         }
         @keyframes rainbow-shine {
@@ -91,7 +118,7 @@
     </style>
 </head>
 <body>
-    <h1>Real-time Morse Code Translator</h1>
+    <h1>Morse Code Translator</h1>
 
     <div class="translator-box">
         <label for="inputText">Enter Text or Morse Code:</label>
@@ -108,118 +135,72 @@
         </div>
     </div>
 
+    <div class="playback-options">
+        <button id="soundButton" class="playback-button" onclick="playSound()">Play Sound</button>
+        <div class="playback-controls">
+            <label for="speed">Speed (WPM):</label>
+            <input type="number" id="speed" value="20" min="5" max="40">
+            <label for="frequency">Frequency (Hz):</label>
+            <input type="number" id="frequency" value="600" min="200" max="1000">
+        </div>
+    </div>
+
     <script>
-        const morseCode = {
-            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
-            'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
-            'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
-            'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
-            'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
-            'Z': '--..',
-            '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
-            '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
-            ' ': '/', '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.',
-            '!': '-.-.--', '/': '-..-.-', '(': '-.--.', ')': '-.--.-', '&': '.-...',
-            ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-',
-            '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
-        };
-
-        const reverseMorseCode = Object.fromEntries(Object.entries(morseCode).map(([key, value]) => [value, key]));
-
+        const morseCode = { /* ... your existing Morse code dictionary ... */ };
+        const reverseMorseCode = { /* ... your existing reverse Morse code dictionary ... */ };
         const inputText = document.getElementById("inputText");
         const outputElement = document.getElementById("output");
+        const speedInput = document.getElementById("speed");
+        const frequencyInput = document.getElementById("frequency");
 
-        inputText.addEventListener('input', function() {
-            const text = inputText.value;
-            if (isMorse(text)) {
-                outputElement.textContent = decodeMorseLive(text);
+        inputText.addEventListener('input', function() { /* ... your existing input event listener ... */ });
+        function encodeTextLive(text) { /* ... your existing encode function ... */ }
+        function decodeMorseLive(morseText) { /* ... your existing decode function ... */ }
+        function isMorse(text) { /* ... your existing isMorse function ... */ }
+        function copyToClipboard() { /* ... your existing copy function ... */ }
+        function fallbackCopyToClipboard(text) { /* ... your existing fallback copy function ... */ }
+        function clearText() { /* ... your existing clear function ... */ }
+
+        function playSound() {
+            const morse = outputElement.textContent;
+            const speedWPM = parseInt(speedInput.value);
+            const frequencyHz = parseInt(frequencyInput.value);
+
+            // Basic timing calculation (approximate)
+            const ditDurationMs = 60000 / (speedWPM * 50); // 50 units per word (average)
+
+            // Placeholder for actual sound generation logic using Web Audio API
+            if (morse) {
+                alert("Playing sound for: " + morse + "\nSpeed: " + speedWPM + " WPM\nFrequency: " + frequencyHz + " Hz\n(Sound implementation needs to be added here)");
+                // Example of how you might iterate through the Morse code:
+                // for (const char of morse) {
+                //     if (char === '.') {
+                //         // Play 'dit' sound for ditDurationMs
+                //     } else if (char === '-') {
+                //         // Play 'dah' sound for 3 * ditDurationMs
+                //     } else if (char === ' ') {
+                //         // Pause for 3 * ditDurationMs (letter space)
+                //     } else if (char === '/') {
+                //         // Pause for 7 * ditDurationMs (word space)
+                //     }
+                // }
             } else {
-                outputElement.textContent = encodeTextLive(text);
-            }
-        });
-
-        function encodeTextLive(text) {
-            const upperText = text.toUpperCase();
-            let encodedWords = [];
-            const words = upperText.split(' ');
-            for (const word of words) {
-                let encodedLetters = [];
-                for (const char of word) {
-                    if (morseCode[char]) {
-                        encodedLetters.push(morseCode[char]);
-                    } else {
-                        encodedLetters.push(char); // Keep non-Morse characters as is
-                    }
-                }
-                encodedWords.push(encodedLetters.join(" "));
-            }
-            return encodedWords.join(" / ");
-        }
-
-        function decodeMorseLive(morseText) {
-            const words = morseText.split(" / ");
-            let decodedText = [];
-            for (const word of words) {
-                const letters = word.split(" ");
-                let decodedWord = "";
-                for (const letter of letters) {
-                    if (reverseMorseCode[letter]) {
-                        decodedWord += reverseMorseCode[letter];
-                    } else {
-                        decodedWord += "?"; // Indicate unknown Morse code
-                    }
-                }
-                decodedText.push(decodedWord);
-            }
-            return decodedText.join(" ");
-        }
-
-        function isMorse(text) {
-            const morseChars = ['.', '-', '/'];
-            let morseCount = 0;
-            let otherCount = 0;
-            for (const char of text) {
-                if (morseChars.includes(char)) {
-                    morseCount++;
-                } else if (char.trim() !== '') {
-                    otherCount++;
-                }
-            }
-            return morseCount > otherCount;
-        }
-
-        function copyToClipboard() {
-            const outputTextElement = document.getElementById("output");
-            const textToCopy = outputTextElement.textContent;
-
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(textToCopy)
-                    .then(() => {
-                        console.log('Text copied to clipboard');
-                    })
-                    .catch(err => {
-                        console.error('Failed to copy text: ', err);
-                        fallbackCopyToClipboard(textToCopy);
-                    });
-            } else {
-                fallbackCopyToClipboard(textToCopy);
+                alert("No Morse code to play.");
             }
         }
 
-        function fallbackCopyToClipboard(text) {
-            const tempInput = document.createElement("textarea");
-            document.body.appendChild(tempInput);
-            tempInput.value = text;
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            console.log('Text copied to clipboard (fallback)');
-        }
+        // Placeholder functions for Flashlight and Vibration (implementation needed)
+        // function flashMorse() {
+        //     const morse = outputElement.textContent;
+        //     alert("Flashlight Morse for: " + morse + " (Flashlight implementation needed)");
+        //     // Use browser APIs to control the device's flashlight
+        // }
 
-        function clearText() {
-            document.getElementById("inputText").value = "";
-            document.getElementById("output").textContent = "";
-        }
+        // function vibrateMorse() {
+        //     const morse = outputElement.textContent;
+        //     alert("Vibrating Morse for: " + morse + " (Vibration implementation needed)");
+        //     // Use browser Vibration API
+        // }
     </script>
 </body>
 </html>
