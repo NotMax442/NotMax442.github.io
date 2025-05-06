@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morse Code Translator</title>
+    <title>Morse code translator</title>
     <style>
         body {
             font-family: sans-serif;
@@ -58,19 +58,30 @@
             height: auto;
             min-height: 100px;
         }
-        #copyButton {
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end; /* Align buttons to the right */
+        }
+        .action-button {
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
-            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-            color: white;
             cursor: pointer;
             font-size: 16px;
             transition: transform 0.2s ease-in-out;
+        }
+        #copyButton {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            color: white;
             animation: rainbow-shine 2s infinite alternate;
             background-size: 400% 100%;
         }
-        #copyButton:hover {
+        #clearButton {
+            background-color: #f44336; /* Red color for clear */
+            color: white;
+        }
+        .action-button:hover {
             transform: scale(1.05);
         }
         @keyframes rainbow-shine {
@@ -86,10 +97,14 @@
         <label for="inputText">Enter Text or Morse Code:</label>
         <textarea id="inputText" rows="5" placeholder="Type here..."></textarea>
 
+        <div class="button-container">
+            <button id="clearButton" class="action-button" onclick="clearText()">Clear</button>
+        </div>
+
         <label for="output">Translation:</label>
         <div id="output-container">
             <pre id="output"></pre>
-            <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+            <button id="copyButton" class="action-button" onclick="copyToClipboard()">Copy</button>
         </div>
     </div>
 
@@ -159,6 +174,20 @@
             return decodedText.join(" ");
         }
 
+        function isMorse(text) {
+            const morseChars = ['.', '-', '/'];
+            let morseCount = 0;
+            let otherCount = 0;
+            for (const char of text) {
+                if (morseChars.includes(char)) {
+                    morseCount++;
+                } else if (char.trim() !== '') {
+                    otherCount++;
+                }
+            }
+            return morseCount > otherCount;
+        }
+
         function copyToClipboard() {
             const outputTextElement = document.getElementById("output");
             const textToCopy = outputTextElement.textContent;
@@ -187,18 +216,9 @@
             console.log('Text copied to clipboard (fallback)');
         }
 
-        function isMorse(text) {
-            const morseChars = ['.', '-', '/'];
-            let morseCount = 0;
-            let otherCount = 0;
-            for (const char of text) {
-                if (morseChars.includes(char)) {
-                    morseCount++;
-                } else if (char.trim() !== '') {
-                    otherCount++;
-                }
-            }
-            return morseCount > otherCount;
+        function clearText() {
+            document.getElementById("inputText").value = "";
+            document.getElementById("output").textContent = "";
         }
     </script>
 </body>
