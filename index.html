@@ -27,18 +27,6 @@
    .action-button:hover::after{opacity:1;visibility:visible}
    #output-container{opacity:0;animation:fadeIn .5s ease-in-out forwards}
    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-   .rating-container{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:15px;margin-bottom: 30px;}
-   .star-rating{display:flex;gap:8px}
-   .star-input{display:none}
-   .star-label{font-size:var(--star-size);color:#ccc;cursor:pointer;transition:color .2s ease-in-out,transform .2s ease-in-out}
-   .star-input:checked~.star-label{color:var(--star-color)}
-   .rating-bars{display:grid;grid-template-columns:auto 1fr auto;gap:10px;width:100%;max-width:300px}
-   .rating-bar-label{font-size:.9em;color:var(--label-color)}
-   .rating-bar-bg{background-color:var(--rating-bar-bg);border-radius:5px;height:8px;overflow:hidden}
-   .rating-bar-fill{background-color:var(--rating-bar-fill);height:100%;border-radius:5px;width:0%;transition:width .3s ease-in-out}
-   .rating-count{font-size:.9em;color:var(--label-color)}
-   #average-rating{font-size:1.5em;font-weight:bold;color:var(--heading-color)}
-   #rating-message{font-size:.9em;color:var(--label-color)}
 
    .donation-container {
     text-align: center;
@@ -84,46 +72,11 @@
    </div>
   </div>
 
-  <div class="rating-container">
-   <h2>Rate & Review</h2>
-   <div id="average-rating">--</div>
-   <div class="star-rating">
-    <input type="radio" id="star5" name="rating" class="star-input" value="5">
-    <label for="star5" class="star-label" title="5 stars">&#9733;</label>
-    <input type="radio" id="star4" name="rating" class="star-input" value="4">
-    <label for="star4" class="star-label" title="4 stars">&#9733;</label>
-    <input type="radio" id="star3" name="rating" class="star-input" value="3">
-    <label for="star3" class="star-label" title="3 stars">&#9733;</label>
-    <input type="radio" id="star2" name="rating" class="star-input" value="2">
-    <label for="star2" class="star-label" title="2 stars">&#9733;</label>
-    <input type="radio" id="star1" name="rating" class="star-input" value="1">
-    <label for="star1" class="star-label" title="1 star">&#9733;</label>
-   </div>
-   <div class="rating-bars">
-    <span class="rating-bar-label">5 Stars</span>
-    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-5"></div></div>
-    <span class="rating-count" id="rating-count-5">0</span>
-    <span class="rating-bar-label">4 Stars</span>
-    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-4"></div></div>
-    <span class="rating-count" id="rating-count-4">0</span>
-    <span class="rating-bar-label">3 Stars</span>
-    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-3"></div></div>
-    <span class="rating-count" id="rating-count-3">0</span>
-    <span class="rating-bar-label">2 Stars</span>
-    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-2"></div></div>
-    <span class="rating-count" id="rating-count-2">0</span>
-    <span class="rating-bar-label">1 Star</span>
-    <div class="rating-bar-bg"><div class="rating-bar-fill" id="rating-bar-1"></div></div>
-    <span class="rating-count" id="rating-count-1">0</span>
-   </div>
-   <div id="rating-message"></div>
-  </div>
-
   <div class="donation-container">
    <a href="https://pay.ababank.com/rZDrRAZrNiVjB3FK9" class="donate-button" target="_blank" rel="noopener noreferrer">
     <i class="fas fa-donate"></i> Donate with ABA Pay
    </a>
-   <p style="font-size: 0.8em; color: var(--label-color); margin-top: 5px;">Support this translator!</p>
+   <p style="font-size: 0.8em; color: var(--label-color); margin-top: 5px;">Support ThyReach<br>Who Has To Translate Everything By Hand, NO CAP🧢</p>
   </div>
 
   <script>
@@ -146,31 +99,6 @@
 
    const inputText = document.getElementById("inputText");
    const outputElement = document.getElementById("output");
-   const ratingInputs = document.querySelectorAll('.star-input');
-   const ratingBarsFill = {
-    5: document.getElementById('rating-bar-5'),
-    4: document.getElementById('rating-bar-4'),
-    3: document.getElementById('rating-bar-3'),
-    2: document.getElementById('rating-bar-2'),
-    1: document.getElementById('rating-bar-1')
-   };
-   const ratingCounts = {
-    5: document.getElementById('rating-count-5'),
-    4: document.getElementById('rating-count-4'),
-    3: document.getElementById('rating-count-3'),
-    2: document.getElementById('rating-count-2'),
-    1: document.getElementById('rating-count-1')
-   };
-   const averageRatingDisplay = document.getElementById('average-rating');
-   const ratingMessage = document.getElementById('rating-message');
-   let currentRating = 0;
-   let ratingsData = {
-    5: 12,
-    4: 8,
-    3: 5,
-    2: 2,
-    1: 1
-   };
 
    inputText.addEventListener('input', function () {
     const text = inputText.value;
@@ -236,7 +164,7 @@
     const textToCopy = outputTextElement.textContent;
     navigator.clipboard.writeText(textToCopy);
 
-    const copyButton =     document.getElementById("copyButton");
+    const copyButton = document.getElementById("copyButton");
     copyButton.classList.add("copied");
     copyButton.textContent = "Copied!";
     setTimeout(() => {
@@ -252,52 +180,6 @@
     outputElement.offsetHeight;
     outputElement.style.animation = null;
    }
-
-   function updateRatingDisplay() {
-    let totalRatings = 0;
-    let ratingSum = 0;
-    for (const star in ratingsData) {
-     totalRatings += ratingsData[star];
-     ratingSum += parseInt(star) * ratingsData[star];
-     ratingCounts[star].textContent = ratingsData[star];
-     const percentage = totalRatings > 0 ? (ratingsData[star] / totalRatings) * 100 + '%' : '0%';
-     ratingBarsFill[star].style.width = percentage;
-    }
-    const average = totalRatings > 0 ? (ratingSum / totalRatings).toFixed(1) : '--';
-    averageRatingDisplay.textContent = average;
-   }
-
-   ratingInputs.forEach(star => {
-    star.addEventListener('change', function () {
-     const ratingValue = parseInt(this.value);
-     if (currentRating !== ratingValue) {
-      if (currentRating > 0) {
-       ratingsData[currentRating]--;
-      }
-      ratingsData[ratingValue]++;
-      currentRating = ratingValue;
-      updateRatingDisplay();
-      ratingMessage.textContent = `You rated this ${ratingValue} star${ratingValue > 1 ? 's' : ''}.`;
-      // In a real application, you would send this rating to a server
-     } else {
-      // User unselected the current rating
-      ratingsData[currentRating]--;
-      currentRating = 0;
-      updateRatingDisplay();
-      ratingMessage.textContent = "Rating removed.";
-      this.checked = false;
-     }
-     // Uncheck other radio buttons if the current one is unchecked
-     ratingInputs.forEach(otherStar => {
-      if (otherStar !== this && !this.checked) {
-       otherStar.checked = false;
-      }
-     });
-    });
-   });
-
-   updateRatingDisplay();
   </script>
  </body>
  </html>
-
