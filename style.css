@@ -1,5 +1,5 @@
 body {
-    background-color: #fff0f3;
+    background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
     color: #c9184a;
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -12,29 +12,41 @@ body {
 
 .container {
     text-align: center;
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(255, 75, 110, 0.2);
-    transition: opacity 1s ease-in-out;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 35px rgba(255, 75, 110, 0.3);
+    border: 2px solid white;
+    max-width: 400px;
+    z-index: 10;
 }
 
-.hidden { display: none; opacity: 0; }
+.hidden { display: none; }
 
 .fade-in { animation: fadeIn 2s forwards; }
 
 @keyframes fadeIn {
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.lock-icon { font-size: 50px; margin-bottom: 10px; }
+.lock-icon { font-size: 60px; animation: pulse 2s infinite; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.input-group { margin: 20px 0; }
 
 input {
-    width: 50px;
+    width: 60px;
     padding: 10px;
     font-size: 1.2rem;
     border: 2px solid #ffb3c1;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
 }
 
@@ -42,24 +54,31 @@ button {
     background-color: #ff4d6d;
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 15px 30px;
     font-size: 1.1rem;
-    border-radius: 25px;
+    border-radius: 30px;
     cursor: pointer;
-    margin: 10px;
     transition: 0.3s;
 }
 
-button:hover { background-color: #c9184a; }
-
 #noBtn {
-    position: relative; /* Essential for moving */
-    background-color: #808080;
+    background-color: #adb5bd;
+    transition: none; /* Instant movement */
 }
 
-#guilt-message {
-    margin-top: 20px;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #590d22;
+.heart-particle {
+    position: fixed;
+    bottom: -10px;
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
