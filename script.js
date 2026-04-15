@@ -1,91 +1,79 @@
-let noClickCount = 0;
-let canMove = true;
-const moveDuration = 30000; // 30 seconds
+const term = document.getElementById('terminal');
 
-const messages = [
-    "Are you sure?",
-    "Please click yes...",
-    "You're hurting my feelings! 🥺",
-    "Think about it again...",
-    "But we're so cute together!",
-    "I'm going to cry...",
-    "Last chance!",
-    "Okay, fine, click it one more time...",
-    "Almost there...",
-    "Just a few more...",
-    "I won't let you say no!",
-    "Still trying?",
-    "You're persistent!",
-    "Okay, check this out..."
-];
+function log(text, type = 'normal') {
+    const div = document.createElement('div');
+    div.className = type === 'warning' ? 'warning' : 'msg';
+    div.innerHTML = `> ${text}`;
+    term.appendChild(div);
+    term.scrollTop = term.scrollHeight;
+}
 
-function checkLock() {
-    const day = document.getElementById('day').value;
-    const month = document.getElementById('month').value;
+async function checkRoom() {
+    const token = document.getElementById('token').value;
+    const gid = document.getElementById('gistId').value;
+    const code = document.getElementById('roomCode').value;
+    const fileName = `room_${code}.json`;
 
-    if (day == "13" && month == "10") {
-        document.getElementById('lock-screen').classList.add('hidden');
-        document.getElementById('proposal-screen').classList.remove('hidden');
-        document.getElementById('proposal-screen').classList.add('fade-in');
-        
-        // Start the 30-second "No-Move" timer
-        setTimeout(() => {
-            canMove = false;
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.position = 'static'; 
-            document.getElementById('guilt-message').innerText = "Fine... you caught it. But are you sure?";
-        }, moveDuration);
+    if (!token || !gid || !code) return;
 
-    } else {
-        document.getElementById('lock-error').innerText = "Incorrect date, try again! ❤️";
+    log(`SCANNING PORTAL: ${code}...`);
+
+    try {
+        const res = await fetch(`https://api.github.com/gists/${gid}`, {
+            headers: { 'Authorization': `token ${token}` }
+        });
+        const data = await res.json();
+
+        if (data.files[fileName]) {
+            log(`LINK DETECTED: YOU ARE JOINING AN ACTIVE ROOM.`, 'warning');
+            
+            const content = JSON.parse(data.files[fileName].content);
+            const lastUsed = content.timestamp;
+            const now = new Date().getTime();
+            
+            if (now - lastUsed > 7 * 24 * 60 * 60 * 1000) {
+                log("NOTICE: ROOM EXPIRED (7+ DAYS INACTIVE). OVERWRITING...", "warning");
+            }
+        } else {
+            log(`STATUS: PORTAL VACANT. INITIALIZING NEW LINK...`);
+        }
+    } catch (e) {
+        log("ERROR: UNABLE TO REACH UPLINK. CHECK TOKEN/GIST_ID.");
     }
 }
 
-function moveNo() {
-    if (canMove) {
-        const noBtn = document.getElementById('noBtn');
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-        
-        noBtn.style.position = 'fixed';
-        noBtn.style.left = x + 'px';
-        noBtn.style.top = y + 'px';
+async function transmit() {
+    const token = document.getElementById('token').value;
+    const gid = document.getElementById('gistId').value;
+    const code = document.getElementById('roomCode').value;
+    const msg = document.getElementById('message').value;
+    const fileName = `room_${code}.json`;
+
+    if (!msg) return;
+
+    const payload = {
+        timestamp: new Date().getTime(),
+        text: msg
+    };
+
+    log("TRANSMITTING...");
+
+    try {
+        const res = await fetch(`https://api.github.com/gists/${gid}`, {
+            method: 'PATCH',
+            headers: { 'Authorization': `token ${token}` },
+            body: JSON.stringify({
+                files: {
+                    [fileName]: { content: JSON.stringify(payload) }
+                }
+            })
+        });
+
+        if (res.ok) {
+            log("TRANSMISSION SUCCESSFUL.");
+            document.getElementById('message').value = '';
+        }
+    } catch (e) {
+        log("TRANSMISSION FAILED.");
     }
 }
-
-function handleNo() {
-    noClickCount++;
-    const guilt = document.getElementById('guilt-message');
-    const noBtn = document.getElementById('noBtn');
-
-    if (noClickCount <= messages.length) {
-        guilt.innerText = messages[noClickCount - 1];
-    }
-
-    // After 15 clicks, force the 'Yes'
-    if (noClickCount >= 15) {
-        noBtn.innerText = "Yes";
-        noBtn.style.backgroundColor = "#ff4d6d";
-        noBtn.style.position = 'static';
-        noBtn.onclick = celebrate;
-        noBtn.onmouseover = null; 
-        guilt.innerText = "I knew it! ❤️";
-    }
-}
-
-function celebrate() {
-    document.getElementById('proposal-screen').classList.add('hidden');
-    document.getElementById('success-screen').classList.remove('hidden');
-}
-
-// Background Heart Animation
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart-particle');
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
-}
-setInterval(createHeart, 300);
