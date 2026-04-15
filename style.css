@@ -1,0 +1,65 @@
+body {
+    background-color: #fff0f3;
+    color: #c9184a;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 75, 110, 0.2);
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden { display: none; opacity: 0; }
+
+.fade-in { animation: fadeIn 2s forwards; }
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.lock-icon { font-size: 50px; margin-bottom: 10px; }
+
+input {
+    width: 50px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid #ffb3c1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+button {
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+button:hover { background-color: #c9184a; }
+
+#noBtn {
+    position: relative; /* Essential for moving */
+    background-color: #808080;
+}
+
+#guilt-message {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #590d22;
+}
