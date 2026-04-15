@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Message</title>
+    <title>A Special Surprise ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,17 +11,17 @@
     <div id="lock-screen" class="container">
         <div class="lock-icon">🔒</div>
         <h2>Enter the key to my heart</h2>
-        <p>(DD/MM)</p>
+        <p>Our special date (DD/MM)</p>
         <div class="input-group">
-            <input type="number" id="day" placeholder="DD" maxlength="2">
+            <input type="number" id="day" placeholder="DD">
             <span>/</span>
-            <input type="number" id="month" placeholder="MM" maxlength="2">
+            <input type="number" id="month" placeholder="MM">
         </div>
         <button onclick="checkLock()">Unlock</button>
         <p id="lock-error"></p>
     </div>
 
-    <div id="proposal-screen" class="container hidden fade-in">
+    <div id="proposal-screen" class="container hidden">
         <h1 id="main-question">Will you be my Valentine?</h1>
         <div class="btn-group">
             <button id="yesBtn" onclick="celebrate()">Yes</button>
@@ -32,7 +32,7 @@
 
     <div id="success-screen" class="container hidden fade-in">
         <h1>❤️ Yay! ❤️</h1>
-        <p>I knew you'd say yes! I love you!</p>
+        <p>I knew you'd say yes! I love you so much!</p>
     </div>
 
     <script src="script.js"></script>
