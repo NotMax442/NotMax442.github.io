@@ -2,62 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TERMINAL_ACCESS</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <style>
-        body { background-color: #000; color: #0f0; font-family: 'Courier New', monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; }
-        #terminal { flex-grow: 1; overflow-y: auto; padding: 20px; border-bottom: 1px solid #0f0; }
-        #input-area { padding: 10px; background: #050505; }
-        input, button { background: #000; border: 1px solid #0f0; color: #0f0; padding: 10px; margin: 5px; }
-        .msg { margin-bottom: 10px; border-left: 2px solid #0f0; padding-left: 10px; }
-        .system { color: #888; font-style: italic; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL_ACCESS_V1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="terminal">
-        <div class="system">[SYSTEM] ENTER PASSCODE TO DECRYPT CHANNEL...</div>
+
+    <div id="terminal" class="glitch">
+        <div class="system-msg">[SYSTEM] TERMINAL INITIALIZED...</div>
+        <div class="system-msg">[SYSTEM] AWAITING UPLINK PARAMETERS.</div>
     </div>
+
     <div id="input-area">
-        <input type="password" id="passcode" placeholder="SECURE_PASSCODE">
-        <input type="text" id="message" placeholder="ENTER_COMMAND" style="width: 60%;">
-        <button onclick="sendMessage()">TRANSMIT</button>
-        <button onclick="syncChat()">SYNC</button>
+        <input type="password" id="token" placeholder="GITHUB_API_TOKEN">
+        <input type="text" id="gistId" placeholder="GIST_ID">
+        <input type="text" id="roomCode" placeholder="PORTAL_CODE" onchange="checkRoom()">
+        <input type="text" id="message" placeholder="ENTER_MESSAGE..." style="flex-grow: 1;">
+        <button onclick="transmit()">TRANSMIT</button>
     </div>
 
-    <script>
-        const GH_TOKEN = "YOUR_GITHUB_PAT"; // Personal Access Token
-        const GIST_ID = "YOUR_GIST_ID"; 
-
-        async function syncChat() {
-            const code = document.getElementById('passcode').value;
-            if(!code) return alert("PASSCODE REQUIRED");
-
-            const res = await fetch(`https://api.github.com/gists/${GIST_ID}`);
-            const data = await res.json();
-            const encryptedContent = data.files["chat.json"].content;
-
-            try {
-                const bytes = CryptoJS.AES.decrypt(encryptedContent, code);
-                const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-                renderChat(decryptedData);
-            } catch (e) {
-                alert("DECRYPTION_FAILED: INVALID_PASSCODE");
-            }
-        }
-
-        function renderChat(messages) {
-            const term = document.getElementById('terminal');
-            term.innerHTML = '<div class="system">[SYSTEM] CHANNEL_DECRYPTED</div>';
-            messages.forEach(m => {
-                term.innerHTML += `<div class="msg"><strong>${m.user}:</strong> ${m.text}</div>`;
-            });
-        }
-
-        async function sendMessage() {
-            // 1. Get current data 2. Push new encrypted message to GitHub via API
-            // Note: Use 'PATCH' method to update Gist content
-            console.log("Transmitting...");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
