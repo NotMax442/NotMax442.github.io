@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL_ACCESS_V1</title>
+    <title>SECURE_UPLINK_v2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="terminal" class="glitch">
-        <div class="system-msg">[SYSTEM] TERMINAL INITIALIZED...</div>
-        <div class="system-msg">[SYSTEM] AWAITING UPLINK PARAMETERS.</div>
+    <div id="status-bar">>> SYNC_TIMER: <span id="timer">30</span>s | STATUS: <span id="status">ONLINE</span></div>
+    
+    <div id="terminal">
+        <div class="system-msg">[SYSTEM] CONNECTING TO PORTAL...</div>
     </div>
 
+    <canvas id="paintCanvas" width="800" height="400"></canvas>
+
     <div id="input-area">
-        <input type="password" id="token" placeholder="GITHUB_API_TOKEN">
-        <input type="text" id="gistId" placeholder="GIST_ID">
-        <input type="text" id="roomCode" placeholder="PORTAL_CODE" onchange="checkRoom()">
-        <input type="text" id="message" placeholder="ENTER_MESSAGE..." style="flex-grow: 1;">
+        <input type="text" id="username" placeholder="USER_ID">
+        <input type="text" id="message" placeholder="ENTER_TRANSMISSION..." style="flex-grow: 1;">
         <button onclick="transmit()">TRANSMIT</button>
+        <button onclick="clearCanvas()" style="background: #f00;">WIPE_DATA</button>
     </div>
 
     <script src="script.js"></script>
