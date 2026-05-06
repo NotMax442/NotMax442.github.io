@@ -3,28 +3,42 @@ function run(isEncrypt) {
     const key = document.getElementById('key').value;
     const output = document.getElementById('output');
 
-    if (!key) return alert("You need a Secret Keyword!");
+    if (!text || !key) {
+        alert("Please enter both a message and a secret key.");
+        return;
+    }
 
-    let result = "";
-    let keyIdx = 0;
-
-    for (let i = 0; i < text.length; i++) {
-        let charCode = text.charCodeAt(i);
-        
-        // Only scramble standard characters (skip emojis/special symbols)
-        if (charCode >= 32 && charCode <= 126) {
-            const keyShift = key.charCodeAt(keyIdx % key.length);
-            const shift = isEncrypt ? keyShift : -keyShift;
-            
-            // This math keeps the result within readable text characters (32-126)
-            let newChar = ((charCode - 32 + shift) % 95);
-            if (newChar < 0) newChar += 95;
-            
-            result += String.fromCharCode(newChar + 32);
-            keyIdx++;
-        } else {
-            result += text[i];
+    let processedText = "";
+    if (isEncrypt) {
+        // Step 1: Encrypt
+        for (let i = 0; i < text.length; i++) {
+            let charCode = text.charCodeAt(i);
+            let keyShift = key.charCodeAt(i % key.length);
+            processedText += String.fromCharCode(charCode + keyShift);
+        }
+        // Step 2: Encode to Base64 (to make it safe for sending)
+        output.value = btoa(unescape(encodeURIComponent(processedText)));
+    } else {
+        try {
+            // Step 1: Decode from Base64
+            let decoded = decodeURIComponent(escape(atob(text)));
+            // Step 2: Decrypt
+            for (let i = 0; i < decoded.length; i++) {
+                let charCode = decoded.charCodeAt(i);
+                let keyShift = key.charCodeAt(i % key.length);
+                processedText += String.fromCharCode(charCode - keyShift);
+            }
+            output.value = processedText;
+        } catch (e) {
+            alert("Invalid code or key. Try again!");
         }
     }
-    output.value = result;
+}
+
+function copyToClipboard() {
+    const output = document.getElementById('output');
+    output.select();
+    output.setSelectionRange(0, 99999); // For mobile
+    document.execCommand("copy");
+    alert("Copied!");
 }
