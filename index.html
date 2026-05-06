@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AES-256 Secure Vault</title>
+    <title>Ghost Network</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>AES-256 Encryption</h2>
+    <div class="vault">
+        <h2>Ghost Network</h2>
+        <input type="text" id="key" placeholder="Secret Keyword (The 'Lock')">
+        <textarea id="input" placeholder="Message to hide or reveal..."></textarea>
         
-        <label>Input Message / Encrypted Code:</label>
-        <textarea id="message" placeholder="Type text to encrypt OR paste code to decrypt..."></textarea>
-        
-        <label>Secret Password:</label>
-        <input type="password" id="password" placeholder="Enter strong password">
-        
-        <div class="controls">
-            <button class="encrypt-btn" onclick="handleEncrypt()">Encrypt</button>
-            <button class="decrypt-btn" onclick="handleDecrypt()">Decrypt</button>
+        <div class="btns">
+            <button onclick="run(true)">Scramble</button>
+            <button onclick="run(false)">Unscramble</button>
         </div>
 
-        <label>Result:</label>
-        <textarea id="output" readonly placeholder="Result will appear here..."></textarea>
-        <button class="copy-btn" onclick="copyResult()">Copy to Clipboard</button>
+        <textarea id="output" readonly placeholder="Result..."></textarea>
     </div>
     <script src="script.js"></script>
 </body>
