@@ -1,79 +1,67 @@
-const term = document.getElementById('terminal');
-
-function log(text, type = 'normal') {
-    const div = document.createElement('div');
-    div.className = type === 'warning' ? 'warning' : 'msg';
-    div.innerHTML = `> ${text}`;
-    term.appendChild(div);
-    term.scrollTop = term.scrollHeight;
+// 1. Derives a secure key from your password using PBKDF2
+async function deriveKey(password, salt) {
+    const encoder = new TextEncoder();
+    const baseKey = await crypto.subtle.importKey(
+        "raw", encoder.encode(password), "PBKDF2", false, ["deriveKey"]
+    );
+    return crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+        baseKey,
+        { name: "AES-GCM", length: 256 },
+        false, ["encrypt", "decrypt"]
+    );
 }
 
-async function checkRoom() {
-    const token = document.getElementById('token').value;
-    const gid = document.getElementById('gistId').value;
-    const code = document.getElementById('roomCode').value;
-    const fileName = `room_${code}.json`;
+// 2. Encryption Handler
+async function handleEncrypt() {
+    const text = document.getElementById('message').value;
+    const password = document.getElementById('password').value;
+    if (!text || !password) return alert("Need text and password!");
 
-    if (!token || !gid || !code) return;
+    const encoder = new TextEncoder();
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12)); // Random IV for GCM
+    const key = await deriveKey(password, salt);
 
-    log(`SCANNING PORTAL: ${code}...`);
+    const encrypted = await crypto.subtle.encrypt(
+        { name: "AES-GCM", iv }, key, encoder.encode(text)
+    );
 
+    // Package Salt + IV + Encrypted Data into a single Base64 string
+    const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
+    combined.set(salt);
+    combined.set(iv, salt.length);
+    combined.set(new Uint8Array(encrypted), salt.length + iv.length);
+
+    document.getElementById('output').value = btoa(String.fromCharCode(...combined));
+}
+
+// 3. Decryption Handler
+async function handleDecrypt() {
     try {
-        const res = await fetch(`https://api.github.com/gists/${gid}`, {
-            headers: { 'Authorization': `token ${token}` }
-        });
-        const data = await res.json();
+        const password = document.getElementById('password').value;
+        const encryptedData = document.getElementById('message').value;
+        if (!encryptedData || !password) return alert("Need code and password!");
 
-        if (data.files[fileName]) {
-            log(`LINK DETECTED: YOU ARE JOINING AN ACTIVE ROOM.`, 'warning');
-            
-            const content = JSON.parse(data.files[fileName].content);
-            const lastUsed = content.timestamp;
-            const now = new Date().getTime();
-            
-            if (now - lastUsed > 7 * 24 * 60 * 60 * 1000) {
-                log("NOTICE: ROOM EXPIRED (7+ DAYS INACTIVE). OVERWRITING...", "warning");
-            }
-        } else {
-            log(`STATUS: PORTAL VACANT. INITIALIZING NEW LINK...`);
-        }
+        const combined = new Uint8Array(atob(encryptedData).split("").map(c => c.charCodeAt(0)));
+        
+        const salt = combined.slice(0, 16);
+        const iv = combined.slice(16, 28);
+        const data = combined.slice(28);
+
+        const key = await deriveKey(password, salt);
+        const decrypted = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, data);
+
+        document.getElementById('output').value = new TextDecoder().decode(decrypted);
     } catch (e) {
-        log("ERROR: UNABLE TO REACH UPLINK. CHECK TOKEN/GIST_ID.");
+        alert("Error: Likely a wrong password or corrupted code.");
     }
 }
 
-async function transmit() {
-    const token = document.getElementById('token').value;
-    const gid = document.getElementById('gistId').value;
-    const code = document.getElementById('roomCode').value;
-    const msg = document.getElementById('message').value;
-    const fileName = `room_${code}.json`;
-
-    if (!msg) return;
-
-    const payload = {
-        timestamp: new Date().getTime(),
-        text: msg
-    };
-
-    log("TRANSMITTING...");
-
-    try {
-        const res = await fetch(`https://api.github.com/gists/${gid}`, {
-            method: 'PATCH',
-            headers: { 'Authorization': `token ${token}` },
-            body: JSON.stringify({
-                files: {
-                    [fileName]: { content: JSON.stringify(payload) }
-                }
-            })
-        });
-
-        if (res.ok) {
-            log("TRANSMISSION SUCCESSFUL.");
-            document.getElementById('message').value = '';
-        }
-    } catch (e) {
-        log("TRANSMISSION FAILED.");
-    }
+// 4. Utility: Copy to Clipboard
+function copyResult() {
+    const output = document.getElementById('output');
+    output.select();
+    document.execCommand("copy");
+    alert("Copied to clipboard!");
 }
