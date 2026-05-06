@@ -1,44 +1,49 @@
-function run(isEncrypt) {
-    const text = document.getElementById('input').value;
+// The core logic: XOR combines the text and key at a binary level
+function xorCipher(text, key) {
+    let result = "";
+    for (let i = 0; i < text.length; i++) {
+        let charCode = text.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+        result += String.fromCharCode(charCode);
+    }
+    return result;
+}
+
+function process(isEncrypt) {
+    const input = document.getElementById('input').value;
     const key = document.getElementById('key').value;
     const output = document.getElementById('output');
 
-    if (!text || !key) {
-        alert("Please enter both a message and a secret key.");
+    if (!input || !key) {
+        alert("Please enter a message and a secret key.");
         return;
     }
 
-    let processedText = "";
-    if (isEncrypt) {
-        // Step 1: Encrypt
-        for (let i = 0; i < text.length; i++) {
-            let charCode = text.charCodeAt(i);
-            let keyShift = key.charCodeAt(i % key.length);
-            processedText += String.fromCharCode(charCode + keyShift);
+    try {
+        if (isEncrypt) {
+            // 1. Scramble 2. Base64 Encode (to make it safe to send)
+            const scrambled = xorCipher(input, key);
+            output.value = btoa(unescape(encodeURIComponent(scrambled)));
+        } else {
+            // 1. Base64 Decode 2. Scramble back (XOR again)
+            const decodedBase64 = decodeURIComponent(escape(atob(input)));
+            output.value = xorCipher(decodedBase64, key);
         }
-        // Step 2: Encode to Base64 (to make it safe for sending)
-        output.value = btoa(unescape(encodeURIComponent(processedText)));
-    } else {
-        try {
-            // Step 1: Decode from Base64
-            let decoded = decodeURIComponent(escape(atob(text)));
-            // Step 2: Decrypt
-            for (let i = 0; i < decoded.length; i++) {
-                let charCode = decoded.charCodeAt(i);
-                let keyShift = key.charCodeAt(i % key.length);
-                processedText += String.fromCharCode(charCode - keyShift);
-            }
-            output.value = processedText;
-        } catch (e) {
-            alert("Invalid code or key. Try again!");
-        }
+    } catch (e) {
+        alert("Error! Wrong key or the code you pasted is invalid.");
     }
 }
 
-function copyToClipboard() {
+function copyText() {
     const output = document.getElementById('output');
+    if (!output.value) return;
+    
     output.select();
-    output.setSelectionRange(0, 99999); // For mobile
+    output.setSelectionRange(0, 99999); // Mobile compatibility
     document.execCommand("copy");
-    alert("Copied!");
+    
+    // Visual feedback
+    const btn = document.querySelector('.btn-copy');
+    const oldText = btn.innerText;
+    btn.innerText = "COPIED!";
+    setTimeout(() => btn.innerText = oldText, 2000);
 }
