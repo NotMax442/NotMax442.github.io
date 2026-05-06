@@ -2,25 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SECURE_UPLINK_v2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES-256 Secure Vault</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="status-bar">>> SYNC_TIMER: <span id="timer">30</span>s | STATUS: <span id="status">ONLINE</span></div>
-    
-    <div id="terminal">
-        <div class="system-msg">[SYSTEM] CONNECTING TO PORTAL...</div>
+    <div class="container">
+        <h2>AES-256 Encryption</h2>
+        
+        <label>Input Message / Encrypted Code:</label>
+        <textarea id="message" placeholder="Type text to encrypt OR paste code to decrypt..."></textarea>
+        
+        <label>Secret Password:</label>
+        <input type="password" id="password" placeholder="Enter strong password">
+        
+        <div class="controls">
+            <button class="encrypt-btn" onclick="handleEncrypt()">Encrypt</button>
+            <button class="decrypt-btn" onclick="handleDecrypt()">Decrypt</button>
+        </div>
+
+        <label>Result:</label>
+        <textarea id="output" readonly placeholder="Result will appear here..."></textarea>
+        <button class="copy-btn" onclick="copyResult()">Copy to Clipboard</button>
     </div>
-
-    <canvas id="paintCanvas" width="800" height="400"></canvas>
-
-    <div id="input-area">
-        <input type="text" id="username" placeholder="USER_ID">
-        <input type="text" id="message" placeholder="ENTER_TRANSMISSION..." style="flex-grow: 1;">
-        <button onclick="transmit()">TRANSMIT</button>
-        <button onclick="clearCanvas()" style="background: #f00;">WIPE_DATA</button>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
