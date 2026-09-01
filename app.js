@@ -21,13 +21,14 @@ const finalScore = document.getElementById('final-score');
 const timerDisplay = document.getElementById('timer-display');
 const scorePercentageEl = document.getElementById('score-percentage');
 const progressBarFillEl = document.getElementById('progress-bar-fill');
+const reviewContainer = document.getElementById('review-container');
 
 // App State
 let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
-let userAnswers = []; // Tracks user selections in Quiz Mode
+let userAnswers = []; // Tracks user option picks in Quiz Mode
 let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
@@ -207,6 +208,7 @@ if (backToYearsBtn) {
   backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
+// Return Button: Navigates back to Subject Selection for active year
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
     if (currentYear) {
@@ -234,7 +236,7 @@ if (quitSessionBtn) {
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
-
+  
   subjects.forEach(subject => {
     const storageKey = `missed_y${year}_${subject.toLowerCase()}`;
     const savedMissed = localStorage.getItem(storageKey);
@@ -242,7 +244,7 @@ function loadSubjectsForYear(year) {
 
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
-
+    
     subjectCard.innerHTML = `
       <h3>${subject}</h3>
       ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question${missedCount > 1 ? 's' : ''}</p>` : ''}
@@ -257,7 +259,7 @@ function loadSubjectsForYear(year) {
         <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">🗑️ Clear Saved Missed</button>
       ` : ''}
     `;
-
+    
     subjectList.appendChild(subjectCard);
   });
 }
@@ -305,7 +307,7 @@ function clearSavedMissed(subjectName) {
 // --- 60-Minute Countdown Timer for Quiz Mode ---
 function startQuizTimer() {
   clearInterval(timerInterval);
-  timeRemaining = 3600; // 60 minutes in seconds
+  timeRemaining = 3600; // 60 minutes
   updateTimerUI();
 
   if (timerDisplay) timerDisplay.classList.remove('hidden');
@@ -326,10 +328,10 @@ function updateTimerUI() {
   if (!timerDisplay) return;
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
-
+  
   const formattedMins = String(minutes).padStart(2, '0');
   const formattedSecs = String(seconds).padStart(2, '0');
-
+  
   timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
 }
 
@@ -355,10 +357,8 @@ async function startSession(subjectName, mode) {
     if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
 
-    // 1. Shuffle full question pool
     let processedQuestions = shuffleArray(data.questions);
 
-    // 2. Quiz mode picks 60 random questions and starts 60-min timer
     if (mode === 'quiz') {
       processedQuestions = processedQuestions.slice(0, 60);
       userAnswers = new Array(processedQuestions.length).fill(null);
@@ -471,7 +471,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   }, 1000);
 }
 
-// --- QUIZ MODE (No instant feedback, answers evaluated on completion/timeout) ---
+// --- QUIZ MODE ---
 function renderQuizQuestion() {
   nextBtn.classList.add('hidden');
   optionsContainer.innerHTML = '';
@@ -480,7 +480,6 @@ function renderQuizQuestion() {
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   questionText.textContent = q.question;
 
-  // Toggle button label on last question
   if (currentQuestionIndex === questions.length - 1) {
     nextBtn.textContent = "Finish Quiz 🏁";
   } else {
@@ -492,7 +491,6 @@ function renderQuizQuestion() {
     btn.classList.add('option-btn');
     btn.textContent = optionText;
 
-    // Restore selection highlight if question was previously answered
     if (userAnswers[currentQuestionIndex] === index) {
       btn.style.backgroundColor = '#0284c7';
       btn.style.borderColor = '#38bdf8';
@@ -513,7 +511,6 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     btn.style.borderColor = '#475569';
   });
 
-  // Highlight selection neutrally (blue) without revealing correct/wrong answer
   selectedBtn.style.backgroundColor = '#0284c7';
   selectedBtn.style.borderColor = '#38bdf8';
 
@@ -540,10 +537,8 @@ function finishQuiz() {
     const chosen = userAnswers[idx];
     if (chosen !== null && chosen === q.correctIndex) {
       userScore++;
-      // Answered correctly -> Remove from saved missed questions
       missedQuestions = missedQuestions.filter(item => item.question !== q.question);
     } else {
-      // Wrong or unanswered due to timeout -> Record as missed
       if (!missedQuestions.some(item => item.question === q.question)) {
         missedQuestions.push(q);
       }
@@ -557,6 +552,38 @@ function finishQuiz() {
   }
 
   showResults();
+}
+
+// --- RENDER DETAILED BREAKDOWN ---
+function renderReviewBreakdown() {
+  if (!reviewContainer) return;
+  reviewContainer.innerHTML = '';
+
+  questions.forEach((q, idx) => {
+    const userChoiceIdx = userAnswers[idx];
+    const isCorrect = userChoiceIdx !== null && userChoiceIdx === q.correctIndex;
+
+    const card = document.createElement('div');
+    card.classList.add('review-card', isCorrect ? 'correct' : 'incorrect');
+
+    const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
+      ? q.options[userChoiceIdx]
+      : "⚠️ No Answer (Timed Out)";
+
+    card.innerHTML = `
+      <h4>${idx + 1}. ${q.question}</h4>
+      <p class="review-answer ${isCorrect ? 'text-correct' : 'text-incorrect'}">
+        <strong>Your Choice:</strong> ${userChoiceText} ${isCorrect ? '✓' : '✗'}
+      </p>
+      ${!isCorrect ? `
+        <p class="review-answer text-correct">
+          <strong>Correct Choice:</strong> ${q.options[q.correctIndex]}
+        </p>
+      ` : ''}
+    `;
+
+    reviewContainer.appendChild(card);
+  });
 }
 
 // --- RESULTS DISPLAY ---
@@ -579,6 +606,13 @@ function showResults() {
     setTimeout(() => {
       progressBarFillEl.style.width = `${percentage}%`;
     }, 150);
+  }
+
+  // Render question-by-question breakdown
+  if (currentMode === 'quiz') {
+    renderReviewBreakdown();
+  } else if (reviewContainer) {
+    reviewContainer.innerHTML = ''; // Hide breakdown for study mode
   }
 
   if (missedQuestions.length > 0) {
