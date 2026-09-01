@@ -1,0 +1,88 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Which phylum do cestodes belong to?",
+      "options": [
+        "Nematoda",
+        "Platyhelminthes",
+        "Annelida",
+        "Antrhopoda"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    },
+    {
+      "id": 2,
+      "question": "The three main parts of a cestode body are:",
+      "options": [
+        "Head, thorax, abdomen",
+        "Scolex, neck, strobila",
+        "Anterior, middle, posterior",
+        "Oral, genital, anal segments"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    },
+    {
+      "id": 3,
+      "question": "Cestodes absorb nutrients through:",
+      "options": [
+        "Their digestive tract",
+        "Specialized feeding tubes",
+        "The tegument",
+        "Oral suckers"
+      ],
+      "correctIndex": 2,
+      "lesson": ""
+    },
+    {
+      "id": 4,
+      "question": "The scolex of Taenia Saginata has:",
+      "options": [
+        "4 suckers with hooks",
+        "4 suckers without hooks",
+        "2 bothria",
+        "6 suckers"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    },
+    {
+      "id": 5,
+      "question": "Gravid proglottids of Taenia saginata have how many lateral uterine branch",
+      "options": [
+        "7-13",
+        "15-30",
+        "5-10",
+        "20-25"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    },
+    {
+      "id": 6,
+      "question": "The intermediate host for Taenia Saginata is:",
+      "options": [
+        "Pigs",
+        "Cattle",
+        "Fish",
+        "Rodents"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    },
+    {
+      "id": 7,
+      "question": "Taenia saginata can cause:",
+      "options": [
+        "Cysticercosis",
+        "Only intestinal taeniasis",
+        "Hydatid disease",
+        "Neurocysticercosis"
+      ],
+      "correctIndex": 1,
+      "lesson": ""
+    }
+  ]
+}
