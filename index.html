@@ -8,71 +8,86 @@
 </head>
 <body>
   <div class="app-container">
-    <header>
-      <h1>Quiz & Learning Portal</h1>
-    </header>
 
-    <section id="selection-panel" class="card">
-      <h2>Select Academic Year & Subject</h2>
-      
-      <div class="form-group">
-        <label for="year-select">Academic Year:</label>
-        <select id="year-select">
-          <option value="">-- Choose Year --</option>
-          <option value="1">Year 1</option>
-          <option value="2">Year 2</option>
-          <option value="3">Year 3</option>
-          <option value="4">Year 4</option>
-          <option value="5">Year 5</option>
-          <option value="6">Year 6</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="subject-select">Subject:</label>
-        <select id="subject-select" disabled>
-          <option value="">-- Select a Year First --</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="mode-select">Mode:</label>
-        <select id="mode-select">
-          <option value="quiz">Test Mode (Score at end)</option>
-          <option value="study">Study Mode (Instant answer & lesson)</option>
-        </select>
-      </div>
-
-      <button id="start-btn" disabled>Start Session</button>
+    <!-- PAGE 1: Landing / Starter Page -->
+    <section id="landing-screen" class="screen card">
+      <h1>Welcome to the Medical Study Portal</h1>
+      <p>Master your courses year by year. Practice randomized multiple-choice questions or review lessons at your own pace.</p>
+      <button id="enter-study-btn" class="btn primary-btn">Study Now</button>
     </section>
 
-    <section id="quiz-panel" class="card hidden">
+    <!-- PAGE 2: Year Selection Page -->
+    <section id="year-screen" class="screen card hidden">
+      <button class="back-btn" data-target="landing-screen">← Back</button>
+      <h2>Select Academic Year</h2>
+      <p>Choose your current level of study:</p>
+      
+      <div class="year-grid">
+        <button class="year-card" data-year="1">Year 1</button>
+        <button class="year-card" data-year="2">Year 2</button>
+        <button class="year-card" data-year="3">Year 3</button>
+        <button class="year-card" data-year="4">Year 4</button>
+        <button class="year-card" data-year="5">Year 5</button>
+        <button class="year-card" data-year="6">Year 6</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Subject & Mode Selection Page -->
+    <section id="subject-screen" class="screen card hidden">
+      <button class="back-btn" data-target="year-screen">← Back to Years</button>
+      <h2 id="selected-year-title">Year X Subjects</h2>
+      
+      <!-- Subjects injected dynamically based on manifest.json -->
+      <div id="subject-list" class="subject-grid"></div>
+
+      <div class="mode-selection">
+        <h3>Choose Mode</h3>
+        <div class="mode-options">
+          <label>
+            <input type="radio" name="mode" value="study" checked> 
+            <strong>Study Mode</strong> (Instant answers & lesson explanations)
+          </label>
+          <label>
+            <input type="radio" name="mode" value="quiz"> 
+            <strong>Quiz Mode</strong> (Practice test with score at the end)
+          </label>
+        </div>
+      </div>
+
+      <button id="start-session-btn" class="btn primary-btn" disabled>Start Session</button>
+    </section>
+
+    <!-- PAGE 4: Active Session (Quiz / Study View) -->
+    <section id="quiz-screen" class="screen card hidden">
       <div class="quiz-header">
+        <span id="session-info">Year 1 - Biology</span>
         <span id="progress-text">Question 1 of 10</span>
       </div>
 
       <div class="question-container">
         <h3 id="question-text">Loading question...</h3>
-        <div id="options-container" class="options-grid">
-          </div>
+        <div id="options-container" class="options-grid"></div>
       </div>
 
+      <!-- Lesson Box (Visible in Study Mode or after answering in Quiz Mode) -->
       <div id="lesson-box" class="lesson-box hidden">
         <h4>Lesson Explanation</h4>
         <p id="lesson-text"></p>
       </div>
 
       <div class="quiz-controls">
-        <button id="submit-btn" class="hidden">Submit Answer</button>
-        <button id="next-btn" class="hidden">Next Question</button>
+        <button id="submit-btn" class="btn hidden">Submit</button>
+        <button id="next-btn" class="btn primary-btn hidden">Next Question</button>
       </div>
     </section>
 
-    <section id="result-panel" class="card hidden">
-      <h2>Session Complete!</h2>
+    <!-- PAGE 5: Results View -->
+    <section id="result-screen" class="screen card hidden">
+      <h2>Session Completed!</h2>
       <p id="final-score"></p>
-      <button id="restart-btn">Try Another Quiz</button>
+      <button id="restart-btn" class="btn primary-btn">Back to Main Menu</button>
     </section>
+
   </div>
 
   <script src="app.js"></script>
