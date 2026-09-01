@@ -33,29 +33,13 @@
     </section>
 
     <!-- PAGE 3: Subject & Mode Selection Page -->
-    <section id="subject-screen" class="screen card hidden">
-      <button class="back-btn" data-target="year-screen">← Back to Years</button>
-      <h2 id="selected-year-title">Year X Subjects</h2>
-      
-      <!-- Subjects injected dynamically based on manifest.json -->
-      <div id="subject-list" class="subject-grid"></div>
-
-      <div class="mode-selection">
-        <h3>Choose Mode</h3>
-        <div class="mode-options">
-          <label>
-            <input type="radio" name="mode" value="study" checked> 
-            <strong>Study Mode</strong> (Instant answers & lesson explanations)
-          </label>
-          <label>
-            <input type="radio" name="mode" value="quiz"> 
-            <strong>Quiz Mode</strong> (Practice test with score at the end)
-          </label>
-        </div>
-      </div>
-
-      <button id="start-session-btn" class="btn primary-btn" disabled>Start Session</button>
-    </section>
+<section id="subject-screen" class="screen card hidden">
+  <button class="back-btn" data-target="year-screen">← Back to Years</button>
+  <h2 id="selected-year-title">Year X Subjects</h2>
+  
+  <!-- Dynamic subjects with direct Study & Quiz buttons injected here -->
+  <div id="subject-list" class="subject-grid"></div>
+</section>
 
     <!-- PAGE 4: Active Session (Quiz / Study View) -->
     <section id="quiz-screen" class="screen card hidden">
