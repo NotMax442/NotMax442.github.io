@@ -130,19 +130,37 @@ function loadSubjectsForYear(year) {
   const subjects = manifestData[year] || [];
   
   subjects.forEach(subject => {
+    // Check if missed questions exist for this year & subject
+    const storageKey = `missed_y${year}_${subject.toLowerCase()}`;
+    const savedMissed = localStorage.getItem(storageKey);
+    const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
+
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
     
     subjectCard.innerHTML = `
       <h3>${subject}</h3>
+      ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question${missedCount > 1 ? 's' : ''}</p>` : ''}
+      
       <div class="subject-actions">
         <button class="btn study-btn" onclick="startSession('${subject}', 'study')">📖 Study</button>
         <button class="btn quiz-btn" onclick="startSession('${subject}', 'quiz')">📝 Quiz</button>
       </div>
+
+      ${missedCount > 0 ? `
+        <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">🗑️ Clear Saved Missed</button>
+      ` : ''}
     `;
     
     subjectList.appendChild(subjectCard);
   });
+}
+
+// Function to clear saved missed questions for a specific subject
+function clearSavedMissed(subjectName) {
+  const storageKey = `missed_y${currentYear}_${subjectName.toLowerCase()}`;
+  localStorage.removeItem(storageKey);
+  loadSubjectsForYear(currentYear); // Refresh UI to update badge and remove button
 }
 
 // --- Timer System for Quiz Mode ---
