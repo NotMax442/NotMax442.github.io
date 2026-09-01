@@ -78,6 +78,38 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+// --- Custom Confirmation Modal ---
+function showCustomConfirm() {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('confirm-modal');
+    const confirmBtn = document.getElementById('modal-confirm-btn');
+    const cancelBtn = document.getElementById('modal-cancel-btn');
+
+    if (!modal) return resolve(true);
+
+    modal.classList.remove('hidden');
+
+    function handleConfirm() {
+      cleanup();
+      resolve(true);
+    }
+
+    function handleCancel() {
+      cleanup();
+      resolve(false);
+    }
+
+    function cleanup() {
+      modal.classList.add('hidden');
+      confirmBtn.removeEventListener('click', handleConfirm);
+      cancelBtn.removeEventListener('click', handleCancel);
+    }
+
+    confirmBtn.addEventListener('click', handleConfirm);
+    cancelBtn.addEventListener('click', handleCancel);
+  });
+}
+
 // --- Warn User Before Refreshing Active Session ---
 window.addEventListener('beforeunload', (e) => {
   const quizScreen = document.getElementById('quiz-screen');
@@ -160,8 +192,8 @@ if (restartBtn) {
 }
 
 if (quitSessionBtn) {
-  quitSessionBtn.addEventListener('click', () => {
-    const isConfirmed = confirm("⚠️ Are you sure you want to exit? Progress in this active session will be reset.");
+  quitSessionBtn.addEventListener('click', async () => {
+    const isConfirmed = await showCustomConfirm();
     if (isConfirmed) {
       clearInterval(timerInterval);
       cancelAutoScroll();
