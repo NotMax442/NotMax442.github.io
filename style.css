@@ -118,3 +118,33 @@ button:hover {
 .quiz-btn:hover {
   background-color: #059669;
 }
+
+/* Option Choices - Vertical Stack & Elongated Buttons */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.option-btn {
+  width: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #334155;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.option-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: #3b82f6;
+}
