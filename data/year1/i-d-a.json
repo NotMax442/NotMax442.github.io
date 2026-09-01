@@ -936,17 +936,6 @@
       "correctIndex": 2
     },
     {
-      "id": 86,
-      "question": "Protein A, found in Staphylococcus aureus, functions to:",
-      "options": [
-        "Bind to Fc portion of Immunoglobulin G",
-        "Cause hemolysis",
-        "Form biofilms",
-        "Resist phagocytosis"
-      ],
-      "correctIndex": 0
-    },
-    {
       "id": 87,
       "question": "Streptococcus pyogenes (Group A) typically shows which hemolysis pattern?",
       "options": [
@@ -1878,6 +1867,17 @@
         "Taenia saginata",
         "Schistosoma mekongi",
         "Wuchereria bancrofti"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 171,
+      "question": "Protein A, found in Staphylococcus aureus, functions to:",
+      "options": [
+        "Bind to portion of Immunoglobulin G",
+        "Cause hemolysis",
+        "Form biofilms",
+        "Resist phagocytosis"
       ],
       "correctIndex": 0
     }
