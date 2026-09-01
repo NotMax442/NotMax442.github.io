@@ -13,6 +13,8 @@ const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
+const retryMissedBtn = document.getElementById('retry-missed-btn');
+const missedCountEl = document.getElementById('missed-count');
 const finalScore = document.getElementById('final-score');
 const timerDisplay = document.getElementById('timer-display');
 const scorePercentageEl = document.getElementById('score-percentage');
@@ -23,6 +25,7 @@ let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
+let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
@@ -44,8 +47,12 @@ const manifestData = {
 };
 
 // --- Initial Browser History Setup ---
-// Set initial history state so backing up from Page 2 goes back to landing page
 history.replaceState({ screenId: 'landing-screen' }, '');
+
+// Helper: Generates unique key for local storage per year & subject
+function getStorageKey() {
+  return `missed_y${currentYear}_${currentSubject.toLowerCase()}`;
+}
 
 // --- Fisher-Yates Shuffle Algorithm ---
 function shuffleArray(array) {
@@ -75,7 +82,6 @@ window.addEventListener('keydown', (e) => {
 
 // --- Browser History Navigation Logic ---
 function navigateTo(screenId, isBackAction = false) {
-  // Always clear active timers & scroll handlers when switching screens
   clearInterval(timerInterval);
   cancelAutoScroll();
 
@@ -85,13 +91,11 @@ function navigateTo(screenId, isBackAction = false) {
     targetScreen.classList.remove('hidden');
   }
 
-  // Push new entry to browser history if user clicked an in-app button
   if (!isBackAction) {
     history.pushState({ screenId: screenId }, '');
   }
 }
 
-// Listen for browser native Back/Forward clicks
 window.addEventListener('popstate', (event) => {
   if (event.state && event.state.screenId) {
     navigateTo(event.state.screenId, true);
@@ -100,7 +104,7 @@ window.addEventListener('popstate', (event) => {
   }
 });
 
-// --- In-App Button Event Listeners ---
+// --- Navigation Buttons ---
 enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
 yearCards.forEach(card => {
@@ -113,16 +117,11 @@ yearCards.forEach(card => {
 });
 
 backButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Triggers native browser back behavior to stay in sync with history
-    history.back();
-  });
+  button.addEventListener('click', () => history.back());
 });
 
 if (restartBtn) {
-  restartBtn.addEventListener('click', () => {
-    navigateTo('year-screen');
-  });
+  restartBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
 // --- Subject Cards ---
@@ -185,6 +184,10 @@ async function startSession(subjectName, mode) {
   userScore = 0;
   studyAnsweredCount = 0;
 
+  // Retrieve saved missed questions for this subject from localStorage
+  const savedMissed = localStorage.getItem(getStorageKey());
+  missedQuestions = savedMissed ? JSON.parse(savedMissed) : [];
+
   if (sessionInfo) {
     sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
   }
@@ -230,7 +233,7 @@ async function startSession(subjectName, mode) {
   }
 }
 
-// --- STUDY MODE (All Questions Scrollable Feed) ---
+// --- STUDY MODE ---
 function renderStudyMode() {
   progressText.textContent = `Total Questions: ${questions.length}`;
   questionText.textContent = '';
@@ -278,15 +281,19 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     selectedBtn.style.color = '#ffffff';
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
+
+    // Save wrong question to missed array & localStorage
+    if (!missedQuestions.some(item => item.question === q.question)) {
+      missedQuestions.push(q);
+      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
+    }
   }
 
   studyAnsweredCount++;
 
   if (studyAnsweredCount === questions.length) {
     cancelAutoScroll();
-    setTimeout(() => {
-      showResults();
-    }, 1500);
+    setTimeout(() => showResults(), 1500);
     return;
   }
 
@@ -299,7 +306,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   }, 2000);
 }
 
-// --- QUIZ MODE (Single Question Step-by-Step) ---
+// --- QUIZ MODE ---
 function renderQuizQuestion() {
   selectedOptionIndex = null;
   nextBtn.classList.add('hidden');
@@ -336,6 +343,12 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     selectedBtn.style.color = '#ffffff';
     allOptionBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allOptionBtns[q.correctIndex].style.color = '#ffffff';
+
+    // Save wrong question to missed array & localStorage
+    if (!missedQuestions.some(item => item.question === q.question)) {
+      missedQuestions.push(q);
+      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
+    }
   }
 
   nextBtn.classList.remove('hidden');
@@ -352,7 +365,7 @@ if (nextBtn) {
   });
 }
 
-// --- RESULTS DISPLAY ---
+// --- RESULTS DISPLAY & RETRY ---
 function showResults() {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -374,5 +387,35 @@ function showResults() {
     }, 150);
   }
 
+  // Handle Retry Missed Questions button visibility
+  if (missedQuestions.length > 0) {
+    if (missedCountEl) missedCountEl.textContent = missedQuestions.length;
+    if (retryMissedBtn) retryMissedBtn.classList.remove('hidden');
+  } else {
+    if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
+    // Clear storage if all questions are completed accurately
+    localStorage.removeItem(getStorageKey());
+  }
+
   navigateTo('result-screen');
+}
+
+// Retry Missed Questions Click Handler
+if (retryMissedBtn) {
+  retryMissedBtn.addEventListener('click', () => {
+    questions = shuffleArray(missedQuestions);
+    missedQuestions = [];
+    localStorage.removeItem(getStorageKey()); // Clear previous saved list for fresh retry
+    currentQuestionIndex = 0;
+    userScore = 0;
+    studyAnsweredCount = 0;
+
+    navigateTo('quiz-screen');
+
+    if (currentMode === 'study') {
+      renderStudyMode();
+    } else {
+      renderQuizQuestion();
+    }
+  });
 }
