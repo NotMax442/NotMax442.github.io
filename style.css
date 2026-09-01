@@ -184,3 +184,27 @@ button:hover {
   border-radius: 12px;
   transition: width 1s ease-in-out;
 }
+/* Missed Question Badge & Clear Button */
+.missed-badge {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  margin: -0.5rem 0 1rem 0;
+  font-weight: 600;
+}
+
+.clear-btn {
+  background-color: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.clear-btn:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
