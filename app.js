@@ -362,9 +362,6 @@ async function startSession(subjectName, mode) {
     if (mode === 'quiz') {
       processedQuestions = processedQuestions.slice(0, 60);
       userAnswers = new Array(processedQuestions.length).fill(null);
-      startQuizTimer();
-    } else {
-      if (timerDisplay) timerDisplay.classList.add('hidden');
     }
 
     questions = processedQuestions.map(q => {
@@ -379,11 +376,15 @@ async function startSession(subjectName, mode) {
       };
     });
 
+    // 1. Navigate to screen first (clears old timers safely)
     navigateTo('quiz-screen');
 
+    // 2. Start mode UI and timer AFTER screen navigation
     if (currentMode === 'study') {
+      if (timerDisplay) timerDisplay.classList.add('hidden');
       renderStudyMode();
     } else {
+      startQuizTimer(); // Timer starts cleanly after navigation completes
       renderQuizQuestion();
     }
   } catch (error) {
