@@ -6,7 +6,7 @@ const backButtons = document.querySelectorAll('.back-btn');
 const selectedYearTitle = document.getElementById('selected-year-title');
 const subjectList = document.getElementById('subject-list');
 
-// Quiz Screen Selectors
+// Quiz & Result Screen Selectors
 const sessionInfo = document.getElementById('session-info');
 const progressText = document.getElementById('progress-text');
 const questionText = document.getElementById('question-text');
@@ -15,6 +15,8 @@ const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
 const finalScore = document.getElementById('final-score');
 const timerDisplay = document.getElementById('timer-display');
+const scorePercentageEl = document.getElementById('score-percentage');
+const progressBarFillEl = document.getElementById('progress-bar-fill');
 
 // App State
 let currentYear = null;
@@ -23,6 +25,7 @@ let currentMode = 'study';
 let questions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
+let studyAnsweredCount = 0;
 let selectedOptionIndex = null;
 
 // Timer & Auto-scroll State
@@ -161,6 +164,7 @@ async function startSession(subjectName, mode) {
   currentMode = mode;
   currentQuestionIndex = 0;
   userScore = 0;
+  studyAnsweredCount = 0;
   clearInterval(timerInterval);
   cancelAutoScroll();
 
@@ -251,11 +255,23 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   if (selectedIndex === q.correctIndex) {
     selectedBtn.style.backgroundColor = '#10b981';
     selectedBtn.style.color = '#ffffff';
+    userScore++;
   } else {
     selectedBtn.style.backgroundColor = '#ef4444';
     selectedBtn.style.color = '#ffffff';
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
+  }
+
+  studyAnsweredCount++;
+
+  // Check if ALL questions in study mode have been answered
+  if (studyAnsweredCount === questions.length) {
+    cancelAutoScroll();
+    setTimeout(() => {
+      showResults();
+    }, 1500);
+    return;
   }
 
   // 2-second auto-scroll timer to next question
@@ -321,11 +337,27 @@ if (nextBtn) {
   });
 }
 
+// --- RESULTS DISPLAY ---
 function showResults() {
   clearInterval(timerInterval);
   cancelAutoScroll();
+
+  const percentage = questions.length > 0 ? Math.round((userScore / questions.length) * 100) : 0;
+
   if (finalScore) {
-    finalScore.textContent = `You scored ${userScore} out of ${questions.length} (${Math.round((userScore / questions.length) * 100)}%)`;
+    finalScore.textContent = `You answered ${userScore} out of ${questions.length} questions correctly!`;
   }
+
+  if (scorePercentageEl) {
+    scorePercentageEl.textContent = `${percentage}%`;
+  }
+
+  if (progressBarFillEl) {
+    progressBarFillEl.style.width = '0%';
+    setTimeout(() => {
+      progressBarFillEl.style.width = `${percentage}%`;
+    }, 150);
+  }
+
   navigateTo('result-screen');
 }
