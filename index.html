@@ -58,24 +58,27 @@
     </div>
 
     <!-- Result Screen -->
-    <div id="result-screen" class="screen hidden">
-      <h2>Session Complete!</h2>
-      <div class="score-card">
-        <p id="final-score"></p>
-        <div class="percentage-badge" id="score-percentage">0%</div>
-        <div class="progress-bar-bg">
-          <div id="progress-bar-fill" class="progress-bar-fill"></div>
-        </div>
-      </div>
-
-      <div class="result-actions">
-        <button id="retry-missed-btn" class="btn warning-btn hidden">
-          🎯 Retry Missed Questions (<span id="missed-count">0</span>)
-        </button>
-        <button id="restart-btn" class="btn primary-btn">🔄 Return </button>
-      </div>
+   <!-- Result Screen -->
+<div id="result-screen" class="screen hidden">
+  <h2>Session Complete!</h2>
+  <div class="score-card">
+    <p id="final-score"></p>
+    <div class="percentage-badge" id="score-percentage">0%</div>
+    <div class="progress-bar-bg">
+      <div id="progress-bar-fill" class="progress-bar-fill"></div>
     </div>
+  </div>
 
+  <!-- Detailed Question Breakdown Container -->
+  <div id="review-container" class="review-list"></div>
+
+  <div class="result-actions">
+    <button id="retry-missed-btn" class="btn warning-btn hidden">
+      🎯 Retry Missed Questions (<span id="missed-count">0</span>)
+    </button>
+    <button id="restart-btn" class="btn primary-btn">Return</button>
+  </div>
+</div>
     <!-- Custom Exit Confirmation Modal -->
     <div id="confirm-modal" class="modal-overlay hidden">
       <div class="modal-card">
