@@ -208,3 +208,17 @@ button:hover {
   background-color: rgba(239, 68, 68, 0.15);
   color: #f87171;
 }
+/* Review Missed Questions Button */
+.study-missed-btn {
+  background-color: #d97706;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.study-missed-btn:hover {
+  background-color: #b45309;
+}
