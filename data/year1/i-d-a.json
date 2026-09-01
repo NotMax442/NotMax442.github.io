@@ -1,2204 +1,1885 @@
 {
   "questions": [
     {
-      "id": 2,
-      "question": "រូបរាង, ទ្រង់ទ្រាយរបស់ virus មានអ្វីខ្លះ?",
+      "id": 1,
+      "question": "Coronavirus បង្កជំងឺ COVID-19",
       "options": [
-        "មិនមានហ្សែន(genome) ជា nucleic acid RNA ឬ DNA",
-        "មិនមាន capsid ព័ទ្ធជុំវិញ genome",
-        "ចំពោះ virus ដែលមានមិនមានសំបកវាមានenvelopព័ទ្ធ ជុំវិញ capsid ទៀត",
-        "មានហ្សែនជា RNA ឬ DNA មានcapsid ចំពោះ virus ដែលមានសំបកវាមានសំបកព័ទ្ធជុំវិញcapsid ទៀត"
+        "បង្ករដោយមេរោគ SARS-CoV1",
+        "បង្កដោយមេរោគ MERS-CoV",
+        "ជាមេរោគមិនបង្កជំងឺផ្លូវដង្ហើមលើមនុស្ស",
+        "បង្កដោយមេរោគ SARS-CoV2"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 2,
+      "question": "SARS-CoV2 បង្កជំងឺ COVID-19",
+      "options": [
+        "ជា បានមិនបង្កជំងឺផ្លូវដង្ហើមលើមនុស្ស",
+        "មិនចំលងខ្លាំងតាមផ្លូវដង្ហើមទេ",
+        "មិនមានវ៉ាក់សាំងសំរាប់ការពារជំងឺCOVID",
+        "មានវ៉ាក់សាំងសំរាប់ការពារ COVID-19បង្កដោយមេរោគ SARS-2"
       ],
       "correctIndex": 3
     },
     {
       "id": 3,
-      "question": "រូបរាង, ទ្រង់ទ្រាយរបស់ virus មានអ្វីខ្លះ?",
+      "question": "Which phylum do cestodes belong to",
       "options": [
-        "មាន genome ជា nucleic acid RNA ឬ DNA, មាន capsid ព័ទ្ធជុំវិញ genome, ចំពោះ virus ដែលមានសំបកវាមានសំបកព័ទ្ធ ជុំវិញ capsid ទៀត",
-        "មានសីតូប្លាស (cytoplasm) និងណៃយ៉ូ (nucleus)",
-        "virus ដែលមានសំបក មាន genome ជា nucleic acid ប្រភេទ DNA",
-        "virus ដែល គ្មានសំបក មាន genome ជា nucleic acid ប្រភេទ RNA"
+        "Nematoda",
+        "Platyhelminthes",
+        "Annelida",
+        "Arthropoda"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 4,
-      "question": "ទ្រង់ទ្រាយ capsid របស់ virus មានអ្វីខ្លះ?",
+      "question": "The three main parts of a cestode body are:",
       "options": [
-        "capsid រាងhelical មានរាងមូល",
-        "capsid មានរាងបំពងទ្រវែង (helical symmetry) ហៅថា capsid រាង icosahedral",
-        "capsid រាង icosahedral មានរាងបំពងទ្រវែង",
-        "capsid មានរាងគូប (cubic symmetry) ហៅថា capsid រាង icosahedral"
+        "Head, thorax, abdomen",
+        "Scolex, neck, strobila",
+        "Anterior, middle, posterior",
+        "Oral, genital, anal segments"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 5,
-      "question": "Virus មានសំបកនិង virus គ្មានសំបក, ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
+      "question": "Cestodes absorb nutrients through:",
       "options": [
-        "virus មានសំបកធនទ្រាំបានល្អនឹងភាពស្ងួត,កំដៅ,សារធាតុគីមី,អាសីត",
-        "virus គ្មានសំបក មិនធនទ្រាំបានល្អនឹងភាពស្ងួត,កំដៅ,សារធាតុគីមី,អាសីត",
-        "virus គ្មានសំបកធនទ្រាំបាននឹង អាស៊ីត ហើយអាចរស់បានក្នុង ក្រពះ, ពោះវៀន",
-        "virus មានសំបកធនទ្រាំបាននឹង អាស៊ីត ហើយអាចរស់បានក្នុង ក្រពះ, ពោះវៀន"
+        "Their digestive tract",
+        "Specialized feeding tubes",
+        "The tegument",
+        "Oral suckers"
       ],
       "correctIndex": 2
     },
     {
       "id": 6,
-      "question": "Virus មានសំបកនិង virus គ្មានសំបក, ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
+      "question": "The scolex of Taenia saginata has",
       "options": [
-        "virus មានសំបក ធនទ្រាំបានល្អនឹងភាពស្ងួត,កំដៅ,សារធាតុគីមី,អាសីត",
-        "virus មានសំបកមិន ចំលង",
-        "virus គ្មានសំបកមិនធនទ្រាំបានល្អនឹងភាពស្ងួត,កំដៅ,សារធាតុគីមី,អាសីត",
-        "virus គ្មានសំបកធនទ្រាំបានល្អនឹងភាពស្ងួត,កំដៅ,សារធាតុគីមី,អាស៊ីត"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 7,
-      "question": "DNA virus និង RNA virus, ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
-      "options": [
-        "DNA virus ជា virus ដែលមានហ្សែន (genome) ជា Deoxyribonucleic acid",
-        "DNA virus ជា virus ដែលមានហ្សែន (genome) ជា Ribonucleic acid",
-        "DNA virus ជា virus ដែលមានមានសំបក",
-        "RNA virus ជា virus ដែលគ្មានសំបក"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 8,
-      "question": "DNA virus និង RNA virus, ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
-      "options": [
-        "RNA virus ជា virus ដែលមានហ្សែន (genome) ជា Deoxyribonucleic acid",
-        "RNA virus ជា virus ដែលមានហ្សែន (genome) ជា Ribonucleic acid",
-        "RNA virus ជា virus ដែលមានមានសំបក",
-        "DNA virus ជា virus ដែលគ្មានសំបក"
+        "4 suckers with hooks",
+        "4 suckers without hooks",
+        "2 bothria",
+        "6 suckers"
       ],
       "correctIndex": 1
     },
     {
-      "id": 9,
-      "question": "DNA virus និង RNA virus ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
+      "id": 7,
+      "question": "Gravid proglottids of Taenia saginata have how many lateral uterine branches?",
       "options": [
-        "DNA virus virus ដែលមានហ្សែន (genome) ជា Ribonucleic acid",
-        "RNA virus ជា virus ដែលមានហ្សែន (genome) ជា Deoxyribonucleic acid",
-        "DNA virus ជា virus ដែលគ្មានសំបក, RNA virus ជា virus ដែលមានសំបក",
-        "RNA virus ជា virus ដែលមានហ្សែន (genome) ជា Ribonucleic acid"
+        "7-13",
+        "15-30",
+        "5-10",
+        "20-25"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
+    },
+    {
+      "id": 8,
+      "question": "The intermediate host for Taenia saginata is:",
+      "options": [
+        "Pigs",
+        "Fish",
+        "Cattle",
+        "Rodents"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 9,
+      "question": "Taenia saginata can cause:",
+      "options": [
+        "Cysticercosis",
+        "Only intestinal taeniasis",
+        "Hydatid disease",
+        "Neurocysticercosis"
+      ],
+      "correctIndex": 1
     },
     {
       "id": 10,
-      "question": "ដំណាក់កាលនៃការបង្កើតកូនចៅ virus ក្នុងកោសិការ (Steps of Viral replication in cells)",
+      "question": "The adult length of Taenia saginata can reach:",
       "options": [
-        "attachment គឺ virus ភ្ជាប់រឺតោងលើកោសិការ",
-        "penetration គឺ virus បញ្ចេញ ខ្លួនមកក្រៅកោសិការ",
-        "uncoating គឺ virus ភ្ជាប់រឺតោងលើកោសិការ",
-        "replication គឺ virus ផ្សំផ្គុំរូបរាងឡើងវិញ"
+        "2-7 meters",
+        "4-10 meters (up to 25m)",
+        "20-80 cm",
+        "3-6 mm"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 11,
-      "question": "ដំណាក់កាលនៃការបង្កើតកូនចៅ virus ក្នុងកោសិការ (Steps of Viral replication in cells)",
+      "question": "What distinguishes Taenia solium scolex from Taenia saginata?",
       "options": [
-        "attachment គឺ virus បំបែកសំបក បំបែកcapsid បញ្ចេញ ហ្សែន",
-        "penetration គឺ virus បញ្ចូលខ្លួនទៅក្នុងកោសិការ",
-        "uncoating គឺ virus ភ្ជាប់រឺតោងលើកោសិការ",
-        "replication គឺ virus ផ្សំផ្គុំរូបរាងឡើងវិញ"
+        "Number of suckers",
+        "Presence of hooks on rostellum",
+        "Size of suckers",
+        "Color"
       ],
       "correctIndex": 1
     },
     {
       "id": 12,
-      "question": "ដំណាក់កាលនៃការបង្កើតកូនចៅ virus ក្នុងកោសិការ (Steps of Viral replication in cells)",
+      "question": "Gravid proglottids of Taenia solium have",
       "options": [
-        "attachment គឺ virus បំបែកសំបក បំបែកcapsid បញ្ចេញ ហ្សែន",
-        "penetration គឺ virus បំបែកសំបក បំបែកcapsid បញ្ចេញ ហ្សែន",
-        "uncoating គឺ virus virus បំបែកសំបក បំបែកcapsid បញ្ចេញ ហ្សែន",
-        "replication គឺ virus ផ្សំផ្គុំរូបរាងឡើងវិញ"
+        "15-30 uterine branches",
+        "7-13 uterine branches",
+        "No uterine branches",
+        "25-35 uterine branches"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 13,
-      "question": "ដំណាក់កាល នៃការបង្កើត កូនចៅ virus ក្នុងកោសិការ (Steps of Viral replication in cells)",
+      "question": "Cysticercosis is caused by:",
       "options": [
-        "attachment គឺ virus មិនភ្ជាប់ រឺតោងលើកោសិការ",
-        "penetration គឺ virus មិនបញ្ចូលខ្លួនទៅក្នុងកោសិការ",
-        "uncoating គឺ virus មិនបំបែកសំបក បំបែកcapsid បញ្ចេញ ហ្សែន",
-        "attachment គឺ virus ភ្ជាប់ រឺតោងលើកោសិការ"
+        "Adult Taenia solium in intestine",
+        "Taenia solium eggs developing into larvae in human tissues",
+        "Taenia saginata eggs",
+        "Echinococcus larvae"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 14,
-      "question": "ដំណាក់កាល នៃការបង្កើតកូនចៅ virus ក្នុងកោសិការ (Steps of Viral replication in cells)",
+      "question": "Neurocysticercosis can cause:",
       "options": [
-        "uncoating គឺ virus មិនបំបែកសំបក មិនបំបែកcapsid បញ្ចេញ ហ្សែន",
-        "replication គឺ virus មិនសំយោគហ្សែន និងមិនសំយោគប្រូតេអិន",
-        "release គឺ កូនចៅ virus មិនបញ្ចេញ ខ្លួនមកក្រៅកោសិការ",
-        "replication គឺ virus សំយោគហ្សែន និងសំយោគប្រតេអិន"
+        "Only headaches",
+        "Seizures, hydrocephalus, focal neurological deficits",
+        "Only vision problems",
+        "Liver damage"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 15,
-      "question": "ចូរជ្រើសរើស ចំលើយត្រឹមត្រូវតែមួយ",
+      "question": "The intermediate host for Taenia solium is:",
       "options": [
-        "Viral Infection: គឺ virus មិនចូលទៅបង្ករោគ មិនមានរោគសញ្ញា រឺ គ្មានរោគសញ្ញា",
-        "Viral disease: គឺ virus មិនចូលទៅបង្ករោគ មិនបង្ករោគសញ្ញានិងមិនមានជំងឺ",
-        "Virulence: virus មិនបង្កជំងឺ",
-        "Viral Infection: គឺ virus ចូលទៅបង្ករោគ ទោះជាមានរោគសញ្ញា រឺ គ្មានរោគសញ្ញា"
+        "Cattle",
+        "Pigs",
+        "Fish",
+        "Dogs"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 16,
-      "question": "ចូរជ្រើសរើស ចំលើយត្រឹមត្រូវតែមួយ",
+      "question": "Echinococcus granulosus adult worms are found in:",
       "options": [
-        "Viral Infection: គឺ virus មិនចូលទៅបង្ករោគ មិនរោគសញ្ញា",
-        "Viral disease: គឺ virus ចូលទៅបង្ករោគ គ្មានរោគសញ្ញានិងមិនមានជំងឺ",
-        "Oncogenic Virus គឺ virus ដែលមិនអាចបង្ក ជំងឺមហារីក",
-        "Oncogenic Virus គឺ virus ដែលអាចបង្ក ជំងឺមហារីក"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 17,
-      "question": "ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
-      "options": [
-        "Viral Infection: គឺ virus ចូលទៅបង្ករោគទោះជាមានរោគសញ្ញា រឺ គ្មានរោគសញ្ញា",
-        "Viral disease: គឺ virus ចូលទៅបង្ករោគ ដោយគ្មានបង្ករោគសញ្ញានិងមិនមានបង្កជាជំងឺ",
-        "Virulence គឺ virus ដែលអាចបង្កជំងឺមហារីក",
-        "Oncogenic Virus គឺ កំរិតនៃការបង្កជំងឺ របស់ virus ដែលអាចមានកំរិតស្រាល រឺកំរិតធ្ងន់"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 18,
-      "question": "ចូរជ្រើសរើសចំលើយត្រឹមត្រូវតែមួយ",
-      "options": [
-        "Viral Infection: កំរិតនៃការបង្កជំងឺរបស់virusដែលអាចមានកំរិតស្រាល រឺកំរិតធ្ងន់",
-        "Viral disease: គឺ virus ចូលទៅបង្ករោគ បង្ករោគសញ្ញានិងមានជំងឺ",
-        "Virulence គឺ virus ដែលអាចបង្កជំងឺមហារីក",
-        "OncogenicVirusគឺកំរិតនៃការបង្កជំងឺរបស់virus អាចមានកំរិតស្រាលរឺកំរិតធ្ងន់"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 19,
-      "question": "ដំណាក់កាលនៃការបង្ករោគរបស់ Virus",
-      "options": [
-        "Virusមិនចូលក្នុងខ្លួន, Virusមិនរាតត្បាតទៅកាន់សរីរាង្គ",
-        "Virus មិនរាតត្បាតទៅកាន់សរីរាង្គ, Virus មិនមានincubation",
-        "Virus មិនមានincubation, Virusមិនមានបញ្ចេញមកក្រៅ",
-        "Virusចូល, incubation, Virusរាតត្បាតក្នុងខ្លួន, Virusបញ្ចេញមកក្រៅ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 20,
-      "question": "ដំណាក់កាលនៃការបង្ករោគរបស់ Virus",
-      "options": [
-        "Virus ចូលក្នុងខ្លួន, ប្រើពេល incubation, Virus រាតត្បាតទៅកាន់សរីរាង្គ (target organs), Virus បញ្ចេញមកក្រៅ (excretion)",
-        "Virus ចូលក្នុងខ្លួន, Virus បញ្ចេញមកក្រៅ (excretion)",
-        "Virus ចូលក្នុងខ្លួន, ប្រើពេល incubation, Virus បញ្ចេញមកក្រៅ (excretion)",
-        "Virus រាតត្បាតទៅកាន់សរីរាង្គ (target organs), Virus បញ្ចេញមកក្រៅ (excretion)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 21,
-      "question": "Virus អាចចូល ទៅក្នុងខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "Virus មិនដែលអាចចូលតាមផ្លូវដង្ហើម",
-        "Virus មិនដែលអាចចូលតាមផ្លូវអាហារ",
-        "Virus មិនដែលអាចចូលតាមភ្នែក",
-        "Virusអាចចូលតាមផ្លូវដង្ហើម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 22,
-      "question": "Virus អាចចូល ទៅក្នុងខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលចូលតាមផ្លូវអាហារ, មិនដែលផ្លូវបំពងបង្ខំនោម",
-        "Virus មិនដែលអាចចូលតាមភ្នែក",
-        "មិនដែលចូលតាមស្បែក, មិនដែលតាមឈាម",
-        "អាចចូលតាមផ្លូវដង្ហើម, ផ្លូវអាហារ, ផ្លូវបំពងបង្ខំនោម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 23,
-      "question": "ការសាយភាយ រឺរាតត្បាតនៃ Virus",
-      "options": [
-        "Absence of propagation or no diffusion: Virus មានសាយភាយ រឺរាតត្បាត",
-        "Local infection: Virus រាតត្បាតទៅឆ្ងាយពីច្រកចូល",
-        "Systemic infection: Virus មិនសាយភាយ រឺ មិនរាតត្បាតទៅឆ្ងាយពីច្រកចូល",
-        "Systemic infection: Virus សាយភាយ រឺ រាតត្បាតទៅឆ្ងាយពីច្រកចូល"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 24,
-      "question": "ការសាយភាយ រឺ រាតត្បាតនៃ Virus ទៅតាមណា?",
-      "options": [
-        "Virus មិនអាចសាយភាយ រឺ រាតត្បាតទៅតាមក្រោមស្រទាប់ mucus",
-        "Virus មិនអាចសាយភាយ រឺ រាតត្បាតទៅតាមសសៃឈាម,តាមសសៃ lymph",
-        "Virus មិនអាចសាយភាយ រឺ រាតត្បាតទៅតាមសសៃប្រាសាទ nerve",
-        "Virus អាចសាយភាយ រឺ រាតត្បាតទៅតាមសសៃឈាម,តាមសសៃ lymph"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 25,
-      "question": "កត្តាអ្វីខ្លះកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus?",
-      "options": [
-        "មិនមានកត្តា Virus",
-        "មិនមានកត្តា host",
-        "កត្តាបរិស្ថាន",
-        "កត្តា Virus: បរិមាណ Virus, ផ្លូវ Virus ចូលបង្ករោគ, ភាពសាហាវរបស់ Virus"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 26,
-      "question": "កត្តា Virus កំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "កត្តា host: បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "កត្តា host: ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "កត្តា host: ភាពសាហាវរបស់ Virus(Virulence of virus)",
-        "កត្តា Virus: បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 27,
-      "question": "កត្តា host(អ្នកទទួល Virus) កំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "ផ្លូវដែល Virus ចូលបង្ករោគ(Route of virus entry)",
-        "ភាពសាហាវរបស់ Virus (Virulence of virus)",
-        "កត្តា host:ប្រព័ន្ធការពាររាងកាយ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 28,
-      "question": "កត្តាណាខ្លះជាកត្តា Virus ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ(Virus quantity)",
-        "អាយុ",
-        "ប្រព័ន្ធការពាររាងកាយ",
-        "ហ្សែន"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 29,
-      "question": "កត្តាណាខ្លះជាកត្តា Virus ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "ភាពសាហាវ របស់ Virus (Virulence of virus)",
-        "អាយុ",
-        "ប្រព័ន្ធការពាររាងកាយ",
-        "ហ្សែន"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 30,
-      "question": "កត្តាណាខ្លះជាកត្តា Virus ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "អាយុ",
-        "ប្រព័ន្ធកាពាររាងកាយ",
-        "ហ្សែន"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 31,
-      "question": "កត្តាណា ខ្លះជាកត្តា host(អ្នកទទួល Virus) ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "អាយុរបស់ host",
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "ភាពសាហាវ របស់ Virus (Virulence of virus)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 32,
-      "question": "កត្តាណា ខ្លះជាកត្តា host(អ្នកទទួល Virus) ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "ប្រព័ន្ធកាពាររាងកាយរបស់ host",
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "ភាពសាហាវ របស់ Virus (Virulence of virus)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 33,
-      "question": "កត្តាណាខ្លះជាកត្តា host(អ្នកទទួល Virus) ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "លក្ខណះនៃប្រព័ន្ធការពាររាងកាយ របស់ host",
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "ភាពសាហាវ របស់ Virus (Virulence of virus)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 34,
-      "question": "កត្តាណាខ្លះជាកត្តា host(អ្នកទទួល Virus) ដែលកំណត់ភាពធ្ងន់ រឺស្រាលនៃជំងឺបង្កដោយ Virus",
-      "options": [
-        "លក្ខណះនៃហ្សែនរបស់ host (genetic)",
-        "បរិមាណនៃ Virus ដែលចូលមកបង្ករោគ (Virus quantity)",
-        "ផ្លូវដែល Virus ចូលបង្ករោគ (Route of virus entry)",
-        "ភាពសាហាវ របស់ Virus (Virulence of virus)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 35,
-      "question": "តើ Virus បញ្ចេញ មកក្រៅខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលមាន Virus បញ្ចេញតាមទឹកដោះ",
-        "មិនដែលមាន Virus បញ្ចេញតាមទឹកមាត់",
-        "មិនដែលមាន Virus បញ្ចេញតាមទឹកភ្នែក",
-        "មានVirus បញ្ចេញតាមដំណក់ទឹកចេញតាមផ្លូវដង្ហើម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 36,
-      "question": "តើ Virus បញ្ចេញ មកក្រៅខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលមាន Virus បញ្ចេញ តាមដំណក់ចេញតាមផ្លូវដង្ហើម",
-        "មិនដែលមាន Virus បញ្ចេញតាមទឹកដោះ",
-        "មិនដែលមាន Virus បញ្ចេញតាមតាមមាត់",
-        "មានVirus បញ្ចេញតាមទឹកនោម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 37,
-      "question": "តើ Virus បញ្ចេញ មកក្រៅខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលមាន Virus បញ្ចេញ តាមដំបៅរឺពងបែកនៅលើស្បែក",
-        "មិនដែលមាន Virus បញ្ចេញ តាមទឹកដោះ",
-        "មិនដែលមាន Virus បញ្ចេញ តាមលាមក",
-        "មានVirus បញ្ចេញតាមដំបៅរឺពងបែកនៅលើស្បែក"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 38,
-      "question": "តើ Virus បញ្ចេញមកក្រៅខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលមាន Virus បញ្ចេញ តាមដំណក់ទឹកចេញតាមផ្លូវដង្ហើម",
-        "មិនដែលមាន Virus បញ្ចេញ តាមទឹកនោម",
-        "មិនដែលមាន Virus បញ្ចេញ តាមដំបៅរឺពងបែកនៅលើស្បែក",
-        "មានVirus បញ្ចេញតាមទឹកចេញតាមផ្លូវបន្តពូជ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 39,
-      "question": "តើ Virus បញ្ចេញមកក្រៅខ្លួនមនុស្ស តាមផ្លូវណា?",
-      "options": [
-        "មិនដែលមាន Virus បញ្ចេញ តាមទឹកនោម",
-        "មិនដែលមាន Virus បញ្ចេញ តាមទឹកចេញតាមផ្លូវបន្តពូជ",
-        "មិនដែលមាន Virus បញ្ចេញ តាមលាមក",
-        "មានVirus បញ្ចេញតាមទឹកទឹកភ្នែក"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 40,
-      "question": "ការវិវត្តទៅនៃរោគបង្កដោយVirus (Evolution of viral infection)?",
-      "options": [
-        "chronic viral infectionគឺ Virus អាចបង្ករោគភ្លាមៗមានលក្ខណះស្រួចស្រាវ",
-        "persistance infection គឺVirus អាចបង្ករោគភ្លាមៗ នៅនឹងកន្លែងច្រកចូល",
-        "localized infectionគឺ Virus អាចបង្ករោគភ្លាមៗ សាយភាយទៅសរីរាង្គនៅកន្លែងឆ្ងាយៗ",
-        "Acute infection:គឺ Virus បង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 41,
-      "question": "ការវិវត្តទៅនៃរោគបង្កដោយ Virus (Evolution of viral infection) ?",
-      "options": [
-        "Virus ខ្លះមិនបានចូលក្នុងខ្លួនទេហៅថា Virus បង្ករោគភ្លាមៗមានលក្ខណះស្រួចស្រាវ (Acute viral infection)",
-        "Acute localized infection គឺ Virus បង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ នៅនឹងកន្លែងច្រកចូល មិនមានការរាតត្បាតរឺសាយភាយទៅកន្លែងឆ្ងាយ",
-        "Acute generalized infection:គឺ Virus បង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ នៅនឹងកន្លែងច្រក ចូលមិនមានការរាតត្បាតរឺសាយភាយទៅកន្លែងឆ្ងាយ",
-        "ចំលើយ A, B, C ត្រឹមត្រូវ"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 42,
-      "question": "ការវិវត្តទៅនៃរោគបង្កដោយVirus (Evolution of viral infection)?",
-      "options": [
-        "Virus ខ្លះមិនបានចូលក្នុងខ្លួនទេហៅថា Virus បង្ករោគភ្លាមៗមានលក្ខណះស្រួចស្រាវ (Acute viral infection)",
-        "Acute localized infection: Virus បង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ និងមានការរាតត្បាតរឹ សាយភាយទៅសរីរាង្គនៅកន្លែងឆ្ងាយៗ",
-        "Acute generalized infection:Virus បង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ និងមានការរាតត្បាតរឹ សាយភាយទៅសរីរាង្គនៅកន្លែងឆ្ងាយៗ",
-        "ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Human intestines",
+        "Sheep intestines",
+        "Dog intestines",
+        "Pig intestines"
       ],
       "correctIndex": 2
     },
     {
-      "id": 43,
-      "question": "Virus នៅបង្ករោគជាប្រចាំក្នុងខ្លួន (persistence infection)?",
+      "id": 17,
+      "question": "The adult E. granulosus measures",
       "options": [
-        "Persistance infection គឺVirus អាចបង្ករោគភ្លាមៗ មានលក្ខណះស្រួចស្រាវ",
-        "Chronic infection: Virus នៅសំងំក្នុងខ្លួនតែមិនបង្កើតកូនចៅ(virus persists in form replicative)",
-        "Latent infection: Virus នៅសំងំក្នុងខ្លួនហើយបង្កើតកូនចៅជាច្រើនបង្កជំងឺរាំរៃ (virus persists in form non-replicative)",
-        "ដោយសារប្រព័ន្ធការពាររាងកាយមិនអាចកំចាត់ Virus ចេញអស់ពីរាងកាយ"
+        "4-10 meters",
+        "20-80 cm",
+        "3-6 mm",
+        "2-7 meters"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 18,
+      "question": "How many proglottids does adult Echinococcus granulosus have?",
+      "options": [
+        "1,000-2,000",
+        "100-200",
+        "3 (immature, mature, gravid)",
+        "3,000"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 19,
+      "question": "Hydatid cysts most commonly occur in",
+      "options": [
+        "Brain only",
+        "Liver (70%) and lungs (20%)",
+        "Muscles only",
+        "Kidneys only"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 20,
+      "question": "The contents of hydatid cysts include:",
+      "options": [
+        "Only fluid",
+        "Fluid and brood capsules with protoscolices",
+        "Only adult worms",
+        "Blood and pus"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 21,
+      "question": "Hymenolepis nana is called the dwarf tapeworm because",
+      "options": [
+        "It infects small children",
+        "It's the smallest tapeworm (2-4 cm)",
+        "It has small eggs",
+        "lives in small intestine"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 22,
+      "question": "H. nana eggs are characterized by",
+      "options": [
+        "Operculum",
+        "Polar filaments",
+        "Large size (70-85 µm)",
+        "Smooth shell"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 23,
+      "question": "The life cycle of H. nana is unique because:",
+      "options": [
+        "It requires two intermediate hosts",
+        "It's direct (no intermediate host required)",
+        "It only infects animals",
+        "Eggs are not infective immediately"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 24,
+      "question": "Autoinfection in H. nana means:",
+      "options": [
+        "The worm reproduces asexually",
+        "Eggs can hatch and reinfect the same host",
+        "The host infects itself through wounds",
+        "Multiple species can cross-infect"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 25,
+      "question": "H. nana is the most common",
+      "options": [
+        "Nematode infection",
+        "Trematode infection",
+        "Human cestode infection worldwide",
+        "Protozoan infection"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 26,
+      "question": "Diphyllobothrium latum belongs to which order?",
+      "options": [
+        "Cyclophyllidea",
+        "Pseudophyllidea",
+        "Monogenea",
+        "Digenea"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 27,
+      "question": "The scolex of Diphyllobothrium latum has:",
+      "options": [
+        "4 suckers",
+        "Hooks",
+        "Two bothria (sucking grooves)",
+        "4 suckers with hooks"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 28,
+      "question": "Diphyllobothrium latum eggs are",
+      "options": [
+        "Round with thick shell",
+        "Oval and operculated",
+        "Have polar filaments",
+        "Lack embryo"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 29,
+      "question": "Diphyllobothrium latum can cause:",
+      "options": [
+        "Cysticercosis",
+        "Hydatid disease",
+        "Vitamin B12 deficiency",
+        "Neurocysticercosis"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 30,
+      "question": "The first intermediate host of Diphyllobothrium latum is:",
+      "options": [
+        "Fish",
+        "Copepods",
+        "Cattle",
+        "Pigs"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 31,
+      "question": "Which tapeworm is most likely to cause megaloblastic anemia?",
+      "options": [
+        "Taenia saginata",
+        "Taenia solium",
+        "Diphyllobothrium latum",
+        "Hymenolepis nana"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 32,
+      "question": "Neurocysticercosis is diagnosed by:",
+      "options": [
+        "Stool microscopy only",
+        "CT/MRI imaging and serology",
+        "Blood smear",
+        "Urine examination"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 33,
+      "question": "Which medication is the drug of choice for most cestode infections?",
+      "options": [
+        "Metronidazole",
+        "Albendazole only",
+        "Praziquantel",
+        "Ivermectin"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 34,
+      "question": "Hydatid cyst rupture can cause",
+      "options": [
+        "Megaloblastic anemia",
+        "Anaphylaxis and secondary cysts",
+        "Vitamin B12 deficiency",
+        "Neurocysticercosis"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 35,
+      "question": "Cysticercosis can be prevented by",
+      "options": [
+        "Cooking beef thoroughly",
+        "Proper sanitation and avoiding fecal contamination",
+        "Deworming fish",
+        "Avoiding dairy products"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 36,
+      "question": "Which tapeworm infection is associated with eating sushi or raw fish?",
+      "options": [
+        "Taenia saginata",
+        "Taenia solium",
+        "Diphyllobothrium latum",
+        "Hymenolepis nana"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 37,
+      "question": "The most effective way to prevent hydatid disease is",
+      "options": [
+        "Cooking pork thoroughly",
+        "Regular deworming of dogs and avoiding fecal contamination",
+        "Boiling water",
+        "Avoiding beef"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 38,
+      "question": "Which class do trematodes belong to?",
+      "options": [
+        "Cestoda",
+        "Trematoda",
+        "Nematoda",
+        "Platyhelminthes"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 39,
+      "question": "What is the most medically important subclass of trematodes?",
+      "options": [
+        "Aspidogastrea",
+        "Monogenea",
+        "Digenea",
+        "Polyopisthocotylea"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 40,
+      "question": "Which type of intermediate host is commonly involved in trematode life cycles?",
+      "options": [
+        "Mosquitoes",
+        "Freshwater snails",
+        "Ticks",
+        "Fleas"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 41,
+      "question": "What is the drug of choice for most trematode infections?",
+      "options": [
+        "Albendazole",
+        "Ivermectin",
+        "Metronidazole",
+        "Praziquantel"
       ],
       "correctIndex": 3
+    },
+    {
+      "id": 42,
+      "question": "Trematodes are characterized by having:",
+      "options": [
+        "One sucker only",
+        "Two suckers (oral and ventral)",
+        "Three suckers",
+        "No suckers"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 43,
+      "question": "Which Schistosoma species primarily affects the urinary bladder?",
+      "options": [
+        "Schistosoma mansoni",
+        "Schistosoma japonicum",
+        "Schistosoma haematobium",
+        "Schistosoma intercalatum"
+      ],
+      "correctIndex": 2
     },
     {
       "id": 44,
-      "question": "Virus នៅបង្ករោគជាប្រចាំក្នុងខ្លួន (persistence infection)?",
+      "question": "Schistosoma mansoni is found in which geographic regions?",
       "options": [
-        "ដោយសារប្រព័ន្ធការពាររាងកាយមិនអាចកំចាត់ Virus ចេញអស់ពីរាងកាយ",
-        "Chronic infection គឺ Virus នៅសំងំក្នុងខ្លួនតែមិនបង្កើតកូនចៅ",
-        "Latent infection គឺ Virus នៅសំងំក្នុងខ្លួនហើយបង្កើតកូនចៅជាច្រើនបង្កជំងឺរាំរៃ",
-        "ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "East Asia only",
+        "Africa, South America, Caribbean",
+        "Europe and North America",
+        "Australia and New Zealand"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 45,
-      "question": "តើវត្ថុវិភាគ អ្វីខ្លះអាចយកមក ពិនិត្យរក Virus?",
+      "question": "The pathogenesis of schistosomiasis is primarily caused by:",
       "options": [
-        "ឈាមមិនអាចយកមក ពិនិត្យរក Virus",
-        "តម្បារន្ធច្រមុះ មិនអាចយកមក ពិនិត្យរក Virus",
-        "តម្បាបំពងកមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកមាត់ ទឹកភ្នែក ទឹកនោមអាចយកមក ពិនិត្យរក Virus"
+        "Adult worms in blood vessels",
+        "Cercariae penetrating skin",
+        "Immune reaction to eggs trapped in tissues",
+        "Miracidia in freshwater"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 46,
-      "question": "តើវត្ថុវិភាគ អ្វីខ្លះអាចយកមក ពិនិត្យរក Virus?",
+      "question": "Which clinical sign is most characteristic of S. haematobium infection?",
       "options": [
-        "តម្បារន្ធច្រមុះ មិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកមាត់ មិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកនោមមិនអាចយកមក ពិនិត្យរក Virus",
-        "ឈាម អាចយកមក ពិនិត្យរក Virus"
+        "Hepatosplenomegaly",
+        "Hematuria (blood in urine)",
+        "Chronic cough",
+        "Jaundice"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 47,
-      "question": "តើវត្ថុវិភាគ អ្វីខ្លះអាចយកមក ពិនិត្យរក Virus?",
+      "question": "Schistosoma eggs are typically found in",
       "options": [
-        "ទឹកដោះមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកភ្នែកមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកនោមមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកមាត់ អាចយកមក ពិនិត្យរក Virus"
+        "Blood samples only",
+        "Urine or stool samples",
+        "Saliva samples",
+        "Cerebrospinal fluid"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 48,
-      "question": "តើវត្ថុវិភាគ អ្វីខ្លះអាចយកមក ពិនិត្យរក Virus?",
+      "question": "Fasciola hepatica is commonly known as",
       "options": [
-        "សំបោមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកភ្នែកមិនអាចយកមក ពិនិត្យរក Virus",
-        "ឈាមមិនអាចយកមក ពិនិត្យរក Virus",
-        "លាមកអាចយកមក ពិនិត្យរក Virus"
+        "Blood fluke",
+        "Lung fluke",
+        "Liver fluke",
+        "Intestinal fluke"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 49,
-      "question": "តើវត្ថុវិភាគ អ្វីខ្លះអាចយកមក ពិនិត្យរក Virus?",
+      "question": "Humans become infected with F. hepatica by",
       "options": [
-        "ទឹកមាត់មិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកនោមមិនអាចយកមក ពិនិត្យរក Virus",
-        "ឈាមមិនអាចយកមក ពិនិត្យរក Virus",
-        "ទឹកដោះអាចយកមក ពិនិត្យរក Virus"
+        "Swimming in contaminated water",
+        "Eating raw freshwater fish",
+        "Ingesting contaminated aquatic plants",
+        "Insect bites"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 50,
-      "question": "ការពិនិត្យរក Virus?",
+      "question": "The drug of choice for treating fascioliasis is",
       "options": [
-        "Indirect diagnosis ការពិនិត្យរក Virusដោយផ្ទាល់ គឺជាការរកឃើញ រកឃើញ ហ្សែនរបស់Virus",
-        "Indirect diagnosis ការពិនិត្យរក Virusដោយមិនផ្ទាល់ គឺជាការពិនិត្យរកឃើញជា viral antigen រឺ viral protein",
-        "Direct diagnosis ការពិនិត្យរក Virusដោយផ្ទាល់ គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ (antibody)",
-        "Direct diagnosis ការពិនិត្យរក Virusដោយផ្ទាល់ គឺជាការរកឃើញ ហ្សែនរបស់Virus"
+        "Praziquantel",
+        "Triclabendazole",
+        "Albendazole",
+        "Bithionol"
       ],
-      "correctIndex": 3
-    },
-    {
-      "id": 50,
-      "question": "ដូចម្តេចហៅថា virus ?",
-      "options": [
-        "ជាកោសិការ",
-        "virusធ្វើការចែកខ្លួន (mitose) ដើម្បីបង្កើតកូនចៅវា",
-        "virusមិនត្រូវការកោសិការទេ ដើម្បីបង្កើតកូនចៅវា",
-        "virusជា parasite នៅក្នុងកោសិការ, ត្រូវការកោសិការ ដើម្បីបង្កើតកូនចៅវា"
-      ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 51,
-      "question": "ការពិនិត្យរក Virus?",
+      "question": "Fasciola hepatica adults mature in the:",
       "options": [
-        "A- ការពិនិត្យរក Virusដោយផ្ទាល់(Direct diagnosis) គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ (antibody)",
-        "B- ការពិនិត្យរក Virusដោយផ្ទាល់ (Direct diagnosis) គឺជាការរកឃើញ Virusទាំងមូល រឺ រកឃើញ ហ្សែនរបស់ Virus រឺ រកឃើញបំណែករបស់ Virusដូចជា viral antigen រឺ viral protein",
-        "C- ការពិនិត្យរក Virusដោយមិនផ្ទាល់(Indirect diagnosis) គឺជាការពិនិត្យរកឃើញ Virusទាំងមូល រឺ រកឃើញហ្សែនរបស់ Virus",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Lungs",
+        "Small intestine",
+        "Bile ducts",
+        "Blood vessels"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 52,
-      "question": "ការពិនិត្យរក Virus?",
+      "question": "The intermediate host for F. hepatica is:",
       "options": [
-        "ការពិនិត្យរក Virusដោយផ្ទាល់(Direct diagnosis) គឺជាការពិនិត្យរកឃើញរកឃើញហ្សែនរបស់ Virus",
-        "ការពិនិត្យរក Virusដោយមិនផ្ទាល់(Indirect diagnosis) គឺជាការរកឃើញរកឃើញហ្សែនរបស់ Virus",
-        "ការពិនិត្យរក Virusដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការពិនិត្យរកឃើញ Virus ទាំងមូល",
-        "ការពិនិត្យរក Virusដោយផ្ទាល់(Direct diagnosis) គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ (antibody)"
+        "Freshwater crabs",
+        "Freshwater fish",
+        "Freshwater snails",
+        "Aquatic plants"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 53,
-      "question": "ការពិនិត្យរក Virus?",
+      "question": "Paragonimus westermani is commonly called:",
       "options": [
-        "Indirect diagnosis ការពិនិត្យរក Virusដោយផ្ទាល់ គឺជាការរកឃើញ រកឃើញ ហ្សែនរបស់Virus",
-        "Indirect diagnosis គឺជាការពិនិត្យរកឃើញបំណែករបស់ Virusដូចជា viral antigen រឺ viral protein",
-        "Indirect diagnosis ការពិនិត្យរក Virusដោយមិនផ្ទាល់ គឺជាការពិនិត្យរកឃើញ ទាំងមូល",
-        "Direct diagnosis ការពិនិត្យរក Virusដោយផ្ទាល់ គឺជាការរកឃើញ viral antigen រឺ viral protein"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 54,
-      "question": "ការពិនិត្យរក Virusដោយមិនផ្ទាល់ (Indirect diagnosis) ?",
-      "options": [
-        "A- គឺជាការពិនិត្យរកឃើញ ហ្សែនរបស់ Virus",
-        "B- គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ (antibody)",
-        "C- គឺជាការពិនិត្យរកឃើញ Virus ទាំងមូល",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Liver fluke",
+        "Lung fluke",
+        "Blood fluke",
+        "Intestinal fluke"
       ],
       "correctIndex": 1
     },
     {
-      "id": 55,
-      "question": "Active immunization និង Passive immunization?",
+      "id": 54,
+      "question": "Humans become infected with P. westermani by eating:",
       "options": [
-        "A- Active immunization គឺការចាក់អង់ទីគ័រ (Seroprophylaxie)",
-        "B- Passive immunization គឺការចាក់វ៉ាក់សាំង (vaccination)",
-        "C- ចំលើយ A, B ត្រឹមត្រូវ",
-        "D- Active immunization គឺការចាក់វ៉ាក់សាំង (vaccination)"
+        "Raw aquatic plants",
+        "Contaminated water",
+        "Raw or undercooked freshwater crustaceans",
+        "Raw freshwater fish"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
+    },
+    {
+      "id": 55,
+      "question": "The most characteristic symptom of paragonimiasis:",
+      "options": [
+        "Hematuria",
+        "Hemoptysis (coughing up blood)",
+        "Jaundice",
+        "Diarrhea"
+      ],
+      "correctIndex": 1
     },
     {
       "id": 56,
-      "question": "ដូចម្តេចហៅថា Active immunization និង Passive immunization?",
+      "question": "P. westermani is most commonly found in:",
       "options": [
-        "A- Active immunization គឺការចាក់វ៉ាក់សាំង (vaccination)",
-        "B- Passive immunization គឺការចាក់វ៉ាក់សាំង (vaccination)",
-        "C- Active immunization គឺការចាក់អង់ទីគ័រ (Seroprophylaxie)",
-        "D- ចំលើយ A, B ត្រឹមត្រូវ"
+        "Africa and Middle East",
+        "South America",
+        "East and Southeast Asia",
+        "Europe and North America"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 57,
-      "question": "ដូចម្តេចហៅថារ៉ាក់សាំង ?",
+      "question": "The second intermediate host for P. westermani includes:",
       "options": [
-        "A- ជាជំងឺបង្កដោយ virus",
-        "B- ពេលដែលយើងចាក់វាទៅក្នុងខ្លួនយើងធ្វើអោយមានជំងឺធ្ងន់ធ្ងរ",
-        "C- ជាល្បាយដែលមានមេរោគ ពេលដែលយើងចាក់វាទៅក្នុងខ្លួនយើង វាជំរុញ ខ្លួនយើងអោយបង្កើត អង់ទីគ័រ (antibody)",
-        "D- ចំលើយ A, B ត្រឹមត្រូវ"
+        "Snails",
+        "Fish",
+        "Freshwater crabs and crayfish",
+        "Aquatic plants"
       ],
       "correctIndex": 2
     },
     {
       "id": 58,
-      "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
+      "question": "The infective stage of Fasciola hepatica for humans is:",
       "options": [
-        "វ៉ាក់សាំងធ្វើពី virus ត្រូវបានសំលាប់ហៅថា Live attenuated vaccine",
-        "វ៉ាក់សាំងធ្វើពី virusនៅរស់តែបន្ថយភាពសាហាវរបស់វាហៅថា Inactivated vaccine",
-        "វ៉ាក់សាំងធ្វើពីបំណែកនៃ virus ហៅថា Live attenuated vaccine",
-        "Live attenuated vaccine វ៉ាក់សាំងធ្វើពី virusនៅរស់តែបន្ថយភាពសាហាវរបស់វា"
+        "Miracidia",
+        "Cercariae",
+        "Metacercariae",
+        "Adult worms"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 59,
-      "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
+      "question": "Which diagnostic method is most commonly used for trematode infections:",
       "options": [
-        "Inactivated vaccine គឺវ៉ាក់សាំងធ្វើពី virus ត្រូវបានសំលាប់",
-        "Live attenuated vaccine គឺវ៉ាក់សាំងធ្វើពី virus ត្រូវបានសំលាប់",
-        "Inactivated vaccine គឺវ៉ាក់សាំងធ្វើពី virusនៅរស់ តែបន្ថយភាពសាហាវ របស់វា",
-        "Subunit vaccine គឺវ៉ាក់សាំងធ្វើពី virusនៅរស់ តែ បន្ថយភាពសាហាវ របស់វា"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 60,
-      "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
-      "options": [
-        "A- Inactivated vaccine គឺវ៉ាក់សាំងធ្វើពី virusនៅរស់តែ បន្ថយភាពសាហាវ របស់វា",
-        "B- Live attenuated vaccine គឺវ៉ាក់សាំងធ្វើពី virusនៅរស់តែបន្ថយភាពសាហាវ វា",
-        "C- Subunit vaccine គឺវ៉ាក់សាំងធ្វើពី virusនៅរស់ តែបន្ថយភាពសាហាវ របស់វា",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Blood culture",
+        "Microscopic examination of eggs",
+        "PCR testing",
+        "Skin biopsy"
       ],
       "correctIndex": 1
     },
     {
-      "id": 61,
-      "question": "មេរោគ កញ្ជ្រោល (measles virus)",
+      "id": 60,
+      "question": "Schistosoma cercariae infect humans by:",
       "options": [
-        "A- ជាមេរោគ ដែលមិនមានសំបក (Non-Enveloped virus)",
-        "B- មានហ្សែនជា nucleic acid ប្រភេទDNAតែមួយខ្សែ (single-stranded DNA)",
-        "C- ចំលើយ A, B ត្រឹមត្រូវ",
-        "D- ជាមេរោគ ដែលមានសំបក (Enveloped virus)"
+        "Ingestion",
+        "Inhalation",
+        "Skin penetration",
+        "Insect vectors"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 61,
+      "question": "The first larval stage that emerges from trematode eggs is called:",
+      "options": [
+        "Cercaria",
+        "Metacercaria",
+        "Redia",
+        "Miracidium"
       ],
       "correctIndex": 3
     },
     {
       "id": 62,
-      "question": "មេរោគកញ្ជ្រោល (measles virus)",
+      "question": "Eosinophilia is commonly associated with which phase of trematode infections?",
       "options": [
-        "A- ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "B- មានហ្សែនជា nucleic acid ប្រភេទDNA តែមួយខ្សែ (single-stranded DNA)",
-        "C- នៅក្នុងគ្រួសារ Paramyxoviridae និង genus Morbilivirus",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Acute phase only",
+        "Chronic phase only",
+        "Both acute and chronic phases",
+        "Neither phase"
       ],
       "correctIndex": 2
     },
     {
       "id": 63,
-      "question": "មេរោគកញ្ជ្រោល (measles virus)",
+      "question": "The most effective prevention method for schistosomiasis is:",
       "options": [
-        "A- ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "B- មានហ្សែនជា nucleic acid ប្រភេទRNA តែមួយខ្សែ (single-stranded RNA)",
-        "C- មានហ្សែនជា nucleic acid ប្រភេទDNA តែមួយខ្សែ (single-stranded DNA)",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Vaccination",
+        "Avoiding contact with contaminated freshwater",
+        "Taking prophylactic antibiotics",
+        "Using insect repellent"
       ],
       "correctIndex": 1
     },
     {
       "id": 64,
-      "question": "មេរោគ កញ្ជ្រោល (measles virus)",
+      "question": "Control of trematode infections often involves:",
       "options": [
-        "មិនមានមនុស្ស ដែលផ្ទុកមេរោគកញ្ជ្រោលទេ",
-        "មានតែសត្វ ដែលផ្ទុកមេរោគកញ្ជ្រោល",
-        "មេរោគកញ្ជ្រោលមិនមានការឆ្លងខ្លាំង",
-        "ការចំលងមេរោគកញ្ជ្រោល តាមផ្លូវដង្ហើម តាមការក្អករឹកណ្តាស់"
+        "Mosquito control programs",
+        "Snail control programs",
+        "Vaccination programs",
+        "Quarantining infected people"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 65,
-      "question": "មេរោគ កញ្ជ្រោល (measles virus)",
+      "question": "To prevent fascioliasis, people should avoid:",
       "options": [
-        "មេរោគកញ្ជ្រោល មិនមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនទេ",
-        "មេរោគកញ្ជ្រោលមិនមានការឆ្លងខ្លាំង",
-        "មេរោគកញ្ជ្រោល មិនដែលចំលងតាមផ្លូវដង្ហើម តាមការក្អករឹកណ្តាស់ទេ",
-        "មានតែមនុស្ស ដែលផ្ទុកមេរោគកញ្ជ្រោល គ្មានសត្វណាដែលផ្ទុកមេរោគនេះទេ"
+        "Swimming in freshwater",
+        "Eating raw aquatic plants like watercress",
+        "Contact with infected animals",
+        "Drinking well water"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 66,
-      "question": "គេអាចពិនិត្យរកមេរោគកញ្ជ្រោល?",
+      "question": "Preventive chemotherapy with praziquantel is recommended for:",
       "options": [
-        "មេរោគកញ្ជ្រោលមិនមានក្នុងរន្ធច្រមុះ មិនមានក្នុងបំពងកទេ",
-        "មេរោគកញ្ជ្រោល មិនមានក្នុងឈាមទេ",
-        "មេរោគកញ្ជ្រោល មិនមានក្នុងទឹកនោមទេ",
-        "មេរោគកញ្ជ្រោល មានក្នុងតម្បាររន្ធច្រមុះ តម្បារបំពងក"
+        "All trematode infections",
+        "Schistosomiasis in endemic areas",
+        "Fascioliasis only",
+        "Paragonimiasis only"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 67,
-      "question": "មេរោគកញ្ជ្រោល (measles virus)",
+      "question": "Which of the following is NOT a recommended prevention method for trematode infections?",
       "options": [
-        "មិនទាន់មានវ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោលទេ",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោលមិនជំរុញអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានទេ",
-        "គេអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោលជាមួយមេរោគស្ទូចនិងមេរោគស្រឡទែនសំរាប់ធ្វើវ៉ាក់សាំង រួមគ្នា",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោល ប្រើបានតែសំរាប់ស្ត្រីមានផ្ទៃពោះ"
+        "Improving sanitation",
+        "Health education",
+        "Insecticide spraying",
+        "Proper food preparation"
       ],
       "correctIndex": 2
     },
     {
       "id": 68,
-      "question": "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោល",
+      "question": "A 28-year-old man presents with bloody diarrhea, abdominal pain, and weight loss. Which parasite is the most likely cause?",
       "options": [
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលដែលសំលាប់ (inactivated vaccine)",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោលមិនជំរុញអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានយូរទេ",
-        "គេមិនអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោលជាមួយមេរោគស្ដួចនិងមេរោគស្រឡទែនសំរាប់ធ្វើវ៉ាក់សាំង រួមគ្នាទេ",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោលជំរុញអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានយូរ"
+        "Giardia lamblia",
+        "Entamoeba histolytica",
+        "Balantidium coli",
+        "Trichomonas vaginalis"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 69,
-      "question": "វ៉ាក់សាំង សំរាប់ការពារជំងឺ",
+      "question": "Which of the following is true about the mature cyst stage of Entamoeba histolytica?",
       "options": [
-        "A- វ៉ាក់សាំង សំរាប់ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលនៅរស់ តែបន្ថយភាពសាហាវរបស់វា (Live attenuated vaccine)",
-        "B- វ៉ាក់សាំង សំរាប់ការពារជំងឺកញ្ជ្រោលមិនជំរុញអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនទេ",
-        "C- គេមិនអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោលជាមួយមេរោគស្ទូច និងមេរោគស្រឡទែនសំរាប់ ធ្វើវ៉ាក់ សាំង រួមគ្នាទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Has one nucleus only",
+        "Quadrinucleate form is infective",
+        "Found only in extraintestinal lesions",
+        "Cannot survive outside the host"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 70,
+      "question": "A child has greasy, foul-smelling stools without blood. Microscopy shows pear-shaped trophozoites with two nuclei that resemble \"eyes.\" Which parasite is responsible?",
+      "options": [
+        "Giardia lamblia",
+        "Entamoeba coli",
+        "Balantidium coli",
+        "Entamoeba histolytica"
       ],
       "correctIndex": 0
     },
     {
-      "id": 70,
-      "question": "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល",
-      "options": [
-        "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលដែលសំលាប់ (inactivated vaccine)",
-        "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល អាចប្រើបានសំរាប់ស្ត្រីមានផ្ទៃពោះ",
-        "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោលមិនអាចប្រើចំពោះក្មេង នៅអាយុ១២ខែទៅ១៥ខែ និងនៅអាយុ៦ឆ្នាំ",
-        "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល មិនអាចប្រើបានសំរាប់ស្ត្រីមានផ្ទៃពោះទេ"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 71,
-      "question": "មេរោគ ស្រឡទែន (mumps virus)",
+      "question": "Which intestinal protozoan attached to the mucosa of the intestinal, leading to disrupt absorption?",
       "options": [
-        "មិនមានមនុស្ស ដែលផ្ទុកមេរោគស្រឡទែនទេ",
-        "ជំងឺស្រឡទែនមិនមានការឆ្លងខ្លាំង",
-        "មេរោគស្រឡទែន បង្ករោគតែលើសត្វ",
-        "មានតែមនុស្ស ដែលផ្ទុកមេរោគស្រឡទែន គ្មានសត្វណាដែលផ្ទុកមេរោគនេះទេ"
+        "Entamoeba histolytica",
+        "Giardia lamblia",
+        "Balantidium coli",
+        "Blastocystis hominis"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 72,
-      "question": "មេរោគ ស្រឡទែន (mumps virus)",
+      "question": "A farmer develops dysentery after contact with pigs. Stool examination shows Large trophozoite, oval shape, covered with cilia for motility. Which is the most likely pathogen?",
       "options": [
-        "មេរោគស្រឡទែន ជាមេរោគ ដែលមិនមានសំបក (Non-Enveloped virus)",
-        "មេរោគស្រឡទែន មានហ្សែនជា nucleic acid ប្រភេទDNAតែមួយខ្សែ (single-stranded DNA)",
-        "មេរោគស្រឡទែន និងមេរោគកញ្ជ្រោល មិននៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នាទេ",
-        "មេរោគស្រឡទែន ជាមេរោគ ដែលមានសំបក (Enveloped virus)"
+        "Entamoeba histolytica",
+        "Giardia lamblia",
+        "Balantidium coli",
+        "Cryptosporidium parvum"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 73,
-      "question": "មេរោគស្រឡទែន (mumps virus)",
+      "question": "In Balantidium coli infection, the most severe case which clinical feature following?",
       "options": [
-        "មានមនុស្សនិងសត្វជាច្រើន ដែលផ្ទុកមេរោគស្រឡទែន",
-        "ជំងឺស្រឡទែនមានការឆ្លងខ្លាំង",
-        "មេរោគស្រឡទែន និងមេរោគកញ្ជ្រោល មិននៅក្នុងគ្រួសារ Paramyxoviridae ជាមួយគ្នាទេ",
-        "ជំងឺស្រឡទែនមិនឆ្លងទេ"
+        "Amebic liver abscess",
+        "Dysentery-like illness, possible intestinal perforation",
+        "Malabsorption syndrome",
+        "Urogenital infection"
       ],
       "correctIndex": 1
     },
     {
       "id": 74,
-      "question": "មេរោគស្រឡទែន (mumps virus)",
+      "question": "A 25-year-old woman presents with frothy, yellow-green discharge, itching, and a strawberry cervix on exam. Wet mount reveals motile trophozoites. What is the most likely organism?",
       "options": [
-        "មានតែ សត្វដែលផ្ទុកមេរោគនេះ",
-        "ជំងឺស្រឡទែនមានការឆ្លងខ្លាំង ពិសេសឆ្លងតាមទឹកមាត់",
-        "មេរោគស្រឡទែន មិនមានវ៉ាក់សាំងការពារទេ",
-        "ជំងឺស្រឡទែនមិនឆ្លងទេ"
+        "Trichomonas vaginalis",
+        "Candida albicans",
+        "Giardia lamblia",
+        "Entamoeba histolytica"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 75,
+      "question": "Which of the following statements about Trichomonas vaginalis is correct?",
+      "options": [
+        "Has both cyst and trophozoite forms",
+        "Transmitted by ingestion of contaminated food",
+        "Only trophozoite stage exists, transmitted sexually",
+        "Causes bloody dysentery"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 76,
+      "question": "Which protozoan is diagnosed most reliably by a direct saline wet mount of vaginal discharge?",
+      "options": [
+        "Giardia lamblia",
+        "Trichomonas vaginalis",
+        "Entamoeba histolytica",
+        "Balantidium coli"
       ],
       "correctIndex": 1
     },
     {
-      "id": 75,
-      "question": "មេរោគ ស្រឡទែន (mumps virus)",
-      "options": [
-        "មេរោគនេះមិនបង្ករោគ នៅក្រពេញទឹកមាត់ទេ",
-        "មេរោគស្រឡទែន មិនមានការឆ្លងខ្លាំងតាមទឹកមាត់ទេ",
-        "មេរោគស្រឡទែន មិនដែលបង្ករោគនៅក្រពេញផ្សេងៗ ដូចជានៅ លំពែង, ពងស្វាស, អូវែរ ទេ",
-        "មេរោគនេះចូលចិត្តបង្ករោគ នៅក្រពេញ(glandular tropism) ពិសេសនៅក្រពេញទឹកមាត់"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 76,
-      "question": "ការចំលងមេរោគស្រឡទែន (mumps virus)",
-      "options": [
-        "មិនឆ្លងតាមទឹកមាត់",
-        "មិនឆ្លងតាមផ្លូវដង្ហើម, ផ្លូវអាហារ",
-        "ជំងឺស្រឡទែនមិនឆ្លងខ្លាំង",
-        "ឆ្លងតាមទឹកមាត់"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 77,
-      "question": "មេរោគស្រឡទែន (mumps virus)",
+      "question": "A stool sample from a patient with chronic diarrhea shows cysts containing 4 nuclei. Which parasite is most likely?",
       "options": [
-        "មេរោគនេះមិនបង្ករោគនៅក្រពេញទឹកមាត់ទេ",
-        "មេរោគស្រឡទែនមិនអាចបង្ករោគនៅក្រពេញផ្សេងៗទេ",
-        "មេរោគស្រឡទែនមិនឆ្លងតាមផ្លូវដង្ហើម, ផ្លូវអាហារទេ",
-        "មេរោគស្រឡទែនអាចបង្ករោគនៅក្រពេញផ្សេងៗដែរដូចជានៅពងស្វាសរឺនៅអូវែរ"
+        "Entamoeba histolytica",
+        "Giardia lamblia",
+        "Balantidium coli",
+        "Isospora belli"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 78,
-      "question": "គេអាចពិនិត្យរកមេរោគស្រឡទែន (mumps virus)នៅក្នុងវត្ថុវិភាគណាខ្លះ?",
+      "question": "Which of the following protozoa is associated with mal absorption of fat and vitamins (A,D,E,K)?",
       "options": [
-        "គេមិនអាចពិនិត្យរកមេរោគស្រឡទែននៅក្នុងទឹកមាត់ទេ",
-        "គេមិនអាចពិនិត្យរកមេរោគស្រឡទែននៅក្នុងឈាមទេ",
-        "គេមិនអាចពិនិត្យរកមេរោគស្រឡទែននៅក្នុងទឹកនោមទេ",
-        "អាចពិនិត្យរកមេរោគស្រឡទែននៅក្នុងទឹកមាត់ ក្នុងឈាម ក្នុងទឹកនោម"
+        "Entamoeba histolytica",
+        "Giardia lamblia",
+        "Balantidium coli",
+        "Trichomonas vaginalis"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 79,
-      "question": "មេរោគស្រឡទែន (mumps virus)",
+      "question": "Which feature differentiates Trichomonas vaginalis from intestinal protozoa?",
       "options": [
-        "A- មេរោគនេះចូលចិត្តបង្ករោគនៅក្រពេញ(glandular tropism) ពិសេសនៅក្រពេញទឹកមាត់ធ្វើអោយ រលាកក្រពេញទឹកមាត់",
-        "B- មេរោគស្រឡទែនមិនអាចបង្ករោគនៅលំពែងធ្វើអោយរលាកលំពែងទេ",
-        "C- មេរោគស្រឡទែនមិនអាចបង្ករោគនៅក្រពេញផ្សេងៗក្រៅពីក្រពេញទឹកមាត់ទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Presence of trophozoite stage",
+        "Transmission through contaminated water",
+        "Lack of cyst stage and sexual transmission",
+        "Ability to invade intestinal mucosa"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 80,
-      "question": "មេរោគស្រឡទែន (mumps virus)",
+      "question": "Which of the following is the primary reason Gram-positive bacteria appear purple under microscopy?",
       "options": [
-        "A- មេរោគស្រឡទែនធ្វើអោយរលាកក្រពេញទឹកមាត់",
-        "B- មេរោគស្រឡទែនមិនឆ្លងទេ",
-        "C- មិនមានវ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែនទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Thin peptidoglycan layer",
+        "Thick peptidoglycan layer that retains crystal violet",
+        "Presence of an outer membrane",
+        "High lipid content in cell wall"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 81,
-      "question": "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែន (mumps vaccine)",
+      "question": "The arrangement of Staphylococcus species is best described as:",
       "options": [
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែន ធ្វើពី មេរោគស្រឡទែនដែលសំលាប់ (inactivated vaccine)",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែន អាចប្រើបានសំរាប់ស្ត្រីមានផ្ទៃពោះទេ",
-        "គេមិនអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោលជាមួយមេរោគស្ទូចនិងមេរោគស្រឡទែនសំរាប់ធ្វើវ៉ាក់សាំង រួម គ្នាទេ",
-        "គេអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោលជាមួយមេរោគស្ដួចនិងមេរោគស្រឡទែនសំរាប់ធ្វើវ៉ាក់សាំង រួមគ្នា"
+        "Chains",
+        "Pairs (diplococci)",
+        "Irregular clusters resembling grapes",
+        "Single cocci"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 82,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "question": "Which test is used to differentiate Staphylococcus from Streptococcus?",
       "options": [
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទDNAតែមួយខ្សែ (single-stranded DNA)",
-        "មិននៅក្នុងគ្រួសារ Togaviridae និង genus Rubivirus",
-        "មានហ្សែនជា nucleic acid ប្រភេទRNA តែមួយខ្សែ (single-stranded RNA)"
+        "Coagulase test",
+        "Catalase test",
+        "Optochin test",
+        "PYR test"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 83,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "question": "Which Staphylococcus species is coagulase positive?",
       "options": [
-        "A- ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "B- មានហ្សែនជា nucleic acid ប្រភេទDNA តែមួយខ្សែ (single-stranded DNA)",
-        "C- មានតែមនុស្សដែលផ្ទុកមេរោគស្ដួច គ្មានសត្វណាដែលផ្ទុកមេរោគស្ដួចទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Staphylococcus epidermidis",
+        "Staphylococcus saprophyticus",
+        "Staphylococcus aureus",
+        "All of the above"
       ],
       "correctIndex": 2
     },
     {
       "id": 84,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "question": "Staphylococcus saprophyticus is most commonly associated with:",
       "options": [
-        "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទDNA តែមួយខ្សែ (single-stranded RNA)",
-        "មានមនុស្សនិងសត្វជាច្រើនដែលផ្ទុកមេរោគស្ទូចនេះ",
-        "ជាមេរោគអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានយូរ (long-lasting immunity)"
+        "Endocarditis",
+        "Food poisoning",
+        "Urinary tract infections in young women",
+        "Prosthetic device infections"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 85,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "question": "Which antibiotic would be first-line treatment for MRSA?",
       "options": [
-        "A- មានសត្វជាច្រើនដែលផ្ទុកមេរោគស្ទូចនេះ",
-        "B- ជាមេរោគអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានរយះពេលខ្លី (short immunity)",
-        "C- ជំងឺស្ដួចជាជំងឺឆ្លង",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Penicillin",
+        "Nafcillin",
+        "Vancomycin",
+        "Cefazolin"
       ],
       "correctIndex": 2
     },
     {
       "id": 86,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "question": "Protein A, found in Staphylococcus aureus, functions to:",
       "options": [
-        "មានសត្វជាច្រើនដែលផ្ទុកមេរោគស្ទូចនេះ",
-        "ជាមេរោគអោយមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនបានរយះពេលខ្លី (short immunity)",
-        "ជំងឺស្ទូចមិនឆ្លងទេ",
-        "មេរោគស្ទូចអាចឆ្លងតាមផ្លូវដង្ហើម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 87,
-      "question": "មេរោគស្ដួច (Rubella virus)",
-      "options": [
-        "មិនមានតែមនុស្សដែលផ្ទុកមេរោគស្ដួច សត្វក៏ផ្ទុកមេរោគស្ដួចដែរ",
-        "ជាមេរោគមិនមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនទេ",
-        "ជំងឺស្ទូចជាជំងឺមិនឆ្លងខ្លាំង មិនអាចឆ្លងតាមផ្លូវដង្ហើម",
-        "ជំងឺស្ទូចជាជំងឺឆ្លងខ្លាំង មេរោគស្ដួចអាចឆ្លងតាមផ្លូវដង្ហើម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 88,
-      "question": "មេរោគស្ដួច (Rubella virus)",
-      "options": [
-        "A- ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្ទូចអាចឆ្លងដល់ទារកក្នុងផ្ទៃធ្វើអោយទារកមិនគ្រប់លក្ខណះ (malformation foectal)",
-        "B- មិនមានវ៉ាក់សាំងសំរាប់ការពារជំងឺស្ទូចទេ",
-        "C- ជំងឺស្ទូចមិនមានឆ្លងពីម្តាយទៅទារកក្នុងផ្ទៃទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Bind to Fc portion of Immunoglobulin G",
+        "Cause hemolysis",
+        "Form biofilms",
+        "Resist phagocytosis"
       ],
       "correctIndex": 0
     },
     {
-      "id": 89,
-      "question": "មេរោគស្ដួច (Rubella virus)",
+      "id": 87,
+      "question": "Streptococcus pyogenes (Group A) typically shows which hemolysis pattern?",
       "options": [
-        "ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្ដួចមិនអាចឆ្លងដល់ទារកក្នុងផ្ទៃ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារជំងឺស្ទូច",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្ទូចអាចប្រើបាន ចំពោះស្ត្រីមានផ្ទៃពោះ",
-        "ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្ដួចអាចឆ្លងដល់ទារកក្នុងផ្ទៃ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 90,
-      "question": "វ៉ាក់សាំងការពារជំងឺស្ទូច (Rubella vaccine)",
-      "options": [
-        "វ៉ាក់សាំងការពារជំងឺស្ទួចធ្វើពី មេរោគស្ដួចសំលាប់ (inactivated vaccine)",
-        "គេមិនអាច ធ្វើការបញ្ចូលមេរោគស្ដួចជាមួយមេរោគកញ្ជ្រោលនិងមេរោគស្រឡទែនសំរាប់ធ្វើវ៉ាក់សាំង រួម គ្នា",
-        "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្ទូច អាចប្រើបាន ចំពោះស្ត្រីមានផ្ទៃពោះ",
-        "វ៉ាក់សាំងការពារជំងឺស្ទូចធ្វើពី មេរោគស្ដួចនៅរស់ តែបន្ថយភាពសាហាវរបស់វា (Live attenuated vaccine)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 91,
-      "question": "មេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែន",
-      "options": [
-        "មេរោគកញ្ជ្រោលនិង មេរោគស្ដួចនៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា",
-        "មេរោគកញ្ជ្រោលនិងមេរោគស្រឡទែននៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា",
-        "មេរោគស្ទូចនិងមេរោគស្រឡទែននៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា",
-        "មេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែន នៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា"
+        "α-hemolysis (greenish zone)",
+        "β-hemolysis (clear zone)",
+        "γ-hemolysis (no hemolysis)",
+        "Variable hemolysis"
       ],
       "correctIndex": 1
     },
     {
+      "id": 88,
+      "question": "The bacitracin sensitivity test is used to identify:",
+      "options": [
+        "Streptococcus pneumoniae",
+        "Streptococcus pyogenes (Group A)",
+        "Streptococcus agalactiae (Group B)",
+        "Enterococcus species"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 89,
+      "question": "Which of the following is characteristic of Group A streptococcal infection?",
+      "options": [
+        "Necrotizing fasciitis",
+        "Neonatal sepsis",
+        "Meningitis",
+        "Postpartum infections"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 90,
+      "question": "Streptococcus agalactiae (Group B) is particularly important in:",
+      "options": [
+        "Neonatal sepsis and meningitis",
+        "Community acquired pneumonia",
+        "Urinary tract infections",
+        "Pharyngitis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 91,
+      "question": "Which tests are positive for Streptococcus pneumoniae?",
+      "options": [
+        "Optochin sensitivity and bile solubility",
+        "Catalase and coagulase",
+        "PYR and salt tolerance",
+        "Bacitracin sensitivity"
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": 92,
-      "question": "មេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែន",
+      "question": "The major virulence factor of Streptococcus pneumoniae is:",
       "options": [
-        "មេរោគមេរោគស្ដួចនិងរោគកញ្ជ្រោល នៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា",
-        "មេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែនជាមេរោគមិនឆ្លង",
-        "គេមិនអាច ធ្វើការបញ្ចូលមេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែន សំរាប់ធ្វើវ៉ាក់សាំង រួមគ្នា",
-        "មេរោគស្រឡទែន និងរោគកញ្ជ្រោល នៅក្នុងគ្រួសារ Paramyxoviridaeជាមួយគ្នា"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 93,
-      "question": "មេរោគកញ្ជ្រោល មេរោគស្ដួចនិងមេរោគស្រឡទែន",
-      "options": [
-        "មេរោគស្រឡទែនមិនបង្ករោគនៅក្រពេញទេ",
-        "ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្ដួចមិនអាចឆ្លងដល់ទារកក្នុងផ្ទៃធ្វើអោយទារកមិនគ្រប់លក្ខណះទេ (malformation foectal)",
-        "មេរោគកញ្ជ្រោល មិនអាចអោយមានរលាកខួរក្បាល (encephalitis)",
-        "មេរោគស្រឡទែន បង្ករោគនៅក្រពេញ(glandular tropism) ពិសេសនៅក្រពេញទឹកមាត់ធ្វើអោយរលាក ក្រពេញទឹកមាត់"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 94,
-      "question": "មេរោគទាំងបីខាងក្រោមនេះ តើមេរោគមួយណាចូលចិត្តបង្ករោគនៅក្រពេញ(glandular tropism)?",
-      "options": [
-        "A- មេរោគកញ្ជ្រោល",
-        "B- មេរោគស្ដួច",
-        "C- មេរោគស្រឡទែន",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "M protein",
+        "Protein A",
+        "Polysaccharide capsule",
+        "Coagulase"
       ],
       "correctIndex": 2
     },
     {
-      "id": 95,
-      "question": "មេរោគទាំងបីខាងក្រោមនេះ តើមេរោគមួយណាអាចឆ្លងដល់ទារកក្នុងផ្ទៃធ្វើអោយទារកមិនគ្រប់លក្ខណះ (malformation foectal)?",
+      "id": 93,
+      "question": "Which vaccine type is recommended for infants against pneumococcal disease?",
       "options": [
-        "A- មេរោគកញ្ជ្រោល",
-        "B- មេរោគស្ដួច",
-        "C- មេរោគស្រឡទែន",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "PPSV23",
+        "PCV13",
+        "Both simultaneously",
+        "Neither (not recommended for infants)"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 94,
+      "question": "Enterococcus species are distinguished from other streptococci by:",
+      "options": [
+        "Growth in 6.5% NaCl and positive PYR test",
+        "α-hemolysis on blood agar",
+        "Catalase positivity",
+        "Optochin sensitivity"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 95,
+      "question": "Which Enterococcus species is most commonly isolated?",
+      "options": [
+        "Enterococcus faecium",
+        "Enterococcus faecalis",
+        "Enterococcus gallinarum",
+        "Enterococcus casseliflavus"
       ],
       "correctIndex": 1
     },
     {
       "id": 96,
-      "question": "មេរោគ Rotavirus",
+      "question": "Vancomycin-resistant Enterococcus (VRE) infections are typically treated with:",
       "options": [
-        "ជាមេរោគដែលមានសំបក (Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទDNA ពីរខ្សែ (double-stranded DNA)",
-        "ជាមេរោគផ្លូវដង្ហើម",
-        "នៅក្នុងគ្រួសារ Reoviridae"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 97,
-      "question": "មេរោគ Rotavirus",
-      "options": [
-        "មេរោគRotavirus មានប្រាំប្រភេទគឺ Rotavirus: A, B, C, D, និង E.",
-        "មេរោគ Rotavirus មានបួនប្រភេទគឺ Rotavirus: A, B, C, និង D",
-        "មេរោគ Rotavirus មានបីប្រភេទគឺ Rotavirus: A, B, និង C",
-        "មេរោគ Rotavirus មានពីរប្រភេទគឺ Rotavirus: A, និង B"
+        "High-dose penicillin",
+        "Cephalosporins",
+        "Linezolid or daptomycin",
+        "Clindamycin"
       ],
       "correctIndex": 2
     },
     {
-      "id": 98,
-      "question": "មេរោគ Rotavirus",
+      "id": 97,
+      "question": "A 25-year-old woman presents with dysuria and frequency. Urine culture grows Gram-positive cocci in clusters that are catalase positive and coagulase negative. The most likely organism is:",
       "options": [
-        "មេរោគRotavirus បង្ករោគនៅផ្លូវដង្ហើម",
-        "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
-        "មេរោគRotavirus មិនចំលងតាមផ្លូវលាមក មកមាត់",
-        "មេរោគ Rotavirus បង្ករោគនៅពោះវៀន"
+        "Staphylococcus aureus",
+        "Staphylococcus epidermidis",
+        "Staphylococcus saprophyticus",
+        "Enterococcus faecalis"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 99,
-      "question": "មេរោគ Rotavirus",
+      "question": "A 2-month-old infant presents with fever and irritability. CSF culture grows Gram-positive cocci in chains that are catalase negative and β-hemolytic. The most likely organism is:",
       "options": [
-        "មេរោគRotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
-        "មេរោគ Rotavirus ចំលងតាមផ្លូវដង្ហើម",
-        "គេមិនអាចពិនិត្យរកមេរោគ Rotavirus នៅក្នុងលាមកទេ",
-        "មេរោគ Rotavirus ចំលងតាមផ្លូវលាមក មកមាត់"
+        "Streptococcus pyogenes",
+        "Streptococcus agalactiae",
+        "Streptococcus pneumoniae",
+        "Enterococcus faecalis"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 100,
-      "question": "មេរោគ Rotavirus",
+      "question": "Food poisoning with rapid onset (1-6 hours) after eating potato salad at a picnic is most likely caused by:",
       "options": [
-        "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
-        "មេរោគ Rotavirus មិនចំលងតាមផ្លូវលាមក មកមាត់",
-        "មេរោគ Rotavirus មិនមានវ៉ាក់សាំងសំរាប់ការពារ",
-        "មេរោគ Rotavirus មានវ៉ាក់សាំងសំរាប់ការពារ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 101,
-      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
-      "options": [
-        "A- ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ",
-        "B- ជា arbovirus ចំលងមកមនុស្សតាមរយះចៃខាំ",
-        "C- មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Staphylococcus aureus enterotoxin",
+        "Streptococcus pneumoniae",
+        "Enterococcus faecalis",
+        "Streptococcus pyogenes"
       ],
       "correctIndex": 0
     },
     {
-      "id": 102,
-      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
+      "id": 100,
+      "question": "A patient with a prosthetic heart valve develops endocarditis. Blood cultures grow Gram-positive cocci in clusters that are catalase positive and coagulase negative. The organism is most likely:",
       "options": [
-        "A- ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ",
-        "B- ចំលងមកមនុស្សតាមរយះឆ្កែឆ្កួតខាំ",
-        "C- មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Staphylococcus aureus",
+        "Staphylococcus epidermidis",
+        "Streptococcus viridans",
+        "Enterococcus faecalis"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 101,
+      "question": "Which medium is selective for Staphylococcus species?",
+      "options": [
+        "Blood agar",
+        "MacConkey agar",
+        "Mannitol salt agar",
+        "Chocolate agar"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 102,
+      "question": "A Gram-positive coccus that is α-hemolytic (greenish zone) which species is most likely?",
+      "options": [
+        "Streptococcus pneumoniae",
+        "Streptococcus pyogenes",
+        "Viridans group streptococci",
+        "Enterococcus species"
       ],
       "correctIndex": 0
     },
     {
       "id": 103,
-      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
+      "question": "The PYR test (Pyrrolidonyl Arylamidase test) is used primarily to identify:",
       "options": [
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះចៃខាំ",
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះឆ្កែឆ្កួតខាំ",
-        "មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ"
+        "Staphylococcus aureus",
+        "Streptococcus pneumoniae",
+        "Group A streptococci and Enterococci",
+        "Viridans group streptococci"
       ],
       "correctIndex": 2
     },
     {
       "id": 104,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈឺក Chikungunya Virus",
+      "question": "Which parasite is most commonly associated with intestinal obstruction in heavy infection?",
       "options": [
-        "ជា arbovirus មិនចំលងមកមនុស្ស",
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "ជាមេរោគមានហ្សែនជា nucleic acid ប្រភេទ DNA មួយខ្សែ (single-stranded DNA)",
-        "នៅក្នុងគ្រួសារ Family Togaviridae, Genus Alphavirus"
+        "Enterobius vermicularis",
+        "Ascaris lumbricoides",
+        "Loa loa",
+        "Onchocerca volvulus"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 105,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈឺក Chikungunya Virus",
+      "question": "A child has intense perianal itching at night. Which diagnostic test is most appropriate?",
       "options": [
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ",
-        "ចំលងមកមនុស្សតាមរយះឆ្កែខាំ",
-        "ឆ្លងតាមផ្លូវដង្ហើម",
-        "ឆ្លងតាមផ្លូវលាមក មក មាត់"
+        "Thick blood smear",
+        "Skin snip biopsy",
+        "Cellophane tape test",
+        "Sputum microscopy"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 106,
+      "question": "Which intestinal nematode is classically associated with Iron-deficiency anemia?",
+      "options": [
+        "Hookworm",
+        "Trichuris trichiura",
+        "Enterobius vermicularis",
+        "Dracunculus medinensis"
       ],
       "correctIndex": 0
     },
     {
-      "id": 106,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈឺក Chikungunya Virus",
-      "options": [
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះចៃខាំ",
-        "ឆ្លងតាមផ្លូវដង្ហើម",
-        "មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 107,
-      "question": "មេរោគ Arbovirus Virus",
+      "question": "Which parasite has the unique ability to cause autoinfection and severe hyperinfection in immunosuppressed patients?",
       "options": [
-        "ជាមេរោគដែលមិនអាចចំលងដោយមូសខាំឬដោយចៃខាំ",
-        "មេរោគគ្រុនឈាម (Dengue virus) មិនមែនជា Arbovirusទេ",
-        "មេរោគគ្រុនឈឺក (Chikungunya Virus) មិនចំលងដោយមូសខាំទេ",
-        "ជាមេរោគដែលចំលងដោយមូសខាំឬដោយចៃខាំ"
+        "Ascaris lumbricoides",
+        "Trichuris trichiura",
+        "Wuchereria bancrofti",
+        "Strongyloides stercoralis"
       ],
       "correctIndex": 3
     },
     {
       "id": 108,
-      "question": "មេរោគ Arbovirus Virus",
+      "question": "Which parasite is transmitted mainly by ingestion of embryonated eggs from contaminated soil?",
       "options": [
-        "មេរោគគ្រុនឈាម (Dengue virus) មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "មេរោគគ្រុនឈីក(Chikungunya Virus) មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "មេរោគរលាកខួរក្បាល (Japanese Encephalitis Virus) មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Hookworm",
+        "Onchocerca volvulus",
+        "Ascaris lumbricoides",
+        "Dracunculus medinensis"
       ],
       "correctIndex": 2
     },
     {
       "id": 109,
-      "question": "មេរោគ Arbovirus Virus",
+      "question": "Which parasite is commonly known as the \"whipworm\"?",
       "options": [
-        "មេរោគគ្រុនឈាម (Dengue virus) ជាAlphavirus",
-        "មេរោគរលាកខួរក្បាល (Japanese Encephalitis Virus) ជា Alphavirus",
-        "មេរោគគ្រុនឈឺក (Chikungunya Virus) ជា Flavivirus",
-        "មេរោគគ្រុនឈឺក (Chikungunya Virus) ជាAlphavirus"
+        "Trichuris trichiura",
+        "Enterobius vermicularis",
+        "Loa loa",
+        "Necator americanus"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 110,
-      "question": "មេរោគ Arbovirus Virus",
+      "question": "Lymphatic filariasis is mainly caused by which of the following parasites?",
       "options": [
-        "A- មេរោគគ្រុនឈាម (Dengue virus) ជាAlphavirus",
-        "B- មេរោគរលាកខួរក្បាល (Japanese Encephalitis Virus) ជាAlphavirus",
-        "C- មេរោគគ្រុនឈឺក (Chikungunya Virus) ជាAlphavirus",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Dracunculus medinensis and Loa loa",
+        "Wuchereria bancrofti and Brugia malayi",
+        "Ascaris lumbricoides and Trichuris trichiura",
+        "Enterobius vermicularis and Strongyloides stercoralis"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 111,
+      "question": "Which vector transmits Onchocerca volvulus?",
+      "options": [
+        "Mosquito",
+        "Blackfly",
+        "Deer fly",
+        "Water flea"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 112,
+      "question": "A patient presents with transient swelling of the arm and a worm moving across the eye. Which parasite is most likely?",
+      "options": [
+        "Loa loa",
+        "Wuchereria bancrofti",
+        "Ancylostoma duodenale",
+        "Strongyloides stercoralis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 113,
+      "question": "Guinea worm disease is caused by which parasite?",
+      "options": [
+        "Trichuris trichiura",
+        "Brugia malayi",
+        "Dracunculus medinensis",
+        "Onchocerca volvulus"
       ],
       "correctIndex": 2
     },
     {
-      "id": 111,
-      "question": "Viral Hepatitis មានន័យដូចម្តេច?",
-      "options": [
-        "A- Viral Hepatitis មានន័យថា មានមេរោគចូលទៅក្នុងថ្លើម",
-        "B- Viral Hepatitis មានន័យថាគឺជាការរលាកថ្លើម",
-        "C- Viral Hepatitis មានន័យថាមានមេរោគជាក់លាក់ដែលធ្វើឲ្យថ្លើមរលាក",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 112,
-      "question": "Chronic Hepatitis មានន័យដូចម្តេច?",
-      "options": [
-        "A- មានន័យថា ជំងឺរលាកថ្លើមដែលកើតឡើងក្នុងរយៈពេលខ្លី ហើយមានលក្ខណៈមិនធ្ងន់ធ្ងរ",
-        "B- មានន័យថា ជំងឺរលាកថ្លើមដែលកើតឡើងក្នុងរយៈពេលវែង ហើយមានលក្ខណៈធ្ងន់ធ្ងរ",
-        "C- មានន័យថា ជំងឺរលាកថ្លើមដែលកើតឡើងក្នុងរយៈពេលវែង ហើយអាចមានលក្ខណៈធ្ងន់ធ្ងរ ឬ មិនធ្ងន់ធ្ងរ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 113,
-      "question": "តើ Viral Hepatitis ណា ឬ ណាខ្លះដែលមានទំរង់ Chronic?",
-      "options": [
-        "A- Viral Hepatitis B",
-        "B- Viral Hepatitis C",
-        "C- Viral Hepatitis D",
-        "D- Viral Hepatitis B, C, D"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 114,
-      "question": "តើភ្នាក់ងារចម្លងរោគរបស់ Viral Hepatitis B គឺមេរោគឈ្មោះអ្វី?",
+      "question": "Which of the following correctly describes members of the Enterobacteriaceae family?",
       "options": [
-        "HAV",
-        "HBV",
-        "HCV",
-        "HDV"
+        "Large, gram-positive cocci that form endospores",
+        "Small, gram-negative rods measuring approximately 2-5 x 0.5 µm",
+        "Spiral-shaped, gram-variable bacteria with flagella at both poles",
+        "Acid-fast bacilli that contain mycolic acids in their cell wall"
       ],
       "correctIndex": 1
     },
     {
       "id": 115,
-      "question": "ចំពោះអ្នកដែលបានឆ្លង Viral Hepatitis B តើគេអាចវិភាគឃើញមេរោគក្នុងវត្ថុវិភាគណា ឬ ណាខ្លះ?",
+      "question": "Which bacterial family is most commonly associated with gram-negative, facultative anaerobic, non-spore-forming rods?",
       "options": [
-        "A- ឈាម",
-        "B- ទឹកកាម/ទឹករំអិលទ្វារមាស (Semen/ Vaginal discharge)",
-        "C- ទឹកមាត់",
-        "D- ឈាម, ទឹកកាម/ទឹករំអិលទ្វារមាស, និងទឹកមាត់"
+        "Bacillaceae",
+        "Enterobacteriaceae",
+        "Mycobacteriaceae",
+        "Streptococcaceae"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 116,
-      "question": "តើ Viral Hepatitis ណាខ្លះដែលឆ្លងតាមរយៈ លាមកមនុស្សចូលតាមមាត់ (fecal- oral route)?",
+      "question": "Which Salmonella species is most frequently associated with foodborne gastroenteritis, especially from contaminated poultry and eggs?",
       "options": [
-        "Viral Hepatitis A និង E",
-        "Viral Hepatitis B និង C",
-        "Viral Hepatitis C និង D",
-        "Viral Hepatitis D និង E"
+        "Salmonella typhimurium",
+        "Salmonella enteritidis",
+        "Salmonella typhi",
+        "Salmonella paratyphi A"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 117,
-      "question": "តើ Viral Hepatitis ណាមួយដែលមិនអាចកើតឡើងបានប្រសិនបើមិនមានវត្តមានមេរោគផ្សេងមួយទៀត",
+      "question": "What is the gold standard for the diagnosis of Salmonella infections such as typhoid fever?",
       "options": [
-        "Viral Hepatitis A",
-        "Viral Hepatitis B",
-        "Viral Hepatitis C",
-        "Viral Hepatitis D"
+        "Urine test",
+        "Blood culture",
+        "Widal test",
+        "Stool microscopy"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 118,
-      "question": "តើ incubation period របស់ Viral hepatitis B ជាទូទៅមានរយៈពេលប៉ុន្មាន?",
+      "question": "The Widal test detects which of the following in a patient's serum?",
       "options": [
-        "10-15 សប្តាហ៍",
-        "2-6 សប្តាហ៍",
-        "4-8 សប្តាហ៍",
-        "6-10 សប្តាហ៍"
+        "Bacterial toxins",
+        "Antibodies against Salmonella antigens",
+        "Salmonella DNA",
+        "White blood cell response"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 119,
-      "question": "តើ incubation period របស់ Viral hepatitis E ជាទូទៅមានរយៈពេលប៉ុន្មាន?",
+      "question": "What is the most effective way to prevent the spread of Salmonella infection?",
       "options": [
-        "10-15 សប្តាហ៍",
-        "2-6 សប្តាហ៍",
-        "4-8 សប្តាហ៍",
-        "6-10 សប្តាហ៍"
+        "Avoiding antibiotics",
+        "Regular handwashing and proper food handling",
+        "Taking vitamins",
+        "Using insect repellents"
       ],
       "correctIndex": 1
     },
     {
       "id": 120,
-      "question": "តើ Viral Hepatitis ណាខ្លះដែលគ្មានវ៉ាក់សាំងការពារ?",
+      "question": "Which of the following helps prevent Salmonella foodborne infections?",
       "options": [
-        "Viral Hepatitis A និង B",
-        "Viral Hepatitis B និង C",
-        "Viral Hepatitis A និង D",
-        "Viral Hepatitis C និង E"
+        "Eating raw eggs and undercooked poultry",
+        "Storing food at room temperature",
+        "Cooking food thoroughly and refrigerating promptly",
+        "Avoiding all fruits and vegetables"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 121,
-      "question": "តើ Viral Hepatitis B មានទំរង់ Chronic ប្រមាណប៉ុន្មានភាគរយ?",
+      "question": "Which of the following best describes protozoa?",
       "options": [
-        "5-10%",
-        "20-30%",
-        "50-80%",
-        ">60%"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 122,
-      "question": "ក្នុងចំណោម Viral Hepatitis ខាងក្រោមតើ Viral Hepatitis មួយណាដែលអាចមានលក្ខណៈធ្ងន់ធ្ងរជាងគេ?",
-      "options": [
-        "Viral Hepatitis D (Coinfection)",
-        "Viral Hepatitis D (Superinfection)",
-        "Viral Hepatitis B",
-        "Viral Hepatitis E"
+        "Multicellular prokaryotes",
+        "Unicellular eukaryotes",
+        "Multicellular eukaryotes",
+        "Unicellular prokaryotes"
       ],
       "correctIndex": 1
     },
     {
-      "id": 123,
-      "question": "តើវីរុសគ្រុនស្វិតដៃជើងចំលងមកមនុស្សតាមវិធីណា?",
+      "id": 122,
+      "question": "Protozoa reproduce by which of the following methods?",
       "options": [
-        "តាមរយះការចាក់ថ្នាំ",
-        "តាមរយះសត្វខាំ",
-        "តាមការញាំចំណីអាហារមិនស្អាត",
-        "តាមការប្រើប្រាស់របស់រួមគ្នា"
+        "Only sexual reproduction",
+        "Only asexual reproduction",
+        "Both asexual and sexual reproduction",
+        "By forming spores only"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 123,
+      "question": "Protozoa can live and multiply:",
+      "options": [
+        "Only on the skin surface",
+        "Only inside host cells (intracellular)",
+        "Both inside and outside host cells (intracellular and extracellular)",
+        "Only in the environment"
       ],
       "correctIndex": 2
     },
     {
       "id": 124,
-      "question": "តើជំងឺគ្រុនស្វិតដៃជើងអាចការពារតាមវីធីណា?",
+      "question": "Which of the following protozoal diseases is transmitted by a vector?",
       "options": [
-        "ថ្នាំអង់ទីប្បទិក",
-        "ថ្នាំកំចាត់ព្រូន",
-        "ចាក់វាក់សាំងបង្ការ",
-        "ថ្នាំបំបាត់ការឈឺចាប់"
+        "Giardiasis",
+        "Malaria",
+        "Amebiasis",
+        "Toxoplasmosis (ingestion)"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 125,
-      "question": "តើមេរោគអេដស៍បង្ករអោយមានការប៉ះពាល់អ្វីខ្លះពេលឆ្លងចូលសារពាង្គកាយ?",
+      "question": "Which of the following is the best method to prevent malaria, a vector-borne protozoal disease?",
       "options": [
-        "ធ្វើអោយសារពាង្គកាយបាត់បង់ប្រពន្ធ័ការពារប្រឆាំងនិងមេរោគ",
-        "ធ្វើអោយក្តៅខ្លួនហាសំបោរក្អក",
-        "ធ្វើអោយក្តៅខ្លួនហូរឈាមតាមអញ្ចាញធ្មេញ",
-        "ធ្វើអោយយើងមានអាករះរាគរូសឈឺពោះក្អួតចង្អោ"
+        "Avoiding dairy products",
+        "Using insecticide-treated bed nets",
+        "Taking antibiotics regularly",
+        "Wearing thick clothing indoors"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 126,
-      "question": "តើមេរោគEV71បង្ករអោយមានជំងឺអ្វីខ្លះ?",
+      "question": "Which of the following food-handling practices helps prevent protozoal infection?",
       "options": [
-        "ជំងឺផ្តាសាយ",
-        "ជំងឺគ្រុនឈាម",
-        "ជំងឺគ្រុនស្វិតដៃជើង",
-        "ជំងឺពងបែកនៅមាត់ដៃនិងជើង"
+        "Eating raw vegetables without washing",
+        "Cooking meat thoroughly before eating",
+        "Storing food at room temperature",
+        "Avoiding all fresh produce"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 127,
-      "question": "តើការព្យាបាលជំងឺអេដស៍តាមវីធីណា?",
+      "question": "In bacterial nomenclature, the genus name is:",
       "options": [
-        "ការប្រើថ្នាំមួយមុខ",
-        "ការប្រើថ្នាំពីមុខព្រមគ្នា",
-        "ការប្រើថ្នាំបីមុខព្រមគ្នា",
-        "ការប្រើថ្នាំដប់មុខព្រមគ្នា"
+        "Lowercase, abbreviated",
+        "Uppercase, italicized",
+        "Uppercase, underlined",
+        "Lowercase, underlined"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 128,
-      "question": "អ្វីទៅហៅថាជំងឺអេដស៍?",
+      "question": "Which colour of Gram-positive bacteria appear after Gram staining?",
       "options": [
-        "អ្នកជំងឺមានផ្ទុកមេរោគអេដស៍មានកោសិការ CD4 ធម្មតាមានជំងឺឱកាសនិយម",
-        "អ្នកជំងឺមានផ្ទុកមេរោគអេដស៍មានកោសិការ CD4 ធម្មតាមិនមានជំងឺឱកាសនិយម",
-        "អ្នកជំងឺមានផ្ទុកមេរោគអេដស៍មានកោសិការ CD4 ចុះក្រោមធម្មតាមានជំងឺឱកាសនិយម",
-        "អ្នកជំងឺគ្មានផ្ទុកមេរោគអេដស៍មានកោសិការ CD4 ធម្មតាមានជំងឺឱកាសនិយម"
+        "Red",
+        "Pink",
+        "Purple",
+        "Colorless"
       ],
       "correctIndex": 2
     },
     {
       "id": 129,
-      "question": "វីរុសដែលបង្ករជំងឺHFMDមានអ្វីខ្លះ?",
+      "question": "Endotoxins are mainly associated with:",
       "options": [
-        "EV71, Coxackievirus A14",
-        "EV70, Coxackievirus A15",
-        "EV71, Coxackievirus A16",
-        "EV72, Coxackievirus A16"
+        "Gram-positive bacteria",
+        "Gram-negative bacteria",
+        "Both Gram-positive and Gram-negative",
+        "Fungi"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 130,
-      "question": "តើវីរុសគ្រុនស្វិតដៃជើង ចូលចិត្តទៅនៅសរីរាង្គមួយណា?",
+      "question": "Exotoxins are typically:",
       "options": [
-        "ស្បែក",
-        "ថ្លើម",
-        "សូត",
-        "ប្រព័ន្ធប្រសាទ"
+        "Lipid components of cell walls",
+        "Secreted proteins",
+        "Genetic material",
+        "Capsule polysaccharides"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 131,
-      "question": "ហេតុអ្វីបានជាគេជ្រើសរើសវាក់សាំងការពារជំងឺគ្រុនស្វិតដៃជើងបន្តក់តាមមាត់?",
+      "question": "Most bacteria prefer which pH for optimal growth?",
       "options": [
-        "ងាយស្រួលបន្តក់ ថោក តែមានអង់ទឹករខ្លី",
-        "ងាយស្រួលចាក់ ថោក មានអង់ទឹករវែង",
-        "ងាយស្រួលបន្តក់ ថោក មានអង់ទឹកររយះពេលវែង",
-        "ងាយស្រួលបន្តក់ ថ្លៃ តែមានអង់ទីករខ្លី"
+        "4.5",
+        "5.5",
+        "7.0",
+        "9.0"
       ],
       "correctIndex": 2
     },
     {
       "id": 132,
-      "question": "បន្ទាប់ពីឆ្លងវីរុសគ្រុនស្វិតដៃជើងតើកុមារអាចមានជំងឺអ្វីខ្លះ?",
+      "question": "Which bacterial growth phase shows no cell division, only adaptation?",
       "options": [
-        "៩៥% ស្វិតអវយវ ៥%ជំងឺស្រាល ១%ជំងឺរលាកស្រោមខួរ <១%អត់មានឈឺ",
-        "៩៥%អត់មានឈឺ ៥%ជំងឺស្រាល ១%ជំងឺរលាកស្រោមខួរ <១%ស្វិតអវយវ",
-        "មានរោគសញ្ញាដូចគ្រុនផ្តាសសាយ",
-        "មានរោគសញ្ញាដូចគ្រុនឈាម"
+        "Lag phase",
+        "Log phase",
+        "Stationary phase",
+        "Death phase"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 133,
+      "question": "Which of the following is a general feature of Enterobacteriaceae?",
+      "options": [
+        "Oxidase-positive",
+        "Ferment glucose",
+        "Non-nitrate reducers",
+        "Gram-positive cocci"
       ],
       "correctIndex": 1
     },
     {
-      "id": 133,
-      "question": "ប៉ារាសិតគឺ:",
-      "options": [
-        "ជាផ្នែកមួយ នៃសរីរាង្គមនុស្ស",
-        "ជាផ្នែកមួយ នៃសរីរាង្គសត្វ",
-        "ជាផ្នែកមួយ នៃសិរីរាង្គរុក្ខជាតិ",
-        "ជាសរីរាង្គមួយរស់នៅលើសរីរាង្គមួយទៀត មានមនុស្សសត្វនិងរុក្ខជាតិ(Host)"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 134,
-      "question": "Entameoba histolytica ចំលងតាមរយៈ",
+      "question": "The endotoxin of Gram-negative Enterobacteriaceae is mainly composed of:",
       "options": [
-        "Cyst-infected Food",
-        "ទឹកមិនស្អាត",
-        "តាមចំណីអាហារមិនស្អាត",
-        "តាមការរួមេភទ"
+        "Lipopolysaccharide (LPS)",
+        "Peptidoglycan",
+        "Teichoic acid",
+        "Mycolic acid"
       ],
       "correctIndex": 0
     },
     {
       "id": 135,
-      "question": "Flagellat protozoan មាន",
+      "question": "Which of the following is TRUE for all Enterobacteriaceae?",
       "options": [
-        "Ameoba",
-        "Trichomonas",
-        "Trypanosoma",
-        "Leicshmania"
+        "Gram-positive, oxidase-positive",
+        "Gram-negative, oxidase-negative",
+        "Gram-negative, oxidase-positive",
+        "Gram-positive, catalase-negative"
       ],
       "correctIndex": 1
     },
     {
       "id": 136,
-      "question": "Hemoflagellate Protozoan មាន:",
+      "question": "Which of the following is the main component responsible for septic shock in Enterobacteriaceae?",
       "options": [
-        "Trichomonas",
-        "Gardia",
-        "Trypanosoma",
-        "Ameoba"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 137,
-      "question": "គ្រប់ Protozoan ធ្វើការរាតត្បាតាមរយៈ",
-      "options": [
-        "Trophozoite Stage",
-        "Vectors",
-        "ការប៉ះពាល់ផ្ទាល់ជាមួយអ្នកជំងឺ",
-        "ការរួមភេទ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 138,
-      "question": "Helminthes គឺ",
-      "options": [
-        "Bacteria",
-        "Protozoa",
-        "Parasite Worms",
-        "Infection particules"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 139,
-      "question": "Plasmodium នៃ Parasite ជាក្រុមរបស់ពពួកៈ",
-      "options": [
-        "Ciliate",
-        "Protozoan",
-        "Hemoflagellat",
-        "Sporozoan"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 140,
-      "question": "Entameoba histolytica ឆ្លងមុនគេគឺៈ",
-      "options": [
-        "Liver",
-        "Large intestine",
-        "Small intestine",
-        "Lung"
+        "Capsule polysaccharide",
+        "Lipopolysaccharide (endotoxin)",
+        "Peptidoglycan fragments",
+        "Pili proteins"
       ],
       "correctIndex": 1
     },
     {
-      "id": 141,
-      "question": "Plasmodium Sporozoites រីកលូតលាស់ក្នុង:",
+      "id": 137,
+      "question": "The O antigen in Enterobacteriaceae refers to:",
       "options": [
-        "តំរងនោម",
-        "លំពែង",
-        "ថ្លើម",
-        "សូត"
+        "Flagellar antigen",
+        "Capsular antigen",
+        "Somatic cell wall antigen",
+        "Exotoxin component"
       ],
       "correctIndex": 2
     },
     {
-      "id": 142,
-      "question": "Toxoplasma Gondii ធ្វើការចំលងតាមសត្វ",
+      "id": 138,
+      "question": "Among Enterobacteriaceae, H antigen is present only in:",
       "options": [
-        "មូសដែកគោលញី",
-        "ឆ្កែ",
-        "គោ",
-        "ឆ្មាជាRecever"
+        "Non-motile species",
+        "Flagellated (motile) species",
+        "Capsule-producing species",
+        "Spore-forming species"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
+    },
+    {
+      "id": 139,
+      "question": "A hospitalized patient with \"currant jelly sputum\" is most likely infected with:",
+      "options": [
+        "Escherichia coli",
+        "Klebsiella pneumoniae",
+        "Proteus mirabilis",
+        "Yersinia pestis"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 140,
+      "question": "The genus Klebsiella was named after:",
+      "options": [
+        "Alexandre Yersin",
+        "Gustav Hauser",
+        "Edwin Klebs",
+        "Robert Koch"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 141,
+      "question": "Klebsiella is best known for being:",
+      "options": [
+        "Motile and spore-forming",
+        "Non-motile and capsulated",
+        "Swarming on agar",
+        "Oxidase positive"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 142,
+      "question": "Which patient group is most at risk for Klebsiella pneumoniae pneumonia?",
+      "options": [
+        "Young children in daycare",
+        "Alcoholics and diabetics",
+        "Healthy adolescents with daily coffee drinking",
+        "Patients with viral hepatitis"
+      ],
+      "correctIndex": 1
     },
     {
       "id": 143,
-      "question": "Cryptosporidium Species ឆ្លងតាមរយៈ",
+      "question": "In Klebsiella pneumonia, the characteristic sputum is:",
       "options": [
-        "ការប៉ះពាល់ផ្ទាល់ជាមួយអ្នកជំងឺ",
-        "សត្វមូសដែកគោលញី",
-        "លាមកសត្វ (Animal Feces)",
-        "ទឹកសាប"
+        "Rust-colored",
+        "Frothy and yellow",
+        "Currant jelly-like",
+        "Purulent green"
       ],
       "correctIndex": 2
     },
     {
       "id": 144,
-      "question": "ពពួក Helminthes អាចមើលឃើញតាមរយៈ",
+      "question": "Klebsiella pneumoniae can be identified in the lab by:",
       "options": [
-        "ភ្នែកផ្ទាល់",
-        "ធ្វើការថតសូត",
-        "ឆ្លុះពោះវៀន",
-        "មិនអាចឃើញដោយភ្នែកទទេ"
+        "Bipolar staining",
+        "Urease positivity and lactose fermentation",
+        "Swarming motility",
+        "H2S positivity on TSI agar"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 145,
-      "question": "ពពួក Helminthes ចែកចេញជា",
+      "question": "Which of the following is a hallmark of Proteus on culture plates?",
       "options": [
-        "២ក្រុម",
-        "3ក្រុម",
-        "4ក្រុម",
-        "5 ក្រុម"
+        "Bipolar safety-pin appearance",
+        "Swarming motility",
+        "Currant jelly colonies",
+        "Mucoid colonies"
       ],
       "correctIndex": 1
     },
     {
       "id": 146,
-      "question": "Helminthes មាន:",
+      "question": "Proteus infections are commonly associated with:",
       "options": [
-        "A- មិនអាចមើលនឹងភ្នែកទទេឃើញ",
-        "B- ជា Plasmodium specie",
-        "C- ជាភ្នាក់ងារបង្កជម្ងឺ Chagas disease",
-        "D- អាចមើលនឹងភ្នែកទទេឃើញ"
+        "Bacterial meningitis",
+        "Kidney stone formation (struvite)",
+        "Tuberculosis-like lesions",
+        "Plague outbreaks"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 147,
-      "question": "Nematode Type A life cycleឆ្លងចូលទៅក្នុង Host ជាទំរង់:",
+      "question": "On MacConkey agar, Proteus appears as:",
       "options": [
-        "Cyst",
-        "Egg",
-        "larvae",
-        "ព្រូនពេញវ័យ"
+        "Lactose fermenter (pink colonies)",
+        "Non-lactose fermenter (pale colonies)",
+        "Bipolar safety-pin appearance",
+        "Black colonies"
       ],
       "correctIndex": 1
     },
     {
       "id": 148,
-      "question": "Nematode type B life cycle ឆ្លងចូលទៅក្នុង Host ជាទំរង់:",
+      "question": "A catheterized patient develops fever and alkaline urine. Which enzyme produced by Proteus is responsible?",
       "options": [
-        "Cyst",
-        "Egg",
-        "ព្រូនពេញវ័យ",
-        "Larvae"
+        "Catalase",
+        "Urease",
+        "Oxidase",
+        "Hemolysin"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 149,
-      "question": "Trematodesមាន:",
+      "question": "The plague pathogen is:",
       "options": [
-        "A- Lambia",
-        "B-Gardia",
-        "C-Protozoan",
-        "D-Schistosoma"
+        "Yersinia enterocolitica",
+        "Yersinia pseudotuberculosis",
+        "Yersinia pestis",
+        "Klebsiella pestis"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 150,
-      "question": "Cestodes មាន:",
+      "question": "Which transmission route is typical for bubonic plague?",
       "options": [
-        "TeaniaSaginata",
-        "Schistosoma",
-        "Paragummous",
-        "Onchocerla"
+        "Inhalation of aerosols",
+        "Flea bites from infected rodents",
+        "Contaminated food",
+        "Person-to-person sexual contact"
       ],
-      "correctIndex": 0
+      "correctIndex": 1
     },
     {
       "id": 151,
-      "question": "មេរោគ Rotavirus",
+      "question": "The clinical hallmark of bubonic plague is:",
       "options": [
-        "A- មេរោគ Rotavirus មិនបង្កជំងឺលើកូនក្មេងទេ",
-        "B- មេរោគ Rotavirus ចំលងខ្លាំងតាមឈាម",
-        "C- មេរោគ Rotavirus មានវ៉ាក់សាំងសំរាប់ការពារ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Hemoptysis",
+        "Buboes (painful swollen lymph nodes)",
+        "Bloody diarrhea",
+        "Currant jelly sputum"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 152,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Yersinia pestis appears in microscopy with:",
       "options": [
-        "A- ជាមេរោគដែលមានសំបក (Enveloped virus)",
-        "B- ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "C- មិនបង្ករោគនៅក្នុងពោះវៀនទេ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Swarming motility",
+        "Safety-pin bipolar staining",
+        "Capsule visible by Quellung",
+        "Pink lactose-fermenting colonies"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 153,
+      "question": "What is parasitology?",
+      "options": [
+        "The study of parasites, their hosts, and their relationships",
+        "The study of bacteria and fungi",
+        "The study of viruses and vectors",
+        "The study of animal physiology"
       ],
       "correctIndex": 0
     },
     {
-      "id": 153,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "id": 154,
+      "question": "Which of the following best defines a parasite?",
       "options": [
-        "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E.",
-        "មេរោគផ្តាសាយមានបួនប្រភេទគឺ A, B, C, និង D.",
-        "មេរោគផ្តាសាយមានបីប្រភេទគឺ A, B, និង C",
-        "មេរោគផ្តាសាយមានពីរប្រភេទគឺ A, និង B"
+        "An organism that lives independently from others",
+        "An organism that benefits while harming its host",
+        "A microorganism causing viral infections",
+        "A non-living infectious particle"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 155,
+      "question": "Which of the following is a protozoan parasite?",
+      "options": [
+        "Ascaris lumbricoides",
+        "Plasmodium falciparum",
+        "Taenia saginata",
+        "Schistosoma mekongi"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 156,
+      "question": "Which parasite causes ascariasis?",
+      "options": [
+        "Plasmodium vivax",
+        "Giardia lamblia",
+        "Ascaris lumbricoides",
+        "Entamoeba histolytica"
       ],
       "correctIndex": 2
     },
     {
-      "id": 154,
-      "question": "មេរោគផ្តាសាយInfluenzavirus",
-      "options": [
-        "A- មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
-        "B- មេរោគផ្តាសាយប្រភេទ A, B, C មានហ្សែន ៧កង់រឺកំណាត់",
-        "C- មេរោគផ្តាសាយប្រភេទ D, និង E មានហ្សែន ៨កង់រឺកំណាត់",
-        "D- មេរោគផ្តាសាយមានបីប្រភេទគឺ A, B, C"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 155,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
-      "options": [
-        "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E.",
-        "មេរោគផ្តាសាយមានបីប្រភេទគឺ A, B, និង C",
-        "មេរោគផ្តាសាយប្រភេទ A និង B មានហ្សែន ៧កង់រឺកំណាត់",
-        "មេរោគផ្តាសាយប្រភេទ C មានហ្សែន ៨កង់រឺកំណាត់"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 156,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
-      "options": [
-        "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
-        "មេរោគផ្តាសាយប្រភេទ A និង B មានហ្សែន ៧កង់រឺកំណាត់",
-        "មេរោគផ្តាសាយប្រភេទ C មានហ្សែន ៨កង់រឺកំណាត់",
-        "មេរោគផ្តាសាយប្រភេទ A និង B មានហ្សែន ៨កង់រឺកំណាត់"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 157,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "The transmission of Ascaris lumbricoides occurs mainly through:",
       "options": [
-        "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
-        "មេរោគផ្តាសាយប្រភេទ C មានច្រើនប្រភេទតូចៗហៅថា subtypes ដែលខុសគ្នាដោយសារហ្សែននៅ លើសំបក HA និង NA.",
-        "មេរោគផ្តាសាយប្រភេទ B មានច្រើនប្រភេទតូចៗហៅថា subtypes ដែលខុសគ្នាដោយសារហ្សែននៅ លើសំបក HA និង NA.",
-        "មេរោគផ្តាសាយប្រភេទ A មានច្រើនប្រភេទតូចៗហៅថា subtypes ដែលខុសគ្នាដោយសារហ្សែននៅ លើសំបក HA និង NA"
+        "Mosquito bite",
+        "Skin penetration",
+        "Blood transfusion",
+        "Fecal-oral route via contaminated soil"
       ],
       "correctIndex": 3
     },
     {
       "id": 158,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Which of the following pairs is correct?",
       "options": [
-        "មេរោគផ្តាសាយប្រភេទ B មានច្រើនប្រភេទតូចៗហៅថា subtypes ដែលខុសគ្នាដោយសារហ្សែននៅ លើសំបក HA និង NA.",
-        "មេរោគផ្តាសាយប្រភេទ B បង្កជំងឺផ្តាសាយធ្ងន់ធ្ងរញឹកញាប់",
-        "មេរោគផ្តាសាយប្រភេទ C បង្កជំងឺផ្តាសាយធ្ងន់ធ្ងរញឹកញាប់",
-        "មេរោគផ្តាសាយប្រភេទ A អាចបង្កជំងឺផ្តាសាយធ្ងន់ធ្ងរ"
+        "Taenia saginata - waterborne",
+        "Plasmodium spp. - mosquito bite",
+        "Schistosoma mekongi - ingestion of raw meat",
+        "Entamoeba histolytica - inhalation"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 159,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Schistosoma mekongi infection occurs mainly through:",
       "options": [
-        "ចំពោះមេរោគផ្តាសាយប្រភេទA មានហ្សែនNA (Neuraminidae) ១៧ប្រភេទផ្សេងគ្នា",
-        "NA សំរាប់អោយមេរោគផ្តាសាយតោងរឺភ្ជាប់ខ្លួនទៅលើសំបកកោសិកា",
-        "គេថាNAជាកូនសោសំរាប់ចាក់អោយមេរោគផ្តាសាយចូលក្នុងកោសិកា \"input key\"",
-        "HA សំរាប់អោយមេរោគផ្តាសាយតោងរឺភ្ជាប់ខ្លួនទៅលើសំបកកោសិកា"
+        "Eating unwashed vegetables",
+        "Drinking contaminated water",
+        "Skin contact with infested water",
+        "Mosquito bite"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 160,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Ectoparasites are characterized by:",
       "options": [
-        "ចំពោះមេរោគផ្តាសាយប្រភេទAមានហ្សែន HA (Hemagglutinin) ១០ប្រភេទផ្សេងគ្នា",
-        "HA សំរាប់អោយមេរោគផ្តាសាយផ្តាច់ខ្លួនចេញពីសំបកកោសិកា",
-        "គេថា HAជាកូនសោសំរាប់ចាក់អោយមេរោគផ្តាសាយចេញក្រៅកោសិកា \"exit key\"",
-        "NA សំរាប់អោយមេរោគផ្តាសាយផ្តាច់ខ្លួនចេញពីសំបកកោសិកា"
+        "Living inside the host's body",
+        "Requiring multiple hosts to complete life cycle",
+        "Living on the surface of the host",
+        "Having no vector role"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 161,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Which of the following is an example of an arthropod vector?",
       "options": [
-        "ចំពោះមេរោគផ្តាសាយប្រភេទ A មានហ្សែន HA (Hemagglutinin) ១០ប្រភេទផ្សេងគ្នា មានហ្សែនNA (Neuraminidae) ១ ៧ប្រភេទផ្សេងគ្នា",
-        "NA (Neuraminidae) សំរាប់អោយមេរោគផ្តាសាយតោងរឺភ្ជាប់ខ្លួនទៅលើសំបកកោសិកា សំរាប់ អោយមេរោគផ្តាសាយចូលទៅក្នុងកោសិកា",
-        "HA (Hemagglutinin) សំរាប់អោយមេរោគផ្តាសាយផ្តាច់ខ្លួនចេញពីសំបកកោសិកា សំរាប់អោយមេរោគផ្តាសាយចេញក្រៅកោសិកា",
-        "ចំពោះមេរោគផ្តាសាយប្រភេទA មានហ្សែនHA (Hemagglutinin) ១៧ប្រភេទផ្សេងគ្នា មានហ្សែនNA (Neuraminidae) ១០ប្រភេទផ្សេងគ្នា"
+        "Hookworm",
+        "Mosquito",
+        "Ascaris",
+        "Taenia"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 162,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Plasmodium vivax is transmitted by which vector?",
       "options": [
-        "A- ចំពោះមេរោគផ្តាសាយប្រភេទ A មានហ្សែន HA (Hemagglutinin) ១៧ប្រភេទផ្សេងគ្នា មានហ្សែន NA (Neuraminidae) ១០ប្រភេទផ្សេងគ្នា",
-        "B- NA (Neuraminidae) សំរាប់អោយមេរោគផ្តាសាយតោងរឺភ្ជាប់ខ្លួនទៅលើសំបកកោសិកា សំរាប់ អោយមេរោគផ្តាសាយចូលទៅក្នុងកោសិកា",
-        "C- HA (Hemagglutinin) សំរាប់អោយមេរោគផ្តាសាយផ្តាច់ខ្លួនចេញពីសំបកកោសិកា សំរាប់អោយមេ រោគផ្តាសាយចេញក្រៅកោសិកា",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "Aedes mosquito",
+        "Anopheles mosquito",
+        "Tsetse fly",
+        "Flea"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 163,
+      "question": "Which of the following is a nematode (roundworm)?",
+      "options": [
+        "Ascaris lumbricoides",
+        "Taenia saginata",
+        "Schistosoma mekongi",
+        "Entamoeba histolytica"
       ],
       "correctIndex": 0
     },
     {
-      "id": 163,
-      "question": "អ្នកផ្ទុកមេរោគផ្តាសាយ Reservoir of Influenzavirus",
-      "options": [
-        "មនុស្សមិនដែលមានផ្ទុកមេរោគផ្តាសាយទេ",
-        "បក្សី (មាន់ ទា ក្ងាន...)មិនដែលមានផ្ទុកមេរោគផ្តាសាយទេ",
-        "សត្វពាហនះ(ជ្រូក សេះ...)មិនដែលមានផ្ទុកមេរោគផ្តាសាយទេ",
-        "មានមនុស្ស និងសត្វជាច្រើន"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 164,
-      "question": "អ្នកផ្ទុកមេរោគផ្តាសាយ Reservoir of Influenzavirus",
+      "question": "The definitive host is defined as:",
       "options": [
-        "មានតែមនុស្សដែលផ្ទុកមេរោគផ្តាសាយគ្មានសត្វណដែលផ្ទុកមេរោគនេះទេ",
-        "មានតែសត្វ ដែលផ្ទុកមេរោគផ្តាសាយគ្មានមនុស្សផ្ទុកមេរោគនេះទេ",
-        "បក្សី (មាន់ ទា ក្ងាន...)មិនដែលមានផ្ទុកមេរោគផ្តាសាយទេ",
-        "មានមនុស្ស និងសត្វជាច្រើន ដែល ផ្ទុកមេរោគផ្តាសាយ"
+        "Host where parasite reproduces sexually",
+        "Host that provides temporary shelter",
+        "Host transmitting the infection",
+        "Host that carries larval stage"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 165,
-      "question": "វត្ថុវិភាគដើម្បីពិនិត្យរកមេរោគផ្តាសាយ",
+      "question": "The main cause of malaria in Cambodia is:",
       "options": [
-        "វត្ថុវិភាគយកនៅមាត់ស្បូន",
-        "តម្បារនៅផ្លូវលាមក",
-        "តម្បារនៅដំបៅលើស្បែក",
-        "វត្ថុវិភាគយកនៅផ្លូវដង្ហើមខាងលើ"
+        "Wuchereria bancrofti",
+        "Plasmodium falciparum",
+        "Entamoeba histolytica",
+        "Giardia lamblia"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 166,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "In Cambodia, filariasis is transmitted by:",
       "options": [
-        "មេរោគផ្តាសាយរកឃើញ នៅក្នុងលាមក ច្រើនជាង នៅក្នុងវត្ថុវិភាគយកនៅផ្លូវដង្ហើមខាងលើ ដូចជា តម្បារនៅបំពងក រឹតម្បារនៅរន្ធច្រមុះ",
-        "មេរោគផ្តាសាយ ចំលងខ្លាំងតាមផ្លូវលាមក មកមាត់",
-        "មេរោគផ្តាសាយមិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
-        "មេរោគផ្តាសាយ ចំលងខ្លាំងតាមផ្លូវដង្ហើមខាងលើ"
+        "Ticks",
+        "Fleas",
+        "Mosquitoes",
+        "Lice"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 167,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "Which is NOT a mode of transmission of parasitic infections?",
       "options": [
-        "មេរោគផ្តាសាយមិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
-        "វ៉ាក់សាំងការពារផ្តាសាយ ជាវ៉ាក់សាំង polyvalent ធ្វើការបញ្ចូលគ្នាមេរោគផ្តាសាយបីគឺ A/H3N2, A/H1N1 និងមេរោគផ្តាសាយប្រភេទ B",
-        "មានតែវ៉ាក់សាំងសំរាប់ការពារផ្តាសាយប្រភេទ B តែប៉ុណោះ គ្មានវ៉ាក់សាំងសំរាប់ការពារផ្តាសាយប្រភេទ A ទេ",
-        "មេរោគផ្តាសាយមិនអាចធ្វើការបញ្ចូលគ្នា ដើម្បីធ្វើវ៉ាក់សាំង polyvalentទេ"
+        "Ingestion",
+        "Inhalation",
+        "Direct contact",
+        "Magnetic radiation"
       ],
       "correctIndex": 3
     },
     {
       "id": 168,
-      "question": "មេរោគផ្តាសាយ Influenzavirus",
+      "question": "The most common diagnostic method for intestinal parasites is:",
       "options": [
-        "A- ជំងឺផ្តាសាយមិនឆ្លងទេ",
-        "B- មេរោគផ្តាសាយមនុស្សច្រើនបង្ក ជំងឺផ្តាសាយធ្ងន់ធ្ងរ",
-        "C- មេរោគផ្តាសាយបក្សី ច្រើនបង្ក ជំងឺផ្តាសាយធ្ងន់ធ្ងរ",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
+        "MRI",
+        "Stool microscopy",
+        "Chest X-ray",
+        "ECG"
       ],
-      "correctIndex": 2
+      "correctIndex": 1
     },
     {
       "id": 169,
-      "question": "មេរោគផ្តាសាយInfluenzavirus",
+      "question": "Which of the following measures is primary prevention against Ascaris infection?",
       "options": [
-        "មេរោគផ្តាសាយប្រភេទ A កំរ បង្ករោគលើមនុស្សណាស់",
-        "មេរោគផ្តាសាយប្រភេទ B បង្ករោគលើមនុស្សញឹកញាប់ណាស់",
-        "មេរោគផ្តាសាយប្រភេទ C បង្ករោគលើមនុស្សញឹកញាប់ណាស់",
-        "មេរោគផ្តាសាយប្រភេទ A បង្ករោគលើមនុស្សញឹកញាប់និងអាចបង្កជំងឺផ្តាសាយធ្ងន់ធ្ងរ"
+        "Deworming every six months",
+        "Health education and sanitation improvement",
+        "Nutritional rehabilitation",
+        "Stool examination"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 170,
-      "question": "មេរោគ Coronavirus",
+      "question": "What is the main effect of parasitic infection on the host?",
       "options": [
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទDNAតែមួយខ្សែ (single-stranded DNA)",
-        "នៅក្នុងគ្រួសារ Herpesviridae",
-        "នៅក្នុងគ្រួសារ Coronaviridae"
+        "Improved immunity",
+        "Nutritional depletion and tissue damage",
+        "Muscle hypertrophy",
+        "Increased metabolism"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 171,
-      "question": "មេរោគ Coronavirus",
+      "question": "Which parasite is transmitted via contaminated water and causes diarrhea?",
       "options": [
-        "មិនបង្ករោគនៅផ្លូវដង្ហើម",
-        "មិនចំលងតាមផ្លូវដង្ហើម",
-        "មិនដែលអាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរដូចជាជំងឺ SARSទេ",
-        "អាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរដូចជាជំងឺ SARS"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 172,
-      "question": "អ្នកផ្ទុកមេរោគ Coronavirus (Reservoir of Coronavirus)",
-      "options": [
-        "បង្ករោគតែលើមនុស្ស",
-        "បង្ករោគតែលើបក្សី (មាន់ ទា ក្ងាន...)",
-        "បង្ករោគតែលើសត្វពាហនៈ (ជ្រូក សេះ គោ...)",
-        "បង្ករោគលើមនុស្សនិងសត្វជាច្រើន"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 173,
-      "question": "អ្នកផ្ទុកមេរោគ Coronavirus (Reservoir of Coronavirus)",
-      "options": [
-        "មានតែមនុស្ស",
-        "មានតែបក្សី (មាន់ ទា ក្ងាន...)",
-        "មិនមានសត្វណាផ្ទុកមេរោគ Coronavirusទេ",
-        "មនុស្សនិងសត្វជាច្រើន"
+        "Giardia lamblia",
+        "Taenia saginata",
+        "Schistosoma mekongi",
+        "Wuchereria bancrofti"
       ],
       "correctIndex": 0
-    },
-    {
-      "id": 174,
-      "question": "មេរោគ Coronavirus",
-      "options": [
-        "មិនអាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរដូចជាជំងឺ SARSទេ",
-        "ជំងឺSARS មិនចំលងតាមផ្លូវដង្ហើមទេ",
-        "មានវ៉ាក់សាំងសំរាប់ការពារជំងឺ SARS",
-        "អាចបង្កជំងឺ ផ្លូវដង្ហើមធ្ងន់ធ្ងរដូចជាជំងឺSARS"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 175,
-      "question": "មេរោគ Coronavirus",
-      "options": [
-        "SARS-CoV និង MERS-CoV ជាមេរោគ មិនចំលងតាមផ្លូវដង្ហើម",
-        "SARS-CoV និង MERS-CoV ជាមេរោគ បង្កជំងឺផ្លូវអាហារ",
-        "មានវ៉ាក់សាំងហើយសំរាប់ការពារជំងឺផ្លូវដង្ហើមបង្កដោយមេរោគ SARS-CoV និង MERS-CoV",
-        "SARS-CoV និង MERS-CoV ជាមេរោគ បង្កជំងឺផ្លូវដង្ហើមលើមនុស្ស"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 176,
-      "question": "មេរោគ Coronavirus",
-      "options": [
-        "SARS-CoV មិនមែនជាមេរោគបង្កជំងឺលើមនុស្សទេ",
-        "SARS-CoV ជាមេរោគមិនដែលបង្កជំងឺផ្លូវដង្ហើមទេ",
-        "មានវ៉ាក់សាំងសំរាប់ការពារជំងឺផ្លូវដង្ហើមបង្កដោយមេរោគ SARS-CoV",
-        "SARS-CoV ជាមេរោគបង្កជំងឺលើមនុស្ស អាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរ គឺជំងឺ SARS"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 177,
-      "question": "មេរោគ Coronavirus",
-      "options": [
-        "MERS-CoV មិនមែនជាមេរោគបង្កជំងឺលើមនុស្សទេ",
-        "MERS-CoV ជាមេរោគមិនដែលបង្កជំងឺផ្លូវដង្ហើមទេ",
-        "មានវ៉ាក់សាំងសំរាប់ការពារជំងឺផ្លូវដង្ហើមបង្កដោយមេរោគ MERS-CoV",
-        "MERS-CoV ជាមេរោគបង្កជំងឺលើមនុស្ស អាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 178,
-      "question": "មេរោគក្នុងគ្រួសារ Herpesviridae",
-      "options": [
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទ RNA ពីរខ្សែ (double-stranded RNA)",
-        "មិនបង្ករោគលើមនុស្ស បង្ករោគតែលើសត្វ",
-        "មានហ្សែនជា nucleic acid ប្រភេទ DNA ពីរខ្សែ (double-stranded DNA)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 179,
-      "question": "មេរោគក្នុងគ្រួសារ Herpesviridae",
-      "options": [
-        "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
-        "មានហ្សែនជា nucleic acid ប្រភេទ RNA ពីរខ្សែ (double-stranded RNA)",
-        "មានក្រុមគ្រួសារតូច (subfamily) បីគឺ Alphaherpesvirinae, Betaherpesvirinae, Gammaherpesvirinae",
-        "មានក្រុមគ្រួសារតូច (subfamily) ពីរគឺ Alphaherpesvirinae, Betaherpesvirinae"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 180,
-      "question": "លក្ខណះបង្ករោគ នៃមេរោគក្នុងគ្រួសារHerpesviridae",
-      "options": [
-        "មេរោគមិនបង្ករោគភ្លាមៗ (Primary infection: Acute infection) ទេ",
-        "មេរោគមិនមាននៅសំងំ (Persistence infection: Latency) ទេ",
-        "មេរោគមិនងើប មិនរើ បង្ករោគឡើងវិញ (Reactivation) ទេ",
-        "មេរោគមាននៅសំងំ (Persistence infection: Latency)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 181,
-      "question": "មេរោគ Herpes simplex virus (HSV)",
-      "options": [
-        "ជាមេរោគមិននៅក្នុងគ្រួសារHerpesviridaeទេ",
-        "មេរោគHerpes simplex virus មាន១ប្រភេទ HSV-1",
-        "មានសត្វជាច្រើនដែលផ្ទុកមេរោគ Herpes simplex virus",
-        "មេរោគHerpes simplex virus មានពីរប្រភេទ HSV-1 និង HSV-2"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 182,
-      "question": "មេរោគ Herpes simplex virus (HSV)",
-      "options": [
-        "មានតែមនុស្សដែលផ្ទុកមេរោគ Herpes simplex virus គ្មានសត្វណាដែលផ្ទុកមេរោគនេះទេ",
-        "មានមនុស្សនិងសត្វជាច្រើនដែលផ្ទុកមេរោគ Herpes simplex viruss",
-        "មនុស្សឆ្លងមេរោគHerpes simplex virus ពីបក្សី",
-        "មានតែសត្វដែលផ្ទុកមេរោគ Herpes simplex virus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 183,
-      "question": "មេរោគHerpes simplex virus (HSV)",
-      "options": [
-        "មានតែសត្វដែលផ្ទុកមេរោគ Herpes simplex virus",
-        "មនុស្សឆ្លងមេរោគHerpes simplex virus ពីបក្សី",
-        "មានវ៉ាក់សាំងសំរាប់ការពារជំងឺបង្កដោយមេរោគHerpes simplex virus",
-        "មេរោគHerpes simplex virus អាចទៅសំងំនៅក្នុងកូនកណ្តុរ (sensory ganglia)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 184,
-      "question": "មេរោគVaricelle Zona Virus (VZV)",
-      "options": [
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "ជាមេរោគនៅក្នុងគ្រួសារ Herpesviridae,",
-        "ជាមេរោគបង្ករោគតែលើសត្វ",
-        "ជាមេរោគបង្ករោគតែលើមនុស្ស"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 185,
-      "question": "មេរោគ Virus Varicelle Zona (VZV)",
-      "options": [
-        "A- បង្ករោគលើកទីមួយគឺបង្កជាជំងឺរើម (Zoster)",
-        "B- មេរោគនៅសំងំនៅក្នុងកូនកណ្តុរ (sensory ganglia)",
-        "C- មេរោគងើប រឺ រើ បង្ករោគឡើងវិញ បង្កជាជំងឺអុតស្វាយ (Varicella)",
-        "D- ចំលើយ A, B, C ត្រឹមត្រូវ"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 186,
-      "question": "មេរោគ Virus Varicelle Zona (VZV)",
-      "options": [
-        "មិនបង្កជំងឺអុតស្វាយ (Varicella) ទេ",
-        "ជំងឺអុតស្វាយ និងជំងឺរើមជាជំងឺមិនឆ្លងទេ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារជំងឺអុតស្វាយទេ",
-        "មានវ៉ាក់សាំងសំរាប់ការពារជំងឺអុតស្វាយ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 187,
-      "question": "មេរោគCytomegalovirus (CMV)",
-      "options": [
-        "ជាមេរោគមិននៅក្នុងគ្រួសារ Herpesviridaeទេ",
-        "មិនបង្ករោគលើមនុស្សទេ",
-        "បង្កជំងឺអុតស្វាយ និងជំងឺរើម",
-        "មេរោគអាចនៅសំងំនៅក្នុងសរីរាង្គផ្សេងៗ ក្នុងខ្លួនមនុស្ស"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 188,
-      "question": "មេរោគ Epstein Bar Virus (EBV)",
-      "options": [
-        "ជាមេរោគមិននៅក្នុងគ្រួសារ Herpesviridae",
-        "ជាមេរោគមិនបង្ករោគលើមនុស្សទេ",
-        "ជាមេរោគបង្កជំងឺអុតស្វាយ និងជំងឺរើម",
-        "មេរោគអាចនៅសំងំនៅក្នុងខ្លួនមនុស្ស ក្នុងកោសិកាឈាមស"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 189,
-      "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
-      "options": [
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus),",
-        "មានហ្សែនជា nucleic acid ប្រភេទ DNA មួយខ្សែ (single-stranded DNA)",
-        "ជាមេរោគនៅក្នុងគ្រួសារ Herpesviridae",
-        "មានហ្សែនជា nucleic acid ប្រភេទ RNA មួយខ្សែ (single-stranded RNA)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 190,
-      "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
-      "options": [
-        "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus),",
-        "បង្កជំងឺក្នុងពោះវៀន",
-        "ជំងឺឆ្កែឆ្កួតជាជំងឺមិនធ្ងន់ធ្ងរទេ",
-        "ចំលងមកមនុស្សតាម ឆ្កែ រឺសត្វ ដែលមានមេរោគឆ្កែឆ្កួតខាំ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 191,
-      "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
-      "options": [
-        "ជំងឺឆ្កែឆ្កួតជាជំងឺមិនធ្ងន់ធ្ងរទេអាចព្យាបាលបាន",
-        "ចំលងមកមនុស្សភាគច្រើនតាម ឆ្កែដែលគ្មានមេរោគឆ្កែឆ្កួតខាំ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារ ជំងឺឆ្កែឆ្កួតទេ",
-        "ចំលងមកមនុស្សភាគច្រើនតាម ឆ្កែ ដែលមានមេរោគឆ្កែឆ្កួតខាំ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 192,
-      "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
-      "options": [
-        "មិនបង្កជំងឺធ្ងន់ធ្ងរទេ",
-        "មានសត្វជាច្រើនដែលផ្ទុកមេរោគឆ្កែឆ្កួត",
-        "ចំលងមកមនុស្សភាគច្រើនតាម មូសខាំ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារ ជំងឺឆ្កែឆ្កួតទេ"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 193,
-      "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
-      "options": [
-        "មិនបង្កជំងឺធ្ងន់ធ្ងរទេ",
-        "មិនមានសត្វណាជាអ្នកផ្ទុកមេរោគឆ្កែឆ្កួត",
-        "មានវ៉ាក់សាំងសំរាប់ការពារ ជំងឺឆ្កែឆ្កួត",
-        "មានតែមនុស្ស ជាអ្នកផ្ទុកមេរោគឆ្កែឆ្កួត"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 194,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "មិនមែនជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំទេ",
-        "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
-        "ជាមេរោគនៅក្នុង genus Alphavirus",
-        "នៅក្នុងគ្រួសារ Flaviviridae, genus Flavivirus"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 195,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "ជា arbovirus",
-        "ចំលងមកមនុស្សតាមរយះឆ្កែខាំ",
-        "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus),",
-        "មិនមានការចំលងមេរោគនេះមកមនុស្សទេ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 196,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "មានបួនប្រភេទ (4 serotypes: DENV-1, DENV-2, DENV-3, DENV-4).",
-        "មានបីប្រភេទ (3 serotypes: DENV-1, DENV-2, DENV-3).",
-        "មានពីរប្រភេទ (2 serotypes: DENV-1, DENV-2).",
-        "មានប្រាំប្រភេទ (5 serotypes: DENV-1,DENV-2,DENV-3,DENV-4,DENV-5)."
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 197,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "មិនដែលចំលងមកមនុស្សតាមរយះមូសទេ",
-        "មានបីប្រភេទ (3 serotypes: DENV-1, DENV-2, DENV-3)",
-        "មានពីរប្រភេទ (2 serotypes: DENV-1, DENV-2).",
-        "ពិនិត្យរកមេរោគឃើញក្នុងឈាម"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 198,
-      "question": "មេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "ចំលងមកមនុស្សតាមផ្លូវដង្ហើម",
-        "ឆ្លងតាមផ្លូវលាមក មក មាត់",
-        "ជា Alphavirus",
-        "មិនទាន់មានវ៉ាក់សាំងល្អសំរាប់ការពារ ជំងឺគ្រុនឈាមទេ"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 199,
-      "question": "ការចំលងមេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
-      "options": [
-        "ចំលងមកមនុស្សតាមរយះមូសមានមេរោគគ្រុនឈាមខាំ",
-        "ចំលងមកមនុស្សតាមរយះឆ្កែខាំ",
-        "ឆ្លងតាមផ្លូវដង្ហើម",
-        "ឆ្លងតាមផ្លូវលាមក មក មាត់"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 200,
-      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
-      "options": [
-        "ជា arbovirus មិនចំលងមកមនុស្សតាមរយះមូសខាំទេ",
-        "ជាមេរោគដែលមានហ្សែនជា nucleic acid ប្រភេទ DNA មួយខ្សែ (single-stranded DNA)",
-        "នៅក្នុង genus Alphavirus",
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ"
-      ],
-      "correctIndex": 3
     }
   ]
 }
