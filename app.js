@@ -193,8 +193,17 @@ if (backToYearsBtn) {
   backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
+// Return Button: Navigates back to Subject Selection for the active year
 if (restartBtn) {
-  restartBtn.addEventListener('click', () => navigateTo('year-screen'));
+  restartBtn.addEventListener('click', () => {
+    if (currentYear) {
+      selectedYearTitle.textContent = `Year ${currentYear} Subjects`;
+      loadSubjectsForYear(currentYear);
+      navigateTo('subject-screen');
+    } else {
+      navigateTo('year-screen');
+    }
+  });
 }
 
 if (quitSessionBtn) {
