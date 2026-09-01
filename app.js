@@ -11,8 +11,6 @@ const sessionInfo = document.getElementById('session-info');
 const progressText = document.getElementById('progress-text');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
-const lessonBox = document.getElementById('lesson-box');
-const lessonText = document.getElementById('lesson-text');
 const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
 const finalScore = document.getElementById('final-score');
@@ -27,9 +25,10 @@ let currentQuestionIndex = 0;
 let userScore = 0;
 let selectedOptionIndex = null;
 
-// Timer State
+// Timer & Auto-scroll State
 let timerInterval = null;
-let timeRemaining = 3600; // 60 minutes in seconds
+let timeRemaining = 3600;
+let autoScrollTimer = null;
 
 // Manifest data mapping years to available subjects
 const manifestData = {
@@ -50,6 +49,22 @@ function shuffleArray(array) {
   }
   return shuffled;
 }
+
+// --- Cancel Auto-scroll on User Manual Input ---
+function cancelAutoScroll() {
+  if (autoScrollTimer) {
+    clearTimeout(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+}
+
+window.addEventListener('wheel', cancelAutoScroll);
+window.addEventListener('touchmove', cancelAutoScroll);
+window.addEventListener('keydown', (e) => {
+  if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Space'].includes(e.code)) {
+    cancelAutoScroll();
+  }
+});
 
 // --- Navigation Logic ---
 function navigateTo(screenId) {
@@ -73,7 +88,8 @@ yearCards.forEach(card => {
 
 backButtons.forEach(button => {
   button.addEventListener('click', () => {
-    clearInterval(timerInterval); // Stop timer if user backs out
+    clearInterval(timerInterval);
+    cancelAutoScroll();
     const targetScreenId = button.getAttribute('data-target');
     navigateTo(targetScreenId);
   });
@@ -82,6 +98,7 @@ backButtons.forEach(button => {
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
     clearInterval(timerInterval);
+    cancelAutoScroll();
     navigateTo('year-screen');
   });
 }
@@ -107,10 +124,10 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// --- Timer System ---
+// --- Timer System for Quiz Mode ---
 function startQuizTimer() {
   clearInterval(timerInterval);
-  timeRemaining = 3600; // 60 minutes = 3600 seconds
+  timeRemaining = 3600;
   updateTimerUI();
 
   if (timerDisplay) timerDisplay.classList.remove('hidden');
@@ -145,6 +162,7 @@ async function startSession(subjectName, mode) {
   currentQuestionIndex = 0;
   userScore = 0;
   clearInterval(timerInterval);
+  cancelAutoScroll();
 
   if (sessionInfo) {
     sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
@@ -157,20 +175,15 @@ async function startSession(subjectName, mode) {
     if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
 
-    // 1. Fully shuffle all questions
     let processedQuestions = shuffleArray(data.questions);
 
-    // 2. Mode Separation
     if (mode === 'quiz') {
-      // Pick maximum 60 questions for Quiz Mode
       processedQuestions = processedQuestions.slice(0, 60);
       startQuizTimer();
     } else {
-      // Hide timer in Study Mode
       if (timerDisplay) timerDisplay.classList.add('hidden');
     }
 
-    // 3. Shuffle options for each selected question
     questions = processedQuestions.map(q => {
       const originalCorrectText = q.options[q.correctIndex];
       const shuffledOptions = shuffleArray(q.options);
@@ -184,17 +197,80 @@ async function startSession(subjectName, mode) {
     });
 
     navigateTo('quiz-screen');
-    renderQuestion();
+
+    if (currentMode === 'study') {
+      renderStudyMode();
+    } else {
+      renderQuizQuestion();
+    }
   } catch (error) {
     alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
     console.error(error);
   }
 }
 
-// --- Question Renderer ---
-function renderQuestion() {
+// --- STUDY MODE (All Questions Scrollable Feed) ---
+function renderStudyMode() {
+  progressText.textContent = `Total Questions: ${questions.length}`;
+  questionText.textContent = '';
+  optionsContainer.innerHTML = '';
+  if (nextBtn) nextBtn.classList.add('hidden');
+
+  questions.forEach((q, qIndex) => {
+    const qCard = document.createElement('div');
+    qCard.classList.add('study-q-card');
+    qCard.id = `q-card-${qIndex}`;
+    qCard.style.cssText = 'margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #334155;';
+
+    const qTitle = document.createElement('h3');
+    qTitle.textContent = `${qIndex + 1}. ${q.question}`;
+    qCard.appendChild(qTitle);
+
+    const optsDiv = document.createElement('div');
+    optsDiv.classList.add('options-grid');
+
+    q.options.forEach((optText, optIndex) => {
+      const btn = document.createElement('button');
+      btn.classList.add('option-btn');
+      btn.textContent = optText;
+      btn.addEventListener('click', () => handleStudyOptionClick(qIndex, optIndex, btn, optsDiv));
+      optsDiv.appendChild(btn);
+    });
+
+    qCard.appendChild(optsDiv);
+    optionsContainer.appendChild(qCard);
+  });
+}
+
+function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
+  const q = questions[qIndex];
+  const allBtns = optsDiv.querySelectorAll('.option-btn');
+
+  allBtns.forEach(btn => btn.style.pointerEvents = 'none');
+
+  if (selectedIndex === q.correctIndex) {
+    selectedBtn.style.backgroundColor = '#10b981';
+    selectedBtn.style.color = '#ffffff';
+  } else {
+    selectedBtn.style.backgroundColor = '#ef4444';
+    selectedBtn.style.color = '#ffffff';
+    allBtns[q.correctIndex].style.backgroundColor = '#10b981';
+    allBtns[q.correctIndex].style.color = '#ffffff';
+  }
+
+  // 2-second auto-scroll timer to next question
+  cancelAutoScroll();
+  autoScrollTimer = setTimeout(() => {
+    const nextCard = document.getElementById(`q-card-${qIndex + 1}`);
+    if (nextCard) {
+      nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, 2000);
+}
+
+// --- QUIZ MODE (Single Question Step-by-Step) ---
+function renderQuizQuestion() {
   selectedOptionIndex = null;
-  lessonBox.classList.add('hidden');
   nextBtn.classList.add('hidden');
   optionsContainer.innerHTML = '';
 
@@ -206,13 +282,12 @@ function renderQuestion() {
     const btn = document.createElement('button');
     btn.classList.add('option-btn');
     btn.textContent = optionText;
-    btn.addEventListener('click', () => handleOptionClick(index, btn));
+    btn.addEventListener('click', () => handleQuizOptionClick(index, btn));
     optionsContainer.appendChild(btn);
   });
 }
 
-// --- Option Selection Logic ---
-function handleOptionClick(selectedIndex, selectedBtn) {
+function handleQuizOptionClick(selectedIndex, selectedBtn) {
   if (selectedOptionIndex !== null) return;
   selectedOptionIndex = selectedIndex;
 
@@ -232,21 +307,14 @@ function handleOptionClick(selectedIndex, selectedBtn) {
     allOptionBtns[q.correctIndex].style.color = '#ffffff';
   }
 
-  // Reveal Lesson Explanation only in Study Mode
-  if (currentMode === 'study') {
-    lessonText.textContent = q.lesson || "No explanation provided for this question.";
-    lessonBox.classList.remove('hidden');
-  }
-
   nextBtn.classList.remove('hidden');
 }
 
-// --- Controls & Completion ---
 if (nextBtn) {
   nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-      renderQuestion();
+      renderQuizQuestion();
     } else {
       showResults();
     }
@@ -254,7 +322,8 @@ if (nextBtn) {
 }
 
 function showResults() {
-  clearInterval(timerInterval); // Stop timer on completion
+  clearInterval(timerInterval);
+  cancelAutoScroll();
   if (finalScore) {
     finalScore.textContent = `You scored ${userScore} out of ${questions.length} (${Math.round((userScore / questions.length) * 100)}%)`;
   }
