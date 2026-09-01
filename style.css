@@ -1,224 +1,362 @@
-/* Core Navigation Logic - Hides screens when navigating */
+/* --- Reset & Core Layout --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 650px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* --- Utilities --- */
 .hidden {
   display: none !important;
 }
 
-/* Global Dark Theme Settings */
-body {
-  background-color: #121826;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 2rem;
-  margin: 0;
-  line-height: 1.6;
+/* --- Typography & Headings --- */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  color: #38bdf8;
 }
 
-/* App Container */
-.app-container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Typography */
-h1, h2, h3 {
-  margin-bottom: 0.5rem;
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+  color: #f1f5f9;
 }
 
 p {
-  color: #cbd5e1;
-  margin-bottom: 2rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
-/* Default Buttons */
-button {
-  background-color: #e2e8f0;
-  color: #0f172a;
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
   border: none;
-  border-radius: 12px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-bottom: 1rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-button:hover {
-  background-color: #cbd5e1;
+.btn:active {
+  transform: scale(0.98);
+}
+
+.primary-btn {
+  background-color: #0284c7;
+  color: #ffffff;
+}
+
+.primary-btn:hover {
+  background-color: #0369a1;
+}
+
+.secondary-btn {
+  background-color: #475569;
+  color: #ffffff;
+}
+
+.secondary-btn:hover {
+  background-color: #334155;
+}
+
+.warning-btn {
+  background-color: #d97706;
+  color: #ffffff;
+}
+
+.warning-btn:hover {
+  background-color: #b45309;
+}
+
+.danger-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.danger-btn:hover {
+  background-color: #dc2626;
 }
 
 .back-btn {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
+  background-color: #334155;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
 }
 
-/* Year Grid */
+.back-btn:hover {
+  background-color: #475569;
+}
+
+.back-btn-warning {
+  background-color: #475569;
+  color: #ffffff;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.back-btn-warning:hover {
+  background-color: #334155;
+}
+
+/* --- Year Grid --- */
 .year-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
 }
 
 .year-card {
-  padding: 16px 32px;
+  background-color: #334155;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 1px solid #475569;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
-/* Subject Grid & Cards */
+.year-card:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+}
+
+/* --- Subject List & Cards --- */
 .subject-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .subject-card {
-  background-color: #1e293b;
+  background-color: #0f172a;
   border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-radius: 8px;
+  padding: 1.25rem;
 }
 
 .subject-card h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: #f8fafc;
+  font-size: 1.1rem;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
 }
 
-/* Mode Buttons Inside Subject Cards */
+.missed-badge {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
 .subject-actions {
   display: flex;
-  gap: 10px;
-}
-
-.subject-actions button {
-  flex: 1;
-  margin-bottom: 0;
-  padding: 10px;
-  font-size: 0.9rem;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .study-btn {
-  background-color: #3b82f6;
+  background-color: #0284c7;
   color: white;
-}
-
-.study-btn:hover {
-  background-color: #2563eb;
+  flex: 1;
 }
 
 .quiz-btn {
   background-color: #10b981;
   color: white;
+  flex: 1;
 }
 
-.quiz-btn:hover {
-  background-color: #059669;
+.study-missed-btn {
+  background-color: #d97706;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 6px;
 }
 
-/* Option Choices - Vertical Stack & Elongated Buttons */
+.study-missed-btn:hover {
+  background-color: #b45309;
+}
+
+.clear-btn {
+  background-color: #334155;
+  color: #94a3b8;
+  width: 100%;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  padding: 6px;
+}
+
+.clear-btn:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* --- Quiz / Study Session Screen --- */
+.quiz-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.question-box h3 {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
 .options-grid {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .option-btn {
   width: 100%;
-  background-color: transparent;
-  color: #ffffff;
-  border: 2px solid #334155;
-  border-radius: 12px;
-  padding: 14px 20px;
-  font-size: 1rem;
-  font-weight: 500;
   text-align: left;
+  padding: 12px 16px;
+  background-color: #334155;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
-  margin-bottom: 0;
+  transition: background-color 0.2s;
 }
 
 .option-btn:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: #3b82f6;
-}
-/* Results Screen Score Bar */
-.score-container {
-  margin: 2rem 0;
-  text-align: left;
+  background-color: #475569;
 }
 
-.score-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  color: #f8fafc;
+/* --- Results Screen --- */
+.score-card {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.score-header strong {
-  font-size: 1.4rem;
-  color: #3b82f6;
+.percentage-badge {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #38bdf8;
+  margin: 1rem 0;
 }
 
 .progress-bar-bg {
   width: 100%;
-  height: 22px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
+  height: 10px;
+  background-color: #334155;
+  border-radius: 5px;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #3b82f6, #10b981);
+  background-color: #10b981;
+  transition: width 0.6s ease-in-out;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --- Custom Confirmation Modal Overlay --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.modal-card {
+  background-color: #1e293b;
+  border: 1px solid #475569;
   border-radius: 12px;
-  transition: width 1s ease-in-out;
-}
-/* Missed Question Badge & Clear Button */
-.missed-badge {
-  color: #f59e0b;
-  font-size: 0.85rem;
-  margin: -0.5rem 0 1rem 0;
-  font-weight: 600;
-}
-
-.clear-btn {
-  background-color: transparent;
-  color: #ef4444;
-  border: 1px solid #ef4444;
-  padding: 8px 12px;
-  font-size: 0.8rem;
-  margin-top: 10px;
-  margin-bottom: 0;
+  padding: 1.75rem;
+  max-width: 420px;
   width: 100%;
-  border-radius: 8px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: modalFadeIn 0.15s ease-out;
 }
 
-.clear-btn:hover {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-}
-/* Review Missed Questions Button */
-.study-missed-btn {
-  background-color: #d97706;
-  color: #ffffff;
-  margin-top: 10px;
-  margin-bottom: 0;
-  width: 100%;
-  padding: 10px;
-  font-size: 0.9rem;
+.modal-card h3 {
+  font-size: 1.25rem;
+  color: #f8fafc;
+  margin-bottom: 0.75rem;
 }
 
-.study-missed-btn:hover {
-  background-color: #b45309;
+.modal-card p {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
