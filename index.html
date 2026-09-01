@@ -67,12 +67,24 @@
     </section>
 
     <!-- PAGE 5: Results View -->
-    <section id="result-screen" class="screen card hidden">
-      <h2>Session Completed!</h2>
-      <p id="final-score"></p>
-      <button id="restart-btn" class="btn primary-btn">Back to Main Menu</button>
-    </section>
+    <!-- PAGE 5: Results View -->
+<section id="result-screen" class="screen card hidden">
+  <h2>Session Completed!</h2>
+  <p id="final-score">Calculating score...</p>
 
+  <!-- Score & Progress Bar Display -->
+  <div class="score-container">
+    <div class="score-header">
+      <span>Accuracy / Score:</span>
+      <strong id="score-percentage">0%</strong>
+    </div>
+    <div class="progress-bar-bg">
+      <div id="progress-bar-fill" class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <button id="restart-btn" class="btn primary-btn">Back to Main Menu</button>
+</section>
   </div>
 
   <script src="app.js"></script>
