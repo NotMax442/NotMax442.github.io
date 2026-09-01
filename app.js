@@ -43,7 +43,7 @@ const manifestData = {
   "3": ["Pharmacology", "Internal Medicine"],
   "4": ["Pediatrics", "Surgery"],
   "5": ["Obstetrics", "Gynecology"],
-  "6": ["Advanced Pathology", "Clinical Rotations"]
+  "6": ["MED-PRO"]
 };
 
 // --- Initial Browser History Setup ---
