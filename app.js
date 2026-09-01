@@ -2,7 +2,8 @@
 const screens = document.querySelectorAll('.screen');
 const enterStudyBtn = document.getElementById('enter-study-btn');
 const yearCards = document.querySelectorAll('.year-card');
-const backButtons = document.querySelectorAll('.back-btn');
+const backToLandingBtn = document.getElementById('back-to-landing-btn');
+const backToYearsBtn = document.getElementById('back-to-years-btn');
 const selectedYearTitle = document.getElementById('selected-year-title');
 const subjectList = document.getElementById('subject-list');
 
@@ -119,7 +120,7 @@ window.addEventListener('beforeunload', (e) => {
   }
 });
 
-// --- Browser History Navigation & Session Storage State ---
+// --- Navigation & Session Storage State ---
 function navigateTo(screenId, isBackAction = false) {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -183,9 +184,14 @@ yearCards.forEach(card => {
   });
 });
 
-backButtons.forEach(button => {
-  button.addEventListener('click', () => history.back());
-});
+// Explicit Back Button Handlers
+if (backToLandingBtn) {
+  backToLandingBtn.addEventListener('click', () => navigateTo('landing-screen'));
+}
+
+if (backToYearsBtn) {
+  backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
+}
 
 if (restartBtn) {
   restartBtn.addEventListener('click', () => navigateTo('year-screen'));
@@ -561,4 +567,3 @@ if (retryMissedBtn) {
     }
   });
 }
-
