@@ -13,6 +13,7 @@ const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
+const quitSessionBtn = document.getElementById('quit-session-btn');
 const retryMissedBtn = document.getElementById('retry-missed-btn');
 const missedCountEl = document.getElementById('missed-count');
 const finalScore = document.getElementById('final-score');
@@ -43,11 +44,8 @@ const manifestData = {
   "3": ["Pharmacology", "Internal Medicine"],
   "4": ["Pediatrics", "Surgery"],
   "5": ["Obstetrics", "Gynecology"],
-  "6": ["MED-PRO"]
+  "6": ["Advanced Pathology", "Clinical Rotations"]
 };
-
-// --- Initial Browser History Setup ---
-history.replaceState({ screenId: 'landing-screen' }, '');
 
 // Helper: Generates unique key for local storage per year & subject
 function getStorageKey() {
@@ -80,7 +78,16 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// --- Browser History Navigation Logic ---
+// --- Warn User Before Refreshing Active Session ---
+window.addEventListener('beforeunload', (e) => {
+  const quizScreen = document.getElementById('quiz-screen');
+  if (quizScreen && !quizScreen.classList.contains('hidden')) {
+    e.preventDefault();
+    e.returnValue = ''; // Standard browser refresh prompt
+  }
+});
+
+// --- Browser History Navigation & Session Storage State ---
 function navigateTo(screenId, isBackAction = false) {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -94,6 +101,13 @@ function navigateTo(screenId, isBackAction = false) {
   if (!isBackAction) {
     history.pushState({ screenId: screenId }, '');
   }
+
+  // Save location to sessionStorage (fallback active quiz to subject screen on hard refresh)
+  if (screenId === 'quiz-screen' || screenId === 'result-screen') {
+    sessionStorage.setItem('lastScreen', 'subject-screen');
+  } else {
+    sessionStorage.setItem('lastScreen', screenId);
+  }
 }
 
 window.addEventListener('popstate', (event) => {
@@ -104,12 +118,33 @@ window.addEventListener('popstate', (event) => {
   }
 });
 
-// --- Navigation Buttons ---
+// --- Restore Screen State on Page Refresh ---
+window.addEventListener('DOMContentLoaded', () => {
+  const savedScreen = sessionStorage.getItem('lastScreen');
+  const savedYear = sessionStorage.getItem('lastYear');
+
+  if (savedYear) {
+    currentYear = savedYear;
+  }
+
+  if (savedScreen === 'subject-screen' && currentYear) {
+    selectedYearTitle.textContent = `Year ${currentYear} Subjects`;
+    loadSubjectsForYear(currentYear);
+    navigateTo('subject-screen');
+  } else if (savedScreen === 'year-screen') {
+    navigateTo('year-screen');
+  } else {
+    navigateTo('landing-screen');
+  }
+});
+
+// --- Navigation & Exit Action Event Listeners ---
 enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
 yearCards.forEach(card => {
   card.addEventListener('click', () => {
     currentYear = card.getAttribute('data-year');
+    sessionStorage.setItem('lastYear', currentYear);
     selectedYearTitle.textContent = `Year ${currentYear} Subjects`;
     loadSubjectsForYear(currentYear);
     navigateTo('subject-screen');
@@ -124,7 +159,18 @@ if (restartBtn) {
   restartBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
-// --- Subject Cards ---
+if (quitSessionBtn) {
+  quitSessionBtn.addEventListener('click', () => {
+    const isConfirmed = confirm("⚠️ Are you sure you want to exit? Progress in this active session will be reset.");
+    if (isConfirmed) {
+      clearInterval(timerInterval);
+      cancelAutoScroll();
+      navigateTo('subject-screen');
+    }
+  });
+}
+
+// --- Subject Cards Rendering ---
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
@@ -156,7 +202,7 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// --- Launch Study Session with Only Saved Missed Questions ---
+// --- Launch Session with Only Saved Missed Questions ---
 function startMissedSession(subjectName) {
   currentSubject = subjectName;
   currentMode = 'study';
@@ -327,7 +373,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     selectedBtn.style.color = '#ffffff';
     userScore++;
 
-    // REMOVE question from missed array if answered correctly
+    // Remove question from storage if answered correctly
     missedQuestions = missedQuestions.filter(item => item.question !== q.question);
     if (missedQuestions.length > 0) {
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -340,7 +386,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
 
-    // Add question if missed
+    // Save question if missed
     if (!missedQuestions.some(item => item.question === q.question)) {
       missedQuestions.push(q);
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -397,7 +443,7 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     selectedBtn.style.color = '#ffffff';
     userScore++;
 
-    // REMOVE question from missed array if answered correctly
+    // Remove question from storage if answered correctly
     missedQuestions = missedQuestions.filter(item => item.question !== q.question);
     if (missedQuestions.length > 0) {
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -410,7 +456,7 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     allOptionBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allOptionBtns[q.correctIndex].style.color = '#ffffff';
 
-    // Add question if missed
+    // Save question if missed
     if (!missedQuestions.some(item => item.question === q.question)) {
       missedQuestions.push(q);
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
