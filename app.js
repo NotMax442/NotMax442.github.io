@@ -79,7 +79,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// --- Custom Confirmation Modal ---
+// --- Custom Promise-Based Confirm Modal ---
 function showCustomConfirm() {
   return new Promise((resolve) => {
     const modal = document.getElementById('confirm-modal');
@@ -143,16 +143,15 @@ function navigateTo(screenId, isBackAction = false) {
   }
 }
 
-// --- Intercept Browser Back Button During Active Sessions ---
+// --- Intercept Browser Back Button & Alt + Left Arrow ---
 window.addEventListener('popstate', async (event) => {
   const quizScreen = document.getElementById('quiz-screen');
   const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
 
   if (isQuizActive) {
-    // Re-push quiz state to temporarily lock the browser back button stack
+    // Re-push state immediately to keep history locked while modal opens
     history.pushState({ screenId: 'quiz-screen' }, '');
 
-    // Show custom confirmation modal
     const isConfirmed = await showCustomConfirm();
     if (isConfirmed) {
       clearInterval(timerInterval);
@@ -160,7 +159,6 @@ window.addEventListener('popstate', async (event) => {
       navigateTo('subject-screen');
     }
   } else {
-    // Normal history navigation for non-quiz screens
     if (event.state && event.state.screenId) {
       navigateTo(event.state.screenId, true);
     } else {
@@ -211,7 +209,7 @@ if (backToYearsBtn) {
   backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
-// Return Button: Navigates back to Subject Selection for the active year
+// Return Button: Returns to Subject Selection for active year
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
     if (currentYear) {
@@ -356,6 +354,7 @@ async function startSession(subjectName, mode) {
   const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
 
   try {
+    // Cache-Busting Fetch: Appends timestamp to force browser to load updated JSON files
     const response = await fetch(`${filePath}?t=${Date.now()}`);
     if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
