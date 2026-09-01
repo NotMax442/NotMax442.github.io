@@ -119,7 +119,7 @@ async function startSession(subjectName, mode) {
   }
 
   // Constructs path: data/year-1/i-d-a.json
-  const filePath = `data/year-${currentYear}/${subjectName.toLowerCase()}.json`;
+  const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
 
   try {
     const response = await fetch(filePath);
