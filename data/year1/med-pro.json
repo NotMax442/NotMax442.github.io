@@ -578,17 +578,6 @@
       "correctIndex": 2
     },
     {
-      "id": 53,
-      "question": "Which institution is primarily responsible for issuing a Doctor of Medicine (MD) diploma in Cambodia?",
-      "options": [
-        "Ministry of Health",
-        "Medical Council of Cambodia",
-        "Medical school",
-        "Cambodian Medical Association"
-      ],
-      "correctIndex": 2
-    },
-    {
       "id": 54,
       "question": "A health practitioner continues practicing despite repeated concerns that cognitive impairment is affecting clinical judgment and placing patients at risk. What ethical principle MOST strongly justifies regulatory intervention?",
       "options": [
@@ -1104,6 +1093,17 @@
         "Increase income"
       ],
       "correctIndex": 1
+    },
+    {
+      "id": 100,
+      "question": "Which institution is primarily responsible for issuing a Doctor of Medicine (MD) diploma in Cambodia?",
+      "options": [
+        "Ministry of Health",
+        "Medical Council of Cambodia",
+        "Medical school",
+        "Cambodian Medical Association"
+      ],
+      "correctIndex": 0
     }
   ]
 }
