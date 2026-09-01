@@ -41,11 +41,11 @@ let autoScrollTimer = null;
 // Manifest data mapping years to available subjects
 const manifestData = {
   "1": ["I-D-A", "MED-PRO", "F-N-S"],
-  "2": ["Physiology", "Pathology", "Microbiology"],
-  "3": ["Pharmacology", "Internal Medicine"],
-  "4": ["Pediatrics", "Surgery"],
-  "5": ["Obstetrics", "Gynecology"],
-  "6": ["Advanced Pathology", "Clinical Rotations"]
+  "2": [],
+  "3": [],
+  "4": [],
+  "5": [],
+  "6": ["MED-PRO"]
 };
 
 // Helper: Generates unique key for local storage per year & subject
