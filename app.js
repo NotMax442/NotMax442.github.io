@@ -338,7 +338,7 @@ async function startSession(subjectName, mode) {
   const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
 
   try {
-    const response = await fetch(filePath);
+    const response = await fetch(`${filePath}?t=${Date.now()}`);
     if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
 
