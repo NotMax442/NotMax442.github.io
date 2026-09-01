@@ -1,11 +1,11 @@
-/* Core Navigation Logic - This makes the screen switching work */
+/* Core Navigation Logic - Hides screens when navigating */
 .hidden {
   display: none !important;
 }
 
 /* Global Dark Theme Settings */
 body {
-  background-color: #121826; /* Matches the dark navy in your screenshot */
+  background-color: #121826;
   color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 2rem;
@@ -13,14 +13,14 @@ body {
   line-height: 1.6;
 }
 
-/* Container limits width for readability */
+/* App Container */
 .app-container {
   max-width: 800px;
   margin: 0 auto;
 }
 
-/* Typography styling */
-h1, h2 {
+/* Typography */
+h1, h2, h3 {
   margin-bottom: 0.5rem;
 }
 
@@ -29,7 +29,7 @@ p {
   margin-bottom: 2rem;
 }
 
-/* General Button Styling (Matches the rounded light buttons in your screenshot) */
+/* Default Buttons */
 button {
   background-color: #e2e8f0;
   color: #0f172a;
@@ -47,7 +47,13 @@ button:hover {
   background-color: #cbd5e1;
 }
 
-/* Specific styling for the Year selection grid */
+.back-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* Year Grid */
 .year-grid {
   display: flex;
   flex-wrap: wrap;
@@ -58,8 +64,57 @@ button:hover {
   padding: 16px 32px;
 }
 
-.back-btn {
-  padding: 8px 16px;
+/* Subject Grid & Cards */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+
+.subject-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.subject-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+}
+
+/* Mode Buttons Inside Subject Cards */
+.subject-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.subject-actions button {
+  flex: 1;
+  margin-bottom: 0;
+  padding: 10px;
   font-size: 0.9rem;
-  margin-bottom: 2rem;
+}
+
+.study-btn {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.study-btn:hover {
+  background-color: #2563eb;
+}
+
+.quiz-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.quiz-btn:hover {
+  background-color: #059669;
 }
