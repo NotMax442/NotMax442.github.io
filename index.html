@@ -3,89 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz & Learning Portal</title>
+  <title>Study & Quiz Platform</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app-container">
 
-    <!-- PAGE 1: Landing / Starter Page -->
-    <section id="landing-screen" class="screen card">
-      <h1>Welcome to the Medical Study Portal</h1>
-      <p>Master your courses year by year. Practice randomized multiple-choice questions or review lessons at your own pace.</p>
-      <button id="enter-study-btn" class="btn primary-btn">Study Now</button>
-    </section>
+    <!-- Landing Screen -->
+    <div id="landing-screen" class="screen">
+      <h1>Medical Study Platform</h1>
+      <p>Select your year, review saved missed questions, or test your knowledge.</p>
+      <button id="enter-study-btn" class="btn primary-btn">🚀 Start Studying</button>
+    </div>
 
-    <!-- PAGE 2: Year Selection Page -->
-    <section id="year-screen" class="screen card hidden">
-      <button class="back-btn" data-target="landing-screen">← Back</button>
+    <!-- Year Selection Screen -->
+    <div id="year-screen" class="screen hidden">
+      <button class="btn back-btn">⬅️ Back</button>
       <h2>Select Academic Year</h2>
-      <p>Choose your current level of study:</p>
-      
       <div class="year-grid">
-        <button class="year-card" data-year="1">Year 1</button>
-        <button class="year-card" data-year="2">Year 2</button>
-        <button class="year-card" data-year="3">Year 3</button>
-        <button class="year-card" data-year="4">Year 4</button>
-        <button class="year-card" data-year="5">Year 5</button>
-        <button class="year-card" data-year="6">Year 6</button>
+        <div class="year-card" data-year="1">Year 1</div>
+        <div class="year-card" data-year="2">Year 2</div>
+        <div class="year-card" data-year="3">Year 3</div>
+        <div class="year-card" data-year="4">Year 4</div>
+        <div class="year-card" data-year="5">Year 5</div>
+        <div class="year-card" data-year="6">Year 6</div>
       </div>
-    </section>
+    </div>
 
-    <!-- PAGE 3: Subject & Mode Selection Page -->
-<section id="subject-screen" class="screen card hidden">
-  <button class="back-btn" data-target="year-screen">← Back to Years</button>
-  <h2 id="selected-year-title">Year X Subjects</h2>
-  
-  <!-- Dynamic subjects with direct Study & Quiz buttons injected here -->
-  <div id="subject-list" class="subject-grid"></div>
-</section>
+    <!-- Subject Selection Screen -->
+    <div id="subject-screen" class="screen hidden">
+      <button class="btn back-btn">⬅️ Back to Years</button>
+      <h2 id="selected-year-title">Subjects</h2>
+      <div id="subject-list" class="subject-grid"></div>
+    </div>
 
-    <!-- PAGE 4: Active Session (Quiz / Study View) -->
-    <section id="quiz-screen" class="screen card hidden">
+    <!-- Quiz / Study Screen -->
+    <div id="quiz-screen" class="screen hidden">
       <div class="quiz-header">
-        <span id="session-info">Year 1 - Biology</span>
-        <span id="progress-text">Question 1 of 60</span>
+        <button id="quit-session-btn" class="btn back-btn-warning">⬅️ Exit Session</button>
+        <h2 id="session-info"></h2>
+      </div>
+
+      <div class="quiz-meta">
+        <span id="progress-text"></span>
         <span id="timer-display" class="hidden">⏱️ 60:00</span>
       </div>
 
-      <div class="question-container">
-        <h3 id="question-text">Loading question...</h3>
+      <div class="question-box">
+        <h3 id="question-text"></h3>
         <div id="options-container" class="options-grid"></div>
       </div>
 
-      <!-- Lesson Box (Visible in Study Mode or after answering in Quiz Mode) -->
-      <div id="lesson-box" class="lesson-box hidden">
-        <h4>Lesson Explanation</h4>
-        <p id="lesson-text"></p>
+      <button id="next-btn" class="btn primary-btn hidden">Next Question ➡️</button>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="screen hidden">
+      <h2>Session Complete!</h2>
+      <div class="score-card">
+        <p id="final-score"></p>
+        <div class="percentage-badge" id="score-percentage">0%</div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
       </div>
 
-      <div class="quiz-controls">
-        <button id="submit-btn" class="btn hidden">Submit</button>
-        <button id="next-btn" class="btn primary-btn hidden">Next Question</button>
+      <div class="result-actions">
+        <button id="retry-missed-btn" class="btn warning-btn hidden">
+          🎯 Retry Missed Questions (<span id="missed-count">0</span>)
+        </button>
+        <button id="restart-btn" class="btn primary-btn">🔄 Return to Years</button>
       </div>
-    </section>
-
-    <!-- PAGE 5: Results View -->
-<section id="result-screen" class="screen card hidden">
-  <h2>Session Completed!</h2>
-  <p id="final-score">Calculating score...</p>
-
-  <div class="score-container">
-    <div class="score-header">
-      <span>Accuracy / Score:</span>
-      <strong id="score-percentage">0%</strong>
     </div>
-    <div class="progress-bar-bg">
-      <div id="progress-bar-fill" class="progress-bar-fill"></div>
-    </div>
-  </div>
 
-  <div class="result-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-    <button id="retry-missed-btn" class="btn quiz-btn hidden">🔁 Retry Missed Questions (<span id="missed-count">0</span>)</button>
-    <button id="restart-btn" class="btn primary-btn">Back to Main Menu</button>
-  </div>
-</section>
   </div>
 
   <script src="app.js"></script>
