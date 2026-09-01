@@ -43,6 +43,10 @@ const manifestData = {
   "6": ["Advanced Pathology", "Clinical Rotations"]
 };
 
+// --- Initial Browser History Setup ---
+// Set initial history state so backing up from Page 2 goes back to landing page
+history.replaceState({ screenId: 'landing-screen' }, '');
+
 // --- Fisher-Yates Shuffle Algorithm ---
 function shuffleArray(array) {
   const shuffled = [...array];
@@ -69,15 +73,34 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// --- Navigation Logic ---
-function navigateTo(screenId) {
+// --- Browser History Navigation Logic ---
+function navigateTo(screenId, isBackAction = false) {
+  // Always clear active timers & scroll handlers when switching screens
+  clearInterval(timerInterval);
+  cancelAutoScroll();
+
   screens.forEach(screen => screen.classList.add('hidden'));
   const targetScreen = document.getElementById(screenId);
   if (targetScreen) {
     targetScreen.classList.remove('hidden');
   }
+
+  // Push new entry to browser history if user clicked an in-app button
+  if (!isBackAction) {
+    history.pushState({ screenId: screenId }, '');
+  }
 }
 
+// Listen for browser native Back/Forward clicks
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.screenId) {
+    navigateTo(event.state.screenId, true);
+  } else {
+    navigateTo('landing-screen', true);
+  }
+});
+
+// --- In-App Button Event Listeners ---
 enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
 yearCards.forEach(card => {
@@ -91,17 +114,13 @@ yearCards.forEach(card => {
 
 backButtons.forEach(button => {
   button.addEventListener('click', () => {
-    clearInterval(timerInterval);
-    cancelAutoScroll();
-    const targetScreenId = button.getAttribute('data-target');
-    navigateTo(targetScreenId);
+    // Triggers native browser back behavior to stay in sync with history
+    history.back();
   });
 });
 
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
-    clearInterval(timerInterval);
-    cancelAutoScroll();
     navigateTo('year-screen');
   });
 }
@@ -165,8 +184,6 @@ async function startSession(subjectName, mode) {
   currentQuestionIndex = 0;
   userScore = 0;
   studyAnsweredCount = 0;
-  clearInterval(timerInterval);
-  cancelAutoScroll();
 
   if (sessionInfo) {
     sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
@@ -265,7 +282,6 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
 
   studyAnsweredCount++;
 
-  // Check if ALL questions in study mode have been answered
   if (studyAnsweredCount === questions.length) {
     cancelAutoScroll();
     setTimeout(() => {
@@ -274,7 +290,6 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     return;
   }
 
-  // 2-second auto-scroll timer to next question
   cancelAutoScroll();
   autoScrollTimer = setTimeout(() => {
     const nextCard = document.getElementById(`q-card-${qIndex + 1}`);
