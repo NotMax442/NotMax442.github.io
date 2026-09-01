@@ -1,50 +1,65 @@
-* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-body { 
-    background: #0f172a; 
-    color: white; 
-    margin: 0; 
-    padding: 20px; 
-    display: flex; 
-    justify-content: center; 
+/* Core Navigation Logic - This makes the screen switching work */
+.hidden {
+  display: none !important;
 }
 
-.app-container { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 20px; }
-
-header { text-align: center; }
-header h1 { margin: 0; color: #38bdf8; letter-spacing: 2px; }
-header h1 span { color: #f8fafc; }
-header p { color: #64748b; font-size: 0.9rem; margin: 5px 0; }
-
-.field { display: flex; flex-direction: column; gap: 8px; }
-label { font-size: 0.75rem; font-weight: bold; color: #38bdf8; text-transform: uppercase; }
-
-input, textarea {
-    background: #1e293b; 
-    border: 2px solid #334155; 
-    border-radius: 12px;
-    color: white; 
-    padding: 15px; 
-    font-size: 16px; /* Prevents iOS auto-zoom */
-    width: 100%;
-    outline: none;
+/* Global Dark Theme Settings */
+body {
+  background-color: #121826; /* Matches the dark navy in your screenshot */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  margin: 0;
+  line-height: 1.6;
 }
 
-textarea { height: 120px; resize: none; }
-input:focus, textarea:focus { border-color: #38bdf8; }
+/* Container limits width for readability */
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+/* Typography styling */
+h1, h2 {
+  margin-bottom: 0.5rem;
+}
 
+p {
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+}
+
+/* General Button Styling (Matches the rounded light buttons in your screenshot) */
 button {
-    padding: 16px; 
-    border: none; 
-    border-radius: 12px; 
-    font-weight: bold; 
-    cursor: pointer;
-    transition: 0.2s;
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 1rem;
 }
 
-.btn-scramble { background: #38bdf8; color: #0f172a; }
-.btn-reveal { background: #334155; color: white; }
-.btn-copy { background: transparent; border: 1px solid #38bdf8; color: #38bdf8; margin-top: 10px; }
+button:hover {
+  background-color: #cbd5e1;
+}
 
-button:active { transform: scale(0.96); }
+/* Specific styling for the Year selection grid */
+.year-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.year-card {
+  padding: 16px 32px;
+}
+
+.back-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
