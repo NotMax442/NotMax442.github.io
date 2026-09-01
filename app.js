@@ -471,7 +471,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     if (nextCard) {
       nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }, 2000);
+  }, 1000);
 }
 
 // --- QUIZ MODE ---
