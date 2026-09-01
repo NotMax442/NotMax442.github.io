@@ -27,15 +27,15 @@ let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
+let userAnswers = []; // Tracks user selections in Quiz Mode
 let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
-let selectedOptionIndex = null;
 
 // Timer & Auto-scroll State
 let timerInterval = null;
-let timeRemaining = 3600;
+let timeRemaining = 3600; // 60 Minutes
 let autoScrollTimer = null;
 
 // Manifest data mapping years to available subjects
@@ -149,7 +149,6 @@ window.addEventListener('popstate', async (event) => {
   const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
 
   if (isQuizActive) {
-    // Re-push state immediately to keep history locked while modal opens
     history.pushState({ screenId: 'quiz-screen' }, '');
 
     const isConfirmed = await showCustomConfirm();
@@ -200,7 +199,6 @@ yearCards.forEach(card => {
   });
 });
 
-// Explicit Back Button Handlers
 if (backToLandingBtn) {
   backToLandingBtn.addEventListener('click', () => navigateTo('landing-screen'));
 }
@@ -209,7 +207,6 @@ if (backToYearsBtn) {
   backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
 }
 
-// Return Button: Returns to Subject Selection for active year
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
     if (currentYear) {
@@ -237,7 +234,7 @@ if (quitSessionBtn) {
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
-  
+
   subjects.forEach(subject => {
     const storageKey = `missed_y${year}_${subject.toLowerCase()}`;
     const savedMissed = localStorage.getItem(storageKey);
@@ -245,7 +242,7 @@ function loadSubjectsForYear(year) {
 
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
-    
+
     subjectCard.innerHTML = `
       <h3>${subject}</h3>
       ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question${missedCount > 1 ? 's' : ''}</p>` : ''}
@@ -260,7 +257,7 @@ function loadSubjectsForYear(year) {
         <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">🗑️ Clear Saved Missed</button>
       ` : ''}
     `;
-    
+
     subjectList.appendChild(subjectCard);
   });
 }
@@ -305,10 +302,10 @@ function clearSavedMissed(subjectName) {
   loadSubjectsForYear(currentYear);
 }
 
-// --- Timer System for Quiz Mode ---
+// --- 60-Minute Countdown Timer for Quiz Mode ---
 function startQuizTimer() {
   clearInterval(timerInterval);
-  timeRemaining = 3600;
+  timeRemaining = 3600; // 60 minutes in seconds
   updateTimerUI();
 
   if (timerDisplay) timerDisplay.classList.remove('hidden');
@@ -320,7 +317,7 @@ function startQuizTimer() {
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
       alert("⏱️ Time is up! Submitting your quiz now.");
-      showResults();
+      finishQuiz();
     }
   }, 1000);
 }
@@ -329,10 +326,10 @@ function updateTimerUI() {
   if (!timerDisplay) return;
   const minutes = Math.floor(timeRemaining / 60);
   const seconds = timeRemaining % 60;
-  
+
   const formattedMins = String(minutes).padStart(2, '0');
   const formattedSecs = String(seconds).padStart(2, '0');
-  
+
   timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
 }
 
@@ -354,15 +351,17 @@ async function startSession(subjectName, mode) {
   const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
 
   try {
-    // Cache-Busting Fetch: Appends timestamp to force browser to load updated JSON files
     const response = await fetch(`${filePath}?t=${Date.now()}`);
     if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
 
+    // 1. Shuffle full question pool
     let processedQuestions = shuffleArray(data.questions);
 
+    // 2. Quiz mode picks 60 random questions and starts 60-min timer
     if (mode === 'quiz') {
       processedQuestions = processedQuestions.slice(0, 60);
+      userAnswers = new Array(processedQuestions.length).fill(null);
       startQuizTimer();
     } else {
       if (timerDisplay) timerDisplay.classList.add('hidden');
@@ -437,7 +436,6 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     selectedBtn.style.color = '#ffffff';
     userScore++;
 
-    // Remove question from storage if answered correctly
     missedQuestions = missedQuestions.filter(item => item.question !== q.question);
     if (missedQuestions.length > 0) {
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -450,7 +448,6 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
 
-    // Save question if missed
     if (!missedQuestions.some(item => item.question === q.question)) {
       missedQuestions.push(q);
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -474,9 +471,8 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   }, 1000);
 }
 
-// --- QUIZ MODE ---
+// --- QUIZ MODE (No instant feedback, answers evaluated on completion/timeout) ---
 function renderQuizQuestion() {
-  selectedOptionIndex = null;
   nextBtn.classList.add('hidden');
   optionsContainer.innerHTML = '';
 
@@ -484,64 +480,86 @@ function renderQuizQuestion() {
   progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
   questionText.textContent = q.question;
 
+  // Toggle button label on last question
+  if (currentQuestionIndex === questions.length - 1) {
+    nextBtn.textContent = "Finish Quiz 🏁";
+  } else {
+    nextBtn.textContent = "Next Question ➡️";
+  }
+
   q.options.forEach((optionText, index) => {
     const btn = document.createElement('button');
     btn.classList.add('option-btn');
     btn.textContent = optionText;
+
+    // Restore selection highlight if question was previously answered
+    if (userAnswers[currentQuestionIndex] === index) {
+      btn.style.backgroundColor = '#0284c7';
+      btn.style.borderColor = '#38bdf8';
+      nextBtn.classList.remove('hidden');
+    }
+
     btn.addEventListener('click', () => handleQuizOptionClick(index, btn));
     optionsContainer.appendChild(btn);
   });
 }
 
 function handleQuizOptionClick(selectedIndex, selectedBtn) {
-  if (selectedOptionIndex !== null) return;
-  selectedOptionIndex = selectedIndex;
+  userAnswers[currentQuestionIndex] = selectedIndex;
 
-  const q = questions[currentQuestionIndex];
   const allOptionBtns = optionsContainer.querySelectorAll('.option-btn');
+  allOptionBtns.forEach(btn => {
+    btn.style.backgroundColor = '#334155';
+    btn.style.borderColor = '#475569';
+  });
 
-  allOptionBtns.forEach(btn => btn.style.pointerEvents = 'none');
-
-  if (selectedIndex === q.correctIndex) {
-    selectedBtn.style.backgroundColor = '#10b981';
-    selectedBtn.style.color = '#ffffff';
-    userScore++;
-
-    // Remove question from storage if answered correctly
-    missedQuestions = missedQuestions.filter(item => item.question !== q.question);
-    if (missedQuestions.length > 0) {
-      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
-    } else {
-      localStorage.removeItem(getStorageKey());
-    }
-  } else {
-    selectedBtn.style.backgroundColor = '#ef4444';
-    selectedBtn.style.color = '#ffffff';
-    allOptionBtns[q.correctIndex].style.backgroundColor = '#10b981';
-    allOptionBtns[q.correctIndex].style.color = '#ffffff';
-
-    // Save question if missed
-    if (!missedQuestions.some(item => item.question === q.question)) {
-      missedQuestions.push(q);
-      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
-    }
-  }
+  // Highlight selection neutrally (blue) without revealing correct/wrong answer
+  selectedBtn.style.backgroundColor = '#0284c7';
+  selectedBtn.style.borderColor = '#38bdf8';
 
   nextBtn.classList.remove('hidden');
 }
 
 if (nextBtn) {
   nextBtn.addEventListener('click', () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
       renderQuizQuestion();
     } else {
-      showResults();
+      finishQuiz();
     }
   });
 }
 
-// --- RESULTS DISPLAY & RETRY ---
+// --- EVALUATE QUIZ & DISPLAY RESULTS ---
+function finishQuiz() {
+  clearInterval(timerInterval);
+
+  userScore = 0;
+  questions.forEach((q, idx) => {
+    const chosen = userAnswers[idx];
+    if (chosen !== null && chosen === q.correctIndex) {
+      userScore++;
+      // Answered correctly -> Remove from saved missed questions
+      missedQuestions = missedQuestions.filter(item => item.question !== q.question);
+    } else {
+      // Wrong or unanswered due to timeout -> Record as missed
+      if (!missedQuestions.some(item => item.question === q.question)) {
+        missedQuestions.push(q);
+      }
+    }
+  });
+
+  if (missedQuestions.length > 0) {
+    localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
+  } else {
+    localStorage.removeItem(getStorageKey());
+  }
+
+  showResults();
+}
+
+// --- RESULTS DISPLAY ---
 function showResults() {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -589,6 +607,7 @@ if (retryMissedBtn) {
     if (currentMode === 'study') {
       renderStudyMode();
     } else {
+      userAnswers = new Array(questions.length).fill(null);
       renderQuizQuestion();
     }
   });
