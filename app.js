@@ -130,7 +130,6 @@ function loadSubjectsForYear(year) {
   const subjects = manifestData[year] || [];
   
   subjects.forEach(subject => {
-    // Check if missed questions exist for this year & subject
     const storageKey = `missed_y${year}_${subject.toLowerCase()}`;
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
@@ -143,11 +142,12 @@ function loadSubjectsForYear(year) {
       ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question${missedCount > 1 ? 's' : ''}</p>` : ''}
       
       <div class="subject-actions">
-        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">📖 Study</button>
+        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">📖 Study All</button>
         <button class="btn quiz-btn" onclick="startSession('${subject}', 'quiz')">📝 Quiz</button>
       </div>
 
       ${missedCount > 0 ? `
+        <button class="btn study-missed-btn" onclick="startMissedSession('${subject}')">🎯 Review Missed (${missedCount})</button>
         <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">🗑️ Clear Saved Missed</button>
       ` : ''}
     `;
@@ -156,11 +156,44 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// Function to clear saved missed questions for a specific subject
+// --- Launch Study Session with Only Saved Missed Questions ---
+function startMissedSession(subjectName) {
+  currentSubject = subjectName;
+  currentMode = 'study';
+  currentQuestionIndex = 0;
+  userScore = 0;
+  studyAnsweredCount = 0;
+
+  const savedMissed = localStorage.getItem(getStorageKey());
+  if (!savedMissed) return;
+
+  const rawMissed = JSON.parse(savedMissed);
+  missedQuestions = [...rawMissed];
+
+  if (sessionInfo) {
+    sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (REVIEW MISSED MODE)`;
+  }
+
+  questions = shuffleArray(rawMissed).map(q => {
+    const originalCorrectText = q.options[q.correctIndex];
+    const shuffledOptions = shuffleArray(q.options);
+    const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+
+    return {
+      ...q,
+      options: shuffledOptions,
+      correctIndex: newCorrectIndex
+    };
+  });
+
+  navigateTo('quiz-screen');
+  renderStudyMode();
+}
+
 function clearSavedMissed(subjectName) {
-  const storageKey = `missed_y${currentYear}_${subjectName.toLowerCase()}`;
-  localStorage.removeItem(storageKey);
-  loadSubjectsForYear(currentYear); // Refresh UI to update badge and remove button
+  currentSubject = subjectName;
+  localStorage.removeItem(getStorageKey());
+  loadSubjectsForYear(currentYear);
 }
 
 // --- Timer System for Quiz Mode ---
@@ -202,7 +235,6 @@ async function startSession(subjectName, mode) {
   userScore = 0;
   studyAnsweredCount = 0;
 
-  // Retrieve saved missed questions for this subject from localStorage
   const savedMissed = localStorage.getItem(getStorageKey());
   missedQuestions = savedMissed ? JSON.parse(savedMissed) : [];
 
@@ -294,13 +326,21 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     selectedBtn.style.backgroundColor = '#10b981';
     selectedBtn.style.color = '#ffffff';
     userScore++;
+
+    // REMOVE question from missed array if answered correctly
+    missedQuestions = missedQuestions.filter(item => item.question !== q.question);
+    if (missedQuestions.length > 0) {
+      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
+    } else {
+      localStorage.removeItem(getStorageKey());
+    }
   } else {
     selectedBtn.style.backgroundColor = '#ef4444';
     selectedBtn.style.color = '#ffffff';
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
 
-    // Save wrong question to missed array & localStorage
+    // Add question if missed
     if (!missedQuestions.some(item => item.question === q.question)) {
       missedQuestions.push(q);
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -356,13 +396,21 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     selectedBtn.style.backgroundColor = '#10b981';
     selectedBtn.style.color = '#ffffff';
     userScore++;
+
+    // REMOVE question from missed array if answered correctly
+    missedQuestions = missedQuestions.filter(item => item.question !== q.question);
+    if (missedQuestions.length > 0) {
+      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
+    } else {
+      localStorage.removeItem(getStorageKey());
+    }
   } else {
     selectedBtn.style.backgroundColor = '#ef4444';
     selectedBtn.style.color = '#ffffff';
     allOptionBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allOptionBtns[q.correctIndex].style.color = '#ffffff';
 
-    // Save wrong question to missed array & localStorage
+    // Add question if missed
     if (!missedQuestions.some(item => item.question === q.question)) {
       missedQuestions.push(q);
       localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
@@ -405,13 +453,11 @@ function showResults() {
     }, 150);
   }
 
-  // Handle Retry Missed Questions button visibility
   if (missedQuestions.length > 0) {
     if (missedCountEl) missedCountEl.textContent = missedQuestions.length;
     if (retryMissedBtn) retryMissedBtn.classList.remove('hidden');
   } else {
     if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
-    // Clear storage if all questions are completed accurately
     localStorage.removeItem(getStorageKey());
   }
 
@@ -423,7 +469,7 @@ if (retryMissedBtn) {
   retryMissedBtn.addEventListener('click', () => {
     questions = shuffleArray(missedQuestions);
     missedQuestions = [];
-    localStorage.removeItem(getStorageKey()); // Clear previous saved list for fresh retry
+    localStorage.removeItem(getStorageKey());
     currentQuestionIndex = 0;
     userScore = 0;
     studyAnsweredCount = 0;
