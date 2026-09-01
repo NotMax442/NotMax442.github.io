@@ -11,7 +11,7 @@ let currentYear = null;
 
 // Temporary manifest data mapping years to available subjects
 const manifestData = {
-  "1": ["Biology", "Chemistry", "Anatomy"],
+  "1": ["I-D-A", "MED-PRO", "F-N-S"],
   "2": ["Physiology", "Pathology", "Microbiology"],
   "3": ["Pharmacology", "Internal Medicine"],
   "4": ["Pediatrics", "Surgery"],
