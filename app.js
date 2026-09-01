@@ -16,6 +16,7 @@ const lessonText = document.getElementById('lesson-text');
 const nextBtn = document.getElementById('next-btn');
 const restartBtn = document.getElementById('restart-btn');
 const finalScore = document.getElementById('final-score');
+const timerDisplay = document.getElementById('timer-display');
 
 // App State
 let currentYear = null;
@@ -26,7 +27,11 @@ let currentQuestionIndex = 0;
 let userScore = 0;
 let selectedOptionIndex = null;
 
-// Temporary manifest data mapping years to available subjects
+// Timer State
+let timerInterval = null;
+let timeRemaining = 3600; // 60 minutes in seconds
+
+// Manifest data mapping years to available subjects
 const manifestData = {
   "1": ["I-D-A", "MED-PRO", "F-N-S"],
   "2": ["Physiology", "Pathology", "Microbiology"],
@@ -55,40 +60,35 @@ function navigateTo(screenId) {
   }
 }
 
-// 1. Landing Screen -> Click "Study Now" -> Year Screen
-enterStudyBtn.addEventListener('click', () => {
-  navigateTo('year-screen');
-});
+enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
-// 2. Year Cards -> Select Year -> Load Subjects & Open Subject Screen
 yearCards.forEach(card => {
   card.addEventListener('click', () => {
     currentYear = card.getAttribute('data-year');
     selectedYearTitle.textContent = `Year ${currentYear} Subjects`;
-    
     loadSubjectsForYear(currentYear);
     navigateTo('subject-screen');
   });
 });
 
-// 3. Dynamic Back Buttons
 backButtons.forEach(button => {
   button.addEventListener('click', () => {
+    clearInterval(timerInterval); // Stop timer if user backs out
     const targetScreenId = button.getAttribute('data-target');
     navigateTo(targetScreenId);
   });
 });
 
 if (restartBtn) {
-  restartBtn.addEventListener('click', () => navigateTo('year-screen'));
+  restartBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    navigateTo('year-screen');
+  });
 }
 
-// --- Subject & Session Logic ---
-
-// Generates cards with separate Study and Quiz buttons
+// --- Subject Cards ---
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
-  
   const subjects = manifestData[year] || [];
   
   subjects.forEach(subject => {
@@ -107,30 +107,71 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// Launches Study or Quiz Mode for the chosen subject & fetches questions
+// --- Timer System ---
+function startQuizTimer() {
+  clearInterval(timerInterval);
+  timeRemaining = 3600; // 60 minutes = 3600 seconds
+  updateTimerUI();
+
+  if (timerDisplay) timerDisplay.classList.remove('hidden');
+
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerUI();
+
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      alert("⏱️ Time is up! Submitting your quiz now.");
+      showResults();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  if (!timerDisplay) return;
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  
+  const formattedMins = String(minutes).padStart(2, '0');
+  const formattedSecs = String(seconds).padStart(2, '0');
+  
+  timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
+}
+
+// --- Session Initialization ---
 async function startSession(subjectName, mode) {
   currentSubject = subjectName;
   currentMode = mode;
   currentQuestionIndex = 0;
   userScore = 0;
+  clearInterval(timerInterval);
 
   if (sessionInfo) {
     sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
   }
 
-  // Constructs path: data/year-1/i-d-a.json
   const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
 
   try {
     const response = await fetch(filePath);
-    if (!response.ok) {
-      throw new Error(`File not found at: ${filePath}`);
-    }
+    if (!response.ok) throw new Error(`File not found at: ${filePath}`);
     const data = await response.json();
 
-    // 1. Shuffle question order
-    questions = shuffleArray(data.questions).map(q => {
-      // 2. Shuffle option order while keeping track of original correct answer
+    // 1. Fully shuffle all questions
+    let processedQuestions = shuffleArray(data.questions);
+
+    // 2. Mode Separation
+    if (mode === 'quiz') {
+      // Pick maximum 60 questions for Quiz Mode
+      processedQuestions = processedQuestions.slice(0, 60);
+      startQuizTimer();
+    } else {
+      // Hide timer in Study Mode
+      if (timerDisplay) timerDisplay.classList.add('hidden');
+    }
+
+    // 3. Shuffle options for each selected question
+    questions = processedQuestions.map(q => {
       const originalCorrectText = q.options[q.correctIndex];
       const shuffledOptions = shuffleArray(q.options);
       const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
@@ -145,12 +186,12 @@ async function startSession(subjectName, mode) {
     navigateTo('quiz-screen');
     renderQuestion();
   } catch (error) {
-    alert(`Could not load questions!\nMake sure your file is placed at:\n"${filePath}"`);
+    alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
     console.error(error);
   }
 }
 
-// --- Render Question Logic ---
+// --- Question Renderer ---
 function renderQuestion() {
   selectedOptionIndex = null;
   lessonBox.classList.add('hidden');
@@ -170,31 +211,28 @@ function renderQuestion() {
   });
 }
 
-// --- Answer Handling Logic ---
+// --- Option Selection Logic ---
 function handleOptionClick(selectedIndex, selectedBtn) {
-  if (selectedOptionIndex !== null) return; // Lock choices once clicked
+  if (selectedOptionIndex !== null) return;
   selectedOptionIndex = selectedIndex;
 
   const q = questions[currentQuestionIndex];
   const allOptionBtns = optionsContainer.querySelectorAll('.option-btn');
 
-  // Disable further clicks on all choices
   allOptionBtns.forEach(btn => btn.style.pointerEvents = 'none');
 
   if (selectedIndex === q.correctIndex) {
-    selectedBtn.style.backgroundColor = '#10b981'; // Green
+    selectedBtn.style.backgroundColor = '#10b981';
     selectedBtn.style.color = '#ffffff';
     userScore++;
   } else {
-    selectedBtn.style.backgroundColor = '#ef4444'; // Red
+    selectedBtn.style.backgroundColor = '#ef4444';
     selectedBtn.style.color = '#ffffff';
-    
-    // Highlight the correct answer in green
     allOptionBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allOptionBtns[q.correctIndex].style.color = '#ffffff';
   }
 
-  // Reveal Lesson Explanation in Study Mode
+  // Reveal Lesson Explanation only in Study Mode
   if (currentMode === 'study') {
     lessonText.textContent = q.lesson || "No explanation provided for this question.";
     lessonBox.classList.remove('hidden');
@@ -203,7 +241,7 @@ function handleOptionClick(selectedIndex, selectedBtn) {
   nextBtn.classList.remove('hidden');
 }
 
-// --- Next Button & Results Logic ---
+// --- Controls & Completion ---
 if (nextBtn) {
   nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
@@ -216,6 +254,7 @@ if (nextBtn) {
 }
 
 function showResults() {
+  clearInterval(timerInterval); // Stop timer on completion
   if (finalScore) {
     finalScore.textContent = `You scored ${userScore} out of ${questions.length} (${Math.round((userScore / questions.length) * 100)}%)`;
   }
