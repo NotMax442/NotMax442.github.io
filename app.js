@@ -143,11 +143,29 @@ function navigateTo(screenId, isBackAction = false) {
   }
 }
 
-window.addEventListener('popstate', (event) => {
-  if (event.state && event.state.screenId) {
-    navigateTo(event.state.screenId, true);
+// --- Intercept Browser Back Button During Active Sessions ---
+window.addEventListener('popstate', async (event) => {
+  const quizScreen = document.getElementById('quiz-screen');
+  const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
+
+  if (isQuizActive) {
+    // Re-push quiz state to temporarily lock the browser back button stack
+    history.pushState({ screenId: 'quiz-screen' }, '');
+
+    // Show custom confirmation modal
+    const isConfirmed = await showCustomConfirm();
+    if (isConfirmed) {
+      clearInterval(timerInterval);
+      cancelAutoScroll();
+      navigateTo('subject-screen');
+    }
   } else {
-    navigateTo('landing-screen', true);
+    // Normal history navigation for non-quiz screens
+    if (event.state && event.state.screenId) {
+      navigateTo(event.state.screenId, true);
+    } else {
+      navigateTo('landing-screen', true);
+    }
   }
 });
 
