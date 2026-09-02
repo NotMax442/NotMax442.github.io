@@ -45,11 +45,30 @@
       </div>
     </div>
 
-<!-- My Account Screen -->
 <div id="account-screen" class="screen hidden">
   <button id="back-from-account-btn" class="btn back-btn">⬅️ Back</button>
   <h2>My Account & Vault</h2>
+
+  <div class="account-toolbar">
+    <button id="toggle-select-mode-btn" class="btn secondary-btn">☑️ Select</button>
+    <div id="bulk-controls" class="hidden" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+      <button id="select-all-btn" class="btn secondary-btn">Select All</button>
+      <button id="delete-selected-btn" class="btn danger-btn" disabled>🗑️ Delete Selected (0)</button>
+    </div>
+  </div>
+
   <div id="account-subject-list" class="subject-grid"></div>
+</div>
+
+<div id="delete-confirm-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <h3>⚠️ Are you sure?</h3>
+    <p id="delete-warning-text">Are you sure you want to delete these saved missed questions? This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button id="cancel-delete-btn" class="btn secondary-btn">Cancel</button>
+      <button id="confirm-delete-btn" class="btn danger-btn">Yes, Delete</button>
+    </div>
+  </div>
 </div>
 
 <!-- Anki Export Confirmation Modal -->
