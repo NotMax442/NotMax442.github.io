@@ -1662,17 +1662,6 @@
       "correctIndex": 3
     },
     {
-      "id": 155,
-      "question": "Viral Hepatitis",
-      "options": [
-        "Chronic ប្រមាណ 5-10%",
-        "20-30%",
-        "50-80%",
-        "60%"
-      ],
-      "correctIndex": 0
-    },
-    {
       "id": 156,
       "question": "Viral Hepatitis ណាខ្លះ Viral Hepatitis",
       "options": [
@@ -2804,6 +2793,17 @@
         "បាក់តេរីមានចលនា និង បាក់តេរីក្រាមណេកាទីវ"
       ],
       "correctIndex": 3
+    },
+    {
+      "id": 255,
+      "question": "Viral Hepatitis Chronic ប្រមាណ",
+      "options": [
+        "5-10%",
+        "20-30%",
+        "50-80%",
+        "60%"
+      ],
+      "correctIndex": 0
     }
   ]
 }
