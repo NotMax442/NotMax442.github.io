@@ -1970,17 +1970,6 @@
       "correctIndex": 2
     },
     {
-      "id": 183,
-      "question": "Treponema pallidum ជាបាក់តេរីដែលមានរូបរាងដូចខាងក្រោម",
-      "options": [
-        "បាក់តេរី Gram Positive",
-        "Gram Negative",
-        "បាក់តេរីមានចលនា",
-        "បាក់តេរីមានចលនា និង បាក់តេរី ហាម"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 184,
       "question": "រោគសញ្ញាដំណាក់កាលទីពីរនៃជំងឺស្វាយមានដូចជា៖",
       "options": [
@@ -2804,6 +2793,17 @@
         "នៅក្នុង Alphaherpesvirinae"
       ],
       "correctIndex": 2
+    },
+    {
+      "id": 255,
+      "question": "Treponema pallidum ជាបាក់តេរីដែលមានរូបរាងដូចខាងក្រោម",
+      "options": [
+        "បាក់តេរី Gram Positive",
+        "Gram Negative",
+        "បាក់តេរីមានចលនា",
+        "បាក់តេរីមានចលនា និង បាក់តេរីក្រាមណេកាទីវ"
+      ],
+      "correctIndex": 3
     }
   ]
 }
