@@ -565,24 +565,6 @@
       "id": 52,
       "question": "ការពិនិត្យរក Virus?",
       "options": [
-        "ការពិនិត្យរក Virus ដោយផ្ទាល់ (Direct diagnosis) គឺជាការពិនិត្យគេឃើញរកឃើញខ្លួនរបស់ Virus",
-        "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការរកឃើញរកឃើញហ្សែនរបស់ Virus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 53,
-      "question": "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការពិនិត្យរកឃើញ Virus ទាំងមូល",
-      "options": [
-        "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការពិនិត្យរកឃើញ Virus ទាំងមូល",
-        "ការពិនិត្យរក Virus ដោយផ្ទាល់ (Direct diagnosis) គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ (antibody)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 54,
-      "question": "ការពិនិត្យរក Virus?",
-      "options": [
         "Indirect diagnosis ការពិនិត្យរក Virus ដោយផ្ទាល់ គឺជាការរកឃើញ កេឃើញ ហ្សែននា Virus",
         "Indirect diagnosis គឺជាការពិនិត្យរកឃើញបំណែករបស់ Virus ដូចជា viral antigen viral protein",
         "Indirect diagnosis ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ គឺជាការពិនិត្យរកឃើញ ទាំងមូល",
@@ -591,7 +573,7 @@
       "correctIndex": 3
     },
     {
-      "id": 55,
+      "id": 53,
       "question": "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) ?",
       "options": [
         "គឺជាការពិនិត្យរកឃើញ ហ្សែនរបស់ Virus",
@@ -602,7 +584,7 @@
       "correctIndex": 1
     },
     {
-      "id": 56,
+      "id": 54,
       "question": "Active immunization និង Passive immunization ?",
       "options": [
         "Active immunization គឺការចាក់អង់ទី (Seroprophylaxie)",
@@ -613,7 +595,7 @@
       "correctIndex": 3
     },
     {
-      "id": 57,
+      "id": 55,
       "question": "ដូចម្តេច Active Immunization និង Passive immunization ?",
       "options": [
         "Passive immunization ការចាក់អង់ទីគ័រ (Seroprophylaxie)",
@@ -624,7 +606,7 @@
       "correctIndex": 0
     },
     {
-      "id": 58,
+      "id": 56,
       "question": "ដូចម្តេចហៅថារ៉ាក់សាំង ?",
       "options": [
         "ជាជំងឺបង្កដោយ virus",
@@ -635,7 +617,7 @@
       "correctIndex": 3
     },
     {
-      "id": 59,
+      "id": 57,
       "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
       "options": [
         "វ៉ាក់សាំងធ្វើពី virus ត្រូវបានសំលាប់ហៅថា Live attenuated vaccine",
@@ -646,7 +628,7 @@
       "correctIndex": 3
     },
     {
-      "id": 60,
+      "id": 58,
       "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
       "options": [
         "Inactivated vaccine គឺវ៉ាក់សាំងធ្វើពី virus ត្រូវបានសំលាប់",
@@ -657,7 +639,7 @@
       "correctIndex": 0
     },
     {
-      "id": 61,
+      "id": 59,
       "question": "ប្រភេទវ៉ាក់សាំងមានអ្វីខ្លះ?",
       "options": [
         "Inactivated vaccine គឺវ៉ាក់សាំងធ្វើពី virus នៅរស់តែ បន្ថយភាពសាហាវ របស់វា",
@@ -668,7 +650,7 @@
       "correctIndex": 1
     },
     {
-      "id": 62,
+      "id": 60,
       "question": "មេរោគ កញ្ជ្រោល (measles virus)",
       "options": [
         "ជាមេរោគ ដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -679,7 +661,7 @@
       "correctIndex": 3
     },
     {
-      "id": 63,
+      "id": 61,
       "question": "មេរោគកញ្ជ្រោល (measles virus)",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -690,7 +672,7 @@
       "correctIndex": 2
     },
     {
-      "id": 64,
+      "id": 62,
       "question": "មេរោគកញ្ជ្រោល (measles virus)",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -701,7 +683,7 @@
       "correctIndex": 1
     },
     {
-      "id": 65,
+      "id": 63,
       "question": "មេរោគ កញ្ជ្រោល (measles virus)",
       "options": [
         "មិនមានមនុស្ស ដែលផ្ទុកមេរោគកញ្ជ្រោលទេ",
@@ -712,7 +694,7 @@
       "correctIndex": 3
     },
     {
-      "id": 66,
+      "id": 64,
       "question": "មេរោគ កញ្ជ្រោល (measles virus)",
       "options": [
         "មេរោគកញ្ជ្រោល មិនមានការបង្កើតអង់ទីគ័រ នៅក្នុងខ្លួនទេ",
@@ -723,7 +705,7 @@
       "correctIndex": 3
     },
     {
-      "id": 67,
+      "id": 65,
       "question": "គេអាចពិនិត្យរកមេរោគកញ្ជ្រោល?",
       "options": [
         "មេរោគកញ្ជ្រោលមិនមានក្នុងរន្ធច្រមុះ មិនមានក្នុងបំពង់កទេ",
@@ -734,7 +716,7 @@
       "correctIndex": 3
     },
     {
-      "id": 68,
+      "id": 66,
       "question": "មេរោគកញ្ជ្រោល (measles virus)",
       "options": [
         "មិនទាន់មានវ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោលទេ",
@@ -745,7 +727,7 @@
       "correctIndex": 2
     },
     {
-      "id": 69,
+      "id": 67,
       "question": "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោល",
       "options": [
         "វ៉ាក់សាំងសំរាប់ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលដែលសំលាប់ (Inactivated vaccine)",
@@ -756,7 +738,7 @@
       "correctIndex": 3
     },
     {
-      "id": 70,
+      "id": 68,
       "question": "វ៉ាក់សាំង សំរាប់ ជំងឺកញ្ជ្រោល",
       "options": [
         "វ៉ាក់សាំង សំរាប់ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលនៅរស់ តែបន្ថយភាពសាហាវរបស់វា (Live attenuated vaccine)",
@@ -767,7 +749,7 @@
       "correctIndex": 0
     },
     {
-      "id": 71,
+      "id": 69,
       "question": "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល",
       "options": [
         "វ៉ាក់សាំងសំរាប់ ការពារជំងឺកញ្ជ្រោល ធ្វើពី មេរោគកញ្ជ្រោលដែលសំលាប់ (inactivated vaccine)",
@@ -778,7 +760,7 @@
       "correctIndex": 3
     },
     {
-      "id": 72,
+      "id": 70,
       "question": "មេរោគ ស្រឡទែន (mumps virus)",
       "options": [
         "មិនមានមនុស្ស ដែលផ្ទុកមេរោគស្រឡទែនទេ",
@@ -789,7 +771,7 @@
       "correctIndex": 3
     },
     {
-      "id": 73,
+      "id": 71,
       "question": "មេរោគ ស្រឡទែន (mumps virus)",
       "options": [
         "មេរោគស្រឡទែន ជាមេរោគ ដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -800,7 +782,7 @@
       "correctIndex": 3
     },
     {
-      "id": 74,
+      "id": 72,
       "question": "មេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មានមនុស្សនិងសត្វជាច្រើន ដែលផ្ទុកមេរោគស្រឡទែន",
@@ -811,7 +793,7 @@
       "correctIndex": 1
     },
     {
-      "id": 75,
+      "id": 73,
       "question": "មេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មានតែ សត្វដែលផ្ទុកមេរោគនេះ",
@@ -822,7 +804,7 @@
       "correctIndex": 1
     },
     {
-      "id": 76,
+      "id": 74,
       "question": "មេរោគ ស្រឡទែន (mumps virus)",
       "options": [
         "មេរោគនេះមិនបង្ករោគ នៅក្រពេញទឹកមាត់ទេ",
@@ -833,7 +815,7 @@
       "correctIndex": 3
     },
     {
-      "id": 77,
+      "id": 75,
       "question": "ការចំលងមេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មិនឆ្លងតាមទឹកមាត់",
@@ -844,7 +826,7 @@
       "correctIndex": 3
     },
     {
-      "id": 78,
+      "id": 76,
       "question": "មេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មេរោគនេះមិនបង្ករោគនៅក្រពេញទឹកមាត់ទេ",
@@ -855,7 +837,7 @@
       "correctIndex": 3
     },
     {
-      "id": 79,
+      "id": 77,
       "question": "គេអាចពិនិត្យរកមេរោគស្រឡទែន (mumps virus) នៅក្នុងវត្ថុវិភាគណាខ្លះ?",
       "options": [
         "គេមិនអាចពិនិត្យរកមេរោគស្រឡទែននៅក្នុងទឹកមាត់ទេ",
@@ -866,7 +848,7 @@
       "correctIndex": 3
     },
     {
-      "id": 80,
+      "id": 78,
       "question": "មេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មេរោគនេះចូលចិត្តបង្ករោគនៅក្រពេញ (glandular tropism) ពិសេសនៅក្រពេញទឹកមាត់ធ្វើអោយរលាកក្រពេញទឹកមាត់",
@@ -877,7 +859,7 @@
       "correctIndex": 0
     },
     {
-      "id": 81,
+      "id": 79,
       "question": "មេរោគស្រឡទែន (mumps virus)",
       "options": [
         "មេរោគស្រឡទែនធ្វើអោយរលាកក្រពេញទឹកមាត់",
@@ -888,7 +870,7 @@
       "correctIndex": 0
     },
     {
-      "id": 82,
+      "id": 80,
       "question": "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែន (live attenuated mumps vaccine)",
       "options": [
         "វ៉ាក់សាំងសំរាប់ការពារជំងឺស្រឡទែន ធ្វើពី មេរោគស្រឡទែនដែលសំលាប់ ជា subunit vaccine",
@@ -899,7 +881,7 @@
       "correctIndex": 3
     },
     {
-      "id": 83,
+      "id": 81,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -910,7 +892,7 @@
       "correctIndex": 3
     },
     {
-      "id": 84,
+      "id": 82,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -921,7 +903,7 @@
       "correctIndex": 2
     },
     {
-      "id": 85,
+      "id": 83,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -932,7 +914,7 @@
       "correctIndex": 3
     },
     {
-      "id": 86,
+      "id": 84,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "មានសត្វជាច្រើនដែលផ្ទុកមេរោគស្កូចនេះ",
@@ -943,7 +925,7 @@
       "correctIndex": 2
     },
     {
-      "id": 87,
+      "id": 85,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "មានសត្វជាច្រើនដែលផ្ទុកមេរោគស្កូចនេះ",
@@ -954,7 +936,7 @@
       "correctIndex": 3
     },
     {
-      "id": 88,
+      "id": 86,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "មិនមានតែមនុស្សដែលផ្ទុកមេរោគស្កូច សត្វក៏ផ្ទុកមេរោគស្កូចដែរ",
@@ -965,7 +947,7 @@
       "correctIndex": 3
     },
     {
-      "id": 89,
+      "id": 87,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្កូចអាចឆ្លងដល់ទារកក្នុងផ្ទៃធ្វើអោយទារកមិនគ្រប់លក្ខណៈ (malformation foetal)",
@@ -976,7 +958,7 @@
       "correctIndex": 0
     },
     {
-      "id": 90,
+      "id": 88,
       "question": "មេរោគស្កូច (Rubella virus)",
       "options": [
         "ចំពោះស្ត្រីមានផ្ទៃពោះមេរោគស្កូចមិនអាចឆ្លងដល់ទារកក្នុងផ្ទៃ",
@@ -987,7 +969,7 @@
       "correctIndex": 3
     },
     {
-      "id": 91,
+      "id": 89,
       "question": "វ៉ាក់សាំងការពារជំងឺស្កូច (Rubella vaccine)",
       "options": [
         "វ៉ាក់សាំងការពារជំងឺស្កូចធ្វើពី មេរោគស្កូចសំលាប់ (inactivated vaccine)",
@@ -998,7 +980,7 @@
       "correctIndex": 3
     },
     {
-      "id": 92,
+      "id": 90,
       "question": "មេរោគកញ្ជ្រោល មេរោគស្កូចនិងមេរោគស្រឡទែន",
       "options": [
         "មេរោគកញ្ជ្រោលនិង មេរោគស្កូចនៅក្នុងគ្រួសារ Paramyxoviridae ជាមួយគ្នា",
@@ -1009,7 +991,7 @@
       "correctIndex": 1
     },
     {
-      "id": 93,
+      "id": 91,
       "question": "មេរោគកញ្ជ្រោល មេរោគស្កូចនិងមេរោគស្រឡទែន",
       "options": [
         "មេរោគស្កូចនិងរោគកញ្ជ្រោល នៅក្នុងគ្រួសារ Paramyxoviridae ជាមួយគ្នា",
@@ -1020,7 +1002,7 @@
       "correctIndex": 3
     },
     {
-      "id": 94,
+      "id": 92,
       "question": "មេរោគកញ្ជ្រោល មេរោគស្កូចនិងមេរោគស្រឡទែន",
       "options": [
         "មេរោគស្រឡទែនមិនបង្ករោគនៅក្រពេញទេ",
@@ -1031,7 +1013,7 @@
       "correctIndex": 3
     },
     {
-      "id": 95,
+      "id": 93,
       "question": "មេរោគខាងក្រោមនេះ តើមេរោគមួយណាចូលចិត្តបង្ករោគនៅក្រពេញ (glandular tropism)?",
       "options": [
         "មេរោគកញ្ជ្រោល measles virus",
@@ -1042,7 +1024,7 @@
       "correctIndex": 2
     },
     {
-      "id": 96,
+      "id": 94,
       "question": "មេរោគខាងក្រោមនេះ តើមេរោគមួយណាអាចឆ្លងដល់ទារកក្នុងផ្ទៃធ្វើអោយទារកមិនគ្រប់លក្ខណៈ (malformation foetal)?",
       "options": [
         "មេរោគកញ្ជ្រោល measles virus",
@@ -1053,7 +1035,7 @@
       "correctIndex": 1
     },
     {
-      "id": 97,
+      "id": 95,
       "question": "មេរោគ Rotavirus",
       "options": [
         "ជាមេរោគដែលមានសំបក (Enveloped virus)",
@@ -1064,7 +1046,7 @@
       "correctIndex": 3
     },
     {
-      "id": 98,
+      "id": 96,
       "question": "មេរោគ Rotavirus",
       "options": [
         "មេរោគ Rotavirus មានប្រាំប្រភេទ Rotavirus: A, B, C, D, និង E",
@@ -1075,25 +1057,7 @@
       "correctIndex": 0
     },
     {
-      "id": 99,
-      "question": "មេរោគ Rotavirus",
-      "options": [
-        "មេរោគ Rotavirus បង្ករោគនៅផ្លូវដង្ហើម",
-        "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 100,
-      "question": "មេរោគ Rotavirus",
-      "options": [
-        "Rotavirus មិនចំលងតាមផ្លូវលាមក មកមាត់",
-        "មេរោគ Rotavirus បង្ករោគនៅពោះវៀន"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 101,
+      "id": 97,
       "question": "មេរោគ Rotavirus",
       "options": [
         "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
@@ -1104,7 +1068,7 @@
       "correctIndex": 3
     },
     {
-      "id": 102,
+      "id": 98,
       "question": "មេរោគ Rotavirus",
       "options": [
         "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
@@ -1115,7 +1079,7 @@
       "correctIndex": 3
     },
     {
-      "id": 103,
+      "id": 99,
       "question": "Rotavirus",
       "options": [
         "Rotavirus មិនបង្កជំងឺលើកូនក្មេងទេ",
@@ -1126,7 +1090,7 @@
       "correctIndex": 2
     },
     {
-      "id": 104,
+      "id": 100,
       "question": "មេរោគផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -1137,7 +1101,7 @@
       "correctIndex": 1
     },
     {
-      "id": 105,
+      "id": 101,
       "question": "មេរោគផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគ ផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
@@ -1148,7 +1112,7 @@
       "correctIndex": 2
     },
     {
-      "id": 106,
+      "id": 102,
       "question": "មេរោគផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
@@ -1159,7 +1123,7 @@
       "correctIndex": 1
     },
     {
-      "id": 107,
+      "id": 103,
       "question": "មេរោគ ផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
@@ -1170,7 +1134,7 @@
       "correctIndex": 2
     },
     {
-      "id": 108,
+      "id": 104,
       "question": "មេរោគ ផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគ ផ្តាសាយមានប្រាំប្រភេទគឺ A, B, C, D, និង E",
@@ -1181,7 +1145,7 @@
       "correctIndex": 3
     },
     {
-      "id": 109,
+      "id": 105,
       "question": "មេរោគផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគ ផ្តាសាយមានប្រាំប្រភេទ A, B, C, D, និង E",
@@ -1192,7 +1156,7 @@
       "correctIndex": 3
     },
     {
-      "id": 110,
+      "id": 106,
       "question": "មេរោគ ផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគផ្តាសាយប្រភេទ B មានច្រើនប្រភេទតូចៗហៅថា subtypes ដែលខុសគ្នាដោយសារ នៅលើសំបក HA និង NA",
@@ -1203,7 +1167,7 @@
       "correctIndex": 1
     },
     {
-      "id": 111,
+      "id": 107,
       "question": "មេរោគ Influenzavirus",
       "options": [
         "ចំពោះ ផ្តាសាយប្រភេទ មាន NA (Neuraminidase)",
@@ -1214,7 +1178,7 @@
       "correctIndex": 3
     },
     {
-      "id": 112,
+      "id": 108,
       "question": "មេរោគ ផ្តាសាយ Influenzavirus",
       "options": [
         "ចំពោះមេរោគផ្តាសាយប្រភេទមាន HA (Hemagglutinin) ១៦ប្រភេទផ្សេងគ្នា",
@@ -1225,7 +1189,7 @@
       "correctIndex": 3
     },
     {
-      "id": 113,
+      "id": 109,
       "question": "មេរោគ Influenzavirus",
       "options": [
         "ចំពោះមេរោគ ផ្តាសាយប្រភេទ A មានហ្សែន HA (Hemagglutinin) ១៦ប្រភេទផ្សេងគ្នា មាន NA (Neuraminidase) ៧ប្រភេទផ្សេងគ្នា",
@@ -1236,7 +1200,7 @@
       "correctIndex": 1
     },
     {
-      "id": 114,
+      "id": 110,
       "question": "អាណា ផ្តាសាយ Influenzavirus",
       "options": [
         "ចំពោះមេរោគផ្តាសាយប្រភេទ A មាន ហ្សែន HA (Hemagglutinin) ១៧ប្រភេទផ្សេងគ្នា មាន ហ្សែន NA (Neuraminidase) ៩ប្រភេទផ្សេងគ្នា",
@@ -1247,7 +1211,7 @@
       "correctIndex": 0
     },
     {
-      "id": 115,
+      "id": 111,
       "question": "អ្នកផ្ទុកមេរោគ Reservoir of Influenzavirus",
       "options": [
         "មនុស្សមិនដែល មានផ្ទុក ផ្តាសាយទេ",
@@ -1258,7 +1222,7 @@
       "correctIndex": 3
     },
     {
-      "id": 116,
+      "id": 112,
       "question": "អ្នកផ្ទុកមេរោគផ្តាសាយ Reservoir of Influenzavirus",
       "options": [
         "មានតែមនុស្សដែលផ្ទុកមេរោគផ្តាសាយគ្មានសត្វដែលផ្ទុកមេរោគនេះទេ",
@@ -1269,7 +1233,7 @@
       "correctIndex": 3
     },
     {
-      "id": 117,
+      "id": 113,
       "question": "វត្ថុវិភាគដើម្បីពិនិត្យរកមេរោគផ្តាសាយ",
       "options": [
         "វត្ថុវិភាគយកនៅមាត់ស្បូន",
@@ -1280,7 +1244,7 @@
       "correctIndex": 3
     },
     {
-      "id": 118,
+      "id": 114,
       "question": "មេរោគផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគផ្តាសាយរកឃើញនៅក្នុងលាមក ច្រើនជាង នៅក្នុងវត្ថុវិភាគយកនៅផ្លូវដង្ហើមខាងលើ",
@@ -1291,7 +1255,7 @@
       "correctIndex": 3
     },
     {
-      "id": 119,
+      "id": 115,
       "question": "មេរោគ ផ្តាសាយ Influenzavirus",
       "options": [
         "មេរោគផ្តាសាយមិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
@@ -1302,7 +1266,7 @@
       "correctIndex": 1
     },
     {
-      "id": 120,
+      "id": 116,
       "question": "Influenzavirus",
       "options": [
         "សាយមនុស្ស human influenza ច្រើនបង្កជំងឺ ផ្តាសាយធ្ងន់ធ្ងរ",
@@ -1313,7 +1277,7 @@
       "correctIndex": 2
     },
     {
-      "id": 121,
+      "id": 117,
       "question": "សាយ influenzavirus",
       "options": [
         "មេរោគផ្តាសាយប្រភេទ A កំរ បង្ករោគលើមនុស្សណាស់",
@@ -1324,7 +1288,7 @@
       "correctIndex": 3
     },
     {
-      "id": 122,
+      "id": 118,
       "question": "Coronavirus",
       "options": [
         "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -1335,7 +1299,7 @@
       "correctIndex": 3
     },
     {
-      "id": 123,
+      "id": 119,
       "question": "Coronavirus",
       "options": [
         "បង្ករោគបាននៅផ្លូវដង្ហើម",
@@ -1346,7 +1310,7 @@
       "correctIndex": 3
     },
     {
-      "id": 124,
+      "id": 120,
       "question": "អ្នកផ្ទុកមេរោគ Coronavirus (Reservoir of Coronavirus)",
       "options": [
         "បង្ករោគតែលើមនុស្ស",
@@ -1357,7 +1321,7 @@
       "correctIndex": 3
     },
     {
-      "id": 125,
+      "id": 121,
       "question": "អ្នកផ្ទុកមេរោគ Coronavirus (Reservoir of Coronavirus)",
       "options": [
         "មានតែមនុស្ស",
@@ -1368,7 +1332,7 @@
       "correctIndex": 3
     },
     {
-      "id": 126,
+      "id": 122,
       "question": "Coronavirus",
       "options": [
         "មិនអាចបង្កជំងឺផ្លូវដង្ហើមធ្ងន់ធ្ងរដូចជាជំងឺ SARS ទេ",
@@ -1379,7 +1343,7 @@
       "correctIndex": 3
     },
     {
-      "id": 127,
+      "id": 123,
       "question": "Coronavirus",
       "options": [
         "SARS-CoV-1 និង MERS-CoV ជាមេរោគ មិនចំលងតាមផ្លូវដង្ហើម",
@@ -1390,7 +1354,7 @@
       "correctIndex": 3
     },
     {
-      "id": 128,
+      "id": 124,
       "question": "Coronavirus",
       "options": [
         "SARS-CoV-1 មិនមែនជាមេរោគបង្កជំងឺលើមនុស្សទេ",
@@ -1401,7 +1365,7 @@
       "correctIndex": 3
     },
     {
-      "id": 129,
+      "id": 125,
       "question": "Coronavirus",
       "options": [
         "MERS-CoV មិនមែនជាមេរោគបង្កជំងឺលើមនុស្សទេ",
@@ -1412,7 +1376,7 @@
       "correctIndex": 3
     },
     {
-      "id": 130,
+      "id": 126,
       "question": "មេរោគ ក្នុងគ្រួសារ Herpesviridae",
       "options": [
         "ជាមេរោគ ដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -1423,7 +1387,7 @@
       "correctIndex": 3
     },
     {
-      "id": 131,
+      "id": 127,
       "question": "មេរោគក្នុងគ្រួសារ Herpesviridae",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -1434,7 +1398,7 @@
       "correctIndex": 2
     },
     {
-      "id": 132,
+      "id": 128,
       "question": "លក្ខណៈបង្ករោគ នៃមេរោគក្នុងគ្រួសារ Herpesviridae",
       "options": [
         "មេរោគមិនបង្ករោគភ្លាមៗ (no primary infection / Acute infection)",
@@ -1445,7 +1409,7 @@
       "correctIndex": 3
     },
     {
-      "id": 133,
+      "id": 129,
       "question": "មេរោគ Herpes simplex virus (HSV)",
       "options": [
         "ជាមេរោគមិននៅក្នុងគ្រួសារ Herpesviridae ទេ",
@@ -1456,7 +1420,7 @@
       "correctIndex": 3
     },
     {
-      "id": 134,
+      "id": 130,
       "question": "Herpes simplex virus (HSV)",
       "options": [
         "មានតែមនុស្សដែលផ្ទុកមេរោគ Herpes simplex virus គ្មានសត្វណាដែលផ្ទុកមេរោគនេះទេ",
@@ -1467,7 +1431,7 @@
       "correctIndex": 0
     },
     {
-      "id": 135,
+      "id": 131,
       "question": "Herpes simplex virus (HSV)",
       "options": [
         "មានតែសត្វដែលផ្ទុកមេរោគ Herpes simplex virus",
@@ -1478,7 +1442,7 @@
       "correctIndex": 3
     },
     {
-      "id": 136,
+      "id": 132,
       "question": "Virus Varicella Zona (VZV)",
       "options": [
         "បង្ករោគលើកទីមួយគឺបង្កជាជំងឺរើម (Zoster)",
@@ -1489,7 +1453,7 @@
       "correctIndex": 1
     },
     {
-      "id": 137,
+      "id": 133,
       "question": "មេរោគ Virus Varicella Zona (VZV)",
       "options": [
         "មិនបង្កជំងឺអុតស្វាយ (Varicella) ទេ",
@@ -1500,7 +1464,7 @@
       "correctIndex": 3
     },
     {
-      "id": 138,
+      "id": 134,
       "question": "មេរោគ Cytomegalovirus (CMV)",
       "options": [
         "ជាមេរោគមិននៅក្នុងគ្រួសារ Herpesviridae ទេ",
@@ -1511,7 +1475,7 @@
       "correctIndex": 3
     },
     {
-      "id": 139,
+      "id": 135,
       "question": "Epstein Barr Virus (EBV)",
       "options": [
         "ជាមេរោគមិននៅក្នុងគ្រួសារ Herpesviridae",
@@ -1522,7 +1486,7 @@
       "correctIndex": 3
     },
     {
-      "id": 140,
+      "id": 136,
       "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
       "options": [
         "ជាមេរោគដែលមិនមានសំបក (Non-Enveloped virus)",
@@ -1533,7 +1497,7 @@
       "correctIndex": 3
     },
     {
-      "id": 141,
+      "id": 137,
       "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
       "options": [
         "ជាមេរោគដែលគ្មានសំបក (Non-Enveloped virus)",
@@ -1544,7 +1508,7 @@
       "correctIndex": 3
     },
     {
-      "id": 142,
+      "id": 138,
       "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
       "options": [
         "ជំងឺឆ្កែឆ្កួតជាជំងឺមិនធ្ងន់ធ្ងរទេអាចព្យាបាលបាន",
@@ -1555,7 +1519,7 @@
       "correctIndex": 3
     },
     {
-      "id": 143,
+      "id": 139,
       "question": "មេរោគបង្កជំងឺឆ្កែឆ្កួត Rabies virus",
       "options": [
         "មិនបង្កជំងឺធ្ងន់ធ្ងរទេ",
@@ -1566,7 +1530,7 @@
       "correctIndex": 1
     },
     {
-      "id": 144,
+      "id": 140,
       "question": "មេរោគបង្ក Rables virus",
       "options": [
         "មិនបង្កជំងឺកូនឆ្លងទេ",
@@ -1577,7 +1541,7 @@
       "correctIndex": 1
     },
     {
-      "id": 145,
+      "id": 141,
       "question": "មេរោគ ជំងឺ Dengue virus",
       "options": [
         "ជា arbovirus",
@@ -1588,7 +1552,7 @@
       "correctIndex": 2
     },
     {
-      "id": 146,
+      "id": 142,
       "question": "មេរោគ Dengue virus",
       "options": [
         "ជា arbovirus",
@@ -1599,7 +1563,7 @@
       "correctIndex": 1
     },
     {
-      "id": 147,
+      "id": 143,
       "question": "មេរោគបង្កជំងឺ Dengue virus",
       "options": [
         "មានបួន serotypes: DENV-1, DENV-2, DENV-3, DENV-4",
@@ -1610,7 +1574,7 @@
       "correctIndex": 0
     },
     {
-      "id": 148,
+      "id": 144,
       "question": "មេរោគបង្កជំងឺ Dengue virus",
       "options": [
         "serotypes: DENV-1, DENV-2, DENV-3, DENV-4",
@@ -1621,7 +1585,7 @@
       "correctIndex": 0
     },
     {
-      "id": 149,
+      "id": 145,
       "question": "មេរោគបង្ក Dengue virus",
       "options": [
         "ចំលងមក មនុស្សតាម ផ្លូវដង្ហើម",
@@ -1632,49 +1596,7 @@
       "correctIndex": 3
     },
     {
-      "id": 150,
-      "question": "ការចំលង បង្ក Dengue virus",
-      "options": [
-        "ចំលងមក មូស ព្រៃ",
-        "ក្នុងការ",
-        "Japanese Encephalitis Virus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 151,
-      "question": "មេរោគ ជំងឺ Japanese Encephalitis Virus",
-      "options": [
-        "ជា arbovirus",
-        "ចំលងមកមនុស្សតាមរយៈមូសខាំ",
-        "មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
-        "ចំលងតាមផ្លូវដង្ហើម"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 152,
-      "question": "ជំងឺ Japanese Encephalitis Virus",
-      "options": [
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ",
-        "ចំលង មនុស្សតាមរយះឆ្កែឆ្កួតខាំ",
-        "មិនមាន វ៉ាក់សាំងសំរាប់ការពារទេ",
-        "ចំលងតាមផ្លូវ ង្កើត"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 153,
-      "question": "មេរោគ ជំងឺរលាក ខួរក្បាល Japanese Encephalitis Virus",
-      "options": [
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយៈថៃទាំ",
-        "ជា arbovirus ចំលងមកមនុស្សតាមរយះ ឆ្កែឆ្កួតខាំ",
-        "មាន វ៉ាក់សាំងសំរាប់ការពារ"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 154,
+      "id": 146,
       "question": "Chikungunya Virus",
       "options": [
         "ជា arbovirus",
@@ -1685,7 +1607,7 @@
       "correctIndex": 0
     },
     {
-      "id": 155,
+      "id": 147,
       "question": "ធាត ជំងឺ Chikungunya Virus",
       "options": [
         "ជា arbovirus ចំលងមកមនុស្សតាមរយះចែទាំ",
@@ -1696,7 +1618,7 @@
       "correctIndex": 3
     },
     {
-      "id": 156,
+      "id": 148,
       "question": "មេរោគ Arbovirus Virus",
       "options": [
         "មេរោគដែលមិនអាចចំលងដោយមូស ឬដោយ នាំ",
@@ -1707,7 +1629,7 @@
       "correctIndex": 1
     },
     {
-      "id": 157,
+      "id": 149,
       "question": "មេរោគ Arbovirus Virus",
       "options": [
         "មេរោគគ្រុនឈាម (Dengue virus) មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
@@ -1718,7 +1640,7 @@
       "correctIndex": 2
     },
     {
-      "id": 158,
+      "id": 150,
       "question": "Arbovirus Virus",
       "options": [
         "Dengue virus ជា Alphavirus",
@@ -1729,7 +1651,7 @@
       "correctIndex": 2
     },
     {
-      "id": 159,
+      "id": 151,
       "question": "តើភ្នាក់ងារចម្លងបាន Hepatitis",
       "options": [
         "HAV",
@@ -1740,7 +1662,7 @@
       "correctIndex": 1
     },
     {
-      "id": 160,
+      "id": 152,
       "question": "ចំពោះអ្នកដែលបានឆ្លង Viral Hepatitis B ឃើញមេរោគក្នុងវត្ថុភាពណា ឬ កណាខ្លះ?",
       "options": [
         "ទឹករំអិល (Semen Vaginal discharge)",
@@ -1751,7 +1673,7 @@
       "correctIndex": 2
     },
     {
-      "id": 161,
+      "id": 153,
       "question": "Viral Hepatitis ណាខ្លះដែលក្នុង កាយ លាមកមនុស្សចូល (fecal oral route)?",
       "options": [
         "Viral Hepatitis A និង E",
@@ -1762,38 +1684,7 @@
       "correctIndex": 0
     },
     {
-      "id": 162,
-      "question": "Viral Hepatitis ណាមួយដែលមិនអាចកើតឡើងបានប្រសិនបើអវត្តមាន ទៀត",
-      "options": [
-        "Viral Hepatitis A",
-        "Viral Hepatitis B",
-        "Viral Hepatitis C",
-        "Viral Hepatitis D"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 163,
-      "question": "Incubation period Viral hepatitis B",
-      "options": [
-        "10-15 ថ្ងៃ",
-        "50-180 ថ្ងៃ (6 សប្តាហ៍ ទៅ 6 ខែ)",
-        "10-50 ថ្ងៃ"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 164,
-      "question": "Incubation period",
-      "options": [
-        "2-6 សប្តាហ៍",
-        "4 សប្តាហ៍",
-        "6-10 សប្តាហ៍"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 165,
+      "id": 154,
       "question": "Viral Hepatitis ណាខ្លះដែលគ្មានវ៉ាក់សាំង",
       "options": [
         "Viral Hepatitis A B",
@@ -1804,7 +1695,7 @@
       "correctIndex": 3
     },
     {
-      "id": 166,
+      "id": 155,
       "question": "Viral Hepatitis",
       "options": [
         "Chronic ប្រមាណ 5-10%",
@@ -1815,7 +1706,7 @@
       "correctIndex": 0
     },
     {
-      "id": 167,
+      "id": 156,
       "question": "Viral Hepatitis ណាខ្លះ Viral Hepatitis",
       "options": [
         "Viral Hepatitis D (Coinfection)",
@@ -1826,7 +1717,7 @@
       "correctIndex": 0
     },
     {
-      "id": 168,
+      "id": 157,
       "question": "រយៈពេលប៉ុន្មានយ៉ាង cycle of Plasmodium falciparum?",
       "options": [
         "06-12h",
@@ -1837,7 +1728,7 @@
       "correctIndex": 2
     },
     {
-      "id": 169,
+      "id": 158,
       "question": "រយៈពេល នៃ life cycle of Plasmodium vivax or Plasmodium ovale?",
       "options": [
         "12h",
@@ -1848,7 +1739,7 @@
       "correctIndex": 2
     },
     {
-      "id": 170,
+      "id": 159,
       "question": "រយៈពេលប៉ុន្មានម៉ោងសំរាប់ មួយ life cycle of Plasmodium knowlesi?",
       "options": [
         "12h",
@@ -1859,7 +1750,7 @@
       "correctIndex": 1
     },
     {
-      "id": 171,
+      "id": 160,
       "question": "តើអ្វីទៅជាភ្នាក់ងារចំលងនៃជំងឺគ្រុនចាញ់ ?",
       "options": [
         "Mosquito within the genus Aedes infected",
@@ -1870,7 +1761,7 @@
       "correctIndex": 2
     },
     {
-      "id": 172,
+      "id": 161,
       "question": "តើទម្រង់អ្វីនៃមេរោគគ្រុនចាញ់ដែល ចម្លងពីសត្វមូស ទៅមនុស្ស",
       "options": [
         "Oocyst",
@@ -1881,7 +1772,7 @@
       "correctIndex": 1
     },
     {
-      "id": 173,
+      "id": 162,
       "question": "តើទំរង់អ្វីនៃមេរោគគ្រុនចាញ់ដែល ចម្លងពី មនុស្ស ទៅសត្វមូស ដើម្បីក្លាយទៅជាភ្នាក់ងារ",
       "options": [
         "Ring",
@@ -1892,7 +1783,7 @@
       "correctIndex": 3
     },
     {
-      "id": 174,
+      "id": 163,
       "question": "Plasmodium species ប្រភេទអ្វីដែលបង្កអោយមានជំងឺគ្រុនចាញ់ severe ?",
       "options": [
         "Plasmodium falciparum",
@@ -1903,7 +1794,7 @@
       "correctIndex": 0
     },
     {
-      "id": 175,
+      "id": 164,
       "question": "តើឃ្លាណាមួយខាងក្រោមដែលត្រឹមត្រូវ?",
       "options": [
         "ជំងឺគ្រុនចាញ់ធ្ងន់ធ្ងរ (Severe malaria) ជា medical emergency ហើយអាចរង់ចាំបានសំរាប់ការព្យាបាល",
@@ -1914,26 +1805,7 @@
       "correctIndex": 1
     },
     {
-      "id": 176,
-      "question": "Pseudomonas Family មួយ នៅគ្រប់ ពួក នៅក្នុង",
-      "options": [
-        "ជាតិ បរិវត្ត"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 177,
-      "question": "Pseudomonas inaju ត្រង់ឬនាបន្ទាត់កោង ពួកបានបណ្តោយនិងទទឹងប្រវែងដូច",
-      "options": [
-        "បណ្តោយ 1.5 ទៅ 3 um ទទឹង 0.5 ទៅ 1 um",
-        "បណ្តោយ 1.5 ទៅ 6 um ទទឹង 0.5 ទៅ 1.2 um",
-        "បណ្តោយ 1.5 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um",
-        "បណ្តោយ 1.5 ទៅ 7 um ទទឹង 0.5 ទៅ 1 um"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 178,
+      "id": 165,
       "question": "Complication ប្រភេទ Pseudomonas aeruginosa ដូចជា៖",
       "options": [
         "Pneumonia",
@@ -1944,7 +1816,7 @@
       "correctIndex": 3
     },
     {
-      "id": 179,
+      "id": 166,
       "question": "Antibiotics មានប្រសិទ្ធិភាពចំពោះ P.aeruginosa",
       "options": [
         "Cephalosporins",
@@ -1955,45 +1827,7 @@
       "correctIndex": 3
     },
     {
-      "id": 180,
-      "question": "Burkholderia spp ប្រភេទបាក់តេរី ដែលមាន (ជ្រើសរើសចំលើយមួយត្រឹមត្រូវ)",
-      "options": [
-        "Gives"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 181,
-      "question": "BurkholderiaSpp",
-      "options": [
-        "មិនត្រូវការ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 182,
-      "question": "BurkholderiaSpp រាងត្រង់ឬកោងបន្ទាត់កោង ពួកមាន ទទឹង ប្រវែងដូចខាងក្រោម",
-      "options": [
-        "បណ្តោយ 1.5 ទៅ 8 um ទទឹង 0.5 ទៅ 1 um",
-        "បណ្តោយ 1.2 ទៅ 5 um ទទឹង 0.5 ទៅ 1.2 um",
-        "បណ្តោយ 1.3 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um",
-        "បណ្តោយ 1.5 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 183,
-      "question": "BurkholderiaSpp បាក់តេរីបង្ហាញ ពណ៌ក្រហមនៅពេលដែលធ្វើការបំពាក់ពណ៌ Gram Stain គេចាត់ថ្នាក់",
-      "options": [
-        "Bacillus Gram Negative rod",
-        "Cocci Gram Positive",
-        "Bacillus Gram Positive rod",
-        "Cocci Gram Negative"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 184,
+      "id": 167,
       "question": "Burkholderia pseudomallei មេរោគដែលបណ្តាលអោយមានជំងឺ៖",
       "options": [
         "Melioidosis",
@@ -2004,17 +1838,7 @@
       "correctIndex": 0
     },
     {
-      "id": 185,
-      "question": "Burkholderia cepacia គេក៏អាចរកវាឃើញពី៖",
-      "options": [
-        "សំណល់ម្ហូបអាហារ",
-        "ទឹកសល់នៅក្នុង",
-        "សំណល់ម្ហូប និង ទឹកសល់នៅក្នុង"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 186,
+      "id": 168,
       "question": "B. pseudomallei គឺជាបាក់តេរីដែលឆ្លងចូលមកមនុស្សតាមរយះ",
       "options": [
         "ការលេបចូលបាក់តេរី",
@@ -2025,7 +1849,7 @@
       "correctIndex": 3
     },
     {
-      "id": 187,
+      "id": 169,
       "question": "Acinetobacter គឺជាបាក់តេរី",
       "options": [
         "មិនត្រូវការខ្យល់",
@@ -2036,7 +1860,7 @@
       "correctIndex": 3
     },
     {
-      "id": 188,
+      "id": 170,
       "question": "Clostridium គឺជាបាក់តេរីភាគច្រើនមិនមានចលនាទៅប៉ុន្តែមានពីរឬបីប្រភេទមានភាព",
       "options": [
         "C. clostridioforme",
@@ -2047,7 +1871,7 @@
       "correctIndex": 1
     },
     {
-      "id": 189,
+      "id": 171,
       "question": "Clostridium គឺបាក់តេរីរស់នៅក្នុង",
       "options": [
         "ទឹក",
@@ -2058,17 +1882,7 @@
       "correctIndex": 1
     },
     {
-      "id": 190,
-      "question": "Spore perfringens",
-      "options": [
-        "ទឹក",
-        "ដី",
-        "ស្បែក"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 191,
+      "id": 172,
       "question": "C.perfringens active ជាតិពុល ខាងក្រោម៖",
       "options": [
         "Beta toxin",
@@ -2079,7 +1893,7 @@
       "correctIndex": 1
     },
     {
-      "id": 192,
+      "id": 173,
       "question": "រោគសញ្ញានៃជំងឺតេតាណុសមានដូចជា៖",
       "options": [
         "ហើមភ្នែក",
@@ -2090,7 +1904,7 @@
       "correctIndex": 3
     },
     {
-      "id": 193,
+      "id": 174,
       "question": "C. perfringens គឺជាបាក់តេរីដែលធ្វើអោយមានការពុលចំណីអាហារដែរ វាមានការដោយសញ្ញាបន្ទាប់ពីរលេបបាក់តេរីចូលរយះពេលពីរ",
       "options": [
         "8 ទៅ 17 ម៉ោងក្រោយមក",
@@ -2101,27 +1915,7 @@
       "correctIndex": 0
     },
     {
-      "id": 194,
-      "question": "Mycoplasma spp បាក់តេរីដែលរស់នៅក្នុង",
-      "options": [
-        "សត្វបក្សីស្រុក",
-        "សត្វបក្សីព្រៃ",
-        "សត្វពាហនៈ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 195,
-      "question": "Mycoplasma spp ទំហំ",
-      "options": [
-        "0.3 um to 0.8 um",
-        "0.3 um to 0.9 um",
-        "0.3 um to 1.0 um"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 196,
+      "id": 175,
       "question": "Chlamydia spp បាក់តេរីមានទំហំដូចខាងក្រោម៖",
       "options": [
         "0.25 um to 1.0 um",
@@ -2132,17 +1926,7 @@
       "correctIndex": 0
     },
     {
-      "id": 197,
-      "question": "Chlamydia ឆ្លងតាមរយៈ",
-      "options": [
-        "ផ្លូវដង្ហើម",
-        "ម្តាយមានមេរោគទៅទារកក្នុងផ្ទៃ",
-        "ផ្លូវបន្តពូជ និង ម្តាយមានមេរោគទៅទារកក្នុងផ្ទៃ"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 198,
+      "id": 176,
       "question": "Rickettsiae គឺជាបាក់តេរី មានទំហំដូចខាងក្រោម",
       "options": [
         "បណ្តោយ 0.8 um to 2.0 um ទទឹង 0.3 um to 0.5 um",
@@ -2153,17 +1937,7 @@
       "correctIndex": 0
     },
     {
-      "id": 199,
-      "question": "Rickettsiae ឆ្លងទៅមនុស្សដោយសារតែ",
-      "options": [
-        "សត្វល្អិតនាំឬទិច",
-        "សត្វសេះនាំ",
-        "សត្វឆ្កែ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 200,
+      "id": 177,
       "question": "Rickettsiae បាក់តេរីដែលមានរូបរាងជា",
       "options": [
         "Coccoid rod-shaped",
@@ -2174,7 +1948,7 @@
       "correctIndex": 3
     },
     {
-      "id": 201,
+      "id": 178,
       "question": "Neisseria gonorrhoeae ជាភ្នាក់ងារបង្កជំងឺដូចខាងក្រោម៖",
       "options": [
         "Syphilis",
@@ -2185,7 +1959,7 @@
       "correctIndex": 1
     },
     {
-      "id": 202,
+      "id": 179,
       "question": "Neisseria meningitidis ជាភ្នាក់ងារបង្កជំងឺដូចខាងក្រោម៖",
       "options": [
         "Syphilis",
@@ -2196,7 +1970,7 @@
       "correctIndex": 3
     },
     {
-      "id": 203,
+      "id": 180,
       "question": "Neisseria meningitidis ជាបាក់តេរីដែលឆ្លងតាមរយះ៖",
       "options": [
         "ការចាក់ម្ជុលសារាំងរួមគ្នា",
@@ -2207,15 +1981,7 @@
       "correctIndex": 2
     },
     {
-      "id": 204,
-      "question": "Neisseria gonorrhea ជាបាក់តេរីដែលឆ្លង",
-      "options": [
-        "ការចាក់ម្ជុលសារាំងរួមគ្នា"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 205,
+      "id": 181,
       "question": "Neisseria Spp គឺជាបាក់តេរីដែលមានទំហំដូចខាងក្រោម",
       "options": [
         "0.6 um to 1.0 um",
@@ -2226,7 +1992,7 @@
       "correctIndex": 0
     },
     {
-      "id": 206,
+      "id": 182,
       "question": "Syphilis ជាជំងឺមួយដែលបង្ករឡើងដោយប្រភេទបាក់តេរីដូចខាងក្រោម៖",
       "options": [
         "Neisseria meningitides",
@@ -2237,17 +2003,7 @@
       "correctIndex": 2
     },
     {
-      "id": 207,
-      "question": "Treponema pallidum ជាបាក់តេរីដែលងាយងាប់ក្រោមលក្ខណដូចខាងក្រោម៖",
-      "options": [
-        "សើម",
-        "ស្ងួត",
-        "ក្តៅ និងស្ងួត"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 208,
+      "id": 183,
       "question": "Treponema pallidum ជាបាក់តេរីដែលមានរូបរាងដូចខាងក្រោម",
       "options": [
         "បាក់តេរី Gram Positive",
@@ -2258,7 +2014,7 @@
       "correctIndex": 3
     },
     {
-      "id": 209,
+      "id": 184,
       "question": "រោគសញ្ញាដំណាក់កាលទីពីរនៃជំងឺស្វាយមានដូចជា៖",
       "options": [
         "ឈឺក្បាល",
@@ -2269,7 +2025,7 @@
       "correctIndex": 3
     },
     {
-      "id": 210,
+      "id": 185,
       "question": "Leptospira គឺជាបាក់តេរីមានទំហំដូចខាងក្រោម៖",
       "options": [
         "បណ្តោយ 6 um to 18 um ទទឹង 0.1 um to 0.3 um",
@@ -2280,17 +2036,7 @@
       "correctIndex": 1
     },
     {
-      "id": 211,
-      "question": "ដំណាក់កាលទី២ នៃជំងឺ Leptospirosis គឺមានលេចចេញនូវចង្កោមរោគសញ្ញា ដែលបញ្ជាក់ពីលក្ខណៈ ការរាតត្បាតនៅលើ៖",
-      "options": [
-        "តំរងនោម",
-        "ភាពស្លេកស្លាំង",
-        "តំរងនោម ថ្លើមនិងភាពស្លេកស្លាំង"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 212,
+      "id": 186,
       "question": "Staphylococci គឺជា៖",
       "options": [
         "Gram Positive cocci",
@@ -2301,17 +2047,7 @@
       "correctIndex": 0
     },
     {
-      "id": 213,
-      "question": "Staphylococci បង្កជំងឺភាគច្រើន",
-      "options": [
-        "ថ្លើម",
-        "តំរងនោម",
-        "ពោះវៀន"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 214,
+      "id": 187,
       "question": "Staphylococci តាមរយៈជាតិពុល",
       "options": [
         "Local lesions Skin",
@@ -2322,7 +2058,7 @@
       "correctIndex": 2
     },
     {
-      "id": 215,
+      "id": 188,
       "question": "Staphylococcus មានការឆ្លងផ្ទាល់",
       "options": [
         "Food-poisoning",
@@ -2333,26 +2069,7 @@
       "correctIndex": 0
     },
     {
-      "id": 216,
-      "question": "Streptococcus spp.",
-      "options": [
-        "Gram-Negative",
-        "Gram-Positive",
-        "ពងបែក"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 217,
-      "question": "Staphylococcus aureus ឆ្លងច្រើនជាងគេមាន",
-      "options": [
-        "តំរងនោម",
-        "ថ្លើម"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 218,
+      "id": 189,
       "question": "Streptococci pneumoniae",
       "options": [
         "មាន Polysaccharide C",
@@ -2363,7 +2080,7 @@
       "correctIndex": 0
     },
     {
-      "id": 219,
+      "id": 190,
       "question": "Enterococci បង្កជំងឺ:",
       "options": [
         "សួត",
@@ -2374,7 +2091,7 @@
       "correctIndex": 1
     },
     {
-      "id": 220,
+      "id": 191,
       "question": "Enterococcus spp infections:",
       "options": [
         "Urinary tract infections",
@@ -2385,7 +2102,7 @@
       "correctIndex": 3
     },
     {
-      "id": 221,
+      "id": 192,
       "question": "តើបាក់តេរីជាកោសិកាប្រភេទណាបង្កើនចំនួនរបស់វាដោយវិធីណា?",
       "options": [
         "កោសិកាប្រភេទ Prokaryote បង្កើនចំនួនដោយ Mitosis",
@@ -2396,7 +2113,7 @@
       "correctIndex": 1
     },
     {
-      "id": 222,
+      "id": 193,
       "question": "តើបាក់តេរីក្រុម cocci មានទំរង់រូបរាងដូចម្តេច?",
       "options": [
         "រាងទ្រវែង ដំបង",
@@ -2407,40 +2124,7 @@
       "correctIndex": 3
     },
     {
-      "id": 223,
-      "question": "តើបាក់តេរីក្រុម bacilli មានទំរង់រូបរាងដូចម្តេច?",
-      "options": [
-        "រាងមូល",
-        "រាងទ្រវែងដូចដំបង",
-        "រាងអង្គុញ spiral",
-        "រាងដូចខ្សែរ២វេញចូលគ្នា"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 224,
-      "question": "តើលំដាប់លំដោយចាត់ថ្នាក់ពីធំទៅតូចមួយណាដែលត្រឹមត្រូវ?",
-      "options": [
-        "Family > Genus > Species",
-        "Genus > Family > Species",
-        "Species > Genus > Family",
-        "Family > Species > Genus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 225,
-      "question": "ជ្រើសរើសចំលើយដែលត្រឹមត្រូវទាក់ទងនឹងកត្តាចូលរួមទ្រទ្រង់ជីវិតនិង ការលូតលាស់របស់បាក់តេរី",
-      "options": [
-        "គ្រប់បាក់តេរីត្រូវការអុកស៊ីសែន",
-        "គ្រប់បាក់តេរីមិនត្រូវការអុកស៊ីសែន",
-        "Temperature, pH, oxygen ស្រប",
-        "គ្រប់បាក់តេរីត្រូវការ pH អាស៊ីដ"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 226,
+      "id": 194,
       "question": "Streptococcus pyogenes មានរូបរាងដូចម្តេច?",
       "options": [
         "រាងទ្រវែងដូចដំបង",
@@ -2451,7 +2135,183 @@
       "correctIndex": 1
     },
     {
-      "id": 227,
+      "id": 195,
+      "question": "ភ្នាក់ងារបង្កជំងឺ STD (Sexual Transmission Disease) ?",
+      "options": [
+        "Trichomoniasis",
+        "Giardia",
+        "Lamblia",
+        "Amebia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 196,
+      "question": "Staphylococci បញ្ចេញ Endotoxins នាំអោយមានអ្វី?",
+      "options": [
+        "រលាកថ្លើម",
+        "រលាកលំពែង",
+        "រលាកតំរងនោម",
+        "Toxic shock syndrome"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 197,
+      "question": "Staphylococcus aureus is the most pathogenic ?",
+      "options": [
+        "Pneumonia (ជំងឺរលាកសួត)",
+        "Gastroenteritis (រលាកពោះវៀន ក្រពះ)",
+        "Scalded skin syndrome (ពងបែកលើស្បែក)",
+        "Toxic shock syndrome"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 198,
+      "question": "Streptococcal toxic shock syndrome មានអ្វី?",
+      "options": [
+        "Hypotension (សំពាធឈាមទាប)",
+        "ហេវហត់",
+        "ហើមមុខ",
+        "នោមញឹក"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 199,
+      "question": "Risk factors in pneumococci មានអ្វី?",
+      "options": [
+        "chronic cardiorespiratory disease",
+        "Pneumonia",
+        "Toxic shock syndrome",
+        "Gastroenteritis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 200,
+      "question": "Life-cycle helminth មានលក្ខណៈជាអ្វី?",
+      "options": [
+        "Cyst",
+        "Larva",
+        "Egg",
+        "Pupa"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 201,
+      "question": "Amebiase Pleuropulmonary ជំងឺរលាកសួត ថ្មីមានសញ្ញាអ្វី?",
+      "options": [
+        "មិនមានសញ្ញាសំគាល់",
+        "ក្អកមិនមានឈាម",
+        "លាមកមានឈាមនិងសំបោរ",
+        "ការវិវត្តន៍ទៅរកបួសសួតនិងឆ្ងាយទងសួត"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 202,
+      "question": "ពងនៅក្នុងសាច់គោនៃព្រូន Saginata គេអោយឈ្មោះថាអ្វី?",
+      "options": [
+        "Oncospheres gravid",
+        "Proglottid",
+        "Egg",
+        "Cyst"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 203,
+      "question": "Cysticercosis គឺអ្វី?",
+      "options": [
+        "Oncospheres gravid",
+        "Proglottid",
+        "Taenia saginata",
+        "Cysticercus"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 204,
+      "question": "សញ្ញាវិនិច្ឆ័យច្បាស់លាស់នៃជំងឺ taeniasis គឺអ្វី?",
+      "options": [
+        "មិនចង់បរិភោគអាហារ",
+        "ល្ហិតល្ហៃហត់ខ្លាំង",
+        "ឈឺក្បាល",
+        "ចង់ក្អួត ឈឺពោះ រាគរូស"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 205,
+      "question": "ចម្លង Echinococcosis ទៅមនុស្សតាមរយៈអ្វី?",
+      "options": [
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្កែ",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្មា",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វព្រាប",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វគោ"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 206,
+      "question": "Fasciolopsis ជាជំងឺដែលបង្កដោយព្រូនមួយប្រភេទពីអ្វី?",
+      "options": [
+        "F. buski",
+        "Trematode",
+        "Platyhelminthes",
+        "Nematode"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 207,
+      "question": "តើបាក់តេរីក្រុម bacilli មានទំរង់រូបរាងដូចម្តេច?",
+      "options": [
+        "រាងមូល",
+        "រាងទ្រវែងដូចដំបង",
+        "រាងអង្គុញ spiral",
+        "រាងដូចខ្សែរ២វេញចូលគ្នា"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 208,
+      "question": "តើលំដាប់លំដោយចាត់ថ្នាក់ពីធំទៅតូចមួយណាដែលត្រឹមត្រូវ?",
+      "options": [
+        "Family > Genus > Species",
+        "Genus > Family > Species",
+        "Species > Genus > Family",
+        "Family > Species > Genus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 209,
+      "question": "ជ្រើសរើសចំលើយដែលត្រឹមត្រូវទាក់ទងនឹងកត្តាចូលរួមទ្រទ្រង់ជីវិតនិង ការលូតលាស់របស់បាក់តេរី",
+      "options": [
+        "គ្រប់បាក់តេរីត្រូវការអុកស៊ីសែន",
+        "គ្រប់បាក់តេរីមិនត្រូវការអុកស៊ីសែន",
+        "Temperature, pH, oxygen ស្រប",
+        "គ្រប់បាក់តេរីត្រូវការ pH អាស៊ីដ"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 210,
+      "question": "Streptococcus pyogenes មានរូបរាងដូចម្តេច?",
+      "options": [
+        "រាងទ្រវែងដូចដំបង",
+        "រាងមូល",
+        "រាងអង្គុញ spiral",
+        "រាងដូចខ្សែរ២វេញចូលគ្នា"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 211,
       "question": "Leptospira interrogans មានរូបរាងដូចម្តេច?",
       "options": [
         "រាងដូចខ្សែរ២វេញចូលគ្នា",
@@ -2462,531 +2322,497 @@
       "correctIndex": 3
     },
     {
-      "id": 228,
+      "id": 212,
       "question": "ប៉ារាសិតអាចបំផ្លាញ Host ឬ ធ្វើអោយស្លាប់បានទេ?",
       "options": [
         "អាចបំផ្លាញ host",
         "បំផ្លាញបាន",
         "មិនធ្វើអោយ host ស្លាប់",
         "អាចធ្វើអោយស្លាប់"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 213,
+      "question": "ការរាតត្បាតដោយផ្ទាល់ទៅលើជាលិកាមានអ្វី?",
+      "options": [
+        "រលាកថ្លើម",
+        "រលាកថង់ទឹកប្រមាត់",
+        "រលាកតំរងនោម",
+        "លើស្បែក"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 214,
+      "question": "ជំងឺបង្កដោយ Streptococci មានដូចជាអ្វី?",
+      "options": [
+        "រលាកបំពង់អាហារ (Pharyngitis)",
+        "រលាកក្រពេញបំពង់ក (Tonsillitis)",
+        "រលាកស្រោមបេះដូង (Pericarditis)",
+        "រលាកសួតរ៉ាំរ៉ៃ (Chronic lung disease)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 215,
+      "question": "Trematode Pathogene មានអ្វី?",
+      "options": [
+        "Schistosoma",
+        "Taenia",
+        "Nematode",
+        "Cestode"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 216,
+      "question": "Trophozoites បញ្ចេញអង់ស៊ីម Proteolytic (proteinase cysteine) នាំអោយខូចអ្វី?",
+      "options": [
+        "ខូចពោះវៀន",
+        "ខូចក្រពះ",
+        "Mucosa",
+        "Mucosa និង Submucosa"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 217,
+      "question": "ជំងឺរលាកថ្លើមរ៉ាំរ៉ៃបណ្តាលមកពី Ameba មានសញ្ញាអ្វី?",
+      "options": [
+        "Hepatalgia ឈឺចាប់ពេលស្ទាបទំហំរបស់ថ្លើម",
+        "Hepatomegaly",
+        "Splenomegaly",
+        "ទឹក"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 218,
+      "question": "វិធានការអនាម័យមានសារៈសំខាន់ចំពោះការបង្កដោយ Balantidium coli មានអ្វី?",
+      "options": [
+        "ចាក់វ៉ាក់សាំងការពារ",
+        "ចំអិនសាច់ជ្រូកអោយបានល្អ",
+        "ចំអិនសាច់គោអោយបានល្អ",
+        "អនាម័យសត្វចិញ្ចឹមក្នុងផ្ទះ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 219,
+      "question": "ពងនៅក្នុងសាច់គោនៃព្រូន Saginata គេអោយឈ្មោះថាអ្វី?",
+      "options": [
+        "Oncospheres gravid",
+        "Proglottid",
+        "Egg",
+        "Cyst"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 220,
+      "question": "សញ្ញាវិនិច្ឆ័យច្បាស់លាស់នៃជំងឺ taeniasis គឺអ្វី?",
+      "options": [
+        "មិនចង់បរិភោគអាហារ",
+        "ល្ហិតល្ហៃហត់ខ្លាំង",
+        "ឈឺក្បាល",
+        "ចង់ក្អួត ឈឺពោះ រាគរូស"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 221,
+      "question": "ចម្លង Echinococcosis ទៅមនុស្សតាមរយៈអ្វី?",
+      "options": [
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្កែ",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្មា",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វព្រាប",
+        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វគោ"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 222,
+      "question": "Fasciolopsis ជាជំងឺដែលបង្កដោយព្រូនមួយប្រភេទពីអ្វី?",
+      "options": [
+        "F. buski",
+        "Trematode",
+        "Platyhelminthes",
+        "Nematode"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 223,
+      "question": "Viral Hepatitis ណាមួយដែលមិនអាចកើតឡើងបានប្រសិនបើមិនមានវត្តមានមេរោគផ្សេងទៀត",
+      "options": [
+        "Viral Hepatitis A",
+        "Viral Hepatitis B",
+        "Viral Hepatitis C",
+        "Viral Hepatitis D"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 224,
+      "question": "វិធានការអនាម័យមានសារៈសំខាន់ចំពោះការបង្កដោយ Balantidium coli មានអ្វី?",
+      "options": [
+        "ចាក់វ៉ាក់សាំងការពារ",
+        "ចំអិនសាច់ជ្រូកអោយបានល្អ",
+        "ចំអិនសាច់គោអោយបានល្អ",
+        "អនាម័យសត្វចិញ្ចឹមក្នុងផ្ទះ"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 225,
+      "question": "Cysticercus ហើយក៏វិវត្តន៍ទៅជាអ្វី?",
+      "options": [
+        "Cysticerci",
+        "Protoscolices",
+        "Oncospheres gravid",
+        "Proglottid,"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 226,
+      "question": "Cysticercosis គឺអ្វី?",
+      "options": [
+        "Oncospheres gravid",
+        "Proglottid",
+        "Taenia saginata",
+        "Cysticercus"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 227,
+      "question": "ការពិនិត្យរក Virus?",
+      "options": [
+        "ការពិនិត្យរក Virus ដោយផ្ទាល់ (Direct diagnosis) គឺជាការពិនិត្យរកឃើញរកឃើញហ្សែនរបស់ Virus",
+        "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការរកឃើញរកឃើញហ្សែនរបស់ Virus",
+        "ការពិនិត្យរក Virus ដោយមិនផ្ទាល់ (Indirect diagnosis) គឺជាការពិនិត្យរកឃើញ Virus​ ទាំងមូល",
+        "ការពិនិត្យរក Virus ដោយផ្ទាល់ (Direct diagnosis) គឺជាការពិនិត្យរកឃើញអង់ទីគ័រ​ (antibody)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 228,
+      "question": "Burkholderia spp ប្រភេទបាក់តេរី ដែលមាននៅគ្រប់ទីកន្លែងនៃពិភពលោក។ពួកវារស់នៅក្នុង៖(សូមជ្រើសរើសចំលើយមួយត្រឹមត្រូវ)",
+      "options": [
+        "ទឹក",
+        "ដី",
+        "ខ្យល់",
+        "ទឹកនិងដី"
       ],
       "correctIndex": 3
     },
     {
       "id": 229,
-      "question": "បច្ចុប្បន្ននេះ AIDS ក៏ជាធាតុធ្វើអោយមានការកើតមានជំងឺអ្វី ?",
+      "question": "BurkholderiaSpp គឺជាប្រភេទបាក់តេរី៖",
       "options": [
-        "ជំងឺឱកាសនិយម",
-        "ជំងឺស្បែក"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 230,
-      "question": "ភ្នាក់ងារបង្កជំងឺ STD (Sexual Transmission Disease) ?",
-      "options": [
-        "Trichomoniasis",
-        "Giardia",
-        "Lamblia",
-        "Amebia"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 231,
-      "question": "ការរីកលូតលាស់និងសាយភាយរបស់ Nematode បណ្តាលអោយខូចខាតអ្វី?",
-      "options": [
-        "ខូចកោសិកា",
-        "ខូចថ្លើម",
-        "រលាកតំរងនោម"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 232,
-      "question": "Staphylococci បញ្ចេញ Endotoxins នាំអោយមានអ្វី?",
-      "options": [
-        "រលាកថ្លើម",
-        "រលាកលំពែង",
-        "រលាកតំរងនោម",
-        "Toxic shock syndrome"
+        "ត្រូវការខ្យល់",
+        "មិនត្រូវការខ្យល់",
+        "Non spore forming",
+        "ត្រូវការខ្យល់ និង​ non spore forming"
       ],
       "correctIndex": 3
     },
     {
-      "id": 233,
-      "question": "Staphylococcus aureus is the most pathogenic ?",
+      "id": 230,
+      "question": "Pseudomonas មានរូបរាងត្រង់ឬជាបន្ទាត់កោង ពួកមានបណ្តោយនិងទទឹងប្រវែងដូចខាងក្រោម៖",
       "options": [
-        "Pneumonia (ជំងឺរលាកសួត)",
-        "Gastroenteritis (រលាកពោះវៀន ក្រពះ)",
-        "Scalded skin syndrome (ពងបែកលើស្បែក)",
-        "Toxic shock syndrome"
+        "បណ្តោយ 1.5 ទៅ 3 um ទទឹង 0.5 ទៅ 1 um",
+        "បណ្តោយ 1.5 ទៅ 6 um ទទឹង 0.5 ទៅ 1.2 um",
+        "បណ្តោយ 1.5 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um",
+        "បណ្តោយ 1.5 ទៅ 7 um ទទឹង 0.5 ទៅ 1 um"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "id": 231,
+      "question": "Pseudomonas គឺជា Family មួយដ៏ធំ ដែលមាននៅគ្រប់ទីកន្លែងនៃពិភពលោក។ ពួកវារស់នៅក្នុង៖(សូមជ្រើសរើសចំលើយមួយត្រឹមត្រួវ)",
+      "options": [
+        "ទឹក",
+        "ដី",
+        "រុក្ខជាតិ​ បន្លែផ្លែឈើ",
+        "ទឹក ដី រុក្ខជាតិ​ បន្លែផ្លែឈើ"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 232,
+      "question": "Neisseria gonorrhea ជាបាក់តេរីដែលឆ្លងតាមរយះ៖",
+      "options": [
+        "ការចាក់ម្ជុលសារុាំងរួមគ្នា",
+        "ការរួមភេទ",
+        "ប្រពន័្ធផ្លូវដង្ហើម",
+        "មូសខាំ"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "id": 233,
+      "question": "BurkholderiaSpp មានរូបរាងត្រង់ឬជាបន្ទាត់កោង ពួកមានបណ្តោយនិងទទឹងប្រវែងដូចខាងក្រោម៖",
+      "options": [
+        "បណ្តោយ 1.5 ទៅ 6 um ទទឹង 0.5 ទៅ 1 um",
+        "បណ្តោយ 1.2 ទៅ 5 um ទទឹង 0.5 ទៅ 1.2 um",
+        "បណ្តោយ 1.3 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um",
+        "បណ្តោយ 1 ទៅ 5 um ទទឹង 0.5 ទៅ 1 um"
       ],
       "correctIndex": 3
     },
     {
       "id": 234,
-      "question": "ការរាតត្បាតដោយផ្ទាល់ទៅលើជាលិកាមានអ្វី?",
+      "question": "Burkholderia cepacia គេក៏អាចរកវាឃើញពី៖",
       "options": [
-        "រលាកថ្លើម",
-        "រលាកថង់ទឹកប្រមាត់",
-        "រលាកតំរងនោម",
-        "លើស្បែក"
+        "សំណល់ម្ហូបអាហារ",
+        "ទឹកសល់នៅក្នុង",
+        "សំណល់ម្ហូបអាហារ និង ទឹកសល់នៅក្នុងដប",
+        "ខ្យល់"
       ],
-      "correctIndex": 3
+      "correctIndex": 2
     },
     {
       "id": 235,
-      "question": "Streptococcal toxic shock syndrome មានអ្វី?",
+      "question": "BurkholderiaSpp គឺជាបាក់តេរីចាប់ពណ៌ក្រហមនៅពេលគេធ្វើការបំពាក់ពណ៌Gram Stain ពួកវាជា៖",
       "options": [
-        "Hypotension (សំពាធឈាមទាប)",
-        "ហេវហត់",
-        "ហើមមុខ",
-        "នោមញឹក"
+        "Bacillus Gram Negative rod",
+        "Cocci Gram Positive",
+        "Bacillus Gram Positive rod",
+        "Cocci Gram Negative"
       ],
       "correctIndex": 0
     },
     {
       "id": 236,
-      "question": "ជំងឺបង្កដោយ Streptococci មានដូចជាអ្វី?",
+      "question": "Burkholderia spp គឺជាបាក់តេរីដែលមាន",
       "options": [
-        "រលាកបំពង់អាហារ (Pharyngitis)",
-        "រលាកក្រពេញបំពង់ក (Tonsillitis)",
-        "រលាកស្រោមបេះដូង (Pericarditis)",
-        "រលាកសួតរ៉ាំរ៉ៃ (Chronic lung disease)"
+        "Catalase Negative and Oxydase Positive",
+        "Catalase Positive and Oxydase Negative",
+        "Catalase Negative and Oxydase Negative",
+        "Catalase Positive and Oxydase Positive"
       ],
-      "correctIndex": 0
+      "correctIndex": 3
     },
     {
       "id": 237,
-      "question": "Risk factors in pneumococci មានអ្វី?",
+      "question": "មេរោគ Rotavirus",
       "options": [
-        "chronic cardiorespiratory disease",
-        "Pneumonia",
-        "Toxic shock syndrome",
-        "Gastroenteritis"
+        "មេរោគ Rotavirus បង្ករោគនៅផ្លូវដង្ហើម",
+        "មេរោគ Rotavirus មិនបង្កជំងឺរាគលើកូនក្មេង",
+        "មេរោគ Rotavirus បង្ករោគនៅពោះវៀន",
+        "មេរោគ Rotavirus មិនចំលងតាមផ្លូវលាមក មកមាត់"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 238,
-      "question": "Trematode Pathogene មានអ្វី?",
+      "question": "បច្ចុប្បន្ននេះ AIDS ក៏ជាធាតុធ្វើអោយមានការកើតមានជំងឺអ្វី ?",
       "options": [
-        "Schistosoma",
-        "Taenia",
-        "Nematode",
-        "Cestode"
+        "ជំងឺឱកាសនិយម",
+        "ជំងឺស្បែក",
+        "ជំងឺរុាំរ៉ៃ",
+        "ជំងឺរបេង"
       ],
       "correctIndex": 0
     },
     {
       "id": 239,
-      "question": "Life-cycle helminth មានលក្ខណៈជាអ្វី?",
+      "question": "Staphylococcus aureus ឆ្លងច្រើនជាងគេមាន:",
       "options": [
-        "Cyst",
-        "Larva",
-        "Egg",
-        "Pupa"
+        "តំរងនោម",
+        "ថ្លើម",
+        "ស្បែក",
+        "ក្រពះ"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 240,
-      "question": "Trophozoites បញ្ចេញអង់ស៊ីម Proteolytic (proteinase cysteine) នាំអោយខូចអ្វី?",
+      "question": "ការចំលងមេរោគបង្កជំងឺគ្រុនឈាម Dengue virus",
       "options": [
-        "ខូចពោះវៀន",
-        "ខូចក្រពះ",
-        "Mucosa",
-        "Mucosa និង Submucosa"
+        "ចំលងមកមនុស្សតាមរយះមូសមានមេរោគគ្រុនឈាមខាំ",
+        "ចំលងមកមនុស្សតាមរយះឆ្កែខាំ",
+        "ឆ្លងតាមផ្លូវដង្ហើម",
+        "ឆ្លងតាមផ្លូវលាមក​ មក មាត់"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 241,
-      "question": "ជំងឺរលាកថ្លើមរ៉ាំរ៉ៃបណ្តាលមកពី Ameba មានសញ្ញាអ្វី?",
+      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
       "options": [
-        "Hepatalgia ឈឺចាប់ពេលស្ទាបទំហំរបស់ថ្លើម",
-        "Hepatomegaly",
-        "Splenomegaly",
-        "ទឹក"
+        "ជា arbovirus ចំលងមកមនុស្សតាមរយៈថៃទាំ",
+        "ជា arbovirus ចំលងមកមនុស្សតាមរយះឆ្កែឆ្កួតខាំ",
+        "មានវ៉ាក់សាំងសំរាប់ការពារ",
+        "មិនមានវ៉ាក់សាំងសំរាប់ការពារ"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 242,
-      "question": "Amebiase Pleuropulmonary ជំងឺរលាកសួត ថ្មីមានសញ្ញាអ្វី?",
+      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
       "options": [
-        "មិនមានសញ្ញាសំគាល់",
-        "ក្អកមិនមានឈាម",
-        "លាមកមានឈាមនិងសំបោរ",
-        "ការវិវត្តន៍ទៅរកបួសសួតនិងឆ្ងាយទងសួត"
+        "ជា arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ",
+        "ចំលងមកមនុស្សតាមរយះឆ្កែឆ្កួតខាំ",
+        "មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
+        "ចំលងតាមផ្លូវដង្ហើម"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 243,
-      "question": "វិធានការអនាម័យមានសារៈសំខាន់ចំពោះការបង្កដោយ Balantidium coli មានអ្វី?",
+      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
       "options": [
-        "ចាក់វ៉ាក់សាំងការពារ",
-        "ចំអិនសាច់ជ្រូកអោយបានល្អ",
-        "ចំអិនសាច់គោអោយបានល្អ",
-        "អនាម័យសត្វចិញ្ចឹមក្នុងផ្ទះ"
+        "ជា arbovirus​ ចំលងមកមនុស្សតាមរយៈមូសខាំ",
+        "ជា arbovirus​ ចំលងមកមនុស្សតាមរយៈចៃខាំ",
+        "មិនមានវ៉ាក់សាំងសំរាប់ការពារទេ",
+        "ចំលងតាមផ្លូវដង្ហើម"
       ],
-      "correctIndex": 1
+      "correctIndex": 0
     },
     {
       "id": 244,
-      "question": "ពងនៅក្នុងសាច់គោនៃព្រូន Saginata គេអោយឈ្មោះថាអ្វី?",
+      "question": "មេរោគបង្កជំងឺរលាកខួរក្បាល Japanese Encephalitis Virus",
       "options": [
-        "Oncospheres gravid",
-        "Proglottid",
-        "Egg",
-        "Cyst"
+        "ជា​​ arbovirus មិនចំលងមកមនុស្សតាមរយះមូសខាំទេ",
+        "ជាមេរោគដែលមានហ្សែនជា​ nucleic acid ប្រភេទ DNA មួយខ្សែ (single-stranded DNA)",
+        "នៅក្នុង genus Alphavirus",
+        "ជា​​ arbovirus ចំលងមកមនុស្សតាមរយះមូសខាំ"
       ],
       "correctIndex": 3
     },
     {
       "id": 245,
-      "question": "Cysticercus ហើយក៏វិវត្តន៍ទៅជាអ្វី?",
+      "question": "តើ Incubation period​ របស់ Viral hepatitis E ជាទូទៅមានរយះពេលប៉ុន្មាន?",
       "options": [
-        "Cysticerci",
-        "Protoscolices"
+        "2-6 សប្តាហ៍",
+        "4-8 សប្តាហ៍",
+        "6-10 សប្តាហ៍",
+        "10-15 សប្តាហ៍"
       ],
-      "correctIndex": 1
+      "correctIndex": 0
     },
     {
       "id": 246,
-      "question": "Cysticercosis គឺអ្វី?",
+      "question": "តើ Incubation period​ របស់ Viral hepatitis B​ ជាទូទៅមានរយះពេលប៉ុន្មាន?",
       "options": [
-        "Oncospheres gravid",
-        "Proglottid",
-        "Taenia saginata",
-        "Cysticercus"
+        "10-15 សប្តាហ៍",
+        "2-6 សប្តាហ៍",
+        "4-8 សប្តាហ៍",
+        "6-10 សប្តាហ៍"
       ],
-      "correctIndex": 3
+      "correctIndex": 0
     },
     {
       "id": 247,
-      "question": "សញ្ញាវិនិច្ឆ័យច្បាស់លាស់នៃជំងឺ taeniasis គឺអ្វី?",
+      "question": "Spore របស់់បាក់តេរី C.perfringens​ មាននៅក្នុង៖",
       "options": [
-        "មិនចង់បរិភោគអាហារ",
-        "ល្ហិតល្ហៃហត់ខ្លាំង",
-        "ឈឺក្បាល",
-        "ចង់ក្អួត ឈឺពោះ រាគរូស"
+        "ទឹក",
+        "ដី",
+        "ស្បែក",
+        "ដី និង ស្បែក"
       ],
       "correctIndex": 3
     },
     {
       "id": 248,
-      "question": "ចម្លង Echinococcosis ទៅមនុស្សតាមរយៈអ្វី?",
+      "question": "Mycoplasma spp បាក់តេរីដែលរស់នៅក្នុង៖",
       "options": [
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្កែ",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្មា",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វព្រាប",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វគោ"
+        "សត្វបក្សីស្រុក",
+        "សត្វបក្សីព្រៃ",
+        "សត្វពាហនៈ",
+        "ដី"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 249,
-      "question": "Fasciolopsis ជាជំងឺដែលបង្កដោយព្រូនមួយប្រភេទពីអ្វី?",
+      "question": "Mycoplasma spp គឺជាបាក់តេរីមានទំហំដូចខាងក្រោម៖",
       "options": [
-        "F. buski",
-        "Trematode",
-        "Platyhelminthes",
-        "Nematode"
+        "0.3 um to 0.8 um",
+        "0.3 um to 0.9 um",
+        "0.3 um to 0.6 um",
+        "0.3 um to 0.7 um"
       ],
       "correctIndex": 0
     },
     {
       "id": 250,
-      "question": "តើបាក់តេរីក្រុម bacilli មានទំរង់រូបរាងដូចម្តេច?",
+      "question": "Chlamydia គឺជាបាកតេរីឆ្លងតាមរយៈ",
       "options": [
-        "រាងមូល",
-        "រាងទ្រវែងដូចដំបង",
-        "រាងអង្គុញ spiral",
-        "រាងដូចខ្សែរ២វេញចូលគ្នា"
+        "ផ្លូវដង្ហើម",
+        "ម្តាយមានមេរោគទៅទារកក្នុងផ្ទៃ",
+        "ផ្លូវបន្តពូជ និង ម្តាយមានមេរោគទៅទារកក្នុងផ្ទៃ",
+        "ផ្លូវបន្តពូជ"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 251,
-      "question": "តើលំដាប់លំដោយចាត់ថ្នាក់ពីធំទៅតូចមួយណាដែលត្រឹមត្រូវ?",
+      "question": "Rickettsiae ឆ្លងទៅមនុស្សដោយសារតែ៖",
       "options": [
-        "Family > Genus > Species",
-        "Genus > Family > Species",
-        "Species > Genus > Family",
-        "Family > Species > Genus"
+        "សត្វល្អិតខាំឬទិច",
+        "សត្វសេះនាំ",
+        "សត្វឆ្កែ",
+        "ពពួកសត្វចៃខាំ"
       ],
-      "correctIndex": 0
+      "correctIndex": 3
     },
     {
       "id": 252,
-      "question": "ជ្រើសរើសចំលើយដែលត្រឹមត្រូវទាក់ទងនឹងកត្តាចូលរួមទ្រទ្រង់ជីវិតនិង ការលូតលាស់របស់បាក់តេរី",
+      "question": "Treponema pallidum ជាបាក់តេរីដែលងាយងាប់ក្រោមលក្ខណដូចខាងក្រោម៖",
       "options": [
-        "គ្រប់បាក់តេរីត្រូវការអុកស៊ីសែន",
-        "គ្រប់បាក់តេរីមិនត្រូវការអុកស៊ីសែន",
-        "Temperature, pH, oxygen ស្រប",
-        "គ្រប់បាក់តេរីត្រូវការ pH អាស៊ីដ"
+        "សើម",
+        "ស្ងួត",
+        "ក្តៅ និងស្ងួត",
+        "ក្តៅ"
       ],
       "correctIndex": 2
     },
     {
       "id": 253,
-      "question": "Streptococcus pyogenes មានរូបរាងដូចម្តេច?",
+      "question": "ដំណាក់កាលទី២ នៃជំងឺ Leptospirosis គឺមានលេចចេញនូវចង្កោមរោគសញ្ញា ដែលបញ្ជាក់ពីលក្ខណៈ នៃការរាតត្បាតនៅលើ៖",
       "options": [
-        "រាងទ្រវែងដូចដំបង",
-        "រាងមូល",
-        "រាងអង្គុញ spiral",
-        "រាងដូចខ្សែរ២វេញចូលគ្នា"
+        "តំរងនោម",
+        "ភាពស្លេកស្លាំង",
+        "តំរងនោម ថ្លើមនិងភាពស្លេកស្លាំង",
+        "ថ្លើម"
       ],
-      "correctIndex": 1
+      "correctIndex": 2
     },
     {
       "id": 254,
-      "question": "Leptospira interrogans មានរូបរាងដូចម្តេច?",
+      "question": "Staphylococci បង្កជំងឺភាគច្រើន:",
       "options": [
-        "រាងដូចខ្សែរ២វេញចូលគ្នា",
-        "រាងមូល",
-        "រាងទ្រវែងដូចដំបង",
-        "រាងអង្គុញ spiral"
+        "ថ្លើម",
+        "តំរងនោម",
+        "ពោះវៀន",
+        "ស្បែក"
       ],
       "correctIndex": 3
     },
     {
       "id": 255,
-      "question": "ប៉ារាសិតអាចបំផ្លាញ Host ឬ ធ្វើអោយស្លាប់បានទេ?",
+      "question": "Streptococcus spp.",
       "options": [
-        "អាចបំផ្លាញ host",
-        "បំផ្លាញបាន",
-        "មិនធ្វើអោយ host ស្លាប់",
-        "អាចធ្វើអោយស្លាប់"
+        "Gram-Negative",
+        "Gram-Positive",
+        "រាងសំប៉ែត",
+        "រាងត្រវែង"
       ],
-      "correctIndex": 3
+      "correctIndex": 1
     },
     {
       "id": 256,
-      "question": "បច្ចុប្បន្ននេះ AIDS ក៏ជាធាតុធ្វើអោយមានការកើតមានជំងឺអ្វី ?",
-      "options": [
-        "ជំងឺឱកាសនិយម",
-        "ជំងឺស្បែក"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 257,
-      "question": "ភ្នាក់ងារបង្កជំងឺ STD (Sexual Transmission Disease) ?",
-      "options": [
-        "Trichomoniasis",
-        "Giardia",
-        "Lamblia",
-        "Amebia"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 258,
       "question": "ការរីកលូតលាស់និងសាយភាយរបស់ Nematode បណ្តាលអោយខូចខាតអ្វី?",
       "options": [
         "ខូចកោសិកា",
         "ខូចថ្លើម",
-        "រលាកតំរងនោម"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 259,
-      "question": "Staphylococci បញ្ចេញ Endotoxins នាំអោយមានអ្វី?",
-      "options": [
-        "រលាកថ្លើម",
-        "រលាកលំពែង",
         "រលាកតំរងនោម",
-        "Toxic shock syndrome"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 260,
-      "question": "Staphylococcus aureus is the most pathogenic ?",
-      "options": [
-        "Pneumonia (ជំងឺរលាកសួត)",
-        "Gastroenteritis (រលាកពោះវៀន ក្រពះ)",
-        "Scalded skin syndrome (ពងបែកលើស្បែក)",
-        "Toxic shock syndrome"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 261,
-      "question": "ការរាតត្បាតដោយផ្ទាល់ទៅលើជាលិកាមានអ្វី?",
-      "options": [
-        "រលាកថ្លើម",
-        "រលាកថង់ទឹកប្រមាត់",
-        "រលាកតំរងនោម",
-        "លើស្បែក"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 262,
-      "question": "Streptococcal toxic shock syndrome មានអ្វី?",
-      "options": [
-        "Hypotension (សំពាធឈាមទាប)",
-        "ហេវហត់",
-        "ហើមមុខ",
-        "នោមញឹក"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 263,
-      "question": "ជំងឺបង្កដោយ Streptococci មានដូចជាអ្វី?",
-      "options": [
-        "រលាកបំពង់អាហារ (Pharyngitis)",
-        "រលាកក្រពេញបំពង់ក (Tonsillitis)",
-        "រលាកស្រោមបេះដូង (Pericarditis)",
-        "រលាកសួតរ៉ាំរ៉ៃ (Chronic lung disease)"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 264,
-      "question": "Risk factors in pneumococci មានអ្វី?",
-      "options": [
-        "chronic cardiorespiratory disease",
-        "Pneumonia",
-        "Toxic shock syndrome",
-        "Gastroenteritis"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 265,
-      "question": "Trematode Pathogene មានអ្វី?",
-      "options": [
-        "Schistosoma",
-        "Taenia",
-        "Nematode",
-        "Cestode"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 266,
-      "question": "Life-cycle helminth មានលក្ខណៈជាអ្វី?",
-      "options": [
-        "Cyst",
-        "Larva",
-        "Egg",
-        "Pupa"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 267,
-      "question": "Trophozoites បញ្ចេញអង់ស៊ីម Proteolytic (proteinase cysteine) នាំអោយខូចអ្វី?",
-      "options": [
-        "ខូចពោះវៀន",
-        "ខូចក្រពះ",
-        "Mucosa",
-        "Mucosa និង Submucosa"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 268,
-      "question": "ជំងឺរលាកថ្លើមរ៉ាំរ៉ៃបណ្តាលមកពី Ameba មានសញ្ញាអ្វី?",
-      "options": [
-        "Hepatalgia ឈឺចាប់ពេលស្ទាបទំហំរបស់ថ្លើម",
-        "Hepatomegaly",
-        "Splenomegaly",
-        "ទឹក"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 269,
-      "question": "Amebiase Pleuropulmonary ជំងឺរលាកសួត ថ្មីមានសញ្ញាអ្វី?",
-      "options": [
-        "មិនមានសញ្ញាសំគាល់",
-        "ក្អកមិនមានឈាម",
-        "លាមកមានឈាមនិងសំបោរ",
-        "ការវិវត្តន៍ទៅរកបួសសួតនិងឆ្ងាយទងសួត"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 270,
-      "question": "វិធានការអនាម័យមានសារៈសំខាន់ចំពោះការបង្កដោយ Balantidium coli មានអ្វី?",
-      "options": [
-        "ចាក់វ៉ាក់សាំងការពារ",
-        "ចំអិនសាច់ជ្រូកអោយបានល្អ",
-        "ចំអិនសាច់គោអោយបានល្អ",
-        "អនាម័យសត្វចិញ្ចឹមក្នុងផ្ទះ"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 271,
-      "question": "ពងនៅក្នុងសាច់គោនៃព្រូន Saginata គេអោយឈ្មោះថាអ្វី?",
-      "options": [
-        "Oncospheres gravid",
-        "Proglottid",
-        "Egg",
-        "Cyst"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 272,
-      "question": "Cysticercus ហើយក៏វិវត្តន៍ទៅជាអ្វី?",
-      "options": [
-        "Cysticerci",
-        "Protoscolices"
-      ],
-      "correctIndex": 1
-    },
-    {
-      "id": 273,
-      "question": "Cysticercosis គឺអ្វី?",
-      "options": [
-        "Oncospheres gravid",
-        "Proglottid",
-        "Taenia saginata",
-        "Cysticercus"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 274,
-      "question": "សញ្ញាវិនិច្ឆ័យច្បាស់លាស់នៃជំងឺ taeniasis គឺអ្វី?",
-      "options": [
-        "មិនចង់បរិភោគអាហារ",
-        "ល្ហិតល្ហៃហត់ខ្លាំង",
-        "ឈឺក្បាល",
-        "ចង់ក្អួត ឈឺពោះ រាគរូស"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 275,
-      "question": "ចម្លង Echinococcosis ទៅមនុស្សតាមរយៈអ្វី?",
-      "options": [
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្កែ",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វឆ្មា",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វព្រាប",
-        "ការប៉ះពាល់ផ្ទាល់លាមកសត្វគោ"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 276,
-      "question": "Fasciolopsis ជាជំងឺដែលបង្កដោយព្រូនមួយប្រភេទពីអ្វី?",
-      "options": [
-        "F. buski",
-        "Trematode",
-        "Platyhelminthes",
-        "Nematode"
+        "ខូចសួត"
       ],
       "correctIndex": 0
     }
