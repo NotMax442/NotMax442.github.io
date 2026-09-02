@@ -957,3 +957,181 @@ function executeAnkiDownload(shouldClearAfter) {
 
   if (ankiModal) ankiModal.classList.add('hidden');
 }
+
+// ==========================================================================
+// TELEGRAM FEEDBACK & INTERNET TIME COOLDOWN LOGIC
+// ==========================================================================
+
+// ⚠️ REPLACE THESE TWO STRINGS WITH YOUR TELEGRAM BOT CREDENTIALS
+const TELEGRAM_BOT_TOKEN = "8757492792:AAHUAMYvyzAaFVyqEqSJj1O7l2UpX30mW3U";
+const TELEGRAM_CHAT_ID = "1145051277";
+
+const feedbackForm = document.getElementById('feedback-form');
+const feedbackText = document.getElementById('feedback-text');
+const feedbackImage = document.getElementById('feedback-image');
+const contactConfirmModal = document.getElementById('contact-confirm-modal');
+const confirmFeedbackBtn = document.getElementById('confirm-feedback-btn');
+const cancelFeedbackBtn = document.getElementById('cancel-feedback-btn');
+const myFeedbackList = document.getElementById('my-feedback-list');
+
+let pendingFeedbackPayload = null;
+
+// --- Fetch Internet Time (Prevents phone clock tampering) ---
+async function getInternetTime() {
+  try {
+    const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+    if (!response.ok) throw new Error("Time API unavailable");
+    const data = await response.json();
+    return new Date(data.utc_datetime).getTime();
+  } catch (err) {
+    // Fallback if worldtimeapi is blocked or slow
+    return Date.now();
+  }
+}
+
+// --- Submit Form Listener ---
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const lastSentTime = localStorage.getItem('last_feedback_internet_time');
+    const nowInternet = await getInternetTime();
+
+    if (lastSentTime) {
+      const elapsed = nowInternet - parseInt(lastSentTime, 10);
+      const cooldownMs = 30 * 60 * 1000; // 30 minutes
+
+      if (elapsed < cooldownMs) {
+        const remainingMins = Math.ceil((cooldownMs - elapsed) / 60000);
+        alert(`⏱️ Cooldown Active / រយៈពេលរង់ចាំ:\n🇬🇧 Please wait ${remainingMins} minute(s) before sending feedback again.\n🇰🇭 សូមរង់ចាំ ${remainingMins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។`);
+        return;
+      }
+    }
+
+    pendingFeedbackPayload = {
+      text: feedbackText.value,
+      file: feedbackImage.files[0] || null,
+      timestamp: nowInternet
+    };
+
+    if (contactConfirmModal) contactConfirmModal.classList.remove('hidden');
+  });
+}
+
+if (cancelFeedbackBtn) {
+  cancelFeedbackBtn.addEventListener('click', () => {
+    if (contactConfirmModal) contactConfirmModal.classList.add('hidden');
+    pendingFeedbackPayload = null;
+  });
+}
+
+// --- Send to Telegram API ---
+if (confirmFeedbackBtn) {
+  confirmFeedbackBtn.addEventListener('click', async () => {
+    if (!pendingFeedbackPayload) return;
+
+    confirmFeedbackBtn.disabled = true;
+    confirmFeedbackBtn.textContent = "Sending... / កំពុងផ្ញើ...";
+
+    const { text, file, timestamp } = pendingFeedbackPayload;
+    let success = false;
+
+    try {
+      if (file) {
+        // Send Photo + Caption via sendPhoto endpoint
+        const formData = new FormData();
+        formData.append('chat_id', TELEGRAM_CHAT_ID);
+        formData.append('caption', `📝 **New Question Report**\n\n${text}`);
+        formData.append('photo', file);
+
+        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+          method: 'POST',
+          body: formData
+        });
+        success = res.ok;
+      } else {
+        // Send Text Message via sendMessage endpoint
+        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: `📝 **New Question Report**\n\n${text}`,
+            parse_mode: 'Markdown'
+          })
+        });
+        success = res.ok;
+      }
+    } catch (err) {
+      console.error(err);
+      success = false;
+    }
+
+    if (success) {
+      // Save internet cooldown timestamp & local log
+      localStorage.setItem('last_feedback_internet_time', timestamp.toString());
+      saveLocalFeedbackLog(text, timestamp);
+
+      feedbackForm.reset();
+      alert("✅ Feedback Sent Successfully! / បានផ្ញើដោយជោគជ័យ!");
+    } else {
+      alert("⚠️ Submission failed. Please check your internet connection or try again later.");
+    }
+
+    confirmFeedbackBtn.disabled = false;
+    confirmFeedbackBtn.textContent = "Send / ផ្ញើ";
+    if (contactConfirmModal) contactConfirmModal.classList.add('hidden');
+    pendingFeedbackPayload = null;
+    renderMyFeedbacks();
+  });
+}
+
+function saveLocalFeedbackLog(text, timestamp) {
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  const logs = raw ? JSON.parse(raw) : [];
+  
+  logs.unshift({
+    id: Date.now(),
+    text: text,
+    date: new Date(timestamp).toLocaleDateString() + ' ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    status: 'Pending ⏳'
+  });
+
+  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+}
+
+function renderMyFeedbacks() {
+  if (!myFeedbackList) return;
+  myFeedbackList.innerHTML = '';
+
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  const logs = raw ? JSON.parse(raw) : [];
+
+  if (logs.length === 0) {
+    myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">No submitted reports yet. / មិនទាន់មានប្រវត្តិរាយការណ៍នៅឡើយទេ។</p>`;
+    return;
+  }
+
+  logs.forEach(log => {
+    const card = document.createElement('div');
+    card.classList.add('subject-card');
+    card.style.padding = '1rem';
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <span style="font-size:0.8rem; color:var(--text-sub);">${log.date}</span>
+        <span class="feedback-status-badge status-pending">${log.status}</span>
+      </div>
+      <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${log.text}</p>
+    `;
+    myFeedbackList.appendChild(card);
+  });
+}
+
+// Make sure feedback history renders when navigating to contact screen
+const originalNavigateTo = navigateTo;
+navigateTo = function(screenId, isBackAction = false) {
+  originalNavigateTo(screenId, isBackAction);
+  if (screenId === 'contact-screen') {
+    renderMyFeedbacks();
+  }
+};
