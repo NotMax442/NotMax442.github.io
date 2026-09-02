@@ -1119,10 +1119,14 @@ async function syncFeedbackStatusWithTelegram() {
     let updated = false;
 
     data.result.forEach(update => {
-      const msg = update.message;
+      // Check direct messages, edited messages, or channel/group posts
+      const msg = update.message || update.edited_message || update.channel_post || update.edited_channel_post;
+      
       if (msg && msg.reply_to_message) {
         const repliedId = msg.reply_to_message.message_id;
-        const matchedLog = logs.find(l => l.telegram_msg_id === repliedId);
+        
+        // Match IDs reliably using string conversion
+        const matchedLog = logs.find(l => String(l.telegram_msg_id) === String(repliedId));
         
         if (matchedLog && matchedLog.status !== 'Checked ✅') {
           matchedLog.status = 'Checked ✅';
