@@ -1398,17 +1398,6 @@
       "correctIndex": 2
     },
     {
-      "id": 128,
-      "question": "លក្ខណៈបង្ករោគ នៃមេរោគក្នុងគ្រួសារ Herpesviridae",
-      "options": [
-        "មេរោគមិនបង្ករោគភ្លាមៗ (no primary infection / Acute infection)",
-        "មេរោគមិនមាននៅ (no persistence infection / Latency)",
-        "មេរោគមិនងើប មិនរើ បង្ករោគឡើងវិញទេ (no reactivation)",
-        "មេរោគមាននៅ (Persistence infection / Latency)"
-      ],
-      "correctIndex": 3
-    },
-    {
       "id": 129,
       "question": "មេរោគ Herpes simplex virus (HSV)",
       "options": [
@@ -2815,6 +2804,17 @@
         "ខូចសួត"
       ],
       "correctIndex": 0
+    },
+    {
+      "id": 256,
+      "question": "លក្ខណៈបង្ករោគ នៃមេរោគក្នុងគ្រួសារ Herpesviridae",
+      "options": [
+        "មេរោគមិនបង្ករោគភ្លាមៗ (no primary infection / Acute infection)",
+        "មេរោគមិនមាននៅ (no persistence infection / Latency)",
+        "មេរោគមិនងើប មិនរើ បង្ករោគឡើងវិញទេ (no reactivation)",
+        "មេរោគមាននៅសំងំ (Persistence infection / Latency)"
+      ],
+      "correctIndex": 3
     }
   ]
 }
