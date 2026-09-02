@@ -649,3 +649,24 @@ p {
   border-color: #ef4444;
   background-color: rgba(239, 68, 68, 0.08);
 }
+
+/* --- Contact Feedback Form Polish --- */
+#feedback-text:focus {
+  outline: none;
+  border-color: var(--text-heading);
+}
+
+.feedback-status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.status-pending {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid #f59e0b;
+}
