@@ -670,3 +670,9 @@ p {
   color: #f59e0b;
   border: 1px solid #f59e0b;
 }
+
+.status-checked {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid #10b981;
+}
