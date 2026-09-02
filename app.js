@@ -7,6 +7,16 @@ const backToYearsBtn = document.getElementById('back-to-years-btn');
 const selectedYearTitle = document.getElementById('selected-year-title');
 const subjectList = document.getElementById('subject-list');
 
+// Top Navigation Bar Selectors
+const navHomeBtn = document.getElementById('nav-home-btn');
+const navAboutBtn = document.getElementById('nav-about-btn');
+const navContactBtn = document.getElementById('nav-contact-btn');
+const navAccountBtn = document.getElementById('nav-account-btn');
+
+const backFromAboutBtn = document.getElementById('back-from-about-btn');
+const backFromContactBtn = document.getElementById('back-from-contact-btn');
+const backFromAccountBtn = document.getElementById('back-from-account-btn');
+
 // Quiz & Result Screen Selectors
 const sessionInfo = document.getElementById('session-info');
 const progressText = document.getElementById('progress-text');
@@ -22,6 +32,9 @@ const timerDisplay = document.getElementById('timer-display');
 const scorePercentageEl = document.getElementById('score-percentage');
 const progressBarFillEl = document.getElementById('progress-bar-fill');
 const reviewContainer = document.getElementById('review-container');
+
+// Theme Toggle Selector
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
 // App State
 let currentYear = null;
@@ -41,13 +54,36 @@ let autoScrollTimer = null;
 
 // Manifest data mapping years to available subjects
 const manifestData = {
-  "1": ["I-D-A", "MED-PRO", "F-N-S", "I-D-A-Khmer"],
+  "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "F-N-S", "I-D-A-Khmer"],
   "2": [],
   "3": [],
   "4": [],
   "5": [],
   "6": ["MED-PRO"]
 };
+
+// --- Theme Toggle Logic ---
+function applyTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (themeToggleBtn) themeToggleBtn.textContent = '☀️ Light';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (themeToggleBtn) themeToggleBtn.textContent = '🌙 Dark';
+  }
+}
+
+const savedTheme = localStorage.getItem('app_theme') || 'dark';
+applyTheme(savedTheme);
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const newTheme = isLight ? 'dark' : 'light';
+    applyTheme(newTheme);
+    localStorage.setItem('app_theme', newTheme);
+  });
+}
 
 // Helper: Generates unique key for local storage per year & subject
 function getStorageKey() {
@@ -182,10 +218,22 @@ window.addEventListener('DOMContentLoaded', () => {
     navigateTo('subject-screen');
   } else if (savedScreen === 'year-screen') {
     navigateTo('year-screen');
+  } else if (['about-screen', 'contact-screen', 'account-screen'].includes(savedScreen)) {
+    navigateTo(savedScreen);
   } else {
     navigateTo('landing-screen');
   }
 });
+
+// --- Top Navigation Bar Event Listeners ---
+if (navHomeBtn) navHomeBtn.addEventListener('click', () => navigateTo('landing-screen'));
+if (navAboutBtn) navAboutBtn.addEventListener('click', () => navigateTo('about-screen'));
+if (navContactBtn) navContactBtn.addEventListener('click', () => navigateTo('contact-screen'));
+if (navAccountBtn) navAccountBtn.addEventListener('click', () => navigateTo('account-screen'));
+
+if (backFromAboutBtn) backFromAboutBtn.addEventListener('click', () => navigateTo('landing-screen'));
+if (backFromContactBtn) backFromContactBtn.addEventListener('click', () => navigateTo('landing-screen'));
+if (backFromAccountBtn) backFromAccountBtn.addEventListener('click', () => navigateTo('landing-screen'));
 
 // --- Navigation & Exit Action Event Listeners ---
 enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
