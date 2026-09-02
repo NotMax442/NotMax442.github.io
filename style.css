@@ -454,7 +454,7 @@ p {
   gap: 0.75rem;
 }
 
-/* --- Custom Confirmation Modal Overlay --- */
+/* --- Custom Confirmation & Delete Warning Modal Overlays --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -475,10 +475,13 @@ p {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 2rem;
-  max-width: 450px;
+  max-width: 440px;
   width: 100%;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   animation: modalFadeIn 0.15s ease-out;
 }
 
@@ -486,18 +489,29 @@ p {
   font-size: 1.3rem;
   color: var(--text-main);
   margin-bottom: 0.75rem;
+  width: 100%;
 }
 
 .modal-card p {
   font-size: 0.95rem;
   color: var(--text-sub);
   margin-bottom: 1.5rem;
+  line-height: 1.5;
+  width: 100%;
 }
 
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   gap: 0.75rem;
+  width: 100%;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 16px;
 }
 
 /* --- Anki Modal Stacked Buttons --- */
@@ -610,7 +624,7 @@ p {
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.25rem;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.25rem;
   background-color: var(--bg-subcard);
   border-radius: 8px;
   border: 1px solid var(--border-sub);
@@ -618,17 +632,17 @@ p {
 
 .subject-card-selectable {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   cursor: pointer;
 }
 
 .card-checkbox {
-  width: 22px;
-  height: 22px;
-  margin-top: 4px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   accent-color: #ef4444;
+  align-self: center;
 }
 
 .subject-card.selected-for-delete {
