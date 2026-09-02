@@ -37,23 +37,44 @@ const accountSubjectList = document.getElementById('account-subject-list');
 // Theme Toggle Selector
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
+// Bulk Selection & Deletion Selectors
+const toggleSelectModeBtn = document.getElementById('toggle-select-mode-btn');
+const bulkControls = document.getElementById('bulk-controls');
+const selectAllBtn = document.getElementById('select-all-btn');
+const deleteSelectedBtn = document.getElementById('delete-selected-btn');
+const deleteConfirmModal = document.getElementById('delete-confirm-modal');
+const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
+const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
+const deleteWarningText = document.getElementById('delete-warning-text');
+
+// Anki Export Modal Selectors
+const ankiModal = document.getElementById('anki-modal');
+const ankiKeepBtn = document.getElementById('anki-keep-btn');
+const ankiClearBtn = document.getElementById('anki-clear-btn');
+const ankiCancelBtn = document.getElementById('anki-cancel-btn');
+
 // App State
 let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
-let userAnswers = [];
+let userAnswers = []; // Tracks user option picks in Quiz Mode
 let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
 let activeExportSubjectKey = null;
 
+// Bulk Selection State
+let isSelectMode = false;
+let selectedSubjectKeys = new Set();
+
 // Timer & Auto-scroll State
 let timerInterval = null;
-let timeRemaining = 3600;
+let timeRemaining = 3600; // 60 Minutes
 let autoScrollTimer = null;
 
+// Manifest data mapping years to available subjects
 const manifestData = {
   "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "F-N-S", "I-D-A-Khmer"],
   "2": [],
@@ -91,7 +112,7 @@ function getStorageKey(year = currentYear, subject = currentSubject) {
   return `missed_y${year}_${subject.toLowerCase()}`;
 }
 
-// --- Permanent Vault Mastery Manager (Option 4) ---
+// --- Vault Mastery Manager (Streak >= 2 Removes Question Automatically) ---
 function recordQuestionResult(questionObj, isCorrect, year = currentYear, subject = currentSubject) {
   const key = getStorageKey(year, subject);
   const raw = localStorage.getItem(key);
@@ -100,14 +121,14 @@ function recordQuestionResult(questionObj, isCorrect, year = currentYear, subjec
   const existingIndex = vault.findIndex(item => item.question === questionObj.question);
 
   if (!isCorrect) {
-    // Answered wrong: Add/Reset streak to 0
+    // Answered wrong: Add to vault or reset streak counter to 0
     if (existingIndex >= 0) {
       vault[existingIndex].streak = 0;
     } else {
       vault.push({ ...questionObj, streak: 0 });
     }
   } else {
-    // Answered correct: Increment streak. If streak >= 2, mark as Mastered (remove)
+    // Answered correct: Increment streak. If streak >= 2, question is Mastered (removed)
     if (existingIndex >= 0) {
       vault[existingIndex].streak = (vault[existingIndex].streak || 0) + 1;
       if (vault[existingIndex].streak >= 2) {
@@ -133,6 +154,7 @@ function shuffleArray(array) {
   return shuffled;
 }
 
+// --- Cancel Auto-scroll on Manual Input ---
 function cancelAutoScroll() {
   if (autoScrollTimer) {
     clearTimeout(autoScrollTimer);
@@ -148,7 +170,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Custom Exit Confirm Modal
+// --- Custom Exit Confirm Modal ---
 function showCustomConfirm() {
   return new Promise((resolve) => {
     const modal = document.getElementById('confirm-modal');
@@ -188,6 +210,7 @@ window.addEventListener('beforeunload', (e) => {
   }
 });
 
+// --- Navigation & Screen Storage State ---
 function navigateTo(screenId, isBackAction = false) {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -213,6 +236,7 @@ function navigateTo(screenId, isBackAction = false) {
   }
 }
 
+// --- Browser Back/Forward Button Handler ---
 window.addEventListener('popstate', async (event) => {
   const quizScreen = document.getElementById('quiz-screen');
   const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
@@ -235,6 +259,7 @@ window.addEventListener('popstate', async (event) => {
   }
 });
 
+// --- Restore Screen State on Page Refresh ---
 window.addEventListener('DOMContentLoaded', () => {
   const savedScreen = sessionStorage.getItem('lastScreen');
   const savedYear = sessionStorage.getItem('lastYear');
@@ -256,7 +281,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Top Nav Listeners
+// --- Top Navigation Bar Event Listeners ---
 if (navHomeBtn) navHomeBtn.addEventListener('click', () => navigateTo('landing-screen'));
 if (navAboutBtn) navAboutBtn.addEventListener('click', () => navigateTo('about-screen'));
 if (navContactBtn) navContactBtn.addEventListener('click', () => navigateTo('contact-screen'));
@@ -266,7 +291,7 @@ if (backFromAboutBtn) backFromAboutBtn.addEventListener('click', () => navigateT
 if (backFromContactBtn) backFromContactBtn.addEventListener('click', () => navigateTo('landing-screen'));
 if (backFromAccountBtn) backFromAccountBtn.addEventListener('click', () => navigateTo('landing-screen'));
 
-enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
+if (enterStudyBtn) enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
 yearCards.forEach(card => {
   card.addEventListener('click', () => {
@@ -304,6 +329,7 @@ if (quitSessionBtn) {
   });
 }
 
+// --- Subject Cards Rendering ---
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
@@ -335,6 +361,7 @@ function loadSubjectsForYear(year) {
   });
 }
 
+// --- Review Missed Session Launcher ---
 function startMissedSession(subjectName) {
   currentSubject = subjectName;
   currentMode = 'study';
@@ -374,6 +401,7 @@ function clearSavedMissed(subjectName) {
   loadSubjectsForYear(currentYear);
 }
 
+// --- 60-Minute Countdown Timer for Quiz Mode ---
 function startQuizTimer() {
   clearInterval(timerInterval);
   timeRemaining = 3600;
@@ -404,6 +432,7 @@ function updateTimerUI() {
   timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
 }
 
+// --- Session Initialization ---
 async function startSession(subjectName, mode) {
   currentSubject = subjectName;
   currentMode = mode;
@@ -510,7 +539,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     allBtns[q.correctIndex].style.color = '#ffffff';
   }
 
-  // Record answer to master vault streak tracker
+  // Update streak / mastery in permanent storage
   recordQuestionResult(q, isCorrect);
 
   studyAnsweredCount++;
@@ -693,9 +722,95 @@ if (retryMissedBtn) {
 }
 
 // ==========================================================================
-// MY ACCOUNT DASHBOARD & ANKI EXPORT (.TXT) LOGIC
+// MY ACCOUNT DASHBOARD, BULK DELETION & ANKI EXPORT (.TXT) LOGIC
 // ==========================================================================
 
+// --- Toggle Select Mode ---
+if (toggleSelectModeBtn) {
+  toggleSelectModeBtn.addEventListener('click', () => {
+    isSelectMode = !isSelectMode;
+    selectedSubjectKeys.clear();
+    
+    if (isSelectMode) {
+      toggleSelectModeBtn.textContent = '❌ Cancel';
+      if (bulkControls) bulkControls.classList.remove('hidden');
+    } else {
+      toggleSelectModeBtn.textContent = '☑️ Select';
+      if (bulkControls) bulkControls.classList.add('hidden');
+    }
+    
+    updateDeleteButtonState();
+    renderAccountDashboard();
+  });
+}
+
+// --- Select / Deselect All ---
+if (selectAllBtn) {
+  selectAllBtn.addEventListener('click', () => {
+    const allCheckboxes = document.querySelectorAll('.card-checkbox');
+    const allKeys = Array.from(allCheckboxes).map(cb => cb.getAttribute('data-key'));
+
+    if (selectedSubjectKeys.size === allKeys.length) {
+      selectedSubjectKeys.clear();
+    } else {
+      allKeys.forEach(key => selectedSubjectKeys.add(key));
+    }
+
+    updateDeleteButtonState();
+    renderAccountDashboard();
+  });
+}
+
+function updateDeleteButtonState() {
+  if (!deleteSelectedBtn) return;
+  const count = selectedSubjectKeys.size;
+  deleteSelectedBtn.textContent = `🗑️ Delete Selected (${count})`;
+  deleteSelectedBtn.disabled = count === 0;
+  
+  if (selectAllBtn) {
+    const totalCards = document.querySelectorAll('.card-checkbox').length;
+    selectAllBtn.textContent = (totalCards > 0 && selectedSubjectKeys.size === totalCards) 
+      ? 'Deselect All' 
+      : 'Select All';
+  }
+}
+
+// --- Trigger Delete Warning Modal ---
+if (deleteSelectedBtn) {
+  deleteSelectedBtn.addEventListener('click', () => {
+    if (selectedSubjectKeys.size === 0) return;
+    if (deleteWarningText) {
+      deleteWarningText.textContent = `Are you sure you want to permanently delete missed questions from ${selectedSubjectKeys.size} selected subject(s)?`;
+    }
+    if (deleteConfirmModal) deleteConfirmModal.classList.remove('hidden');
+  });
+}
+
+if (cancelDeleteBtn) {
+  cancelDeleteBtn.addEventListener('click', () => {
+    if (deleteConfirmModal) deleteConfirmModal.classList.add('hidden');
+  });
+}
+
+// --- Execute Bulk Deletion ---
+if (confirmDeleteBtn) {
+  confirmDeleteBtn.addEventListener('click', () => {
+    selectedSubjectKeys.forEach(key => {
+      localStorage.removeItem(key);
+    });
+
+    selectedSubjectKeys.clear();
+    isSelectMode = false;
+    if (toggleSelectModeBtn) toggleSelectModeBtn.textContent = '☑️ Select';
+    if (bulkControls) bulkControls.classList.add('hidden');
+    if (deleteConfirmModal) deleteConfirmModal.classList.add('hidden');
+    
+    updateDeleteButtonState();
+    renderAccountDashboard();
+  });
+}
+
+// --- Render Account Vault Dashboard ---
 function renderAccountDashboard() {
   if (!accountSubjectList) return;
   accountSubjectList.innerHTML = '';
@@ -713,25 +828,64 @@ function renderAccountDashboard() {
 
         const card = document.createElement('div');
         card.classList.add('subject-card');
+        if (selectedSubjectKeys.has(key)) {
+          card.classList.add('selected-for-delete');
+        }
+
+        const isChecked = selectedSubjectKeys.has(key) ? 'checked' : '';
+        const checkboxHTML = isSelectMode 
+          ? `<input type="checkbox" class="card-checkbox" data-key="${key}" ${isChecked}>` 
+          : '';
+
         card.innerHTML = `
-          <h3>Year ${year} - ${subject}</h3>
-          <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
-          <div class="subject-actions" style="flex-direction: column;">
-            <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${subject}')">🎯 Practice Missed (${missedArray.length})</button>
-            <button class="btn primary-btn" onclick="promptAnkiExport('${key}', 'Year_${year}_${subject}')">📦 Export to Anki (.txt)</button>
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            ${checkboxHTML}
+            <div style="flex: 1;">
+              <h3>Year ${year} - ${subject}</h3>
+              <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
+              ${!isSelectMode ? `
+                <div class="subject-actions" style="flex-direction: column;">
+                  <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${subject}')">🎯 Practice Missed (${missedArray.length})</button>
+                  <button class="btn primary-btn" onclick="promptAnkiExport('${key}', 'Year_${year}_${subject}')">📦 Export to Anki (.txt)</button>
+                </div>
+              ` : ''}
+            </div>
           </div>
         `;
+
+        if (isSelectMode) {
+          card.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+              const cb = card.querySelector('.card-checkbox');
+              if (cb) cb.checked = !cb.checked;
+            }
+            
+            if (selectedSubjectKeys.has(key)) {
+              selectedSubjectKeys.delete(key);
+            } else {
+              selectedSubjectKeys.add(key);
+            }
+            
+            updateDeleteButtonState();
+            renderAccountDashboard();
+          });
+        }
+
         accountSubjectList.appendChild(card);
       }
     });
   });
 
   if (totalMissedAcrossApp === 0) {
+    if (toggleSelectModeBtn) toggleSelectModeBtn.classList.add('hidden');
+    if (bulkControls) bulkControls.classList.add('hidden');
     accountSubjectList.innerHTML = `
       <div class="score-card" style="text-align: center; padding: 2rem;">
         <p style="margin: 0; color: var(--text-sub);">🎉 Fantastic! You have 0 missed questions in your vault.</p>
       </div>
     `;
+  } else {
+    if (toggleSelectModeBtn) toggleSelectModeBtn.classList.remove('hidden');
   }
 }
 
@@ -742,20 +896,15 @@ function launchAccountReview(year, subject) {
   startMissedSession(subject);
 }
 
-// Anki Export Modal Handlers
+// --- Anki Export Handlers ---
 function promptAnkiExport(storageKey, subjectFilenameTag) {
   activeExportSubjectKey = storageKey;
-  const modal = document.getElementById('anki-modal');
-  if (modal) modal.classList.remove('hidden');
+  if (ankiModal) ankiModal.classList.remove('hidden');
 }
-
-const ankiKeepBtn = document.getElementById('anki-keep-btn');
-const ankiClearBtn = document.getElementById('anki-clear-btn');
-const ankiCancelBtn = document.getElementById('anki-cancel-btn');
 
 if (ankiCancelBtn) {
   ankiCancelBtn.addEventListener('click', () => {
-    document.getElementById('anki-modal').classList.add('hidden');
+    if (ankiModal) ankiModal.classList.add('hidden');
   });
 }
 
@@ -779,12 +928,12 @@ function executeAnkiDownload(shouldClearAfter) {
 
   const questionsList = JSON.parse(raw);
   
-  // Format into Anki Tab-Separated Values: Front [TAB] Back
+  // Format as Tab-Separated Values for direct Anki import
   let fileContent = "#separator:Tab\n#html:true\n";
 
   questionsList.forEach(q => {
     let optionsText = q.options.map((opt, idx) => {
-      const letter = String.fromCharCode(65 + idx); // A, B, C, D...
+      const letter = String.fromCharCode(65 + idx);
       return `<div><b>${letter})</b> ${opt}</div>`;
     }).join('');
 
@@ -795,17 +944,7 @@ function executeAnkiDownload(shouldClearAfter) {
     fileContent += `${front}\t${back}\n`;
   });
 
-  // Download .txt file ready for Anki Import
   const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
   const downloadLink = document.createElement('a');
   downloadLink.href = URL.createObjectURL(blob);
   downloadLink.download = `Anki_${activeExportSubjectKey}.txt`;
-  downloadLink.click();
-
-  if (shouldClearAfter) {
-    localStorage.removeItem(activeExportSubjectKey);
-    renderAccountDashboard();
-  }
-
-  document.getElementById('anki-modal').classList.add('hidden');
-}
