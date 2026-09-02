@@ -1530,28 +1530,6 @@
       "correctIndex": 1
     },
     {
-      "id": 141,
-      "question": "មេរោគ ជំងឺ Dengue virus",
-      "options": [
-        "ជា arbovirus",
-        "ជាមេរោគដែលគ្មាន Non-Enveloped",
-        "Flaviviridae, genus Flavivirus",
-        "នៅក្នុង Alphaherpesvirinae"
-      ],
-      "correctIndex": 2
-    },
-    {
-      "id": 142,
-      "question": "មេរោគ Dengue virus",
-      "options": [
-        "ជា arbovirus",
-        "ចំលងមកមនុស្សតាមមូស",
-        "ជាមេរោគដែលគ្មាន Non-Enveloped",
-        "មិនមានការ ចំលងមកមនុស្សត្រូវទេ"
-      ],
-      "correctIndex": 1
-    },
-    {
       "id": 143,
       "question": "មេរោគបង្កជំងឺ Dengue virus",
       "options": [
@@ -2815,6 +2793,17 @@
         "មេរោគមាននៅសំងំ (Persistence infection / Latency)"
       ],
       "correctIndex": 3
+    },
+    {
+      "id": 256,
+      "question": "មេរោគ ជំងឺ Dengue virus",
+      "options": [
+        "ជា arbovirus",
+        "ជាមេរោគដែលគ្មាន Non-Enveloped",
+        "Flaviviridae, genus Flavivirus",
+        "នៅក្នុង Alphaherpesvirinae"
+      ],
+      "correctIndex": 2
     }
   ]
 }
