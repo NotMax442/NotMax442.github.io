@@ -500,6 +500,23 @@ p {
   gap: 0.75rem;
 }
 
+/* --- Anki Modal Stacked Buttons --- */
+#anki-modal .modal-card {
+  max-width: 420px;
+}
+
+#anki-modal .modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+#anki-modal .modal-actions .btn {
+  width: 100%;
+  text-align: center;
+}
+
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -511,16 +528,12 @@ p {
   }
 }
 
-/* ==========================================================================
-   MOBILE & TABLET RESPONSIVE OVERRIDES
-   ========================================================================== */
-
+/* --- Mobile & Tablet Overrides --- */
 @media (max-width: 768px) {
   .app-container {
     padding: 1rem;
   }
 
-  /* Compact Navbar for mobile screens */
   .main-navbar {
     flex-direction: column;
     align-items: stretch;
@@ -547,20 +560,10 @@ p {
     margin-top: 0.25rem;
   }
 
-  /* Responsive Headings */
-  h1 {
-    font-size: 1.6rem;
-  }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  p { font-size: 0.95rem; }
 
-  h2 {
-    font-size: 1.3rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
-
-  /* 2-column Grid for Academic Years on Mobile */
   .year-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
@@ -571,49 +574,31 @@ p {
     font-size: 1rem;
   }
 
-  /* Quiz header & question options touch targets */
   .quiz-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .quiz-header h2 {
-    font-size: 1.1rem;
-  }
-
-  .question-box h3 {
-    font-size: 1.05rem;
-  }
+  .quiz-header h2 { font-size: 1.1rem; }
+  .question-box h3 { font-size: 1.05rem; }
 
   .option-btn {
     padding: 12px 14px;
     font-size: 0.9rem;
   }
 
-  /* Results Screen Mobile Scaling */
-  .percentage-badge {
-    font-size: 2.2rem;
-  }
-
-  .score-card {
-    padding: 1.25rem;
-  }
+  .percentage-badge { font-size: 2.2rem; }
+  .score-card { padding: 1.25rem; }
 }
 
 @media (max-width: 480px) {
-  /* Extra tight spacing for smaller phones */
   .nav-links {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
   }
 
-  .nav-item {
-    padding: 4px;
-  }
-
-  .subject-actions {
-    flex-direction: column;
-  }
+  .nav-item { padding: 4px; }
+  .subject-actions { flex-direction: column; }
 }
