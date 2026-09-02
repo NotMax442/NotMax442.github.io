@@ -45,14 +45,25 @@
       </div>
     </div>
 
-    <!-- My Account Screen -->
-    <div id="account-screen" class="screen hidden">
-      <button id="back-from-account-btn" class="btn back-btn">⬅️ Back</button>
-      <h2>My Account</h2>
-      <div class="score-card" style="text-align: center; padding: 2rem;">
-        <p style="margin: 0; color: var(--text-sub);">Account profile, stats, and settings coming soon!</p>
-      </div>
+<!-- My Account Screen -->
+<div id="account-screen" class="screen hidden">
+  <button id="back-from-account-btn" class="btn back-btn">⬅️ Back</button>
+  <h2>My Account & Vault</h2>
+  <div id="account-subject-list" class="subject-grid"></div>
+</div>
+
+<!-- Anki Export Confirmation Modal -->
+<div id="anki-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <h3>📦 Export to Anki (.txt)</h3>
+    <p>How would you like to process these questions after downloading?</p>
+    <div class="modal-actions" style="flex-direction: column; gap: 0.5rem;">
+      <button id="anki-keep-btn" class="btn primary-btn" style="width: 100%;">📥 Export & Keep in Vault</button>
+      <button id="anki-clear-btn" class="btn warning-btn" style="width: 100%;">🗑️ Export & Clear Subject Vault</button>
+      <button id="anki-cancel-btn" class="btn secondary-btn" style="width: 100%;">Cancel</button>
     </div>
+  </div>
+</div>
 
     <!-- Year Selection Screen -->
     <div id="year-screen" class="screen hidden">
