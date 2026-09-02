@@ -41,7 +41,7 @@ let autoScrollTimer = null;
 
 // Manifest data mapping years to available subjects
 const manifestData = {
-  "1": ["I-D-A", "MED-PRO", "F-N-S"],
+  "1": ["I-D-A", "MED-PRO", "F-N-S", "I-D-A-Khmer],
   "2": [],
   "3": [],
   "4": [],
