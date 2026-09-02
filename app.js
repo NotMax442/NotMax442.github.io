@@ -948,3 +948,12 @@ function executeAnkiDownload(shouldClearAfter) {
   const downloadLink = document.createElement('a');
   downloadLink.href = URL.createObjectURL(blob);
   downloadLink.download = `Anki_${activeExportSubjectKey}.txt`;
+  downloadLink.click();
+
+  if (shouldClearAfter) {
+    localStorage.removeItem(activeExportSubjectKey);
+    renderAccountDashboard();
+  }
+
+  if (ankiModal) ankiModal.classList.add('hidden');
+}
