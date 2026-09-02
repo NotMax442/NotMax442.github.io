@@ -584,28 +584,6 @@
       "correctIndex": 1
     },
     {
-      "id": 54,
-      "question": "Active immunization និង Passive immunization ?",
-      "options": [
-        "Active immunization គឺការចាក់អង់ទី (Seroprophylaxie)",
-        "Passive immunization ការចាក់វ៉ាក់សាំង (Vaccination)",
-        "Passive immunization គឺការចាក់ antibiotic",
-        "Active immunization គឺការចាក់វ៉ាក់សាំង (Vaccination)"
-      ],
-      "correctIndex": 3
-    },
-    {
-      "id": 55,
-      "question": "ដូចម្តេច Active Immunization និង Passive immunization ?",
-      "options": [
-        "Passive immunization ការចាក់អង់ទីគ័រ (Seroprophylaxie)",
-        "Passive immunization គឺការចាក់វ៉ាក់សាំង (vaccination)",
-        "Active immunization គឺការចាក់អង់ទី (Seroprophylaxie)",
-        "Passive immunization"
-      ],
-      "correctIndex": 0
-    },
-    {
       "id": 56,
       "question": "ដូចម្តេចហៅថារ៉ាក់សាំង ?",
       "options": [
@@ -2802,6 +2780,28 @@
         "20-30%",
         "50-80%",
         "60%"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 255,
+      "question": "Active immunization និង Passive immunization ?",
+      "options": [
+        "Active immunization គឺការចាក់អង់ទី (Seroprophylaxie)",
+        "Passive immunization ការចាក់វ៉ាក់សាំង (Vaccination)",
+        "Passive immunization គឺការចាក់ antibiotic",
+        "Active immunization គឺការចាក់វ៉ាក់សាំង (Vaccination)"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "id": 255,
+      "question": "ដូចម្តេច Active Immunization និង Passive immunization ?",
+      "options": [
+        "Passive immunization ការចាក់អង់ទីគ័រ (Seroprophylaxie)",
+        "Passive immunization គឺការចាក់វ៉ាក់សាំង (vaccination)",
+        "Active immunization គឺការចាក់អង់ទីគ័រ (Seroprophylaxie)",
+        "Passive immunization  គឺការចាក់ antibiotic"
       ],
       "correctIndex": 0
     }
