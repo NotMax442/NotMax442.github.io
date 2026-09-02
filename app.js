@@ -959,12 +959,11 @@ function executeAnkiDownload(shouldClearAfter) {
 }
 
 // ==========================================================================
-// TELEGRAM FEEDBACK & INTERNET TIME COOLDOWN LOGIC
+// TELEGRAM FEEDBACK, COOLDOWN & STATUS SYNC LOGIC
 // ==========================================================================
 
-// ⚠️ REPLACE THESE TWO STRINGS WITH YOUR TELEGRAM BOT CREDENTIALS
-const TELEGRAM_BOT_TOKEN = "8757492792:AAHUAMYvyzAaFVyqEqSJj1O7l2UpX30mW3U";
-const TELEGRAM_CHAT_ID = "1145051277";
+const TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE";
+const TELEGRAM_CHAT_ID = "YOUR_TELEGRAM_CHAT_ID_HERE";
 
 const feedbackForm = document.getElementById('feedback-form');
 const feedbackText = document.getElementById('feedback-text');
@@ -984,7 +983,6 @@ async function getInternetTime() {
     const data = await response.json();
     return new Date(data.utc_datetime).getTime();
   } catch (err) {
-    // Fallback if worldtimeapi is blocked or slow
     return Date.now();
   }
 }
@@ -1034,24 +1032,22 @@ if (confirmFeedbackBtn) {
     confirmFeedbackBtn.textContent = "Sending... / កំពុងផ្ញើ...";
 
     const { text, file, timestamp } = pendingFeedbackPayload;
-    let success = false;
+    let telegramMsgId = null;
 
     try {
+      let res;
       if (file) {
-        // Send Photo + Caption via sendPhoto endpoint
         const formData = new FormData();
         formData.append('chat_id', TELEGRAM_CHAT_ID);
         formData.append('caption', `📝 **New Question Report**\n\n${text}`);
         formData.append('photo', file);
 
-        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+        res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
           method: 'POST',
           body: formData
         });
-        success = res.ok;
       } else {
-        // Send Text Message via sendMessage endpoint
-        const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1060,22 +1056,24 @@ if (confirmFeedbackBtn) {
             parse_mode: 'Markdown'
           })
         });
-        success = res.ok;
+      }
+
+      if (res.ok) {
+        const data = await res.json();
+        telegramMsgId = data.result ? data.result.message_id : null;
       }
     } catch (err) {
       console.error(err);
-      success = false;
     }
 
-    if (success) {
-      // Save internet cooldown timestamp & local log
+    if (telegramMsgId) {
       localStorage.setItem('last_feedback_internet_time', timestamp.toString());
-      saveLocalFeedbackLog(text, timestamp);
+      saveLocalFeedbackLog(text, timestamp, telegramMsgId);
 
       feedbackForm.reset();
       alert("✅ Feedback Sent Successfully! / បានផ្ញើដោយជោគជ័យ!");
     } else {
-      alert("⚠️ Submission failed. Please check your internet connection or try again later.");
+      alert("⚠️ Submission failed. Please check your connection or Telegram bot configuration.");
     }
 
     confirmFeedbackBtn.disabled = false;
@@ -1086,12 +1084,13 @@ if (confirmFeedbackBtn) {
   });
 }
 
-function saveLocalFeedbackLog(text, timestamp) {
+function saveLocalFeedbackLog(text, timestamp, msgId) {
   const raw = localStorage.getItem('my_submitted_feedbacks');
   const logs = raw ? JSON.parse(raw) : [];
   
   logs.unshift({
     id: Date.now(),
+    telegram_msg_id: msgId,
     text: text,
     date: new Date(timestamp).toLocaleDateString() + ' ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     status: 'Pending ⏳'
@@ -1100,10 +1099,53 @@ function saveLocalFeedbackLog(text, timestamp) {
   localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
 }
 
-function renderMyFeedbacks() {
-  if (!myFeedbackList) return;
-  myFeedbackList.innerHTML = '';
+// --- Check Telegram API for Admin Replies ---
+async function syncFeedbackStatusWithTelegram() {
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  if (!raw) return;
 
+  let logs = JSON.parse(raw);
+  const pendingLogs = logs.filter(l => l.status === 'Pending ⏳' && l.telegram_msg_id);
+
+  if (pendingLogs.length === 0) return;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    if (!data.result || !Array.isArray(data.result)) return;
+
+    let updated = false;
+
+    data.result.forEach(update => {
+      const msg = update.message;
+      if (msg && msg.reply_to_message) {
+        const repliedId = msg.reply_to_message.message_id;
+        const matchedLog = logs.find(l => l.telegram_msg_id === repliedId);
+        
+        if (matchedLog && matchedLog.status !== 'Checked ✅') {
+          matchedLog.status = 'Checked ✅';
+          updated = true;
+        }
+      }
+    });
+
+    if (updated) {
+      localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+    }
+  } catch (err) {
+    console.error("Failed to sync Telegram status:", err);
+  }
+}
+
+async function renderMyFeedbacks() {
+  if (!myFeedbackList) return;
+
+  // Sync with Telegram first
+  await syncFeedbackStatusWithTelegram();
+
+  myFeedbackList.innerHTML = '';
   const raw = localStorage.getItem('my_submitted_feedbacks');
   const logs = raw ? JSON.parse(raw) : [];
 
@@ -1116,10 +1158,13 @@ function renderMyFeedbacks() {
     const card = document.createElement('div');
     card.classList.add('subject-card');
     card.style.padding = '1rem';
+
+    const statusClass = log.status === 'Checked ✅' ? 'status-checked' : 'status-pending';
+
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
         <span style="font-size:0.8rem; color:var(--text-sub);">${log.date}</span>
-        <span class="feedback-status-badge status-pending">${log.status}</span>
+        <span class="feedback-status-badge ${statusClass}">${log.status}</span>
       </div>
       <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${log.text}</p>
     `;
@@ -1127,7 +1172,7 @@ function renderMyFeedbacks() {
   });
 }
 
-// Make sure feedback history renders when navigating to contact screen
+// Navigation override
 const originalNavigateTo = navigateTo;
 navigateTo = function(screenId, isBackAction = false) {
   originalNavigateTo(screenId, isBackAction);
