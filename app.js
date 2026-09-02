@@ -32,6 +32,7 @@ const timerDisplay = document.getElementById('timer-display');
 const scorePercentageEl = document.getElementById('score-percentage');
 const progressBarFillEl = document.getElementById('progress-bar-fill');
 const reviewContainer = document.getElementById('review-container');
+const accountSubjectList = document.getElementById('account-subject-list');
 
 // Theme Toggle Selector
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -41,18 +42,18 @@ let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
-let userAnswers = []; // Tracks user option picks in Quiz Mode
+let userAnswers = [];
 let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
+let activeExportSubjectKey = null;
 
 // Timer & Auto-scroll State
 let timerInterval = null;
-let timeRemaining = 3600; // 60 Minutes
+let timeRemaining = 3600;
 let autoScrollTimer = null;
 
-// Manifest data mapping years to available subjects
 const manifestData = {
   "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "F-N-S", "I-D-A-Khmer"],
   "2": [],
@@ -85,9 +86,41 @@ if (themeToggleBtn) {
   });
 }
 
-// Helper: Generates unique key for local storage per year & subject
-function getStorageKey() {
-  return `missed_y${currentYear}_${currentSubject.toLowerCase()}`;
+// Storage Key Helper
+function getStorageKey(year = currentYear, subject = currentSubject) {
+  return `missed_y${year}_${subject.toLowerCase()}`;
+}
+
+// --- Permanent Vault Mastery Manager (Option 4) ---
+function recordQuestionResult(questionObj, isCorrect, year = currentYear, subject = currentSubject) {
+  const key = getStorageKey(year, subject);
+  const raw = localStorage.getItem(key);
+  let vault = raw ? JSON.parse(raw) : [];
+
+  const existingIndex = vault.findIndex(item => item.question === questionObj.question);
+
+  if (!isCorrect) {
+    // Answered wrong: Add/Reset streak to 0
+    if (existingIndex >= 0) {
+      vault[existingIndex].streak = 0;
+    } else {
+      vault.push({ ...questionObj, streak: 0 });
+    }
+  } else {
+    // Answered correct: Increment streak. If streak >= 2, mark as Mastered (remove)
+    if (existingIndex >= 0) {
+      vault[existingIndex].streak = (vault[existingIndex].streak || 0) + 1;
+      if (vault[existingIndex].streak >= 2) {
+        vault.splice(existingIndex, 1);
+      }
+    }
+  }
+
+  if (vault.length > 0) {
+    localStorage.setItem(key, JSON.stringify(vault));
+  } else {
+    localStorage.removeItem(key);
+  }
 }
 
 // --- Fisher-Yates Shuffle Algorithm ---
@@ -100,7 +133,6 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-// --- Cancel Auto-scroll on User Manual Input ---
 function cancelAutoScroll() {
   if (autoScrollTimer) {
     clearTimeout(autoScrollTimer);
@@ -116,7 +148,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// --- Custom Promise-Based Confirm Modal ---
+// Custom Exit Confirm Modal
 function showCustomConfirm() {
   return new Promise((resolve) => {
     const modal = document.getElementById('confirm-modal');
@@ -148,16 +180,14 @@ function showCustomConfirm() {
   });
 }
 
-// --- Warn User Before Refreshing Active Session ---
 window.addEventListener('beforeunload', (e) => {
   const quizScreen = document.getElementById('quiz-screen');
   if (quizScreen && !quizScreen.classList.contains('hidden')) {
     e.preventDefault();
-    e.returnValue = ''; // Standard browser refresh prompt
+    e.returnValue = '';
   }
 });
 
-// --- Navigation & Session Storage State ---
 function navigateTo(screenId, isBackAction = false) {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -168,11 +198,14 @@ function navigateTo(screenId, isBackAction = false) {
     targetScreen.classList.remove('hidden');
   }
 
+  if (screenId === 'account-screen') {
+    renderAccountDashboard();
+  }
+
   if (!isBackAction) {
     history.pushState({ screenId: screenId }, '');
   }
 
-  // Save location to sessionStorage (fallback active quiz to subject screen on hard refresh)
   if (screenId === 'quiz-screen' || screenId === 'result-screen') {
     sessionStorage.setItem('lastScreen', 'subject-screen');
   } else {
@@ -180,7 +213,6 @@ function navigateTo(screenId, isBackAction = false) {
   }
 }
 
-// --- Intercept Browser Back Button & Alt + Left Arrow ---
 window.addEventListener('popstate', async (event) => {
   const quizScreen = document.getElementById('quiz-screen');
   const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
@@ -203,7 +235,6 @@ window.addEventListener('popstate', async (event) => {
   }
 });
 
-// --- Restore Screen State on Page Refresh ---
 window.addEventListener('DOMContentLoaded', () => {
   const savedScreen = sessionStorage.getItem('lastScreen');
   const savedYear = sessionStorage.getItem('lastYear');
@@ -225,7 +256,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// --- Top Navigation Bar Event Listeners ---
+// Top Nav Listeners
 if (navHomeBtn) navHomeBtn.addEventListener('click', () => navigateTo('landing-screen'));
 if (navAboutBtn) navAboutBtn.addEventListener('click', () => navigateTo('about-screen'));
 if (navContactBtn) navContactBtn.addEventListener('click', () => navigateTo('contact-screen'));
@@ -235,7 +266,6 @@ if (backFromAboutBtn) backFromAboutBtn.addEventListener('click', () => navigateT
 if (backFromContactBtn) backFromContactBtn.addEventListener('click', () => navigateTo('landing-screen'));
 if (backFromAccountBtn) backFromAccountBtn.addEventListener('click', () => navigateTo('landing-screen'));
 
-// --- Navigation & Exit Action Event Listeners ---
 enterStudyBtn.addEventListener('click', () => navigateTo('year-screen'));
 
 yearCards.forEach(card => {
@@ -248,15 +278,9 @@ yearCards.forEach(card => {
   });
 });
 
-if (backToLandingBtn) {
-  backToLandingBtn.addEventListener('click', () => navigateTo('landing-screen'));
-}
+if (backToLandingBtn) backToLandingBtn.addEventListener('click', () => navigateTo('landing-screen'));
+if (backToYearsBtn) backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
 
-if (backToYearsBtn) {
-  backToYearsBtn.addEventListener('click', () => navigateTo('year-screen'));
-}
-
-// Return Button: Navigates back to Subject Selection for active year
 if (restartBtn) {
   restartBtn.addEventListener('click', () => {
     if (currentYear) {
@@ -280,13 +304,12 @@ if (quitSessionBtn) {
   });
 }
 
-// --- Subject Cards Rendering ---
 function loadSubjectsForYear(year) {
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
   
   subjects.forEach(subject => {
-    const storageKey = `missed_y${year}_${subject.toLowerCase()}`;
+    const storageKey = getStorageKey(year, subject);
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
 
@@ -312,7 +335,6 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// --- Launch Session with Only Saved Missed Questions ---
 function startMissedSession(subjectName) {
   currentSubject = subjectName;
   currentMode = 'study';
@@ -352,10 +374,9 @@ function clearSavedMissed(subjectName) {
   loadSubjectsForYear(currentYear);
 }
 
-// --- 60-Minute Countdown Timer for Quiz Mode ---
 function startQuizTimer() {
   clearInterval(timerInterval);
-  timeRemaining = 3600; // 60 minutes
+  timeRemaining = 3600;
   updateTimerUI();
 
   if (timerDisplay) timerDisplay.classList.remove('hidden');
@@ -383,7 +404,6 @@ function updateTimerUI() {
   timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
 }
 
-// --- Session Initialization ---
 async function startSession(subjectName, mode) {
   currentSubject = subjectName;
   currentMode = mode;
@@ -424,15 +444,13 @@ async function startSession(subjectName, mode) {
       };
     });
 
-    // 1. Navigate to screen first (clears old timers safely)
     navigateTo('quiz-screen');
 
-    // 2. Start mode UI and timer AFTER screen navigation
     if (currentMode === 'study') {
       if (timerDisplay) timerDisplay.classList.add('hidden');
       renderStudyMode();
     } else {
-      startQuizTimer(); // Timer starts cleanly after navigation completes
+      startQuizTimer();
       renderQuizQuestion();
     }
   } catch (error) {
@@ -477,31 +495,23 @@ function renderStudyMode() {
 function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   const q = questions[qIndex];
   const allBtns = optsDiv.querySelectorAll('.option-btn');
+  const isCorrect = selectedIndex === q.correctIndex;
 
   allBtns.forEach(btn => btn.style.pointerEvents = 'none');
 
-  if (selectedIndex === q.correctIndex) {
+  if (isCorrect) {
     selectedBtn.style.backgroundColor = '#10b981';
     selectedBtn.style.color = '#ffffff';
     userScore++;
-
-    missedQuestions = missedQuestions.filter(item => item.question !== q.question);
-    if (missedQuestions.length > 0) {
-      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
-    } else {
-      localStorage.removeItem(getStorageKey());
-    }
   } else {
     selectedBtn.style.backgroundColor = '#ef4444';
     selectedBtn.style.color = '#ffffff';
     allBtns[q.correctIndex].style.backgroundColor = '#10b981';
     allBtns[q.correctIndex].style.color = '#ffffff';
-
-    if (!missedQuestions.some(item => item.question === q.question)) {
-      missedQuestions.push(q);
-      localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
-    }
   }
+
+  // Record answer to master vault streak tracker
+  recordQuestionResult(q, isCorrect);
 
   studyAnsweredCount++;
 
@@ -577,33 +587,20 @@ if (nextBtn) {
   });
 }
 
-// --- EVALUATE QUIZ & DISPLAY RESULTS ---
 function finishQuiz() {
   clearInterval(timerInterval);
 
   userScore = 0;
   questions.forEach((q, idx) => {
     const chosen = userAnswers[idx];
-    if (chosen !== null && chosen === q.correctIndex) {
-      userScore++;
-      missedQuestions = missedQuestions.filter(item => item.question !== q.question);
-    } else {
-      if (!missedQuestions.some(item => item.question === q.question)) {
-        missedQuestions.push(q);
-      }
-    }
+    const isCorrect = chosen !== null && chosen === q.correctIndex;
+    if (isCorrect) userScore++;
+    recordQuestionResult(q, isCorrect);
   });
-
-  if (missedQuestions.length > 0) {
-    localStorage.setItem(getStorageKey(), JSON.stringify(missedQuestions));
-  } else {
-    localStorage.removeItem(getStorageKey());
-  }
 
   showResults();
 }
 
-// --- RENDER DETAILED BREAKDOWN ---
 function renderReviewBreakdown() {
   if (!reviewContainer) return;
   reviewContainer.innerHTML = '';
@@ -635,7 +632,6 @@ function renderReviewBreakdown() {
   });
 }
 
-// --- RESULTS DISPLAY ---
 function showResults() {
   clearInterval(timerInterval);
   cancelAutoScroll();
@@ -657,30 +653,30 @@ function showResults() {
     }, 150);
   }
 
-  // Render question-by-question breakdown
   if (currentMode === 'quiz') {
     renderReviewBreakdown();
   } else if (reviewContainer) {
-    reviewContainer.innerHTML = ''; // Hide breakdown for study mode
+    reviewContainer.innerHTML = '';
   }
 
-  if (missedQuestions.length > 0) {
-    if (missedCountEl) missedCountEl.textContent = missedQuestions.length;
+  const savedMissed = localStorage.getItem(getStorageKey());
+  const missedList = savedMissed ? JSON.parse(savedMissed) : [];
+
+  if (missedList.length > 0) {
+    if (missedCountEl) missedCountEl.textContent = missedList.length;
     if (retryMissedBtn) retryMissedBtn.classList.remove('hidden');
   } else {
     if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
-    localStorage.removeItem(getStorageKey());
   }
 
   navigateTo('result-screen');
 }
 
-// Retry Missed Questions Click Handler
 if (retryMissedBtn) {
   retryMissedBtn.addEventListener('click', () => {
-    questions = shuffleArray(missedQuestions);
-    missedQuestions = [];
-    localStorage.removeItem(getStorageKey());
+    const savedMissed = localStorage.getItem(getStorageKey());
+    if (!savedMissed) return;
+    questions = shuffleArray(JSON.parse(savedMissed));
     currentQuestionIndex = 0;
     userScore = 0;
     studyAnsweredCount = 0;
@@ -694,4 +690,122 @@ if (retryMissedBtn) {
       renderQuizQuestion();
     }
   });
+}
+
+// ==========================================================================
+// MY ACCOUNT DASHBOARD & ANKI EXPORT (.TXT) LOGIC
+// ==========================================================================
+
+function renderAccountDashboard() {
+  if (!accountSubjectList) return;
+  accountSubjectList.innerHTML = '';
+
+  let totalMissedAcrossApp = 0;
+
+  Object.keys(manifestData).forEach(year => {
+    manifestData[year].forEach(subject => {
+      const key = getStorageKey(year, subject);
+      const rawData = localStorage.getItem(key);
+      const missedArray = rawData ? JSON.parse(rawData) : [];
+
+      if (missedArray.length > 0) {
+        totalMissedAcrossApp += missedArray.length;
+
+        const card = document.createElement('div');
+        card.classList.add('subject-card');
+        card.innerHTML = `
+          <h3>Year ${year} - ${subject}</h3>
+          <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
+          <div class="subject-actions" style="flex-direction: column;">
+            <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${subject}')">🎯 Practice Missed (${missedArray.length})</button>
+            <button class="btn primary-btn" onclick="promptAnkiExport('${key}', 'Year_${year}_${subject}')">📦 Export to Anki (.txt)</button>
+          </div>
+        `;
+        accountSubjectList.appendChild(card);
+      }
+    });
+  });
+
+  if (totalMissedAcrossApp === 0) {
+    accountSubjectList.innerHTML = `
+      <div class="score-card" style="text-align: center; padding: 2rem;">
+        <p style="margin: 0; color: var(--text-sub);">🎉 Fantastic! You have 0 missed questions in your vault.</p>
+      </div>
+    `;
+  }
+}
+
+function launchAccountReview(year, subject) {
+  currentYear = year;
+  currentSubject = subject;
+  sessionStorage.setItem('lastYear', year);
+  startMissedSession(subject);
+}
+
+// Anki Export Modal Handlers
+function promptAnkiExport(storageKey, subjectFilenameTag) {
+  activeExportSubjectKey = storageKey;
+  const modal = document.getElementById('anki-modal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+const ankiKeepBtn = document.getElementById('anki-keep-btn');
+const ankiClearBtn = document.getElementById('anki-clear-btn');
+const ankiCancelBtn = document.getElementById('anki-cancel-btn');
+
+if (ankiCancelBtn) {
+  ankiCancelBtn.addEventListener('click', () => {
+    document.getElementById('anki-modal').classList.add('hidden');
+  });
+}
+
+if (ankiKeepBtn) {
+  ankiKeepBtn.addEventListener('click', () => {
+    executeAnkiDownload(false);
+  });
+}
+
+if (ankiClearBtn) {
+  ankiClearBtn.addEventListener('click', () => {
+    executeAnkiDownload(true);
+  });
+}
+
+function executeAnkiDownload(shouldClearAfter) {
+  if (!activeExportSubjectKey) return;
+
+  const raw = localStorage.getItem(activeExportSubjectKey);
+  if (!raw) return;
+
+  const questionsList = JSON.parse(raw);
+  
+  // Format into Anki Tab-Separated Values: Front [TAB] Back
+  let fileContent = "#separator:Tab\n#html:true\n";
+
+  questionsList.forEach(q => {
+    let optionsText = q.options.map((opt, idx) => {
+      const letter = String.fromCharCode(65 + idx); // A, B, C, D...
+      return `<div><b>${letter})</b> ${opt}</div>`;
+    }).join('');
+
+    const front = `<div style='font-size:1.1em; font-weight:bold; margin-bottom:8px;'>${q.question}</div>${optionsText}`;
+    const correctLetter = String.fromCharCode(65 + q.correctIndex);
+    const back = `<div><b>Correct Choice:</b> ${correctLetter}) ${q.options[q.correctIndex]}</div>`;
+
+    fileContent += `${front}\t${back}\n`;
+  });
+
+  // Download .txt file ready for Anki Import
+  const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = `Anki_${activeExportSubjectKey}.txt`;
+  downloadLink.click();
+
+  if (shouldClearAfter) {
+    localStorage.removeItem(activeExportSubjectKey);
+    renderAccountDashboard();
+  }
+
+  document.getElementById('anki-modal').classList.add('hidden');
 }
