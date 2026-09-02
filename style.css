@@ -602,3 +602,36 @@ p {
   .nav-item { padding: 4px; }
   .subject-actions { flex-direction: column; }
 }
+
+/* --- Account Toolbar & Selection Mode --- */
+.account-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-subcard);
+  border-radius: 8px;
+  border: 1px solid var(--border-sub);
+}
+
+.subject-card-selectable {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.card-checkbox {
+  width: 22px;
+  height: 22px;
+  margin-top: 4px;
+  cursor: pointer;
+  accent-color: #ef4444;
+}
+
+.subject-card.selected-for-delete {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+}
