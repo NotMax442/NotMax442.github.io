@@ -962,8 +962,8 @@ function executeAnkiDownload(shouldClearAfter) {
 // TELEGRAM FEEDBACK, COOLDOWN & STATUS SYNC LOGIC
 // ==========================================================================
 
-const TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE";
-const TELEGRAM_CHAT_ID = "YOUR_TELEGRAM_CHAT_ID_HERE";
+const TELEGRAM_BOT_TOKEN = "8757492792:AAGj5G-kCqMNSIVWrzjO07qD4sp9ivi3TyI";
+const TELEGRAM_CHAT_ID = "1145051277";
 
 const feedbackForm = document.getElementById('feedback-form');
 const feedbackText = document.getElementById('feedback-text');
