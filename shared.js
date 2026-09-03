@@ -1,3 +1,48 @@
+
+// ==========================================================================
+// CLIENT-SIDE INSPECT & DEVTOOLS BLOCKER (SHARED ACROSS ALL PAGES)
+// ==========================================================================
+
+// 1. Block Right-Click Context Menu
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
+// 2. Block Keyboard Shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Cmd+Option+I/J/C)
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toUpperCase();
+  const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+
+  if (
+    key === 'F12' ||
+    (isCmdOrCtrl && e.shiftKey && ['I', 'J', 'C', 'K'].includes(key)) ||
+    (isCmdOrCtrl && ['U', 'S'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
+
+// 3. Anti-Debugging Loop (Freezes performance & clears page if DevTools is opened)
+setInterval(() => {
+  const startTime = performance.now();
+  debugger;
+  const endTime = performance.now();
+
+  if (endTime - startTime > 100) {
+    document.body.innerHTML = `
+      <div style="display:flex; justify-content:center; align-items:center; height:100vh; background:#0f172a; color:#ef4444; font-family:sans-serif; text-align:center; padding:1rem;">
+        <div>
+          <h2>⚠️ Developer Tools Disabled</h2>
+          <p style="color:#94a3b8;">Please close DevTools and refresh the page to continue studying.</p>
+        </div>
+      </div>
+    `;
+  }
+}, 1000);
+
+
 // ==========================================================================
 // SHARED UTILITIES, TRANSLATIONS & GLOBAL STATE
 // ==========================================================================
