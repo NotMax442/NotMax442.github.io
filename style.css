@@ -1047,3 +1047,16 @@ p {
     font-size: 1.1rem;
   }
 }
+/* --- Darker Study Mode Card Background --- */
+.quiz-body .score-card {
+  background-color: var(--bg-inner) !important;
+  border-color: var(--border-color) !important;
+}
+
+.study-q-card {
+  background-color: var(--bg-inner);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem !important;
+}
