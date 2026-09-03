@@ -432,7 +432,6 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
 
 // Quiz Mode Renderer
 function renderQuizQuestion() {
-  window.scrollTo(0, 0);
   const nextBtn = document.getElementById('next-btn');
   const optionsContainer = document.getElementById('options-container');
   const progressText = document.getElementById('progress-text');
