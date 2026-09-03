@@ -571,13 +571,16 @@ function finishSession() {
 function handleStudyScroll() {
   const scrollTopBtn = document.getElementById('scroll-top-btn');
   const goLatestQBtn = document.getElementById('go-latest-q-btn');
+  const currentScroll = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-  if (window.scrollY > 300) {
+  // Show "Up Arrow" after scrolling down 150px
+  if (currentScroll > 150) {
     if (scrollTopBtn) scrollTopBtn.classList.remove('hidden');
   } else {
     if (scrollTopBtn) scrollTopBtn.classList.add('hidden');
   }
 
+  // Evaluate "Go to Latest Question" visibility
   const targetIndex = userAnswers.findIndex(ans => ans === null);
   if (targetIndex === -1) {
     if (goLatestQBtn) goLatestQBtn.classList.add('hidden');
@@ -595,7 +598,6 @@ function handleStudyScroll() {
     }
   }
 }
-
 function scrollToLatestUnansweredQuestion() {
   const targetIndex = userAnswers.findIndex(ans => ans === null);
   if (targetIndex !== -1) {
