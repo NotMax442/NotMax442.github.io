@@ -433,9 +433,12 @@ function renderStudyMode() {
       }, 300);
     }
   }
+
   const studyNavControls = document.getElementById('study-nav-controls');
   if (studyNavControls) {
     studyNavControls.classList.remove('hidden');
+    // Unbind existing scroll listener before re-attaching
+    window.removeEventListener('scroll', handleStudyScroll);
     window.addEventListener('scroll', handleStudyScroll);
     handleStudyScroll();
   }
