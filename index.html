@@ -32,14 +32,16 @@
       </div>
     </nav>
 
-    <!-- Hero / Landing Section -->
+    <!-- 1. Hero Landing Section -->
     <div id="landing-screen" class="screen">
       <h1 data-i18n="landing_title">Medical Study Platform</h1>
       <p data-i18n="landing_sub">Select your academic year, review saved missed questions, or test your knowledge.</p>
+      <button id="enter-study-btn" class="btn primary-btn" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;" data-i18n="btn_start_study">🚀 Start Studying</button>
     </div>
 
-    <!-- Year Selection Section -->
-    <div id="year-screen" class="screen">
+    <!-- 2. Year Selection Section (Hidden by default) -->
+    <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
+      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back">⬅️ Back</button>
       <h2 data-i18n="year_selection_title">Select Academic Year</h2>
       <div class="year-grid">
         <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
@@ -51,9 +53,9 @@
       </div>
     </div>
 
-    <!-- Subject Selection Section (Hidden until year is clicked) -->
-    <div id="subject-screen" class="screen hidden" style="margin-top: 2rem;">
-      <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years">⬅️ Back to Years</button>
+    <!-- 3. Subject Selection Section (Hidden by default) -->
+    <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
+      <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back_years">⬅️ Back to Years</button>
       <h2 id="selected-year-title">Subjects</h2>
       <div id="subject-list" class="subject-grid"></div>
     </div>
@@ -63,7 +65,7 @@
       <p>© 2026 TestforUHS. All rights reserved. | <a href="#" id="open-privacy-btn" style="color: var(--text-heading); text-decoration: underline;">Privacy Policy</a></p>
     </footer>
 
-  </div> <!-- End of .app-container -->
+  </div>
 
   <!-- Global Loading Overlay -->
   <div id="loading-overlay" class="modal-overlay hidden">
@@ -75,7 +77,7 @@
     </div>
   </div>
 
-  <!-- Shared Modals (Donation & Privacy) included at bottom -->
+  <!-- Shared Modals (Donation & Privacy) -->
   <div id="donate-modal" class="modal-overlay hidden">
     <div class="modal-card donate-card-wide">
       <button id="close-donate-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
