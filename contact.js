@@ -1,12 +1,11 @@
 // ==========================================================================
-// CONTACT & FEEDBACK LOGIC (contact.html)
+// TELEGRAM FEEDBACK & REPORTING LOGIC (contact.js)
 // ==========================================================================
 
 const WORKER_URL = "https://telegram-proxy.pensamkhan9.workers.dev";
+let pendingFeedbackPayload = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderMyFeedbacks();
-
   const feedbackForm = document.getElementById('feedback-form');
   const feedbackText = document.getElementById('feedback-text');
   const feedbackImage = document.getElementById('feedback-image');
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmFeedbackBtn = document.getElementById('confirm-feedback-btn');
   const cancelFeedbackBtn = document.getElementById('cancel-feedback-btn');
 
-  let pendingFeedbackPayload = null;
+  renderMyFeedbacks();
 
   if (feedbackForm) {
     feedbackForm.addEventListener('submit', async (e) => {
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (elapsed < cooldownMs) {
           const remainingMins = Math.ceil((cooldownMs - elapsed) / 60000);
-          alert(`⏱️ Cooldown Active / រយៈពេលរង់ចាំ:\nPlease wait ${remainingMins} minute(s) before sending feedback again.`);
+          alert(`⏱️ Cooldown Active / រយៈពេលរង់ចាំ:\n🇬🇧 Please wait ${remainingMins} minute(s) before sending feedback again.\n🇰🇭 សូមរង់ចាំ ${remainingMins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។`);
           return;
         }
       }
@@ -121,14 +120,55 @@ function saveLocalFeedbackLog(text, timestamp, msgId) {
   localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
 }
 
+async function syncFeedbackStatusWithTelegram() {
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  if (!raw) return;
+
+  let logs = JSON.parse(raw);
+  const pendingLogs = logs.filter(l => l.status === 'Pending ⏳' && l.telegram_msg_id);
+
+  if (pendingLogs.length === 0) return;
+
+  try {
+    const res = await fetch(`${WORKER_URL}/getUpdates`);
+    if (!res.ok) return;
+
+    const data = await res.json();
+    if (!data.result || !Array.isArray(data.result)) return;
+
+    let updated = false;
+
+    data.result.forEach(update => {
+      const msg = update.message || update.edited_message || update.channel_post || update.edited_channel_post;
+
+      if (msg && msg.reply_to_message) {
+        const repliedId = msg.reply_to_message.message_id;
+        const matchedLog = logs.find(l => String(l.telegram_msg_id) === String(repliedId));
+
+        if (matchedLog && matchedLog.status !== 'Checked ✅') {
+          matchedLog.status = 'Checked ✅';
+          updated = true;
+        }
+      }
+    });
+
+    if (updated) {
+      localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+    }
+  } catch (err) {
+    console.error("Failed to sync Telegram status:", err);
+  }
+}
+
 async function renderMyFeedbacks() {
   const myFeedbackList = document.getElementById('my-feedback-list');
   if (!myFeedbackList) return;
 
-  const raw = localStorage.getItem('my_submitted_feedbacks');
-  const logs = raw ? JSON.parse(raw) : [];
+  await syncFeedbackStatusWithTelegram();
 
   myFeedbackList.innerHTML = '';
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  const logs = raw ? JSON.parse(raw) : [];
 
   if (logs.length === 0) {
     myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">No submitted reports yet. / មិនទាន់មានប្រវត្តិរាយការណ៍នៅឡើយទេ។</p>`;
@@ -143,7 +183,7 @@ async function renderMyFeedbacks() {
     const statusClass = log.status === 'Checked ✅' ? 'status-checked' : 'status-pending';
 
     card.innerHTML = `
-      <div style="display:flex; justify-space-between; align-items:center; margin-bottom:0.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
         <span style="font-size:0.8rem; color:var(--text-sub);">${log.date}</span>
         <span class="feedback-status-badge ${statusClass}">${log.status}</span>
       </div>
