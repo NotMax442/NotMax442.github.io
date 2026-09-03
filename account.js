@@ -7,6 +7,18 @@ let selectedSubjectKeys = new Set();
 let activeExportSubjectKey = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Initialize Auto-Advance Toggle Setting
+  const autoAdvanceToggle = document.getElementById('auto-advance-toggle');
+  if (autoAdvanceToggle) {
+    const isAutoAdvance = localStorage.getItem('auto_advance_quiz') === 'true';
+    autoAdvanceToggle.checked = isAutoAdvance;
+
+    autoAdvanceToggle.addEventListener('change', (e) => {
+      localStorage.setItem('auto_advance_quiz', e.target.checked);
+    });
+  }
+
+  // 2. Initialize Vault Dashboard & Listeners
   renderAccountDashboard();
 
   const toggleSelectModeBtn = document.getElementById('toggle-select-mode-btn');
