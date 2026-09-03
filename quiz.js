@@ -75,6 +75,24 @@ function showLeaveConfirmModal() {
 }
 
 function setupNavigationGuards() {
+  // 1. Push a dummy state into browser history to capture the back button action
+  history.pushState({ quizActive: true }, '', window.location.href);
+
+  // 2. Intercept Browser Back Button / Mobile Back Swipe
+  window.addEventListener('popstate', async (e) => {
+    if (isSessionActive) {
+      // Re-push state to trap navigation until confirmed
+      history.pushState({ quizActive: true }, '', window.location.href);
+
+      const wantsToLeave = await showLeaveConfirmModal();
+      if (wantsToLeave) {
+        isSessionActive = false;
+        window.location.href = 'index.html';
+      }
+    }
+  });
+
+  // 3. Intercept Top Navbar Nav Links
   const navGuards = document.querySelectorAll('.nav-leave-guard');
   navGuards.forEach(link => {
     link.addEventListener('click', async (e) => {
@@ -92,6 +110,7 @@ function setupNavigationGuards() {
     });
   });
 
+  // 4. Intercept Built-In Back Button
   const quitBtn = document.getElementById('quit-session-btn');
   if (quitBtn) {
     quitBtn.addEventListener('click', async () => {
@@ -107,6 +126,7 @@ function setupNavigationGuards() {
     });
   }
 
+  // 5. Intercept Tab Close / Hard Reload
   window.addEventListener('beforeunload', (e) => {
     if (isSessionActive) {
       e.preventDefault();
