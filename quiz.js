@@ -1,5 +1,5 @@
 // ==========================================================================
-// QUIZ & STUDY RUNNER LOGIC (quiz.html)
+// QUIZ & STUDY RUNNER LOGIC (quiz.js)
 // ==========================================================================
 
 let sessionConfig = null;
@@ -16,15 +16,17 @@ let timeRemaining = 3600;
 let autoScrollTimer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Detect page refresh inside active session -> Redirect to subject page
+  // Detect page refresh inside active session -> Redirect back to home
   const navEntries = performance.getEntriesByType('navigation');
   if (navEntries.length > 0 && navEntries[0].type === 'reload') {
     const rawConfig = sessionStorage.getItem('activeSessionConfig');
     if (rawConfig) {
       try {
         const config = JSON.parse(rawConfig);
-        sessionStorage.setItem('lastView', 'subject');
+        sessionStorage.setItem('lastView', 'professor');
+        sessionStorage.setItem('lastActiveMajor', config.major);
         sessionStorage.setItem('lastActiveYear', config.year);
+        sessionStorage.setItem('lastActiveSubject', config.subject);
       } catch (e) {}
     }
     window.location.href = '/';
@@ -39,9 +41,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   sessionConfig = JSON.parse(rawConfig);
 
-  // Sync navigation view back to subject selection
-  sessionStorage.setItem('lastView', 'subject');
+  // Sync navigation view state
+  sessionStorage.setItem('lastView', 'professor');
+  sessionStorage.setItem('lastActiveMajor', sessionConfig.major);
   sessionStorage.setItem('lastActiveYear', sessionConfig.year);
+  sessionStorage.setItem('lastActiveSubject', sessionConfig.subject);
 
   // Wire up Fullscreen Button
   const fullscreenBtn = document.getElementById('fullscreen-btn');
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     fullscreenBtn.addEventListener('click', toggleFullscreen);
   }
 
-  // Wire up the "Next Question" button click handler
+  // Wire up "Next Question" button click handler
   const nextBtn = document.getElementById('next-btn');
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
@@ -62,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Floating Navigation Handlers (Scroll to top & Go to latest)
+  // Floating Navigation Handlers
   const scrollTopBtn = document.getElementById('scroll-top-btn');
   const goLatestQBtn = document.getElementById('go-latest-q-btn');
 
@@ -159,7 +163,7 @@ function setupNavigationGuards() {
 
   pushGuardState();
 
-  window.addEventListener('popstate', (e) => {
+  window.addEventListener('popstate', () => {
     if (!isSessionActive) return;
     pushGuardState();
     if (isModalOpen) return;
@@ -233,6 +237,7 @@ function setupNavigationGuards() {
   });
 }
 
+// Session Initialization
 async function initSession() {
   const { major, year, subject, professor, mode, resume } = sessionConfig;
   const sessionInfo = document.getElementById('session-info');
@@ -283,7 +288,7 @@ async function initSession() {
     return;
   }
 
-  // File Path Example: data/med/year1/i-d-a/dr-smith.json
+  // JSON Fetch Path Example: data/med/year1/i-d-a/dr-smith.json
   const filePath = `data/${major.toLowerCase()}/year${year}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
@@ -355,10 +360,13 @@ function updateTimerUI() {
   timerDisplay.textContent = `⏱️ ${minutes}:${seconds}`;
 }
 
-// Auto-save Study progress ONLY
+// Auto-save Study progress
 function saveStudyProgress() {
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const studyProgressKey = `saved_study_y${sessionConfig.year}_${sessionConfig.subject.toLowerCase()}`;
+    const { major, year, subject, professor } = sessionConfig;
+    const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
+    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
+
     const progressData = {
       questions: questions,
       userAnswers: userAnswers,
@@ -439,7 +447,6 @@ function renderStudyMode() {
   const studyNavControls = document.getElementById('study-nav-controls');
   if (studyNavControls) {
     studyNavControls.classList.remove('hidden');
-    // Unbind existing scroll listener before re-attaching
     window.removeEventListener('scroll', handleStudyScroll);
     window.addEventListener('scroll', handleStudyScroll);
     handleStudyScroll();
@@ -467,7 +474,14 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     }
   }
 
-  recordQuestionResult(q, isCorrect, sessionConfig.year, sessionConfig.subject);
+  recordQuestionResult(
+    q,
+    isCorrect,
+    sessionConfig.major,
+    sessionConfig.year,
+    sessionConfig.subject,
+    sessionConfig.professor
+  );
   studyAnsweredCount++;
 
   saveStudyProgress();
@@ -544,7 +558,6 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
 
   if (nextBtn) nextBtn.classList.remove('hidden');
 
-  // Check if Auto-Advance is enabled
   const isAutoAdvance = localStorage.getItem('auto_advance_quiz') === 'true';
   if (isAutoAdvance) {
     allOptionBtns.forEach(btn => btn.style.pointerEvents = 'none');
@@ -565,9 +578,10 @@ function finishSession() {
   clearInterval(timerInterval);
   cancelAutoScroll();
 
-  // Remove saved study progress when finished
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const studyProgressKey = `saved_study_y${sessionConfig.year}_${sessionConfig.subject.toLowerCase()}`;
+    const { major, year, subject, professor } = sessionConfig;
+    const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
+    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
     localStorage.removeItem(studyProgressKey);
   }
 
@@ -577,7 +591,14 @@ function finishSession() {
       const chosen = userAnswers[idx];
       const isCorrect = chosen !== null && chosen === q.correctIndex;
       if (isCorrect) userScore++;
-      recordQuestionResult(q, isCorrect, sessionConfig.year, sessionConfig.subject);
+      recordQuestionResult(
+        q,
+        isCorrect,
+        sessionConfig.major,
+        sessionConfig.year,
+        sessionConfig.subject,
+        sessionConfig.professor
+      );
     });
   }
 
@@ -587,8 +608,10 @@ function finishSession() {
     questions: questions,
     userAnswers: userAnswers,
     userScore: userScore,
+    major: sessionConfig.major,
     year: sessionConfig.year,
     subject: sessionConfig.subject,
+    professor: sessionConfig.professor,
     mode: sessionConfig.mode
   };
 
@@ -601,14 +624,12 @@ function handleStudyScroll() {
   const goLatestQBtn = document.getElementById('go-latest-q-btn');
   const currentScroll = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-  // Show "Up Arrow" after scrolling down 150px
   if (currentScroll > 150) {
     if (scrollTopBtn) scrollTopBtn.classList.remove('hidden');
   } else {
     if (scrollTopBtn) scrollTopBtn.classList.add('hidden');
   }
 
-  // Evaluate "Go to Latest Question" visibility
   const targetIndex = userAnswers.findIndex(ans => ans === null);
   if (targetIndex === -1) {
     if (goLatestQBtn) goLatestQBtn.classList.add('hidden');
@@ -637,7 +658,7 @@ function scrollToLatestUnansweredQuestion() {
   }
 }
 
-// Fullscreen Toggle Logic (PC & Mobile Support)
+// Fullscreen Toggle Logic
 function toggleFullscreen() {
   const docEl = document.documentElement;
   const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
@@ -661,7 +682,6 @@ function toggleFullscreen() {
   }
 }
 
-// Automatically sync button text (Letters only for Exit state)
 ['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(eventType => {
   document.addEventListener(eventType, () => {
     const fsBtn = document.getElementById('fullscreen-btn');
