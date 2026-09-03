@@ -156,13 +156,29 @@ function showSubjects(major, year) {
   subjects.forEach(subject => {
     const card = document.createElement('div');
     card.classList.add('subject-card');
-    card.innerHTML = `<h3>${subject}</h3><p style="color:var(--text-sub); font-size:0.85rem;">Click to select professor</p>`;
-    card.addEventListener('click', () => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+
+    card.innerHTML = `
+      <h3>${subject}</h3>
+      <p style="color:var(--text-sub); font-size:0.85rem; margin-bottom: 0;">Click to select professor</p>
+    `;
+
+    const triggerSelect = () => {
       currentSubject = subject;
       sessionStorage.setItem('lastActiveSubject', currentSubject);
       sessionStorage.setItem('lastView', 'professor');
       showProfessors(major, year, subject);
+    };
+
+    card.addEventListener('click', triggerSelect);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerSelect();
+      }
     });
+
     subjectList.appendChild(card);
   });
 }
