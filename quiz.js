@@ -82,40 +82,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await initSession();
 });
 
-// ==========================================================================
-// HELPER FUNCTIONS & GLOBAL EVENT LISTENERS (Place at bottom of script)
-// ==========================================================================
-
-function toggleFullscreen() {
-  const docEl = document.documentElement;
-  const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
-
-  if (!isFs) {
-    if (docEl.requestFullscreen) {
-      docEl.requestFullscreen().catch((err) => console.warn(`Fullscreen error: ${err.message}`));
-    } else if (docEl.webkitRequestFullscreen) { /* Safari / Older WebKit */
-      docEl.webkitRequestFullscreen();
-    } else if (docEl.msRequestFullscreen) { /* IE/Edge */
-      docEl.msRequestFullscreen();
-    }
-  } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  }
-
-// Automatically sync button text when entering/exiting fullscreen (including ESC key)
-document.addEventListener('fullscreenchange', () => {
-  const fsBtn = document.getElementById('fullscreen-btn');
-  if (fsBtn) {
-    fsBtn.textContent = document.fullscreenElement ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
-  }
-});
-
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -662,6 +628,30 @@ function scrollToLatestUnansweredQuestion() {
     const targetCard = document.getElementById(`q-card-${targetIndex}`);
     if (targetCard) {
       targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+}
+
+// Fullscreen Toggle Logic (PC & Mobile Support)
+function toggleFullscreen() {
+  const docEl = document.documentElement;
+  const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+
+  if (!isFs) {
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen().catch((err) => console.warn(`Fullscreen error: ${err.message}`));
+    } else if (docEl.webkitRequestFullscreen) {
+      docEl.webkitRequestFullscreen();
+    } else if (docEl.msRequestFullscreen) {
+      docEl.msRequestFullscreen();
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
   }
 }
