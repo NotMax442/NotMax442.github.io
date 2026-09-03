@@ -88,9 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showSubjects(year) {
+  const yearScreen = document.getElementById('year-screen');
+  const subjectScreen = document.getElementById('subject-screen');
   const selectedYearTitle = document.getElementById('selected-year-title');
-  const t = translations[currentLang] || translations.en;
 
+  // 1. Un-hide subject screen first so dimensions are calculated
+  if (yearScreen) yearScreen.classList.add('hidden');
+  if (subjectScreen) subjectScreen.classList.remove('hidden');
+
+  // 2. Trigger AdSense push after element is visible in DOM
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {}
+
+  const t = translations[currentLang] || translations.en;
   if (selectedYearTitle) {
     selectedYearTitle.textContent = t.subjects_header 
       ? t.subjects_header.replace('{year}', year) 
