@@ -28,6 +28,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   localStorage.setItem('lastView', 'subject');
   localStorage.setItem('lastActiveYear', sessionConfig.year);
 
+  // Wire up the "Next Question" button click handler
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        renderQuizQuestion();
+      } else {
+        finishSession();
+      }
+    });
+  }
+
   setupNavigationGuards();
   await initSession();
 });
@@ -486,7 +499,6 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
   // Check if Auto-Advance is enabled
   const isAutoAdvance = localStorage.getItem('auto_advance_quiz') === 'true';
   if (isAutoAdvance) {
-    // Disable option clicks during delay to prevent double skipping
     allOptionBtns.forEach(btn => btn.style.pointerEvents = 'none');
     
     setTimeout(() => {
@@ -499,6 +511,7 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
     }, 400);
   }
 }
+
 // Session Completion Handler
 function finishSession() {
   clearInterval(timerInterval);
