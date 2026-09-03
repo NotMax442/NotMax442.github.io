@@ -2,7 +2,6 @@
 // SHARED UTILITIES & GLOBAL STATE (shared.js)
 // ==========================================================================
 
-// --- Localization & Translations ---
 const translations = {
   en: {
     nav_home: "HOME",
@@ -90,41 +89,42 @@ const translations = {
   }
 };
 
-let currentLang = localStorage.getItem('app_language') || 'en';
+const currentLang = localStorage.getItem('app_language') || 'en';
 
-function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem('app_language', lang);
-  document.documentElement.setAttribute('lang', lang);
+function applyStaticTranslations() {
+  document.documentElement.setAttribute('lang', currentLang);
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (translations[lang] && translations[lang][key]) {
-      el.textContent = translations[lang][key];
+    if (translations[currentLang] && translations[currentLang][key]) {
+      el.textContent = translations[currentLang][key];
     }
   });
 
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.getAttribute('data-i18n-placeholder');
-    if (translations[lang] && translations[lang][key]) {
-      el.placeholder = translations[lang][key];
+    if (translations[currentLang] && translations[currentLang][key]) {
+      el.placeholder = translations[currentLang][key];
     }
   });
 
   const langSelect = document.getElementById('language-select');
-  if (langSelect) langSelect.value = lang;
+  if (langSelect) langSelect.value = currentLang;
+}
 
-  // Broadcast language update to active page scripts
-  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+// Reload page cleanly on language toggle
+function changeLanguage(lang) {
+  localStorage.setItem('app_language', lang);
+  location.reload();
 }
 
 // Global Initialization
 document.addEventListener('DOMContentLoaded', () => {
-  // Set Language
-  setLanguage(currentLang);
+  applyStaticTranslations();
+
   const langSelect = document.getElementById('language-select');
   if (langSelect) {
-    langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+    langSelect.addEventListener('change', (e) => changeLanguage(e.target.value));
   }
 
   // Set Theme
@@ -141,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Setup Modals
   setupSharedModals();
 });
 
@@ -192,7 +191,6 @@ function recordQuestionResult(questionObj, isCorrect, year, subject) {
   }
 }
 
-// --- Array Shuffle Helper ---
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -202,9 +200,8 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-// --- Shared Modal Controller (Donation & Privacy) ---
+// --- Shared Modal Controller ---
 function setupSharedModals() {
-  // Donation Modal
   const navDonateBtn = document.getElementById('nav-donate-btn');
   const donateModal = document.getElementById('donate-modal');
   const closeDonateBtn = document.getElementById('close-donate-btn');
@@ -223,7 +220,6 @@ function setupSharedModals() {
     });
   }
 
-  // Privacy Modal
   const openPrivacyBtn = document.getElementById('open-privacy-btn');
   const privacyModal = document.getElementById('privacy-modal');
   const closePrivacyBtn = document.getElementById('close-privacy-btn');
