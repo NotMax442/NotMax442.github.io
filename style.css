@@ -285,7 +285,7 @@ p {
   gap: 1rem;
 }
 
-/* Subject & Professor Cards */
+/* Base Subject Card Styling */
 .subject-card {
   background-color: var(--bg-inner);
   border: 1px solid var(--border-color);
@@ -295,17 +295,21 @@ p {
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Enlarge on Hover */
-.subject-card:hover {
+/* Enlarge ONLY subject cards on hover (when clicking the entire card navigates) */
+.subject-card:not(.prof-card):hover {
   transform: scale(1.025);
   border-color: var(--text-heading);
   background-color: var(--bg-subcard);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Enlarge slightly more on Click / Press */
-.subject-card:active {
+.subject-card:not(.prof-card):active {
   transform: scale(1.04);
+}
+
+/* Professor Card Container (Static - does not grow) */
+.subject-card.prof-card {
+  cursor: default;
 }
 
 .subject-card h3 {
@@ -325,6 +329,20 @@ p {
   display: flex;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
+}
+
+/* Enlarge ONLY buttons inside Professor Cards on hover/press */
+.subject-card.prof-card .btn {
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subject-card.prof-card .btn:hover {
+  transform: scale(1.025);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.subject-card.prof-card .btn:active {
+  transform: scale(1.04);
 }
 
 .study-btn {
