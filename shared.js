@@ -168,13 +168,15 @@ function applyTheme(theme) {
 }
 
 // --- Vault Storage Helpers ---
-function getStorageKey(year, subject) {
-  return `missed_y${year}_${subject.toLowerCase()}`;
+function getStorageKey(major, year, subject, professor) {
+  if (!major || !year || !subject || !professor) return '';
+  const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
+  return `missed_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
 }
 
-function recordQuestionResult(questionObj, isCorrect, year, subject) {
-  if (!year || !subject) return;
-  const key = getStorageKey(year, subject);
+function recordQuestionResult(questionObj, isCorrect, major, year, subject, professor) {
+  if (!major || !year || !subject || !professor) return;
+  const key = getStorageKey(major, year, subject, professor);
   const raw = localStorage.getItem(key);
   let vault = raw ? JSON.parse(raw) : [];
 
