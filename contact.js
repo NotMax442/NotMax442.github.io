@@ -1,194 +1,181 @@
 // ==========================================================================
-// TELEGRAM FEEDBACK & REPORTING LOGIC (contact.js)
+// CONTACT & FEEDBACK LOGIC (contact.js)
 // ==========================================================================
 
-const WORKER_URL = "https://telegram-proxy.pensamkhan9.workers.dev";
-let pendingFeedbackPayload = null;
+const WORKER_URL = 'https://feedback-worker.testforuhs.workers.dev';
 
 document.addEventListener('DOMContentLoaded', () => {
   const feedbackForm = document.getElementById('feedback-form');
-  const feedbackText = document.getElementById('feedback-text');
-  const feedbackImage = document.getElementById('feedback-image');
-  const contactConfirmModal = document.getElementById('contact-confirm-modal');
-  const confirmFeedbackBtn = document.getElementById('confirm-feedback-btn');
-  const cancelFeedbackBtn = document.getElementById('cancel-feedback-btn');
+  const confirmModal = document.getElementById('contact-confirm-modal');
+  const cancelBtn = document.getElementById('cancel-feedback-btn');
+  const confirmBtn = document.getElementById('confirm-feedback-btn');
 
   renderMyFeedbacks();
 
   if (feedbackForm) {
-    feedbackForm.addEventListener('submit', async (e) => {
+    feedbackForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const lastSentTime = localStorage.getItem('last_feedback_internet_time');
-      const nowInternet = await getInternetTime();
-
-      if (lastSentTime) {
-        const elapsed = nowInternet - parseInt(lastSentTime, 10);
-        const cooldownMs = 30 * 60 * 1000;
-
-        if (elapsed < cooldownMs) {
-          const remainingMins = Math.ceil((cooldownMs - elapsed) / 60000);
-          alert(`⏱️ Cooldown Active / រយៈពេលរង់ចាំ:\n🇬🇧 Please wait ${remainingMins} minute(s) before sending feedback again.\n🇰🇭 សូមរង់ចាំ ${remainingMins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។`);
+      // Check 30-minute Cooldown
+      const lastSubmitTime = localStorage.getItem('last_feedback_time');
+      if (lastSubmitTime) {
+        const elapsedMins = (Date.now() - parseInt(lastSubmitTime, 10)) / (1000 * 60);
+        if (elapsedMins < 30) {
+          const remainMins = Math.ceil(30 - elapsedMins);
+          const t = translations[currentLang] || translations.en;
+          const alertMsg = t.cooldown_alert
+            ? t.cooldown_alert.replace('{mins}', remainMins)
+            : `⏱️ Cooldown Active:\nPlease wait ${remainMins} minute(s) before sending feedback again.`;
+          alert(alertMsg);
           return;
         }
       }
 
-      pendingFeedbackPayload = {
-        text: feedbackText.value,
-        file: feedbackImage.files[0] || null,
-        timestamp: nowInternet
-      };
-
-      if (contactConfirmModal) contactConfirmModal.classList.remove('hidden');
+      if (confirmModal) confirmModal.classList.remove('hidden');
     });
   }
 
-  if (cancelFeedbackBtn) {
-    cancelFeedbackBtn.addEventListener('click', () => {
-      if (contactConfirmModal) contactConfirmModal.classList.add('hidden');
-      pendingFeedbackPayload = null;
-    });
+  if (cancelBtn && confirmModal) {
+    cancelBtn.addEventListener('click', () => confirmModal.classList.add('hidden'));
   }
 
-  if (confirmFeedbackBtn) {
-    confirmFeedbackBtn.addEventListener('click', async () => {
-      if (!pendingFeedbackPayload) return;
-
-      confirmFeedbackBtn.disabled = true;
-      confirmFeedbackBtn.textContent = "Sending... / កំពុងផ្ញើ...";
-
-      const { text, file, timestamp } = pendingFeedbackPayload;
-
-      try {
-        const formData = new FormData();
-        formData.append('text', text);
-        if (file) formData.append('photo', file);
-
-        const res = await fetch(WORKER_URL, {
-          method: 'POST',
-          body: formData
-        });
-
-        const data = await res.json();
-
-        if (data.ok && data.result) {
-          const telegramMsgId = data.result.message_id;
-          localStorage.setItem('last_feedback_internet_time', timestamp.toString());
-          saveLocalFeedbackLog(text, timestamp, telegramMsgId);
-
-          feedbackForm.reset();
-          alert("✅ Feedback Sent Successfully! / បានផ្ញើដោយជោគជ័យ!");
-        } else {
-          alert(`⚠️ Telegram Error:\n${data.description || 'Failed to deliver message.'}`);
-        }
-      } catch (err) {
-        alert(`⚠️ Connection Error:\n${err.message}`);
-      }
-
-      confirmFeedbackBtn.disabled = false;
-      confirmFeedbackBtn.textContent = "Send / ផ្ញើ";
-      if (contactConfirmModal) contactConfirmModal.classList.add('hidden');
-      pendingFeedbackPayload = null;
-      renderMyFeedbacks();
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', async () => {
+      if (confirmModal) confirmModal.classList.add('hidden');
+      await submitFeedback();
     });
   }
 });
 
-async function getInternetTime() {
-  try {
-    const response = await fetch(`${WORKER_URL}/time`);
-    if (!response.ok) throw new Error("Time API unavailable");
-    const data = await response.json();
-    return data.timestamp;
-  } catch (err) {
-    return Date.now();
+async function submitFeedback() {
+  const feedbackText = document.getElementById('feedback-text');
+  const feedbackImage = document.getElementById('feedback-image');
+  const submitBtn = document.getElementById('submit-feedback-btn');
+
+  if (!feedbackText || !feedbackText.value.trim()) return;
+
+  const description = feedbackText.value.trim();
+  let imageBase64 = null;
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Sending...';
   }
-}
 
-function saveLocalFeedbackLog(text, timestamp, msgId) {
-  const raw = localStorage.getItem('my_submitted_feedbacks');
-  const logs = raw ? JSON.parse(raw) : [];
+  if (feedbackImage && feedbackImage.files.length > 0) {
+    try {
+      imageBase64 = await convertFileToBase64(feedbackImage.files[0]);
+    } catch (e) {
+      console.error('Failed to convert image:', e);
+    }
+  }
 
-  logs.unshift({
-    id: Date.now(),
-    telegram_msg_id: msgId,
-    text: text,
-    date: new Date(timestamp).toLocaleDateString() + ' ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    status: 'Pending ⏳'
-  });
-
-  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
-}
-
-async function syncFeedbackStatusWithTelegram() {
-  const raw = localStorage.getItem('my_submitted_feedbacks');
-  if (!raw) return;
-
-  let logs = JSON.parse(raw);
-  const pendingLogs = logs.filter(l => l.status === 'Pending ⏳' && l.telegram_msg_id);
-
-  if (pendingLogs.length === 0) return;
+  const payload = {
+    description: description,
+    image: imageBase64,
+    timestamp: new Date().toISOString(),
+    userAgent: navigator.userAgent
+  };
 
   try {
-    const res = await fetch(`${WORKER_URL}/getUpdates`);
-    if (!res.ok) return;
-
-    const data = await res.json();
-    if (!data.result || !Array.isArray(data.result)) return;
-
-    let updated = false;
-
-    data.result.forEach(update => {
-      const msg = update.message || update.edited_message || update.channel_post || update.edited_channel_post;
-
-      if (msg && msg.reply_to_message) {
-        const repliedId = msg.reply_to_message.message_id;
-        const matchedLog = logs.find(l => String(l.telegram_msg_id) === String(repliedId));
-
-        if (matchedLog && matchedLog.status !== 'Checked ✅') {
-          matchedLog.status = 'Checked ✅';
-          updated = true;
-        }
-      }
+    const response = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     });
 
-    if (updated) {
-      localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+    if (!response.ok) throw new Error('Network response failed');
+
+    saveFeedbackLocally(description, imageBase64);
+    localStorage.setItem('last_feedback_time', Date.now().toString());
+
+    feedbackText.value = '';
+    if (feedbackImage) feedbackImage.value = '';
+    alert('✅ Feedback submitted successfully! Thank you for helping improve TestforUHS.');
+    renderMyFeedbacks();
+  } catch (error) {
+    // Fallback: save locally if network request fails
+    saveFeedbackLocally(description, imageBase64);
+    localStorage.setItem('last_feedback_time', Date.now().toString());
+
+    feedbackText.value = '';
+    if (feedbackImage) feedbackImage.value = '';
+    alert('✅ Report saved locally! Thank you for your feedback.');
+    renderMyFeedbacks();
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = translations[currentLang]?.contact_submit_btn || '📤 Send Feedback';
     }
-  } catch (err) {
-    console.error("Failed to sync Telegram status:", err);
   }
 }
 
-async function renderMyFeedbacks() {
-  const myFeedbackList = document.getElementById('my-feedback-list');
-  if (!myFeedbackList) return;
+function convertFileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+}
 
-  await syncFeedbackStatusWithTelegram();
-
-  myFeedbackList.innerHTML = '';
+function saveFeedbackLocally(description, imageBase64) {
   const raw = localStorage.getItem('my_submitted_feedbacks');
-  const logs = raw ? JSON.parse(raw) : [];
+  const list = raw ? JSON.parse(raw) : [];
 
-  if (logs.length === 0) {
-    myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">No submitted reports yet. / មិនទាន់មានប្រវត្តិរាយការណ៍នៅឡើយទេ។</p>`;
+  list.unshift({
+    id: Date.now(),
+    description: description,
+    image: imageBase64,
+    date: new Date().toLocaleDateString()
+  });
+
+  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(list));
+}
+
+function renderMyFeedbacks() {
+  const container = document.getElementById('my-feedback-list');
+  if (!container) return;
+
+  container.innerHTML = '';
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  const list = raw ? JSON.parse(raw) : [];
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="score-card" style="text-align: center; padding: 1.5rem; width: 100%;">
+        <p style="margin: 0; color: var(--text-sub);">No submitted reports yet.</p>
+      </div>
+    `;
     return;
   }
 
-  logs.forEach(log => {
+  list.forEach((item) => {
     const card = document.createElement('div');
     card.classList.add('subject-card');
-    card.style.padding = '1rem';
-
-    const statusClass = log.status === 'Checked ✅' ? 'status-checked' : 'status-pending';
+    card.style.cssText = 'text-align: left; padding: 1rem;';
 
     card.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-        <span style="font-size:0.8rem; color:var(--text-sub);">${log.date}</span>
-        <span class="feedback-status-badge ${statusClass}">${log.status}</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <strong style="color: var(--text-main);">Reported on ${item.date}</strong>
+        <span class="badge" style="background: #10b981; color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Submitted</span>
       </div>
-      <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${log.text}</p>
+      <p style="margin: 0; color: var(--text-sub); font-size: 0.9rem; line-height: 1.4;">${escapeHTML(item.description)}</p>
+      ${item.image ? `<img src="${item.image}" alt="Screenshot" style="max-width: 100%; max-height: 150px; margin-top: 0.75rem; border-radius: 6px; border: 1px solid var(--border-sub);">` : ''}
     `;
-    myFeedbackList.appendChild(card);
+
+    container.appendChild(card);
   });
+}
+
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
 }
