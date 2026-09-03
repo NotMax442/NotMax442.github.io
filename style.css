@@ -864,3 +864,7 @@ p {
 ins.adsbygoogle[data-ad-status="unfilled"] {
   display: none !important;
 }
+/* Hide navbar on quiz and study screens */
+.quiz-body .main-navbar {
+  display: none !important;
+}
