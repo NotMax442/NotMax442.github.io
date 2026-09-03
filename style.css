@@ -13,18 +13,17 @@
 }
 
 [data-theme="light"] {
-  --bg-body: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-subcard: #f8fafc;
-  --bg-inner: #f1f5f9;
-  --text-main: #0f172a;
-  --text-sub: #475569;
-  --text-heading: #0284c7;
-  --border-color: #cbd5e1;
-  --border-sub: #cbd5e1;
+  --bg-body: #cbd5e1;      /* Soft grey outer background (Slate 300) */
+  --bg-card: #e2e8f0;      /* Gentle grey main container (Slate 200) */
+  --bg-subcard: #f1f5f9;   /* Soft off-grey for navbar & buttons (Slate 100) */
+  --bg-inner: #cbd5e1;     /* Deeper grey for question cards & containers */
+  --text-main: #0f172a;    /* Dark slate text for high contrast */
+  --text-sub: #334155;     /* Slate subtext */
+  --text-heading: #0284c7;  /* Medical sky blue accent */
+  --border-color: #94a3b8; /* Medium grey borders */
+  --border-sub: #cbd5e1;    /* Subtle inner borders */
   --badge-warning: #d97706;
 }
-
 /* --- Reset & Core Layout --- */
 * {
   box-sizing: border-box;
