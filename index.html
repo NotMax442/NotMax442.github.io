@@ -62,43 +62,49 @@
     <!-- 1. Hero Landing Section -->
     <div id="landing-screen" class="screen">
       <h1 data-i18n="landing_title">Medical Study Platform</h1>
-      <p data-i18n="landing_sub">Select your academic year, review saved missed questions, or test your knowledge.</p>
+      <p data-i18n="landing_sub">Select your major, year, subject, and professor to start studying.</p>
       <button id="enter-study-btn" class="btn primary-btn"
-        style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;" data-i18n="btn_start_study">🚀 Start
-        Studying</button>
+        style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;">🚀 Start Studying</button>
     </div>
 
-    <!-- 2. Year Selection Section (Hidden by default) -->
+    <!-- 2. Major Selection Screen -->
+    <div id="major-screen" class="screen hidden" style="margin-top: 1rem;">
+      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Home</button>
+      <h2>Select Major</h2>
+      <div id="major-grid" class="year-grid">
+        <div class="year-card" data-major="MED">
+          Medicine (MED)
+        </div>
+        <!-- Future majors will be added here -->
+      </div>
+    </div>
+
+    <!-- 3. Year Selection Section -->
     <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back">⬅️
-        Back</button>
-      <h2 data-i18n="year_selection_title">Select Academic Year</h2>
+      <button id="back-to-majors-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Majors</button>
+      <h2 id="selected-major-title">Select Academic Year</h2>
       <div class="year-grid">
-        <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
-        <div class="year-card" data-year="2" data-i18n="year_2">Year 2</div>
-        <div class="year-card" data-year="3" data-i18n="year_3">Year 3</div>
-        <div class="year-card" data-year="4" data-i18n="year_4">Year 4</div>
-        <div class="year-card" data-year="5" data-i18n="year_5">Year 5</div>
-        <div class="year-card" data-year="6" data-i18n="year_6">Year 6</div>
+        <div class="year-card" data-year="1">Year 1</div>
+        <div class="year-card" data-year="2">Year 2</div>
+        <div class="year-card" data-year="3">Year 3</div>
+        <div class="year-card" data-year="4">Year 4</div>
+        <div class="year-card" data-year="5">Year 5</div>
+        <div class="year-card" data-year="6">Year 6</div>
       </div>
     </div>
 
-    <!-- 3. Subject Selection Section (Hidden by default) -->
+    <!-- 4. Subject Selection Section -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back_years">⬅️
-        Back to Years</button>
+      <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Years</button>
       <h2 id="selected-year-title">Subjects</h2>
-
-      <!-- Native-Styled Subject Ad Banner -->
-      <div class="subject-ad-wrapper"
-        style="margin: 1.5rem 0; text-align: center; min-height: 90px; background: var(--bg-subcard); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-sub);">
-        <span class="ad-label"
-          style="display: block; font-size: 0.7rem; color: var(--text-sub); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;">Sponsored</span>
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4210272281940886" data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      </div>
-
       <div id="subject-list" class="subject-grid"></div>
+    </div>
+
+    <!-- 5. Professor Selection Section -->
+    <div id="professor-screen" class="screen hidden" style="margin-top: 1rem;">
+      <button id="back-to-subjects-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
+      <h2 id="selected-subject-title">Professors</h2>
+      <div id="professor-list" class="subject-grid"></div>
     </div>
 
     <!-- Home Page AdSense Banner Unit -->
