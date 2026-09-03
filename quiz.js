@@ -8,7 +8,7 @@ let userAnswers = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
-let isSessionActive = true; // Active immediately on load
+let isSessionActive = true;
 let isModalOpen = false;
 
 let timerInterval = null;
@@ -53,7 +53,7 @@ window.addEventListener('keydown', (e) => {
 
 // Navigation Guard Modal for Leave Prevention
 function showLeaveConfirmModal() {
-  if (isModalOpen) return Promise.resolve(false); // Prevent duplicate stacked modals
+  if (isModalOpen) return Promise.resolve(false);
   isModalOpen = true;
 
   return new Promise((resolve) => {
@@ -91,21 +91,18 @@ function showLeaveConfirmModal() {
 }
 
 function setupNavigationGuards() {
-  // Helper to maintain an infinite history trap
   const pushGuardState = () => {
     try {
       history.pushState({ guard: true }, '', window.location.href);
     } catch (e) {}
   };
 
-  // Push initial dummy state
   pushGuardState();
 
   // 1. Intercept Browser Back Button / Mobile Back Swipe
   window.addEventListener('popstate', (e) => {
     if (!isSessionActive) return;
 
-    // Synchronously re-push state immediately to lock history stack
     pushGuardState();
 
     if (isModalOpen) return;
@@ -159,7 +156,7 @@ function setupNavigationGuards() {
     });
   });
 
-  // 4. Intercept Built-In Back Button (#quit-session-btn)
+  // 4. Intercept Built-In Back Button
   const quitBtn = document.getElementById('quit-session-btn');
   if (quitBtn) {
     quitBtn.addEventListener('click', async () => {
@@ -176,7 +173,7 @@ function setupNavigationGuards() {
     });
   }
 
-  // 5. Intercept Tab Close / Hard Reload / F5
+  // 5. Intercept Tab Close / Hard Reload
   window.addEventListener('beforeunload', (e) => {
     if (isSessionActive) {
       e.preventDefault();
@@ -187,7 +184,7 @@ function setupNavigationGuards() {
 
 // Session Initialization
 async function initSession() {
-  const { year, subject, mode } = sessionConfig;
+  const { year, subject, mode, resume } = sessionConfig;
   const sessionInfo = document.getElementById('session-info');
   const loadingOverlay = document.getElementById('loading-overlay');
 
@@ -199,6 +196,25 @@ async function initSession() {
   userScore = 0;
   currentQuestionIndex = 0;
   studyAnsweredCount = 0;
+
+  const studyProgressKey = `saved_study_y${year}_${subject.toLowerCase()}`;
+
+  // Resuming Saved Study Progress
+  if (mode === 'study' && resume) {
+    const savedStudyRaw = localStorage.getItem(studyProgressKey);
+    if (savedStudyRaw) {
+      try {
+        const progressData = JSON.parse(savedStudyRaw);
+        questions = progressData.questions;
+        userAnswers = progressData.userAnswers;
+        studyAnsweredCount = progressData.studyAnsweredCount;
+        userScore = progressData.userScore;
+
+        renderStudyMode();
+        return;
+      } catch (e) {}
+    }
+  }
 
   if (mode === 'missed') {
     const key = getStorageKey(year, subject);
@@ -286,6 +302,21 @@ function updateTimerUI() {
   timerDisplay.textContent = `⏱️ ${minutes}:${seconds}`;
 }
 
+// Helper to save active study session to localStorage
+function saveStudyProgress() {
+  if (sessionConfig && sessionConfig.mode === 'study') {
+    const studyProgressKey = `saved_study_y${sessionConfig.year}_${sessionConfig.subject.toLowerCase()}`;
+    const progressData = {
+      questions: questions,
+      userAnswers: userAnswers,
+      studyAnsweredCount: studyAnsweredCount,
+      userScore: userScore,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(studyProgressKey, JSON.stringify(progressData));
+  }
+}
+
 // Study Mode Renderer
 function renderStudyMode() {
   window.scrollTo(0, 0);
@@ -294,7 +325,7 @@ function renderStudyMode() {
   const optionsContainer = document.getElementById('options-container');
   const nextBtn = document.getElementById('next-btn');
 
-  if (progressText) progressText.textContent = `Total Questions: ${questions.length}`;
+  if (progressText) progressText.textContent = `Total Questions: ${questions.length} (Answered: ${studyAnsweredCount})`;
   if (questionText) questionText.textContent = '';
   if (optionsContainer) optionsContainer.innerHTML = '';
   if (nextBtn) nextBtn.classList.add('hidden');
@@ -313,17 +344,45 @@ function renderStudyMode() {
     optsDiv.classList.add('options-grid');
     optsDiv.style.cssText = 'display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;';
 
+    const previousAnswer = userAnswers[qIndex];
+    const hasBeenAnswered = previousAnswer !== null && previousAnswer !== undefined;
+
     q.options.forEach((optText, optIndex) => {
       const btn = document.createElement('button');
       btn.classList.add('option-btn');
       btn.textContent = optText;
-      btn.addEventListener('click', () => handleStudyOptionClick(qIndex, optIndex, btn, optsDiv));
+
+      if (hasBeenAnswered) {
+        btn.style.pointerEvents = 'none';
+        if (optIndex === q.correctIndex) {
+          btn.style.backgroundColor = '#10b981';
+          btn.style.color = '#ffffff';
+        }
+        if (optIndex === previousAnswer && previousAnswer !== q.correctIndex) {
+          btn.style.backgroundColor = '#ef4444';
+          btn.style.color = '#ffffff';
+        }
+      } else {
+        btn.addEventListener('click', () => handleStudyOptionClick(qIndex, optIndex, btn, optsDiv));
+      }
+
       optsDiv.appendChild(btn);
     });
 
     qCard.appendChild(optsDiv);
     optionsContainer.appendChild(qCard);
   });
+
+  // Auto-scroll to first unanswered question when resuming
+  if (sessionConfig.resume) {
+    const firstUnansweredIndex = userAnswers.findIndex(ans => ans === null);
+    if (firstUnansweredIndex > 0) {
+      setTimeout(() => {
+        const card = document.getElementById(`q-card-${firstUnansweredIndex}`);
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+  }
 }
 
 function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
@@ -349,6 +408,12 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
 
   recordQuestionResult(q, isCorrect, sessionConfig.year, sessionConfig.subject);
   studyAnsweredCount++;
+
+  // Auto-save progress to localStorage
+  saveStudyProgress();
+
+  const progressText = document.getElementById('progress-text');
+  if (progressText) progressText.textContent = `Total Questions: ${questions.length} (Answered: ${studyAnsweredCount})`;
 
   if (studyAnsweredCount === questions.length) {
     cancelAutoScroll();
@@ -437,6 +502,12 @@ if (nextBtn) {
 function finishSession() {
   clearInterval(timerInterval);
   cancelAutoScroll();
+
+  // Clear mid-session study progress from localStorage upon completion
+  if (sessionConfig && sessionConfig.mode === 'study') {
+    const studyProgressKey = `saved_study_y${sessionConfig.year}_${sessionConfig.subject.toLowerCase()}`;
+    localStorage.removeItem(studyProgressKey);
+  }
 
   if (sessionConfig.mode === 'quiz') {
     userScore = 0;
