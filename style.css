@@ -1,4 +1,6 @@
-/* --- CSS Color Variables & Theme Definitions --- */
+/* ==========================================================================
+   1. CSS COLOR VARIABLES & THEME DEFINITIONS
+   ========================================================================== */
 :root {
   --bg-body: #0f172a;
   --bg-card: #1e293b;
@@ -24,7 +26,10 @@
   --border-sub: #cbd5e1;    /* Subtle inner borders */
   --badge-warning: #d97706;
 }
-/* --- Reset & Core Layout --- */
+
+/* ==========================================================================
+   2. RESET & CORE LAYOUT
+   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -51,12 +56,13 @@ body {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* --- Utilities --- */
 .hidden {
   display: none !important;
 }
 
-/* --- Top Navigation Bar --- */
+/* ==========================================================================
+   3. TOP NAVIGATION BAR
+   ========================================================================== */
 .main-navbar {
   display: flex;
   align-items: center;
@@ -149,7 +155,9 @@ body {
   border-color: var(--primary-color, #0284c7);
 }
 
-/* --- Typography & Headings --- */
+/* ==========================================================================
+   4. TYPOGRAPHY & BUTTONS
+   ========================================================================== */
 h1 {
   font-size: 2.2rem;
   margin-bottom: 0.75rem;
@@ -169,7 +177,6 @@ p {
   font-size: 1.05rem;
 }
 
-/* --- Buttons --- */
 .btn {
   display: inline-block;
   padding: 12px 22px;
@@ -244,7 +251,9 @@ p {
   background-color: var(--border-sub);
 }
 
-/* --- Year Grid --- */
+/* ==========================================================================
+   5. YEAR GRID & SUBJECT CARDS
+   ========================================================================== */
 .year-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -270,7 +279,6 @@ p {
   border-color: #38bdf8;
 }
 
-/* --- Subject List & Cards --- */
 .subject-grid {
   display: flex;
   flex-direction: column;
@@ -341,7 +349,9 @@ p {
   color: white;
 }
 
-/* --- Quiz / Study Session Screen --- */
+/* ==========================================================================
+   6. QUIZ & STUDY SESSION CARDS
+   ========================================================================== */
 .quiz-header {
   display: flex;
   align-items: center;
@@ -357,6 +367,19 @@ p {
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
+}
+
+.quiz-body .score-card {
+  background-color: var(--bg-inner) !important;
+  border-color: var(--border-color) !important;
+}
+
+.study-q-card {
+  background-color: var(--bg-inner);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.5rem !important;
 }
 
 .question-box h3 {
@@ -386,11 +409,48 @@ p {
   transition: background-color 0.2s, border-color 0.2s;
 }
 
+/* Option Hover Highlight (Dark & Light Mode) */
 .option-btn:hover {
-  background-color: var(--border-sub);
+  background-color: rgba(56, 189, 248, 0.15); /* Soft dark-blue glow */
+  border-color: var(--text-heading);           /* Sky-blue border highlight */
 }
 
-/* --- Results Screen --- */
+[data-theme="light"] .option-btn:hover {
+  background-color: #e0f2fe;                   /* Soft sky-blue tint */
+  border-color: var(--text-heading);
+}
+
+/* Fullscreen Toggle Button */
+.fullscreen-btn {
+  background-color: var(--bg-subcard);
+  color: var(--text-main);
+  border: 1px solid var(--border-sub);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.fullscreen-btn:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+[data-theme="light"] .fullscreen-btn:hover {
+  background-color: #e0f2fe;
+  border-color: var(--text-heading);
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   7. RESULTS SCREEN & REVIEW BREAKDOWN
+   ========================================================================== */
 .score-card {
   background-color: var(--bg-inner);
   border: 1px solid var(--border-color);
@@ -422,7 +482,6 @@ p {
   transition: width 0.6s ease-in-out;
 }
 
-/* --- Review Breakdown List --- */
 .review-list {
   display: flex;
   flex-direction: column;
@@ -475,7 +534,9 @@ p {
   gap: 0.75rem;
 }
 
-/* --- Custom Confirmation & Modal Overlays --- */
+/* ==========================================================================
+   8. MODALS & KHQR DONATION
+   ========================================================================== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -546,7 +607,6 @@ p {
   }
 }
 
-/* --- KHQR Donation Modal Styling --- */
 .donate-card-wide {
   position: relative !important;
   max-width: 620px !important;
@@ -682,7 +742,9 @@ p {
   margin-top: 2px;
 }
 
-/* --- Account Toolbar & Selection Mode --- */
+/* ==========================================================================
+   9. ACCOUNT TOOLBAR, SWITCHES & AD UNITS
+   ========================================================================== */
 .account-toolbar {
   display: flex;
   justify-content: space-between;
@@ -708,7 +770,6 @@ p {
   background-color: rgba(239, 68, 68, 0.08);
 }
 
-/* --- Contact Feedback Form Polish --- */
 #feedback-text:focus {
   outline: none;
   border-color: var(--text-heading);
@@ -735,7 +796,6 @@ p {
   border: 1px solid #10b981;
 }
 
-/* --- Toggle Switch Style (Red OFF / Green ON) --- */
 .switch {
   position: relative;
   display: inline-block;
@@ -782,85 +842,6 @@ p {
   transform: translateX(24px);
 }
 
-/* ==========================================================================
-   FLOATING NAVIGATION CONTROLS (STUDY MODE)
-   ========================================================================== */
-
-/* Base transitions & z-index for smooth fade */
-.floating-round-btn,
-.floating-pill-btn {
-  position: fixed;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease;
-}
-
-/* Bottom Right: Scroll to Top Button */
-.floating-round-btn {
-  bottom: 1.5rem;
-  right: 1.5rem;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg-subcard, #334155);
-  color: var(--text-main, #ffffff);
-  border: 1px solid var(--border-sub, #475569);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.floating-round-btn:hover {
-  background-color: #0284c7;
-  border-color: #38bdf8;
-  transform: translateY(-2px);
-}
-
-/* Bottom Center: Go to Latest Question Button */
-.floating-pill-btn {
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  white-space: nowrap;
-  background-color: #0284c7;
-  border: 1px solid #38bdf8;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.floating-pill-btn:hover {
-  background-color: #0369a1;
-  transform: translateX(-50%) translateY(-2px);
-}
-
-/* Fade-out State overrides for .hidden class */
-.floating-round-btn.hidden {
-  display: flex !important;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(12px);
-}
-
-.floating-pill-btn.hidden {
-  display: block !important;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(12px);
-}
-
-/* --- Ad Unit & Compact Layout Utilities --- */
 .result-ad-container {
   background-color: var(--bg-inner);
   border: 1px dashed var(--border-color);
@@ -890,9 +871,89 @@ p {
 }
 
 /* ==========================================================================
-   RESPONSIVE MEDIA QUERIES
+   10. FLOATING NAVIGATION CONTROLS (STUDY MODE)
    ========================================================================== */
+.floating-round-btn,
+.floating-pill-btn {
+  position: fixed;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease;
+}
 
+.floating-round-btn {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-subcard, #334155);
+  color: var(--text-main, #ffffff);
+  border: 1px solid var(--border-sub, #475569);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-round-btn:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+}
+
+.floating-pill-btn {
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  background-color: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.floating-pill-btn:hover {
+  background-color: #0369a1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.floating-round-btn.hidden {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.floating-pill-btn.hidden {
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+/* Layer Fix for Floating Buttons in Fullscreen */
+:fullscreen .floating-round-btn,
+:fullscreen .floating-pill-btn,
+:-webkit-full-screen .floating-round-btn,
+:-webkit-full-screen .floating-pill-btn {
+  z-index: 2147483647 !important;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
 @media (min-width: 768px) {
   .quiz-body .app-container {
     max-width: 820px;
@@ -1046,69 +1107,10 @@ p {
     font-size: 1.1rem;
   }
 }
-/* --- Darker Study Mode Card Background --- */
-.quiz-body .score-card {
-  background-color: var(--bg-inner) !important;
-  border-color: var(--border-color) !important;
-}
 
-.study-q-card {
-  background-color: var(--bg-inner);
-  padding: 1.25rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 1.5rem !important;
-}
-/* --- Option Hover Highlight (Dark & Light Mode) --- */
-.option-btn:hover {
-  background-color: rgba(56, 189, 248, 0.15); /* Soft dark-blue glow */
-  border-color: var(--text-heading);           /* Sky-blue border highlight */
-}
-
-[data-theme="light"] .option-btn:hover {
-  background-color: #e0f2fe;                   /* Soft sky-blue tint */
-  border-color: var(--text-heading);
-}
-
-/* --- Fullscreen Toggle Button --- */
-.fullscreen-btn {
-  background-color: var(--bg-subcard);
-  color: var(--text-main);
-  border: 1px solid var(--border-sub);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.fullscreen-btn:hover {
-  background-color: #0284c7;
-  border-color: #38bdf8;
-  color: #ffffff;
-}
-
-[data-theme="light"] .fullscreen-btn:hover {
-  background-color: #e0f2fe;
-  border-color: var(--text-heading);
-  color: var(--text-main);
-}
-
-/* --- Native Fullscreen Layer Fix for Floating Buttons --- */
-:fullscreen .floating-round-btn,
-:fullscreen .floating-pill-btn,
-:-webkit-full-screen .floating-round-btn,
-:-webkit-full-screen .floating-pill-btn {
-  z-index: 2147483647 !important; /* Maximum browser stacking context */
-}
 /* ==========================================================================
-   EDGE-TO-EDGE FULLSCREEN LAYOUT OVERRIDE
+   12. FULLSCREEN EDGE-TO-EDGE OVERRIDES
    ========================================================================== */
-
 :fullscreen body,
 :-webkit-full-screen body {
   background-color: var(--bg-body) !important;
@@ -1116,7 +1118,9 @@ p {
 }
 
 :fullscreen .app-container,
-:-webkit-full-screen .app-container {
+:-webkit-full-screen .app-container,
+.quiz-body:fullscreen .app-container,
+.quiz-body:-webkit-full-screen .app-container {
   max-width: 100% !important;
   width: 100vw !important;
   min-height: 100vh !important;
@@ -1126,7 +1130,6 @@ p {
   box-shadow: none !important;
 }
 
-/* Hide top header bar/back button in fullscreen mode */
 :fullscreen .quiz-header,
 :-webkit-full-screen .quiz-header,
 :fullscreen .back-btn,
@@ -1134,7 +1137,6 @@ p {
   display: none !important;
 }
 
-/* Ensure question container fills available width */
 :fullscreen .score-card,
 :-webkit-full-screen .score-card,
 :fullscreen .study-q-card,
