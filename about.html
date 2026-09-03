@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - TestforUHS</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4210272281940886"
+       crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Top Navigation Bar -->
+    <nav class="main-navbar">
+      <div class="nav-links">
+        <a href="index.html" class="nav-item" data-i18n="nav_home">HOME</a>
+        <a href="about.html" class="nav-item active" data-i18n="nav_about">ABOUT</a>
+        <a href="contact.html" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
+        <a href="account.html" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
+        <button id="nav-donate-btn" class="nav-item" data-i18n="nav_donate" style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support Us</button>
+      </div>
+      <div class="nav-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+        <select id="language-select" class="lang-select">
+          <option value="en">English</option>
+          <option value="km">ភាសាខ្មែរ</option>
+        </select>
+        <button id="theme-toggle-btn" class="theme-btn">🌙 Dark</button>
+      </div>
+    </nav>
+
+    <!-- About Screen Content -->
+    <div id="about-screen" class="screen">
+      <h2 data-i18n="nav_about">About Us</h2>
+      
+      <div class="score-card" style="text-align: left; padding: 2rem; line-height: 1.7; color: var(--text-main);">
+        <h3 style="color: var(--text-heading); margin-top: 0;">Welcome to TestforUHS</h3>
+        <p>
+          <strong>TestforUHS</strong> is an interactive digital study platform designed specifically for medical students preparing for academic examinations and national licensing tests.
+        </p>
+
+        <h4 style="color: var(--text-heading); margin-top: 1.5rem;">Key Features</h4>
+        <ul style="padding-left: 1.25rem; color: var(--text-sub);">
+          <li><strong>Study Mode:</strong> Instant feedback with auto-scrolling to reinforce active recall.</li>
+          <li><strong>Timed Quiz Mode:</strong> Simulated exam conditions with countdown timers and automated scoring.</li>
+          <li><strong>Vault Mastery System:</strong> Smart tracking that saves missed questions until answered correctly twice in a row.</li>
+          <li><strong>Anki Flashcard Exporter:</strong> One-click export of missed questions to Anki deck format (`.txt`).</li>
+        </ul>
+
+        <h4 style="color: var(--text-heading); margin-top: 1.5rem;">Our Mission</h4>
+        <p style="color: var(--text-sub); margin-bottom: 0;">
+          To provide free, fast, and reliable medical study resources to help students excel in their studies and clinical training.
+        </p>
+      </div>
+    </div>
+
+    <!-- Site Footer -->
+    <footer class="main-footer" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.85rem; color: var(--text-sub);">
+      <p>© 2026 TestforUHS. All rights reserved. | <a href="#" id="open-privacy-btn" style="color: var(--text-heading); text-decoration: underline;">Privacy Policy</a></p>
+    </footer>
+
+  </div>
+
+  <!-- Shared Modals -->
+  <div id="donate-modal" class="modal-overlay hidden">
+    <div class="modal-card donate-card-wide">
+      <button id="close-donate-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
+      <div class="donate-grid">
+        <div class="donate-info">
+          <p class="donate-tagline" data-i18n="donate_tagline">Every little bit is greatly appreciated! Thank you for your support 😊</p>
+          <h3 class="donate-cta" data-i18n="donate_cta">You may donate through our KHQR here.</h3>
+        </div>
+        <div class="donate-qr-wrapper"><img src="assets/khqr.png" alt="KHQR Code" class="khqr-card-img"></div>
+      </div>
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <button id="bottom-close-donate-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;" data-i18n="btn_close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="privacy-modal" class="modal-overlay hidden">
+    <div class="modal-card" style="max-width: 600px; text-align: left; max-height: 80vh; overflow-y: auto; position: relative; padding: 2.5rem 1.5rem 1.5rem 1.5rem;">
+      <button id="close-privacy-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
+      <h3 style="margin-bottom: 1rem; color: var(--text-main);">Privacy Policy</h3>
+      <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-sub);">
+        <p>At <strong>TestforUHS</strong>, visitor privacy is one of our main priorities.</p>
+      </div>
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <button id="bottom-close-privacy-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;" data-i18n="btn_close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+</body>
+</html>
