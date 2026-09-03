@@ -1,6 +1,15 @@
 // ==========================================================================
-// HOME PAGE LOGIC (index.html)
+// HOME & SUBJECT SELECTION LOGIC (home.js)
 // ==========================================================================
+
+const manifestData = {
+  "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "MED-PRO-250", "I-D-A-Khmer"],
+  "2": [],
+  "3": [],
+  "4": [],
+  "5": [],
+  "6": ["MED-PRO"]
+};
 
 let currentYear = null;
 
@@ -35,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearScreen) yearScreen.classList.remove('hidden');
     if (subjectScreen) subjectScreen.classList.add('hidden');
   } else {
-    // Default to hero landing screen
+    // Default view
     if (landingScreen) landingScreen.classList.remove('hidden');
     if (yearScreen) yearScreen.classList.add('hidden');
     if (subjectScreen) subjectScreen.classList.add('hidden');
@@ -69,9 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('lastActiveYear', currentYear);
       localStorage.setItem('lastView', 'subject');
 
-      if (landingScreen) landingScreen.classList.add('hidden');
-      if (yearScreen) yearScreen.classList.add('hidden');
-      if (subjectScreen) subjectScreen.classList.remove('hidden');
       showSubjects(currentYear);
     });
   });
@@ -87,16 +93,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Re-render subjects instantly when switching language
+window.addEventListener('languageChanged', () => {
+  const subjectScreen = document.getElementById('subject-screen');
+  if (subjectScreen && !subjectScreen.classList.contains('hidden') && currentYear) {
+    loadSubjectsForYear(currentYear);
+  }
+});
+
 function showSubjects(year) {
   const yearScreen = document.getElementById('year-screen');
   const subjectScreen = document.getElementById('subject-screen');
+  const landingScreen = document.getElementById('landing-screen');
   const selectedYearTitle = document.getElementById('selected-year-title');
 
-  // 1. Un-hide subject screen first so dimensions are calculated
+  // Un-hide subject screen so dimensions are calculated
+  if (landingScreen) landingScreen.classList.add('hidden');
   if (yearScreen) yearScreen.classList.add('hidden');
   if (subjectScreen) subjectScreen.classList.remove('hidden');
 
-  // 2. Trigger AdSense push after element is visible in DOM
+  // Trigger AdSense push after element is visible in DOM
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   } catch (e) {}
@@ -124,11 +140,13 @@ function loadSubjectsForYear(year) {
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
 
-    // Check saved Study progress ONLY (Quiz mode is strictly non-persistent)
+    // Check saved Study progress
     const studyKey = `saved_study_y${year}_${subject.toLowerCase()}`;
     const savedStudyRaw = localStorage.getItem(studyKey);
     let studyProgress = null;
-    if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
+    if (savedStudyRaw) { 
+      try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} 
+    }
 
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
