@@ -187,7 +187,7 @@ function startSession(subjectName, mode) {
     resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = 'quiz.html';
+  window.location.href = '/quiz';
 }
 
 function continueStudySession(subjectName) {
@@ -201,7 +201,7 @@ function continueStudySession(subjectName) {
     resume: true
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = 'quiz.html';
+  window.location.href = '/quiz';
 }
 
 function startMissedSession(subjectName) {
@@ -215,7 +215,7 @@ function startMissedSession(subjectName) {
     resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = 'quiz.html';
+  window.location.href = '/quiz';
 }
 
 function clearSavedMissed(subjectName) {
