@@ -97,7 +97,11 @@ const translations = {
     donate_modal_desc: "Your donations help keep the platform free, maintain servers, and add new study features!",
     btn_close: "Close",
     donate_tagline: "Every little bit is greatly appreciated! Thank you for your support 😊",
-    donate_cta: "You may donate through our KHQR here."
+    donate_cta: "You may donate through our KHQR here.",
+    leave_modal_title: "⚠️ Leave Session?",
+    leave_modal_desc: "Are you sure you want to leave? Your progress is saved, don't worry!",
+    btn_leave: "Leave",
+    btn_cancel: "Cancel",
   },
   km: {
     nav_home: "ទំព័រដើម",
@@ -139,7 +143,11 @@ const translations = {
     donate_modal_desc: "ការឧបត្ថម្ភរបស់លោកអ្នកជួយគាំទ្រដល់ការចំណាយលើ Server និងអភិវឌ្ឍន៍កម្មវិធីសិក្សាឱ្យនៅតែឥតគិតថ្លៃ!",
     btn_close: "បិទ",
     donate_tagline: "ទៅតាមទឹកចិត្តរបស់អ្នករៀងៗខ្លួន។ តិចឬច្រើន គឺជាការលើកទឹកចិត្តយ៉ាងធំធេង! អរគុណសម្រាប់ការគាំទ្រ 😊",
-    donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖"
+    donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖",
+    leave_modal_title: "⚠️ ចាកចេញពីការសិក្សា?",
+    leave_modal_desc: "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!",
+    btn_leave: "ចាកចេញ",
+    btn_cancel: "បោះបង់",
   }
 };
 
