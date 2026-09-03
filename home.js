@@ -5,25 +5,54 @@
 let currentYear = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const yearCards = document.querySelectorAll('.year-card');
-  const subjectScreen = document.getElementById('subject-screen');
-  const yearScreen = document.getElementById('year-screen');
+  const enterStudyBtn = document.getElementById('enter-study-btn');
+  const backToLandingBtn = document.getElementById('back-to-landing-btn');
   const backToYearsBtn = document.getElementById('back-to-years-btn');
+  const yearCards = document.querySelectorAll('.year-card');
 
+  const landingScreen = document.getElementById('landing-screen');
+  const yearScreen = document.getElementById('year-screen');
+  const subjectScreen = document.getElementById('subject-screen');
+
+  // Check if returning with a saved year state in session
   const savedYear = sessionStorage.getItem('lastYear');
   if (savedYear) {
     currentYear = savedYear;
+    if (landingScreen) landingScreen.classList.add('hidden');
+    if (yearScreen) yearScreen.classList.add('hidden');
+    if (subjectScreen) subjectScreen.classList.remove('hidden');
     showSubjects(currentYear);
   }
 
+  // Click "🚀 Start Studying" -> Show Year Screen
+  if (enterStudyBtn) {
+    enterStudyBtn.addEventListener('click', () => {
+      if (landingScreen) landingScreen.classList.add('hidden');
+      if (yearScreen) yearScreen.classList.remove('hidden');
+    });
+  }
+
+  // Click "⬅️ Back" in Year Screen -> Show Landing Screen
+  if (backToLandingBtn) {
+    backToLandingBtn.addEventListener('click', () => {
+      if (yearScreen) yearScreen.classList.add('hidden');
+      if (landingScreen) landingScreen.classList.remove('hidden');
+      sessionStorage.removeItem('lastYear');
+    });
+  }
+
+  // Click Year Card -> Show Subject Screen
   yearCards.forEach(card => {
     card.addEventListener('click', () => {
       currentYear = card.getAttribute('data-year');
       sessionStorage.setItem('lastYear', currentYear);
+      if (yearScreen) yearScreen.classList.add('hidden');
+      if (subjectScreen) subjectScreen.classList.remove('hidden');
       showSubjects(currentYear);
     });
   });
 
+  // Click "⬅️ Back to Years" -> Show Year Screen
   if (backToYearsBtn) {
     backToYearsBtn.addEventListener('click', () => {
       if (subjectScreen) subjectScreen.classList.add('hidden');
