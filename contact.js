@@ -2,7 +2,7 @@
 // CONTACT & FEEDBACK LOGIC (contact.js)
 // ==========================================================================
 
-const WORKER_URL = 'https://feedback-worker.testforuhs.workers.dev';
+const WORKER_URL = 'https://telegram-proxy.pensamkhan9.workers.dev/';
 
 document.addEventListener('DOMContentLoaded', () => {
   const feedbackForm = document.getElementById('feedback-form');
