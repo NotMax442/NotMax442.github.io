@@ -1,5 +1,5 @@
 // ==========================================================================
-// HOME & SUBJECT SELECTION LOGIC (home.js)
+// HOME PAGE LOGIC (home.js)
 // ==========================================================================
 
 const manifestData = {
@@ -23,16 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearScreen = document.getElementById('year-screen');
   const subjectScreen = document.getElementById('subject-screen');
 
-  // Trigger Google AdSense load for home banner
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   } catch (e) {}
 
-  // Retrieve saved navigation state across sessions
-  const savedView = localStorage.getItem('lastView');
-  const savedYear = localStorage.getItem('lastActiveYear');
+  // Session-only restore (Clears automatically when closing tab/browser)
+  const savedView = sessionStorage.getItem('lastView');
+  const savedYear = sessionStorage.getItem('lastActiveYear');
 
-  // Smart restore: Return to subject selection if leaving mid-session or mid-navigation
   if (savedView === 'subject' && savedYear) {
     currentYear = savedYear;
     if (landingScreen) landingScreen.classList.add('hidden');
@@ -44,60 +42,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearScreen) yearScreen.classList.remove('hidden');
     if (subjectScreen) subjectScreen.classList.add('hidden');
   } else {
-    // Default view
+    // Default entry point when opening site fresh
     if (landingScreen) landingScreen.classList.remove('hidden');
     if (yearScreen) yearScreen.classList.add('hidden');
     if (subjectScreen) subjectScreen.classList.add('hidden');
   }
 
-  // Click "🚀 Start Studying" -> Show Year Selection Screen
+  // "Start Studying" -> Show Year Screen
   if (enterStudyBtn) {
     enterStudyBtn.addEventListener('click', () => {
-      localStorage.setItem('lastView', 'year');
+      sessionStorage.setItem('lastView', 'year');
       if (landingScreen) landingScreen.classList.add('hidden');
       if (yearScreen) yearScreen.classList.remove('hidden');
       if (subjectScreen) subjectScreen.classList.add('hidden');
     });
   }
 
-  // Click "⬅️ Back" in Year Screen -> Return to Landing Screen
+  // Back to Landing Screen
   if (backToLandingBtn) {
     backToLandingBtn.addEventListener('click', () => {
-      localStorage.setItem('lastView', 'landing');
-      localStorage.removeItem('lastActiveYear');
+      sessionStorage.setItem('lastView', 'landing');
+      sessionStorage.removeItem('lastActiveYear');
       if (yearScreen) yearScreen.classList.add('hidden');
       if (landingScreen) landingScreen.classList.remove('hidden');
       if (subjectScreen) subjectScreen.classList.add('hidden');
     });
   }
 
-  // Click Year Card -> Show Subject Selection Screen
+  // Select Year Card
   yearCards.forEach(card => {
     card.addEventListener('click', () => {
       currentYear = card.getAttribute('data-year');
-      localStorage.setItem('lastActiveYear', currentYear);
-      localStorage.setItem('lastView', 'subject');
-
+      sessionStorage.setItem('lastActiveYear', currentYear);
+      sessionStorage.setItem('lastView', 'subject');
       showSubjects(currentYear);
     });
   });
 
-  // Click "⬅️ Back to Years" -> Return to Year Selection Screen
+  // Back to Year Screen
   if (backToYearsBtn) {
     backToYearsBtn.addEventListener('click', () => {
-      localStorage.setItem('lastView', 'year');
+      sessionStorage.setItem('lastView', 'year');
       if (subjectScreen) subjectScreen.classList.add('hidden');
       if (yearScreen) yearScreen.classList.remove('hidden');
       if (landingScreen) landingScreen.classList.add('hidden');
     });
-  }
-});
-
-// Re-render subjects instantly when switching language
-window.addEventListener('languageChanged', () => {
-  const subjectScreen = document.getElementById('subject-screen');
-  if (subjectScreen && !subjectScreen.classList.contains('hidden') && currentYear) {
-    loadSubjectsForYear(currentYear);
   }
 });
 
@@ -107,12 +96,10 @@ function showSubjects(year) {
   const landingScreen = document.getElementById('landing-screen');
   const selectedYearTitle = document.getElementById('selected-year-title');
 
-  // Un-hide subject screen so dimensions are calculated
   if (landingScreen) landingScreen.classList.add('hidden');
   if (yearScreen) yearScreen.classList.add('hidden');
   if (subjectScreen) subjectScreen.classList.remove('hidden');
 
-  // Trigger AdSense push after element is visible in DOM
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   } catch (e) {}
@@ -140,7 +127,6 @@ function loadSubjectsForYear(year) {
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
 
-    // Check saved Study progress
     const studyKey = `saved_study_y${year}_${subject.toLowerCase()}`;
     const savedStudyRaw = localStorage.getItem(studyKey);
     let studyProgress = null;
@@ -186,14 +172,13 @@ function loadSubjectsForYear(year) {
 }
 
 function startSession(subjectName, mode) {
-  // If starting fresh study, clear old saved study progress
   if (mode === 'study') {
     const studyKey = `saved_study_y${currentYear}_${subjectName.toLowerCase()}`;
     localStorage.removeItem(studyKey);
   }
 
-  localStorage.setItem('lastView', 'subject');
-  localStorage.setItem('lastActiveYear', currentYear);
+  sessionStorage.setItem('lastView', 'subject');
+  sessionStorage.setItem('lastActiveYear', currentYear);
 
   const sessionConfig = {
     year: currentYear,
@@ -206,8 +191,8 @@ function startSession(subjectName, mode) {
 }
 
 function continueStudySession(subjectName) {
-  localStorage.setItem('lastView', 'subject');
-  localStorage.setItem('lastActiveYear', currentYear);
+  sessionStorage.setItem('lastView', 'subject');
+  sessionStorage.setItem('lastActiveYear', currentYear);
 
   const sessionConfig = {
     year: currentYear,
@@ -220,8 +205,8 @@ function continueStudySession(subjectName) {
 }
 
 function startMissedSession(subjectName) {
-  localStorage.setItem('lastView', 'subject');
-  localStorage.setItem('lastActiveYear', currentYear);
+  sessionStorage.setItem('lastView', 'subject');
+  sessionStorage.setItem('lastActiveYear', currentYear);
 
   const sessionConfig = {
     year: currentYear,
