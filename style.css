@@ -869,10 +869,13 @@ p {
   display: none !important;
 }
 
-/* 2. Compact PC Layout for Quiz & Study Screen */
+/* 2. Centered & Compact PC Layout for Quiz & Study Screen */
 @media (min-width: 768px) {
   .quiz-body .app-container {
     max-width: 820px;
+    margin: 0 auto; /* Centers the layout on screen */
+    padding-left: 1rem;
+    padding-right: 1rem;
     padding-top: 0.75rem;
     padding-bottom: 1rem;
   }
