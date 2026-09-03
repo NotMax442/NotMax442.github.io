@@ -547,7 +547,7 @@ p {
   }
 }
 
-/* --- KHQR Donation Modal Styling (Desktop Proportional Polish) --- */
+/* --- KHQR Donation Modal Styling --- */
 .donate-card-wide {
   position: relative !important;
   max-width: 620px !important;
@@ -587,9 +587,9 @@ p {
 
 .donate-grid {
   display: grid;
-  grid-template-columns: 1fr 190px; /* Balanced column proportion for 100% zoom */
+  grid-template-columns: 1fr 190px;
   gap: 1.75rem;
-  align-items: center; /* Vertically centers text and QR together */
+  align-items: center;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
@@ -627,12 +627,13 @@ p {
 .khqr-card-img {
   width: 100% !important;
   max-width: 190px !important;
-  max-height: 260px !important; /* Prevents standee image from blowing up vertically */
+  max-height: 260px !important;
   height: auto !important;
   object-fit: contain !important;
   border-radius: 12px !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
+
 .donate-founder-section {
   border-top: 1px solid var(--border-color);
   padding-top: 1.25rem;
@@ -735,9 +736,206 @@ p {
   border: 1px solid #10b981;
 }
 
+/* --- Toggle Switch Style (Red OFF / Green ON) --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ef4444;
+  transition: background-color 0.3s ease;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #ffffff;
+  transition: transform 0.3s ease;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #10b981;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
 /* ==========================================================================
-   RESPONSIVE MOBILE OVERHAUL
+   FLOATING NAVIGATION CONTROLS (STUDY MODE)
    ========================================================================== */
+
+/* Base transitions & z-index for smooth fade */
+.floating-round-btn,
+.floating-pill-btn {
+  position: fixed;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s ease;
+}
+
+/* Bottom Right: Scroll to Top Button */
+.floating-round-btn {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-subcard, #334155);
+  color: var(--text-main, #ffffff);
+  border: 1px solid var(--border-sub, #475569);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-round-btn:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+}
+
+/* Bottom Center: Go to Latest Question Button */
+.floating-pill-btn {
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  background-color: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.floating-pill-btn:hover {
+  background-color: #0369a1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Fade-out State overrides for .hidden class */
+.floating-round-btn.hidden {
+  display: flex !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.floating-pill-btn.hidden {
+  display: block !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+/* --- Ad Unit & Compact Layout Utilities --- */
+.result-ad-container {
+  background-color: var(--bg-inner);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ad-label {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.quiz-body .main-navbar {
+  display: none !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  .quiz-body .app-container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .quiz-body .screen {
+    margin-top: 0;
+  }
+
+  .quiz-body #session-info {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quiz-body #question-text {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .quiz-body .options-grid {
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .quiz-body .option-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    min-height: auto;
+  }
+
+  .quiz-body #next-btn {
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+  }
+}
+
 @media (max-width: 640px) {
   .app-container {
     padding: 1rem;
@@ -834,177 +1032,18 @@ p {
   .subject-actions {
     flex-direction: column;
   }
-}
-/* --- Post-Quiz Ad Container Styling --- */
-.result-ad-container {
-  background-color: var(--bg-inner);
-  border: 1px dashed var(--border-color);
-  border-radius: 8px;
-  padding: 0.85rem;
-  margin: 1.5rem 0;
-  text-align: center;
-  min-height: 110px; /* Prevents layout jump while ad loads */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
 
-.ad-label {
-  font-size: 0.7rem;
-  color: var(--text-sub);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-  opacity: 0.7;
-}
-
-/* ==========================================================================
-   QUIZ PAGE SPECIAL LAYOUT & COMPACT DESKTOP STYLES
-   ========================================================================== */
-
-/* 1. Hide Navbar on Quiz Page */
-.quiz-body .main-navbar {
-  display: none !important;
-}
-
-/* 2. Centered & Compact PC Layout for Quiz & Study Screen */
-@media (min-width: 768px) {
-  .quiz-body .app-container {
-    max-width: 820px;
-    margin: 0 auto; /* Centers the layout on screen */
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 1rem;
+  .floating-pill-btn {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+    bottom: 1.25rem;
   }
 
-  .quiz-body .screen {
-    margin-top: 0;
+  .floating-round-btn {
+    width: 42px;
+    height: 42px;
+    bottom: 1.25rem;
+    right: 1rem;
+    font-size: 1.1rem;
   }
-
-  .quiz-body #session-info {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .quiz-body #question-text {
-    font-size: 1.15rem;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-  }
-
-  .quiz-body .options-grid {
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-  }
-
-  .quiz-body .option-btn {
-    padding: 0.65rem 1rem;
-    font-size: 0.95rem;
-    min-height: auto;
-  }
-
-  .quiz-body #next-btn {
-    margin-top: 1rem;
-    padding: 0.65rem 1.5rem;
-  }
-}
-/* Toggle Switch Style (Red OFF / Green ON) */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-  flex-shrink: 0;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ef4444; /* RED when OFF */
-  transition: background-color 0.3s ease;
-  border-radius: 26px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: #ffffff;
-  transition: transform 0.3s ease;
-  border-radius: 50%;
-}
-
-/* Checked (ON) State */
-.switch input:checked + .slider {
-  background-color: #10b981; /* GREEN when ON */
-}
-
-.switch input:checked + .slider:before {
-  transform: translateX(24px);
-}
-/* Floating Navigation Controls (Study Mode Only) */
-.floating-nav-controls {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.6rem;
-  z-index: 999;
-}
-
-.floating-round-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--bg-subcard, #1e293b);
-  color: var(--text-main, #ffffff);
-  border: 1px solid var(--border-sub, #334155);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.floating-round-btn:hover {
-  transform: translateY(-2px);
-  background-color: #0284c7;
-  border-color: #38bdf8;
-}
-
-.floating-pill-btn {
-  font-size: 0.85rem;
-  padding: 8px 14px;
-  border-radius: 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  white-space: nowrap;
-  background-color: #0284c7;
-  border: 1px solid #38bdf8;
-  color: #ffffff;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.floating-pill-btn:hover {
-  transform: translateY(-2px);
 }
