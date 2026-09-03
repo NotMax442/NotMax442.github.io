@@ -215,7 +215,7 @@ function launchAccountReview(year, subject) {
     mode: 'missed'
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = 'quiz.html';
+  window.location.href = '/quiz';
 }
 
 function promptAnkiExport(storageKey) {
