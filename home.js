@@ -98,6 +98,14 @@ function loadSubjectsForYear(year) {
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
 
+    // Check for saved mid-session study progress
+    const studyProgressKey = `saved_study_y${year}_${subject.toLowerCase()}`;
+    const savedStudyRaw = localStorage.getItem(studyProgressKey);
+    let studyProgress = null;
+    if (savedStudyRaw) {
+      try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {}
+    }
+
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
 
@@ -105,12 +113,23 @@ function loadSubjectsForYear(year) {
       ? t.missed_badge.replace('{count}', missedCount) 
       : `⚠️ ${missedCount} saved missed question(s)`;
 
+    let continueBtnHTML = '';
+    let studyBtnLabel = t.btn_study_all;
+
+    if (studyProgress && studyProgress.studyAnsweredCount > 0) {
+      const answered = studyProgress.studyAnsweredCount;
+      const total = studyProgress.questions ? studyProgress.questions.length : 0;
+      continueBtnHTML = `<button class="btn primary-btn" style="background:#10b981; border-color:#059669;" onclick="continueStudySession('${subject}')">▶️ Continue Study (${answered}/${total})</button>`;
+      studyBtnLabel = "🔄 Restart Study All";
+    }
+
     subjectCard.innerHTML = `
       <h3>${subject}</h3>
       ${missedCount > 0 ? `<p class="missed-badge">${badgeText}</p>` : ''}
       
       <div class="subject-actions">
-        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">${t.btn_study_all}</button>
+        ${continueBtnHTML}
+        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">${studyBtnLabel}</button>
         <button class="btn quiz-btn" onclick="startSession('${subject}', 'quiz')">${t.btn_quiz}</button>
       </div>
 
@@ -125,10 +144,28 @@ function loadSubjectsForYear(year) {
 }
 
 function startSession(subjectName, mode) {
+  // If starting fresh study, clear old saved study progress for this subject
+  if (mode === 'study') {
+    const studyProgressKey = `saved_study_y${currentYear}_${subjectName.toLowerCase()}`;
+    localStorage.removeItem(studyProgressKey);
+  }
+
   const sessionConfig = {
     year: currentYear,
     subject: subjectName,
-    mode: mode
+    mode: mode,
+    resume: false
+  };
+  sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
+  window.location.href = 'quiz.html';
+}
+
+function continueStudySession(subjectName) {
+  const sessionConfig = {
+    year: currentYear,
+    subject: subjectName,
+    mode: 'study',
+    resume: true
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = 'quiz.html';
@@ -138,7 +175,8 @@ function startMissedSession(subjectName) {
   const sessionConfig = {
     year: currentYear,
     subject: subjectName,
-    mode: 'missed'
+    mode: 'missed',
+    resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = 'quiz.html';
