@@ -252,6 +252,7 @@ p {
 }
 
 /* ==========================================================================
+   /* ==========================================================================
    5. YEAR GRID & SUBJECT CARDS
    ========================================================================== */
 .year-grid {
@@ -262,40 +263,118 @@ p {
 
 /* Base Year & Major Card Styling */
 .year-card {
-  background-color: var(--bg-subcard);
-  color: var(--text-main);
+  color: #ffffff;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 10px;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  border: 1px solid var(--border-sub);
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* --- YEAR CARDS (Sky Blue Glow) --- */
-.year-card:hover {
-  transform: scale(1.03);
-  background-color: #0284c7;
-  color: #ffffff;
-  border-color: #38bdf8;
-  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35);
+/* --- MAJOR CARDS (Medicine - Teal Accent) --- */
+.year-card[data-major="MED"] {
+  background-color: #0f766e;
+  border: 1px solid #14b8a6;
 }
-
-.year-card:active {
+.year-card[data-major="MED"]:hover {
+  transform: scale(1.03);
+  background-color: #0d9488;
+  border-color: #2dd4bf;
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.4);
+}
+.year-card[data-major="MED"]:active {
   transform: scale(1.05);
 }
 
-/* --- MAJOR CARDS (Teal/Emerald Glow) --- */
-.year-card[data-major]:hover {
-  background-color: #0d9488;
-  color: #ffffff;
-  border-color: #2dd4bf;
-  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.35);
+/* --- YEAR 1 (Deep Blue) --- */
+.year-card[data-year="1"] {
+  background-color: #1e3a8a;
+  border: 1px solid #3b82f6;
+}
+.year-card[data-year="1"]:hover {
+  transform: scale(1.03);
+  background-color: #2563eb;
+  border-color: #60a5fa;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.4);
+}
+.year-card[data-year="1"]:active {
+  transform: scale(1.05);
 }
 
-.year-card[data-major]:active {
+/* --- YEAR 2 (Indigo) --- */
+.year-card[data-year="2"] {
+  background-color: #3730a3;
+  border: 1px solid #6366f1;
+}
+.year-card[data-year="2"]:hover {
+  transform: scale(1.03);
+  background-color: #4f46e5;
+  border-color: #818cf8;
+  box-shadow: 0 8px 22px rgba(79, 70, 229, 0.4);
+}
+.year-card[data-year="2"]:active {
+  transform: scale(1.05);
+}
+
+/* --- YEAR 3 (Violet / Purple) --- */
+.year-card[data-year="3"] {
+  background-color: #581c87;
+  border: 1px solid #a855f7;
+}
+.year-card[data-year="3"]:hover {
+  transform: scale(1.03);
+  background-color: #7e22ce;
+  border-color: #c084fc;
+  box-shadow: 0 8px 22px rgba(126, 34, 206, 0.4);
+}
+.year-card[data-year="3"]:active {
+  transform: scale(1.05);
+}
+
+/* --- YEAR 4 (Rose / Crimson) --- */
+.year-card[data-year="4"] {
+  background-color: #881337;
+  border: 1px solid #f43f5e;
+}
+.year-card[data-year="4"]:hover {
+  transform: scale(1.03);
+  background-color: #be123c;
+  border-color: #fb7185;
+  box-shadow: 0 8px 22px rgba(190, 18, 60, 0.4);
+}
+.year-card[data-year="4"]:active {
+  transform: scale(1.05);
+}
+
+/* --- YEAR 5 (Amber / Orange) --- */
+.year-card[data-year="5"] {
+  background-color: #78350f;
+  border: 1px solid #f59e0b;
+}
+.year-card[data-year="5"]:hover {
+  transform: scale(1.03);
+  background-color: #b45309;
+  border-color: #fbbf24;
+  box-shadow: 0 8px 22px rgba(180, 83, 9, 0.4);
+}
+.year-card[data-year="5"]:active {
+  transform: scale(1.05);
+}
+
+/* --- YEAR 6 (Emerald Green) --- */
+.year-card[data-year="6"] {
+  background-color: #064e3b;
+  border: 1px solid #10b981;
+}
+.year-card[data-year="6"]:hover {
+  transform: scale(1.03);
+  background-color: #047857;
+  border-color: #34d399;
+  box-shadow: 0 8px 22px rgba(4, 120, 87, 0.4);
+}
+.year-card[data-year="6"]:active {
   transform: scale(1.05);
 }
 
