@@ -61,16 +61,17 @@
 
   <!-- Leave Confirmation Guard Modal -->
   <div id="leave-confirm-modal" class="modal-overlay hidden">
-    <div class="modal-card">
-      <h3 data-i18n="leave_modal_title">⚠️ Leave Study Session?</h3>
-      <p data-i18n="leave_modal_desc" style="margin-bottom: 1.25rem; color: var(--text-sub);">Your active test progress will be lost.</p>
-      <div class="modal-actions">
-        <button id="leave-cancel-btn" class="btn secondary-btn" data-i18n="btn_cancel">Cancel</button>
-        <button id="leave-confirm-btn" class="btn danger-btn" data-i18n="btn_leave">Leave</button>
-      </div>
+  <div class="modal-card">
+    <h3 data-i18n="leave_modal_title">⚠️ Leave Session?</h3>
+    <p id="leave-modal-desc" data-i18n="leave_modal_desc" style="margin-bottom: 1.25rem; color: var(--text-sub);">
+      Are you sure you want to leave? Your progress is saved, don't worry!
+    </p>
+    <div class="modal-actions">
+      <button id="leave-cancel-btn" class="btn secondary-btn" data-i18n="btn_cancel">Cancel</button>
+      <button id="leave-confirm-btn" class="btn primary-btn" data-i18n="btn_leave">Leave</button>
     </div>
   </div>
-
+</div>
   <!-- Loading Spinner Overlay -->
   <div id="loading-overlay" class="modal-overlay hidden">
     <div class="modal-card" style="text-align: center; padding: 2rem;">
