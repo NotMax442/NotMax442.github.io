@@ -41,10 +41,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // Floating Navigation Handlers (Scroll to top & Go to latest)
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  const goLatestQBtn = document.getElementById('go-latest-q-btn');
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (goLatestQBtn) {
+    goLatestQBtn.addEventListener('click', () => {
+      scrollToLatestUnansweredQuestion();
+    });
+  }
+
   setupNavigationGuards();
   await initSession();
 });
-
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -88,7 +103,7 @@ function showLeaveConfirmModal() {
     if (descEl) {
       const isKm = currentLang === 'km';
       if (sessionConfig && sessionConfig.mode === 'study') {
-        descEl.textContent = isKm 
+        descEl.textContent = isKm
           ? "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!"
           : "Are you sure you want to leave? Your progress will be saved, don't worry!";
       } else {
@@ -117,7 +132,7 @@ function showLeaveConfirmModal() {
 
 function setupNavigationGuards() {
   const pushGuardState = () => {
-    try { history.pushState({ guard: true }, '', window.location.href); } catch (e) {}
+    try { history.pushState({ guard: true }, '', window.location.href); } catch (e) { }
   };
 
   pushGuardState();
@@ -226,7 +241,7 @@ async function initSession() {
 
         renderStudyMode();
         return;
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 
@@ -396,6 +411,11 @@ function renderStudyMode() {
       }, 300);
     }
   }
+  const studyNavControls = document.getElementById('study-nav-controls');
+  if (studyNavControls) {
+    studyNavControls.classList.remove('hidden');
+    window.addEventListener('scroll', handleStudyScroll);
+  }
 }
 
 function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
@@ -458,8 +478,8 @@ function renderQuizQuestion() {
   if (questionText) questionText.textContent = q.question;
 
   if (nextBtn) {
-    nextBtn.textContent = (currentQuestionIndex === questions.length - 1) 
-      ? "Finish Quiz 🏁" 
+    nextBtn.textContent = (currentQuestionIndex === questions.length - 1)
+      ? "Finish Quiz 🏁"
       : "Next Question ➡️";
   }
 
@@ -500,7 +520,7 @@ function handleQuizOptionClick(selectedIndex, selectedBtn) {
   const isAutoAdvance = localStorage.getItem('auto_advance_quiz') === 'true';
   if (isAutoAdvance) {
     allOptionBtns.forEach(btn => btn.style.pointerEvents = 'none');
-    
+
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
