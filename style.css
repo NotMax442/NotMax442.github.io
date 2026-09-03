@@ -285,11 +285,27 @@ p {
   gap: 1rem;
 }
 
+/* Subject & Professor Cards */
 .subject-card {
   background-color: var(--bg-inner);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Enlarge on Hover */
+.subject-card:hover {
+  transform: scale(1.025);
+  border-color: var(--text-heading);
+  background-color: var(--bg-subcard);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Enlarge slightly more on Click / Press */
+.subject-card:active {
+  transform: scale(1.04);
 }
 
 .subject-card h3 {
