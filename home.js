@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearScreen = document.getElementById('year-screen');
   const subjectScreen = document.getElementById('subject-screen');
 
+  // Trigger Google AdSense load for home banner
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {}
+
   // Check if returning with a saved year state in session
   const savedYear = sessionStorage.getItem('lastYear');
   if (savedYear) {
