@@ -1166,18 +1166,17 @@ p {
 
 .correct-ring {
   stroke: #10b981;
-  stroke-linecap: round;
-  stroke-dasharray: 251.327; /* 2 * PI * r (40) */
+  stroke-linecap: butt; /* Flat ends for seamless alignment */
+  stroke-dasharray: 251.327;
   stroke-dashoffset: 251.327;
 }
 
 .incorrect-ring {
   stroke: #ef4444;
-  stroke-linecap: round;
+  stroke-linecap: butt; /* Flat ends for seamless alignment */
   stroke-dasharray: 251.327;
   stroke-dashoffset: 251.327;
 }
-
 .pie-center-text {
   position: absolute;
   top: 50%;
