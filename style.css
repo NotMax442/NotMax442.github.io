@@ -1109,38 +1109,58 @@ p {
 }
 
 /* ==========================================================================
-   12. FULLSCREEN EDGE-TO-EDGE OVERRIDES
+   12. FULLSCREEN EDGE-TO-EDGE OVERRIDES (PC & MOBILE)
    ========================================================================== */
+
+/* Force edge-to-edge background on full screen root & body */
+:fullscreen,
+:-webkit-full-screen,
 :fullscreen body,
 :-webkit-full-screen body {
-  background-color: var(--bg-body) !important;
+  background-color: var(--bg-card) !important;
   overflow-y: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
+/* Remove PC desktop max-width constraints (820px limit) & side margins */
 :fullscreen .app-container,
 :-webkit-full-screen .app-container,
-.quiz-body:fullscreen .app-container,
-.quiz-body:-webkit-full-screen .app-container {
+:fullscreen body.quiz-body .app-container,
+:-webkit-full-screen body.quiz-body .app-container {
   max-width: 100% !important;
   width: 100vw !important;
   min-height: 100vh !important;
   margin: 0 !important;
-  padding: 1.5rem 2rem !important;
+  padding: 1.25rem 1.5rem !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  background-color: var(--bg-card) !important;
 }
 
+/* Hide top header, back buttons, main navbar, and session title in fullscreen */
 :fullscreen .quiz-header,
 :-webkit-full-screen .quiz-header,
 :fullscreen .back-btn,
-:-webkit-full-screen .back-btn {
+:-webkit-full-screen .back-btn,
+:fullscreen #session-info,
+:-webkit-full-screen #session-info,
+:fullscreen .main-navbar,
+:-webkit-full-screen .main-navbar {
   display: none !important;
 }
 
+/* Stretch question containers, score card, and options edge-to-edge */
 :fullscreen .score-card,
 :-webkit-full-screen .score-card,
 :fullscreen .study-q-card,
-:-webkit-full-screen .study-q-card {
+:-webkit-full-screen .study-q-card,
+:fullscreen .options-grid,
+:-webkit-full-screen .options-grid,
+:fullscreen .option-btn,
+:-webkit-full-screen .option-btn {
   max-width: 100% !important;
   width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
