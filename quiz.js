@@ -233,14 +233,13 @@ function setupNavigationGuards() {
   });
 }
 
-// Session Initialization
 async function initSession() {
-  const { year, subject, mode, resume } = sessionConfig;
+  const { major, year, subject, professor, mode, resume } = sessionConfig;
   const sessionInfo = document.getElementById('session-info');
   const loadingOverlay = document.getElementById('loading-overlay');
 
   if (sessionInfo) {
-    sessionInfo.textContent = `Year ${year} - ${subject} (${mode.toUpperCase()} MODE)`;
+    sessionInfo.textContent = `${major} Y${year} - ${subject} (${professor}) [${mode.toUpperCase()} MODE]`;
   }
 
   isSessionActive = true;
@@ -248,9 +247,10 @@ async function initSession() {
   currentQuestionIndex = 0;
   studyAnsweredCount = 0;
 
-  const studyProgressKey = `saved_study_y${year}_${subject.toLowerCase()}`;
+  const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
+  const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
 
-  // Resume saved Study progress ONLY
+  // Resume saved Study progress
   if (mode === 'study' && resume) {
     const savedStudyRaw = localStorage.getItem(studyProgressKey);
     if (savedStudyRaw) {
@@ -267,11 +267,12 @@ async function initSession() {
     }
   }
 
+  // Load Missed Vault
   if (mode === 'missed') {
-    const key = getStorageKey(year, subject);
+    const key = getStorageKey(major, year, subject, professor);
     const rawMissed = localStorage.getItem(key);
     if (!rawMissed) {
-      alert("No saved missed questions found for this subject!");
+      alert("No saved missed questions found for this professor!");
       window.location.href = '/';
       return;
     }
@@ -282,7 +283,8 @@ async function initSession() {
     return;
   }
 
-  const filePath = `data/year${year}/${subject.toLowerCase()}.json`;
+  // File Path Example: data/med/year1/i-d-a/dr-smith.json
+  const filePath = `data/${major.toLowerCase()}/year${year}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
   try {
