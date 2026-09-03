@@ -958,3 +958,53 @@ p {
 .switch input:checked + .slider:before {
   transform: translateX(24px);
 }
+/* Floating Navigation Controls (Study Mode Only) */
+.floating-nav-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+  z-index: 999;
+}
+
+.floating-round-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-subcard, #1e293b);
+  color: var(--text-main, #ffffff);
+  border: 1px solid var(--border-sub, #334155);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.floating-round-btn:hover {
+  transform: translateY(-2px);
+  background-color: #0284c7;
+  border-color: #38bdf8;
+}
+
+.floating-pill-btn {
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+  background-color: #0284c7;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.floating-pill-btn:hover {
+  transform: translateY(-2px);
+}
