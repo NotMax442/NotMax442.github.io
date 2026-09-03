@@ -8,7 +8,8 @@ let userAnswers = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
-let isSessionActive = true; // Set active immediately on page load
+let isSessionActive = true; // Active immediately on load
+let isModalOpen = false;
 
 let timerInterval = null;
 let timeRemaining = 3600;
@@ -52,40 +53,83 @@ window.addEventListener('keydown', (e) => {
 
 // Navigation Guard Modal for Leave Prevention
 function showLeaveConfirmModal() {
+  if (isModalOpen) return Promise.resolve(false); // Prevent duplicate stacked modals
+  isModalOpen = true;
+
   return new Promise((resolve) => {
     const modal = document.getElementById('leave-confirm-modal');
     const confirmBtn = document.getElementById('leave-confirm-btn');
     const cancelBtn = document.getElementById('leave-cancel-btn');
 
-    if (!modal) return resolve(true);
+    if (!modal) {
+      isModalOpen = false;
+      return resolve(true);
+    }
+
     modal.classList.remove('hidden');
 
-    const handleConfirm = () => { cleanup(); resolve(true); };
-    const handleCancel = () => { cleanup(); resolve(false); };
+    const onConfirm = () => {
+      cleanup();
+      resolve(true);
+    };
+
+    const onCancel = () => {
+      cleanup();
+      resolve(false);
+    };
 
     function cleanup() {
       modal.classList.add('hidden');
-      confirmBtn.removeEventListener('click', handleConfirm);
-      cancelBtn.removeEventListener('click', handleCancel);
+      isModalOpen = false;
+      confirmBtn.removeEventListener('click', onConfirm);
+      cancelBtn.removeEventListener('click', onCancel);
     }
 
-    confirmBtn.addEventListener('click', handleConfirm);
-    cancelBtn.addEventListener('click', handleCancel);
+    confirmBtn.addEventListener('click', onConfirm, { once: true });
+    cancelBtn.addEventListener('click', onCancel, { once: true });
   });
 }
 
 function setupNavigationGuards() {
-  // 1. Push initial guard state into history stack
-  try {
-    history.pushState({ guard: true }, '', window.location.href);
-  } catch (e) {}
+  // Helper to maintain an infinite history trap
+  const pushGuardState = () => {
+    try {
+      history.pushState({ guard: true }, '', window.location.href);
+    } catch (e) {}
+  };
 
-  // 2. Intercept Browser Back Button / Mobile Back Swipe (mouse/touch popstate)
+  // Push initial dummy state
+  pushGuardState();
+
+  // 1. Intercept Browser Back Button / Mobile Back Swipe
   window.addEventListener('popstate', (e) => {
-    if (isSessionActive) {
-      try {
-        history.pushState({ guard: true }, '', window.location.href);
-      } catch (err) {}
+    if (!isSessionActive) return;
+
+    // Synchronously re-push state immediately to lock history stack
+    pushGuardState();
+
+    if (isModalOpen) return;
+
+    showLeaveConfirmModal().then((wantsToLeave) => {
+      if (wantsToLeave) {
+        isSessionActive = false;
+        window.location.href = 'index.html';
+      }
+    });
+  });
+
+  // 2. Intercept Keyboard Shortcuts for Back (Alt + Left Arrow / Cmd + [)
+  window.addEventListener('keydown', (e) => {
+    if (!isSessionActive) return;
+
+    const isAltBack = e.altKey && (e.key === 'ArrowLeft' || e.code === 'ArrowLeft');
+    const isCmdBack = (e.metaKey || e.ctrlKey) && e.key === '[';
+
+    if (isAltBack || isCmdBack) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (isModalOpen) return;
 
       showLeaveConfirmModal().then((wantsToLeave) => {
         if (wantsToLeave) {
@@ -96,30 +140,14 @@ function setupNavigationGuards() {
     }
   });
 
-  // 3. Intercept Keyboard Shortcuts for Back (Alt + Left Arrow / Cmd + [)
-  window.addEventListener('keydown', async (e) => {
-    const isAltBack = e.altKey && (e.key === 'ArrowLeft' || e.code === 'ArrowLeft');
-    const isCmdBack = (e.metaKey || e.ctrlKey) && e.key === '[';
-
-    if (isSessionActive && (isAltBack || isCmdBack)) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const wantsToLeave = await showLeaveConfirmModal();
-      if (wantsToLeave) {
-        isSessionActive = false;
-        window.location.href = 'index.html';
-      }
-    }
-  });
-
-  // 4. Intercept Top Navbar Nav Links
+  // 3. Intercept Top Navbar Nav Links
   const navGuards = document.querySelectorAll('.nav-leave-guard');
   navGuards.forEach(link => {
     link.addEventListener('click', async (e) => {
       e.preventDefault();
       const targetUrl = link.getAttribute('href');
       if (isSessionActive) {
+        if (isModalOpen) return;
         const wantsToLeave = await showLeaveConfirmModal();
         if (wantsToLeave) {
           isSessionActive = false;
@@ -131,11 +159,12 @@ function setupNavigationGuards() {
     });
   });
 
-  // 5. Intercept Built-In Back Button
+  // 4. Intercept Built-In Back Button (#quit-session-btn)
   const quitBtn = document.getElementById('quit-session-btn');
   if (quitBtn) {
     quitBtn.addEventListener('click', async () => {
       if (isSessionActive) {
+        if (isModalOpen) return;
         const wantsToLeave = await showLeaveConfirmModal();
         if (wantsToLeave) {
           isSessionActive = false;
@@ -147,7 +176,7 @@ function setupNavigationGuards() {
     });
   }
 
-  // 6. Intercept Tab Close / Hard Reload / F5
+  // 5. Intercept Tab Close / Hard Reload / F5
   window.addEventListener('beforeunload', (e) => {
     if (isSessionActive) {
       e.preventDefault();
