@@ -1,7 +1,7 @@
 // ==========================================================================
 // QUIZ & STUDY RUNNER LOGIC (quiz.html)
 // ==========================================================================
- 
+
 let sessionConfig = null;
 let questions = [];
 let userAnswers = [];
@@ -16,6 +16,21 @@ let timeRemaining = 3600;
 let autoScrollTimer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // 1. Detect page refresh inside active session -> Redirect to subject page
+  const navEntries = performance.getEntriesByType('navigation');
+  if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+    const rawConfig = sessionStorage.getItem('activeSessionConfig');
+    if (rawConfig) {
+      try {
+        const config = JSON.parse(rawConfig);
+        sessionStorage.setItem('lastView', 'subject');
+        sessionStorage.setItem('lastActiveYear', config.year);
+      } catch (e) {}
+    }
+    window.location.href = '/';
+    return;
+  }
+
   const rawConfig = sessionStorage.getItem('activeSessionConfig');
   if (!rawConfig) {
     window.location.href = '/';
@@ -25,8 +40,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   sessionConfig = JSON.parse(rawConfig);
 
   // Sync navigation view back to subject selection
-  localStorage.setItem('lastView', 'subject');
-  localStorage.setItem('lastActiveYear', sessionConfig.year);
+  sessionStorage.setItem('lastView', 'subject');
+  sessionStorage.setItem('lastActiveYear', sessionConfig.year);
 
   // Wire up the "Next Question" button click handler
   const nextBtn = document.getElementById('next-btn');
@@ -60,6 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupNavigationGuards();
   await initSession();
 });
+
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -568,6 +584,7 @@ function finishSession() {
   sessionStorage.setItem('lastQuizResult', JSON.stringify(lastQuizResult));
   window.location.href = '/result';
 }
+
 function handleStudyScroll() {
   const scrollTopBtn = document.getElementById('scroll-top-btn');
   const goLatestQBtn = document.getElementById('go-latest-q-btn');
@@ -598,6 +615,7 @@ function handleStudyScroll() {
     }
   }
 }
+
 function scrollToLatestUnansweredQuestion() {
   const targetIndex = userAnswers.findIndex(ans => ans === null);
   if (targetIndex !== -1) {
