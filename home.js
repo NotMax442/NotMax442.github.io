@@ -215,22 +215,22 @@ function showProfessors(major, year, subject) {
     }
 
     const card = document.createElement('div');
-    card.classList.add('subject-card');
-    card.innerHTML = `
-      <h3>${prof}</h3>
-      ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question(s)</p>` : ''}
-      <div class="subject-actions">
-        ${continueBtnHTML}
-        <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-        <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">📝 Quiz</button>
-      </div>
-      ${missedCount > 0 ? `
-        <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">🎯 Review Missed (${missedCount})</button>
-        <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">🗑️ Clear Missed</button>
-      ` : ''}
-    `;
-    profList.appendChild(card);
-  });
+  card.classList.add('subject-card', 'prof-card'); // Added 'prof-card' class
+  card.innerHTML = `
+    <h3>${prof}</h3>
+    ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question(s)</p>` : ''}
+    <div class="subject-actions">
+      ${continueBtnHTML}
+      <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
+      <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">📝 Quiz</button>
+    </div>
+    ${missedCount > 0 ? `
+      <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">🎯 Review Missed (${missedCount})</button>
+      <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">🗑️ Clear Missed</button>
+    ` : ''}
+  `;
+  profList.appendChild(card);
+});
 }
 
 function startSession(profName, mode) {
