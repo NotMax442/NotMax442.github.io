@@ -43,6 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   sessionStorage.setItem('lastView', 'subject');
   sessionStorage.setItem('lastActiveYear', sessionConfig.year);
 
+  // Wire up Fullscreen Button
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+  }
+
   // Wire up the "Next Question" button click handler
   const nextBtn = document.getElementById('next-btn');
   if (nextBtn) {
@@ -74,6 +80,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   setupNavigationGuards();
   await initSession();
+});
+
+// ==========================================================================
+// HELPER FUNCTIONS & GLOBAL EVENT LISTENERS (Place at bottom of script)
+// ==========================================================================
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch((err) => {
+      console.warn(`Error attempting to enable fullscreen: ${err.message}`);
+    });
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+}
+
+// Automatically sync button text when entering/exiting fullscreen (including ESC key)
+document.addEventListener('fullscreenchange', () => {
+  const fsBtn = document.getElementById('fullscreen-btn');
+  if (fsBtn) {
+    fsBtn.textContent = document.fullscreenElement ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
+  }
 });
 
 function shuffleArray(array) {
