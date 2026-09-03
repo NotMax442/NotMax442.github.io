@@ -2,31 +2,27 @@
 // CONTACT & FEEDBACK LOGIC (contact.js)
 // ==========================================================================
 
-const WORKER_URL = 'https://telegram-proxy.pensamkhan9.workers.dev/';
+const WORKER_URL = 'https://telegram-proxy.pensamkhan9.workers.dev';
 
 document.addEventListener('DOMContentLoaded', () => {
+  renderMyFeedbacks();
+
   const feedbackForm = document.getElementById('feedback-form');
   const confirmModal = document.getElementById('contact-confirm-modal');
   const cancelBtn = document.getElementById('cancel-feedback-btn');
   const confirmBtn = document.getElementById('confirm-feedback-btn');
 
-  renderMyFeedbacks();
-
   if (feedbackForm) {
     feedbackForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Check 30-minute Cooldown
-      const lastSubmitTime = localStorage.getItem('last_feedback_time');
-      if (lastSubmitTime) {
-        const elapsedMins = (Date.now() - parseInt(lastSubmitTime, 10)) / (1000 * 60);
+      // Check 30-Minute Cooldown
+      const lastSentTime = localStorage.getItem('last_feedback_time');
+      if (lastSentTime) {
+        const elapsedMins = (Date.now() - parseInt(lastSentTime, 10)) / (1000 * 60);
         if (elapsedMins < 30) {
-          const remainMins = Math.ceil(30 - elapsedMins);
-          const t = translations[currentLang] || translations.en;
-          const alertMsg = t.cooldown_alert
-            ? t.cooldown_alert.replace('{mins}', remainMins)
-            : `⏱️ Cooldown Active:\nPlease wait ${remainMins} minute(s) before sending feedback again.`;
-          alert(alertMsg);
+          const remainingMins = Math.ceil(30 - elapsedMins);
+          alert(`⏱️ Cooldown Active:\nPlease wait ${remainingMins} minute(s) before sending feedback again.`);
           return;
         }
       }
@@ -54,137 +50,101 @@ async function submitFeedback() {
 
   if (!feedbackText || !feedbackText.value.trim()) return;
 
-  const description = feedbackText.value.trim();
-  let imageBase64 = null;
+  const textValue = feedbackText.value.trim();
 
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.textContent = '⏳ Sending...';
   }
 
-  if (feedbackImage && feedbackImage.files.length > 0) {
-    try {
-      imageBase64 = await convertFileToBase64(feedbackImage.files[0]);
-    } catch (e) {
-      console.error('Failed to convert image:', e);
-    }
-  }
+  const formData = new FormData();
+  formData.append('text', textValue);
 
-  const payload = {
-    description: description,
-    image: imageBase64,
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent
-  };
+  if (feedbackImage && feedbackImage.files.length > 0) {
+    formData.append('photo', feedbackImage.files[0]);
+  }
 
   try {
     const response = await fetch(WORKER_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: formData
     });
 
-    if (!response.ok) throw new Error('Network response failed');
+    const data = await response.json();
 
-    saveFeedbackLocally(description, imageBase64);
+    if (!response.ok || data.ok === false) {
+      throw new Error(data.description || 'Failed to deliver message');
+    }
+
     localStorage.setItem('last_feedback_time', Date.now().toString());
+    saveLocalFeedbackLog(textValue, Date.now(), data.result?.message_id);
 
     feedbackText.value = '';
     if (feedbackImage) feedbackImage.value = '';
-    alert('✅ Feedback submitted successfully! Thank you for helping improve TestforUHS.');
+
+    alert('✅ Feedback sent successfully to Telegram!');
     renderMyFeedbacks();
   } catch (error) {
-    // Fallback: save locally if network request fails
-    saveFeedbackLocally(description, imageBase64);
-    localStorage.setItem('last_feedback_time', Date.now().toString());
-
-    feedbackText.value = '';
-    if (feedbackImage) feedbackImage.value = '';
-    alert('✅ Report saved locally! Thank you for your feedback.');
-    renderMyFeedbacks();
+    console.error('Submission error:', error);
+    alert(`❌ Failed to send feedback:\n${error.message}`);
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.textContent = translations[currentLang]?.contact_submit_btn || '📤 Send Feedback';
+      submitBtn.textContent = '📤 Send Feedback';
     }
   }
 }
 
-function convertFileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-}
-
-function saveFeedbackLocally(description, imageBase64) {
+function saveLocalFeedbackLog(text, timestamp, msgId) {
   const raw = localStorage.getItem('my_submitted_feedbacks');
-  const list = raw ? JSON.parse(raw) : [];
+  const logs = raw ? JSON.parse(raw) : [];
 
-  list.unshift({
+  logs.unshift({
     id: Date.now(),
-    description: description,
-    image: imageBase64,
-    date: new Date().toLocaleDateString()
+    telegram_msg_id: msgId,
+    text: text,
+    date: new Date(timestamp).toLocaleDateString() + ' ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    status: 'Pending ⏳'
   });
 
-  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(list));
+  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
 }
 
 function renderMyFeedbacks() {
-  const container = document.getElementById('my-feedback-list');
-  if (!container) return;
+  const myFeedbackList = document.getElementById('my-feedback-list');
+  if (!myFeedbackList) return;
 
-  container.innerHTML = '';
   const raw = localStorage.getItem('my_submitted_feedbacks');
-  const list = raw ? JSON.parse(raw) : [];
+  const logs = raw ? JSON.parse(raw) : [];
 
-  if (list.length === 0) {
-    container.innerHTML = `
-      <div class="score-card" style="text-align: center; padding: 1.5rem; width: 100%;">
-        <p style="margin: 0; color: var(--text-sub);">No submitted reports yet.</p>
-      </div>
-    `;
+  myFeedbackList.innerHTML = '';
+
+  if (logs.length === 0) {
+    myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">No submitted reports yet.</p>`;
     return;
   }
 
-  list.forEach((item) => {
+  logs.forEach(log => {
     const card = document.createElement('div');
     card.classList.add('subject-card');
-    card.style.cssText = 'text-align: left; padding: 1rem;';
+    card.style.padding = '1rem';
 
-    const safeDescription = escapeHTML(item.description || '');
+    const statusClass = log.status === 'Checked ✅' ? 'status-checked' : 'status-pending';
 
     card.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-        <strong style="color: var(--text-main);">Reported on ${item.date || 'Unknown Date'}</strong>
-        <span class="badge" style="background: #10b981; color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Submitted</span>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <span style="font-size:0.8rem; color:var(--text-sub);">${log.date || ''}</span>
+        <span class="feedback-status-badge ${statusClass}">${log.status || 'Submitted'}</span>
       </div>
-      <p style="margin: 0; color: var(--text-sub); font-size: 0.9rem; line-height: 1.4;">${safeDescription}</p>
-      ${item.image ? `<img src="${item.image}" alt="Screenshot" style="max-width: 100%; max-height: 150px; margin-top: 0.75rem; border-radius: 6px; border: 1px solid var(--border-sub);">` : ''}
+      <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${escapeHTML(log.text || '')}</p>
     `;
-
-    container.appendChild(card);
+    myFeedbackList.appendChild(card);
   });
 }
 
 function escapeHTML(str) {
   if (!str) return '';
   return String(str).replace(/[&<>'"]/g, 
-    tag => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
-    }[tag] || tag)
-  );
-}
-
-function escapeHTML(str) {
-  return str.replace(/[&<>'"]/g, 
     tag => ({
       '&': '&amp;',
       '<': '&lt;',
