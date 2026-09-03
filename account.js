@@ -1,5 +1,5 @@
 // ==========================================================================
-// MY ACCOUNT & VAULT LOGIC (account.html)
+// MY ACCOUNT & VAULT LOGIC (account.js)
 // ==========================================================================
 
 let isSelectMode = false;
@@ -137,16 +137,16 @@ function renderAccountDashboard() {
   accountSubjectList.innerHTML = '';
   let totalMissedAcrossApp = 0;
 
-  // 1. Collect all missed question keys directly from localStorage
+  // 1. Collect all missed question keys matching missed_*
   const missedKeys = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key && key.startsWith('missed_y')) {
+    if (key && key.startsWith('missed_')) {
       missedKeys.push(key);
     }
   }
 
-  // 2. Render cards for each saved subject key
+  // 2. Render cards for each saved missed vault
   missedKeys.sort().forEach(key => {
     const rawData = localStorage.getItem(key);
     const missedArray = rawData ? JSON.parse(rawData) : [];
@@ -154,11 +154,26 @@ function renderAccountDashboard() {
     if (missedArray.length > 0) {
       totalMissedAcrossApp += missedArray.length;
 
-      // Extract year and subject from key format "missed_y{year}_{subject}"
-      const match = key.match(/^missed_y(\d+)_(.+)$/);
-      const year = match ? match[1] : '';
-      const rawSubject = match ? match[2] : key;
-      const subjectFormatted = rawSubject.charAt(0).toUpperCase() + rawSubject.slice(1);
+      // Key format: missed_{major}_y{year}_{subject}_{profSlug}
+      const parts = key.split('_');
+      let major = 'MED';
+      let year = '1';
+      let subject = '';
+      let profSlug = '';
+
+      if (parts.length >= 5) {
+        major = parts[1].toUpperCase();
+        year = parts[2].replace('y', '');
+        subject = parts[3].toUpperCase();
+        profSlug = parts.slice(4).join('_');
+      } else {
+        subject = key;
+      }
+
+      const formattedProf = profSlug
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 
       const card = document.createElement('div');
       card.classList.add('subject-card');
@@ -173,11 +188,12 @@ function renderAccountDashboard() {
         <div style="display: flex; gap: 1rem; align-items: flex-start;">
           ${checkboxHTML}
           <div style="flex: 1;">
-            <h3>Year ${year} - ${subjectFormatted}</h3>
+            <h3>${major} Year ${year} - ${subject}</h3>
+            <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: var(--text-heading); font-weight: 600;">👨‍🏫 Professor: ${formattedProf}</p>
             <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
             ${!isSelectMode ? `
               <div class="subject-actions" style="flex-direction: column;">
-                <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${rawSubject}')">🎯 Practice Missed (${missedArray.length})</button>
+                <button class="btn study-missed-btn" onclick="launchAccountReview('${major}', '${year}', '${subject}', '${formattedProf}')">🎯 Practice Missed (${missedArray.length})</button>
                 <button class="btn primary-btn" onclick="promptAnkiExport('${key}')">📦 Export to Anki (.txt)</button>
               </div>
             ` : ''}
@@ -204,7 +220,7 @@ function renderAccountDashboard() {
     }
   });
 
-  // 3. Display empty state if no missed questions are found
+  // 3. Display empty state if vault is empty
   if (totalMissedAcrossApp === 0) {
     if (toggleSelectModeBtn) toggleSelectModeBtn.classList.add('hidden');
     if (bulkControls) bulkControls.classList.add('hidden');
@@ -222,10 +238,12 @@ function renderAccountDashboard() {
   }
 }
 
-function launchAccountReview(year, subject) {
+function launchAccountReview(major, year, subject, professor) {
   const sessionConfig = {
+    major: major,
     year: year,
     subject: subject,
+    professor: professor,
     mode: 'missed'
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
