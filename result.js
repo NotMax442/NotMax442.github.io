@@ -1,5 +1,5 @@
 // ==========================================================================
-// RESULTS & REVIEW BREAKDOWN LOGIC (result.js)
+// RESULTS & REVIEW BREAKDOWN LOGIC (result.html)
 // ==========================================================================
 
 let resultData = null;
@@ -63,7 +63,6 @@ function renderReviewBreakdown() {
   if (!reviewContainer) return;
   reviewContainer.innerHTML = '';
 
-  // Update button active states
   if (filterWrongBtn && filterAllBtn) {
     if (currentReviewFilter === 'wrong') {
       filterWrongBtn.className = 'btn primary-btn';
@@ -129,11 +128,14 @@ function renderReviewBreakdown() {
 }
 
 function checkMissedQuestions() {
-  const { year, subject } = resultData;
+  const { major, year, subject, professor } = resultData;
   const retryMissedBtn = document.getElementById('retry-missed-btn');
   const missedCountEl = document.getElementById('missed-count');
 
-  const key = (typeof getStorageKey === 'function') ? getStorageKey(year, subject) : `missed_y${year}_${subject.toLowerCase()}`;
+  const key = (typeof getStorageKey === 'function')
+    ? getStorageKey(major, year, subject, professor)
+    : `missed_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${professor.toLowerCase().replace(/\s+/g, '-')}`;
+
   const savedMissed = localStorage.getItem(key);
   const missedList = savedMissed ? JSON.parse(savedMissed) : [];
 
@@ -152,8 +154,10 @@ function setupActionButtons() {
   if (retryMissedBtn) {
     retryMissedBtn.addEventListener('click', () => {
       const sessionConfig = {
+        major: resultData.major,
         year: resultData.year,
         subject: resultData.subject,
+        professor: resultData.professor,
         mode: 'missed'
       };
       sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
@@ -169,7 +173,7 @@ function setupActionButtons() {
 }
 
 function animatePieChartAndCounters(correct, incorrect, total) {
-  const CIRCUMFERENCE = 251.327; // 2 * Math.PI * 40
+  const CIRCUMFERENCE = 251.327;
   const correctRatio = total > 0 ? correct / total : 0;
   const incorrectRatio = total > 0 ? incorrect / total : 0;
 
@@ -182,10 +186,9 @@ function animatePieChartAndCounters(correct, incorrect, total) {
   const centerPercentEl = document.getElementById('center-percent');
   const correctCountEl = document.getElementById('correct-count-display');
   const correctPercentEl = document.getElementById('correct-percent-display');
-  const incorrectCountEl = document.getElementById('incorrect-count-display');
+  const incorrectCountEl = document contestEl = document.getElementById('incorrect-count-display');
   const incorrectPercentEl = document.getElementById('incorrect-percent-display');
 
-  // Align incorrect arc start position to end of correct arc
   const correctAngleDegrees = correctRatio * 360;
   if (incorrectArc) {
     incorrectArc.setAttribute('transform', `rotate(${correctAngleDegrees} 50 50)`);
