@@ -80,15 +80,13 @@ function setupNavigationGuards() {
     history.pushState({ guard: true }, '', window.location.href);
   } catch (e) {}
 
-  // 2. Intercept Browser Back Button / Mobile Back Swipe
+  // 2. Intercept Browser Back Button / Mobile Back Swipe (mouse/touch popstate)
   window.addEventListener('popstate', (e) => {
     if (isSessionActive) {
-      // Synchronously re-push state immediately to lock history
       try {
         history.pushState({ guard: true }, '', window.location.href);
       } catch (err) {}
 
-      // Prompt modal
       showLeaveConfirmModal().then((wantsToLeave) => {
         if (wantsToLeave) {
           isSessionActive = false;
@@ -98,7 +96,24 @@ function setupNavigationGuards() {
     }
   });
 
-  // 3. Intercept Top Navbar Nav Links
+  // 3. Intercept Keyboard Shortcuts for Back (Alt + Left Arrow / Cmd + [)
+  window.addEventListener('keydown', async (e) => {
+    const isAltBack = e.altKey && (e.key === 'ArrowLeft' || e.code === 'ArrowLeft');
+    const isCmdBack = (e.metaKey || e.ctrlKey) && e.key === '[';
+
+    if (isSessionActive && (isAltBack || isCmdBack)) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const wantsToLeave = await showLeaveConfirmModal();
+      if (wantsToLeave) {
+        isSessionActive = false;
+        window.location.href = 'index.html';
+      }
+    }
+  });
+
+  // 4. Intercept Top Navbar Nav Links
   const navGuards = document.querySelectorAll('.nav-leave-guard');
   navGuards.forEach(link => {
     link.addEventListener('click', async (e) => {
@@ -116,7 +131,7 @@ function setupNavigationGuards() {
     });
   });
 
-  // 4. Intercept Built-In Back Button
+  // 5. Intercept Built-In Back Button
   const quitBtn = document.getElementById('quit-session-btn');
   if (quitBtn) {
     quitBtn.addEventListener('click', async () => {
@@ -132,7 +147,7 @@ function setupNavigationGuards() {
     });
   }
 
-  // 5. Intercept Tab Close / Hard Reload
+  // 6. Intercept Tab Close / Hard Reload / F5
   window.addEventListener('beforeunload', (e) => {
     if (isSessionActive) {
       e.preventDefault();
