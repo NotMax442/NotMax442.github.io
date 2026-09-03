@@ -415,6 +415,7 @@ function renderStudyMode() {
   if (studyNavControls) {
     studyNavControls.classList.remove('hidden');
     window.addEventListener('scroll', handleStudyScroll);
+    handleStudyScroll();
   }
 }
 
@@ -566,4 +567,41 @@ function finishSession() {
 
   sessionStorage.setItem('lastQuizResult', JSON.stringify(lastQuizResult));
   window.location.href = '/result';
+}
+function handleStudyScroll() {
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  const goLatestQBtn = document.getElementById('go-latest-q-btn');
+
+  if (window.scrollY > 300) {
+    if (scrollTopBtn) scrollTopBtn.classList.remove('hidden');
+  } else {
+    if (scrollTopBtn) scrollTopBtn.classList.add('hidden');
+  }
+
+  const targetIndex = userAnswers.findIndex(ans => ans === null);
+  if (targetIndex === -1) {
+    if (goLatestQBtn) goLatestQBtn.classList.add('hidden');
+    return;
+  }
+
+  const targetCard = document.getElementById(`q-card-${targetIndex}`);
+  if (targetCard) {
+    const rect = targetCard.getBoundingClientRect();
+    const isOutOfView = rect.bottom < 0 || rect.top > window.innerHeight;
+    if (isOutOfView) {
+      if (goLatestQBtn) goLatestQBtn.classList.remove('hidden');
+    } else {
+      if (goLatestQBtn) goLatestQBtn.classList.add('hidden');
+    }
+  }
+}
+
+function scrollToLatestUnansweredQuestion() {
+  const targetIndex = userAnswers.findIndex(ans => ans === null);
+  if (targetIndex !== -1) {
+    const targetCard = document.getElementById(`q-card-${targetIndex}`);
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 }
