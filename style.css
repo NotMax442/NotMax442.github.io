@@ -1107,3 +1107,34 @@ p {
     font-size: 1.1rem;
   }
 }
+/* --- Fix Mobile Fullscreen Shrinking --- */
+:fullscreen,
+:-webkit-full-screen {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+:fullscreen .app-container,
+:-webkit-full-screen .app-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 640px) {
+  :fullscreen .app-container,
+  :-webkit-full-screen .app-container {
+    padding: 0.75rem !important;
+  }
+
+  :fullscreen .score-card,
+  :fullscreen .study-q-card,
+  :-webkit-full-screen .score-card,
+  :-webkit-full-screen .study-q-card {
+    padding: 1rem 0.75rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}
