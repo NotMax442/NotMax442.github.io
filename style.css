@@ -1069,3 +1069,31 @@ p {
   background-color: #e0f2fe;                   /* Soft sky-blue tint */
   border-color: var(--text-heading);
 }
+
+/* --- Fullscreen Toggle Button --- */
+.fullscreen-btn {
+  background-color: var(--bg-subcard);
+  color: var(--text-main);
+  border: 1px solid var(--border-sub);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.fullscreen-btn:hover {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+[data-theme="light"] .fullscreen-btn:hover {
+  background-color: #e0f2fe;
+  border-color: var(--text-heading);
+  color: var(--text-main);
+}
