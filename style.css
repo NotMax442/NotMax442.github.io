@@ -260,6 +260,7 @@ p {
   gap: 1.25rem;
 }
 
+/* Base Year & Major Card Styling */
 .year-card {
   background-color: var(--bg-subcard);
   color: var(--text-main);
@@ -270,13 +271,32 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
   border: 1px solid var(--border-sub);
-  transition: border-color 0.2s, background-color 0.2s;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* --- YEAR CARDS (Sky Blue Glow) --- */
 .year-card:hover {
+  transform: scale(1.03);
   background-color: #0284c7;
   color: #ffffff;
   border-color: #38bdf8;
+  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.35);
+}
+
+.year-card:active {
+  transform: scale(1.05);
+}
+
+/* --- MAJOR CARDS (Teal/Emerald Glow) --- */
+.year-card[data-major]:hover {
+  background-color: #0d9488;
+  color: #ffffff;
+  border-color: #2dd4bf;
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.35);
+}
+
+.year-card[data-major]:active {
+  transform: scale(1.05);
 }
 
 .subject-grid {
@@ -295,7 +315,7 @@ p {
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Enlarge ONLY subject cards on hover (when clicking the entire card navigates) */
+/* Enlarge ONLY subject cards on hover */
 .subject-card:not(.prof-card):hover {
   transform: scale(1.025);
   border-color: var(--text-heading);
@@ -307,7 +327,7 @@ p {
   transform: scale(1.04);
 }
 
-/* Professor Card Container (Static - does not grow) */
+/* Professor Card Container (Static) */
 .subject-card.prof-card {
   cursor: default;
 }
