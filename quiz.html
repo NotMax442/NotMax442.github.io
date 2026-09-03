@@ -19,22 +19,12 @@
     <!-- Top Navigation Bar (Hidden on quiz page via CSS .quiz-body .main-navbar) -->
     <nav class="main-navbar">
       <div class="nav-links">
-        <a href="index.html" class="nav-item nav-leave-guard" data-i18n="nav_home">HOME</a>
-        <a href="about.html" class="nav-item nav-leave-guard" data-i18n="nav_about">ABOUT</a>
-        <a href="contact.html" class="nav-item nav-leave-guard" data-i18n="nav_contact">CONTACT US</a>
-        <a href="account.html" class="nav-item nav-leave-guard" data-i18n="nav_account">MY ACCOUNT</a>
+        <a href="/" class="nav-item nav-leave-guard" data-i18n="nav_home">HOME</a>
+        <a href="/about" class="nav-item nav-leave-guard" data-i18n="nav_about">ABOUT</a>
+        <a href="/contact" class="nav-item nav-leave-guard" data-i18n="nav_contact">CONTACT US</a>
+        <a href="/account" class="nav-item nav-leave-guard" data-i18n="nav_account">MY ACCOUNT</a>
         <button id="nav-donate-btn" class="nav-item nav-leave-guard" data-i18n="nav_donate"
-          style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support
-          Us</button>
-        <!-- Study Mode Floating Navigation Controls -->
-        <div id="study-nav-controls" class="floating-nav-controls hidden">
-          <button id="go-latest-q-btn" class="btn primary-btn floating-pill-btn hidden">
-            📍 Go to Latest Question
-          </button>
-          <button id="scroll-top-btn" class="floating-round-btn" title="Scroll to top" aria-label="Scroll to top">
-            ⬆️
-          </button>
-        </div>
+          style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support Us</button>
       </div>
       <div class="nav-controls" style="display: flex; gap: 0.5rem; align-items: center;">
         <select id="language-select" class="lang-select">
@@ -71,6 +61,16 @@
           <button id="next-btn" class="btn primary-btn hidden">Next Question ➡️</button>
         </div>
       </div>
+    </div>
+
+    <!-- Study Mode Floating Navigation Controls (Placed outside hidden navbar) -->
+    <div id="study-nav-controls" class="floating-nav-controls hidden">
+      <button id="go-latest-q-btn" class="btn primary-btn floating-pill-btn hidden">
+        📍 Go to Latest Question
+      </button>
+      <button id="scroll-top-btn" class="floating-round-btn hidden" title="Scroll to top" aria-label="Scroll to top">
+        ⬆️
+      </button>
     </div>
 
     <!-- Site Footer -->
