@@ -137,60 +137,74 @@ function renderAccountDashboard() {
   accountSubjectList.innerHTML = '';
   let totalMissedAcrossApp = 0;
 
-  Object.keys(manifestData).forEach(year => {
-    manifestData[year].forEach(subject => {
-      const key = getStorageKey(year, subject);
-      const rawData = localStorage.getItem(key);
-      const missedArray = rawData ? JSON.parse(rawData) : [];
+  // 1. Collect all missed question keys directly from localStorage
+  const missedKeys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('missed_y')) {
+      missedKeys.push(key);
+    }
+  }
 
-      if (missedArray.length > 0) {
-        totalMissedAcrossApp += missedArray.length;
+  // 2. Render cards for each saved subject key
+  missedKeys.sort().forEach(key => {
+    const rawData = localStorage.getItem(key);
+    const missedArray = rawData ? JSON.parse(rawData) : [];
 
-        const card = document.createElement('div');
-        card.classList.add('subject-card');
-        if (selectedSubjectKeys.has(key)) card.classList.add('selected-for-delete');
+    if (missedArray.length > 0) {
+      totalMissedAcrossApp += missedArray.length;
 
-        const isChecked = selectedSubjectKeys.has(key) ? 'checked' : '';
-        const checkboxHTML = isSelectMode 
-          ? `<input type="checkbox" class="card-checkbox" data-key="${key}" ${isChecked}>` 
-          : '';
+      // Extract year and subject from key format "missed_y{year}_{subject}"
+      const match = key.match(/^missed_y(\d+)_(.+)$/);
+      const year = match ? match[1] : '';
+      const rawSubject = match ? match[2] : key;
+      const subjectFormatted = rawSubject.charAt(0).toUpperCase() + rawSubject.slice(1);
 
-        card.innerHTML = `
-          <div style="display: flex; gap: 1rem; align-items: flex-start;">
-            ${checkboxHTML}
-            <div style="flex: 1;">
-              <h3>Year ${year} - ${subject}</h3>
-              <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
-              ${!isSelectMode ? `
-                <div class="subject-actions" style="flex-direction: column;">
-                  <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${subject}')">🎯 Practice Missed (${missedArray.length})</button>
-                  <button class="btn primary-btn" onclick="promptAnkiExport('${key}')">📦 Export to Anki (.txt)</button>
-                </div>
-              ` : ''}
-            </div>
+      const card = document.createElement('div');
+      card.classList.add('subject-card');
+      if (selectedSubjectKeys.has(key)) card.classList.add('selected-for-delete');
+
+      const isChecked = selectedSubjectKeys.has(key) ? 'checked' : '';
+      const checkboxHTML = isSelectMode 
+        ? `<input type="checkbox" class="card-checkbox" data-key="${key}" ${isChecked}>` 
+        : '';
+
+      card.innerHTML = `
+        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+          ${checkboxHTML}
+          <div style="flex: 1;">
+            <h3>Year ${year} - ${subjectFormatted}</h3>
+            <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
+            ${!isSelectMode ? `
+              <div class="subject-actions" style="flex-direction: column;">
+                <button class="btn study-missed-btn" onclick="launchAccountReview('${year}', '${rawSubject}')">🎯 Practice Missed (${missedArray.length})</button>
+                <button class="btn primary-btn" onclick="promptAnkiExport('${key}')">📦 Export to Anki (.txt)</button>
+              </div>
+            ` : ''}
           </div>
-        `;
+        </div>
+      `;
 
-        if (isSelectMode) {
-          card.addEventListener('click', (e) => {
-            if (e.target.tagName !== 'INPUT') {
-              const cb = card.querySelector('.card-checkbox');
-              if (cb) cb.checked = !cb.checked;
-            }
-            
-            if (selectedSubjectKeys.has(key)) selectedSubjectKeys.delete(key);
-            else selectedSubjectKeys.add(key);
-            
-            updateDeleteButtonState();
-            renderAccountDashboard();
-          });
-        }
-
-        accountSubjectList.appendChild(card);
+      if (isSelectMode) {
+        card.addEventListener('click', (e) => {
+          if (e.target.tagName !== 'INPUT') {
+            const cb = card.querySelector('.card-checkbox');
+            if (cb) cb.checked = !cb.checked;
+          }
+          
+          if (selectedSubjectKeys.has(key)) selectedSubjectKeys.delete(key);
+          else selectedSubjectKeys.add(key);
+          
+          updateDeleteButtonState();
+          renderAccountDashboard();
+        });
       }
-    });
+
+      accountSubjectList.appendChild(card);
+    }
   });
 
+  // 3. Display empty state if no missed questions are found
   if (totalMissedAcrossApp === 0) {
     if (toggleSelectModeBtn) toggleSelectModeBtn.classList.add('hidden');
     if (bulkControls) bulkControls.classList.add('hidden');
