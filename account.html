@@ -7,6 +7,7 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="style.css">
 
+  <!-- Google AdSense Master Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4210272281940886"
        crossorigin="anonymous"></script>
 </head>
@@ -32,14 +33,38 @@
     </nav>
 
     <!-- My Account Screen -->
-    <div id="account-screen" class="screen">
-      <h2 data-i18n="account_title">My Account & Vault</h2>
+    <div id="account-screen" class="screen" style="max-width: 800px; margin: 0 auto;">
+      <h1 style="margin-bottom: 0.5rem;" data-i18n="account_title">My Account & Vault</h1>
+      <p style="color: var(--text-sub); margin-bottom: 1.5rem;" data-i18n="account_sub">Manage your preferences, saved missed questions, and local study vault.</p>
 
-      <div class="account-toolbar">
-        <button id="toggle-select-mode-btn" class="btn secondary-btn">☑️ Select</button>
-        <div id="bulk-controls" class="hidden" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-          <button id="select-all-btn" class="btn secondary-btn">Select All</button>
-          <button id="delete-selected-btn" class="btn danger-btn" disabled>🗑️ Delete Selected (0)</button>
+      <!-- 1. Quiz Preferences Card -->
+      <div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-sub); margin-bottom: 2rem;">
+        <h3 style="margin-top: 0; color: var(--text-main);" data-i18n="account_pref_title">⚙️ Quiz Preferences</h3>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1rem;">
+          <div>
+            <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_autoadv_title">Auto-advance in Quiz Mode</h4>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);" data-i18n="account_autoadv_desc">
+              Automatically move to the next question after selecting an option without having to click "Next Question".
+            </p>
+          </div>
+          <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px; flex-shrink: 0;">
+            <input type="checkbox" id="auto-advance-toggle" style="opacity: 0; width: 0; height: 0;">
+            <span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border-sub); transition: .3s; border-radius: 26px;"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. Missed Questions Vault Section -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+        <h3 style="margin: 0; color: var(--text-main);" data-i18n="account_vault_title">📦 Missed Questions Vault</h3>
+        
+        <div class="account-toolbar" style="display: flex; gap: 0.5rem; align-items: center;">
+          <button id="toggle-select-mode-btn" class="btn secondary-btn">☑️ Select</button>
+          <div id="bulk-controls" class="hidden" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <button id="select-all-btn" class="btn secondary-btn">Select All</button>
+            <button id="delete-selected-btn" class="btn danger-btn" disabled>🗑️ Delete Selected (0)</button>
+          </div>
         </div>
       </div>
 
@@ -78,7 +103,7 @@
     </div>
   </div>
 
-  <!-- Shared Modals -->
+  <!-- Shared Modals (Donation & Privacy) -->
   <div id="donate-modal" class="modal-overlay hidden">
     <div class="modal-card donate-card-wide">
       <button id="close-donate-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
