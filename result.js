@@ -8,7 +8,7 @@ let currentReviewFilter = 'wrong';
 document.addEventListener('DOMContentLoaded', () => {
   const rawResult = sessionStorage.getItem('lastQuizResult');
   if (!rawResult) {
-    window.location.href = 'index.html';
+    window.location.href = '/';
     return;
   }
 
@@ -173,13 +173,13 @@ function setupActionButtons() {
         mode: 'missed'
       };
       sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-      window.location.href = 'quiz.html';
+      window.location.href = '/quiz';
     });
   }
 
   if (restartBtn) {
     restartBtn.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = '/';
     });
   }
 }
