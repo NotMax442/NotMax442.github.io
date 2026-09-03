@@ -52,6 +52,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Navigation Guard Modal for Leave Prevention
+// Navigation Guard Modal for Leave Prevention
 function showLeaveConfirmModal() {
   if (isModalOpen) return Promise.resolve(false);
   isModalOpen = true;
@@ -60,10 +61,25 @@ function showLeaveConfirmModal() {
     const modal = document.getElementById('leave-confirm-modal');
     const confirmBtn = document.getElementById('leave-confirm-btn');
     const cancelBtn = document.getElementById('leave-cancel-btn');
+    const descEl = document.getElementById('leave-modal-desc');
 
     if (!modal) {
       isModalOpen = false;
       return resolve(true);
+    }
+
+    // Set contextual message based on session mode
+    if (descEl) {
+      const isKm = currentLang === 'km';
+      if (sessionConfig && sessionConfig.mode === 'study') {
+        descEl.textContent = isKm 
+          ? "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!"
+          : "Are you sure you want to leave? Your progress will be saved, don't worry!";
+      } else {
+        descEl.textContent = isKm
+          ? "ការវិវឌ្ឍនៃការធ្វើតេស្តប្រឡងរបស់អ្នកនឹងត្រូវបាត់បង់។"
+          : "Your active timed quiz progress will be lost.";
+      }
     }
 
     modal.classList.remove('hidden');
