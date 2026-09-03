@@ -102,6 +102,21 @@ const translations = {
     leave_modal_desc: "Are you sure you want to leave? Your progress is saved, don't worry!",
     btn_leave: "Leave",
     btn_cancel: "Cancel",
+    about_title: "About TestforUHS",
+    about_sub: "A free, dedicated study and self-assessment platform for medical students.",
+    about_mission_title: "🎯 Our Mission",
+    about_mission_desc: "TestforUHS was created to give medical students an intuitive, accessible way to review questions, practice exam simulation, and track missed topics across their academic years—100% free of charge.",
+    about_funding_title: "🤝 How TestforUHS Stays Free & Funded",
+    about_funding_desc: "To keep this platform open and free for everyone without charging subscriptions or putting study materials behind paywalls, we cover server, domain, and maintenance costs using two transparent methods:",
+    about_ad_title: "1. Non-Intrusive Advertisements (Google AdSense)",
+    about_ad_loc: "Where ads appear: Only at the bottom of the Home page and on the Session Results summary page.",
+    about_ad_zero: "Zero Interruptions: We never place ads inside active quiz screens or study sessions so your focus remains 100% on learning.",
+    about_ad_filter: "Strict Content Filtering: All advertisements are heavily filtered. We strictly block adult content, social casino/gambling, clickbait, and misleading supplements.",
+    about_donate_title: "2. Voluntary Community Support (KHQR Donations)",
+    about_donate_desc: "If TestforUHS helps you in your studies, you can voluntarily support platform development via our Support Us button (KHQR). Every contribution directly covers domain fees and hosting infrastructure. Donations are completely optional and unlock no special privileges—every student receives full access to all features.",
+    about_privacy_title: "🔒 Our Privacy Promise",
+    about_privacy_desc: "Your study progress, missed questions, and test scores are stored locally inside your browser (localStorage). We do not track your personal study choices or sell student data to third parties.",
+    
   },
   km: {
     nav_home: "ទំព័រដើម",
@@ -148,6 +163,21 @@ const translations = {
     leave_modal_desc: "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!",
     btn_leave: "ចាកចេញ",
     btn_cancel: "បោះបង់",
+    about_title: "អំពី TestforUHS",
+    about_sub: "វេទិកាសិក្សា និងវាយតម្លៃសមត្ថភាពដោយខ្លួនឯងឥតគិតថ្លៃ សម្រាប់និស្សិតវេជ្ជសាស្ត្រ។",
+    about_mission_title: "🎯 បេសកកម្មរបស់យើង",
+    about_mission_desc: "TestforUHS ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់ជូននិស្សិតវេជ្ជសាស្ត្រនូវវិធីសាស្ត្រដ៏ងាយស្រួល ក្នុងការរំលឹកសំណួរ ធ្វើតេស្តប្រឡង និងតាមដានសំណួរដែលឆ្លើយខុស តាមឆ្នាំសិក្សានីមួយៗ—ដោយឥតគិតថ្លៃ ១០០%។",
+    about_funding_title: "🤝 របៀបដែល TestforUHS រក្សាការប្រើប្រាស់ដោយឥតគិតថ្លៃ",
+    about_funding_desc: "ដើម្បីរក្សាវេទិកានេះឱ្យបើកទូលាយ និងឥតគិតថ្លៃសម្រាប់និសិត្សទាំងអស់ ដោយមិនមានការទារប្រាក់ជាប្រចាំ យើងរ៉ាប់រងថ្លៃ(Server) និង(Domain) តាមរយៈវិធីសាស្ត្រច្បាស់លាស់ពីរ៖",
+    about_ad_title: "១. ការផ្សាយពាណិជ្ជកម្មដែលមិនរំខាន (Google AdSense)",
+    about_ad_loc: "កន្លែងបង្ហាញពាណិជ្ជកម្ម៖ បង្ហាញតែនៅផ្នែកខាងក្រោមនៃទំព័រដើម (Home) និងទំព័រលទ្ធផល (Results) ប៉ុណ្ណោះ។",
+    about_ad_zero: "មិនមានការរំខាន៖ យើងមិនដែលដាក់ពាណិជ្ជកម្មនៅក្នុងទំព័រធ្វើតេស្ត ឬទំព័រសិក្សាឡើយ ដើម្បីឱ្យអ្នកផ្ដោតអារម្មណ៍ ១០០% លើការសិក្សា។",
+    about_ad_filter: "ការចោះត្រងម៉ឺងម៉ាត់៖ រាល់ពាណិជ្ជកម្មទាំងអស់ត្រូវបានចោះត្រងយ៉ាងម៉ឺងម៉ាត់។ យើងហាមឃាត់ដាច់ខាតនូវខ្លឹមសារមនុស្សធំ ល្បែងស៊ីសង និងពាណិជ្ជកម្មភូតភរ។",
+    about_donate_title: "២. ការគាំទ្រដោយស្ម័គ្រចិត្តពីសហគមន៍ (KHQR)",
+    about_donate_desc: "ប្រសិនបើ TestforUHS ជួយដល់ការសិក្សារបស់អ្នក អ្នកអាចជួយឧបត្ថម្ភដល់ការអភិវឌ្ឍវេទិកានេះតាមរយៈប៊ូតុង 'Support Us' (KHQR)។ ការបរិច្ចាគគឺធ្វើឡើងដោយស្ម័គ្រចិត្តទាំងស្រុង ហើយនិស្សិតគ្រប់រូបទទួលបានសិទ្ធិប្រើប្រាស់មុខងារទាំងអស់ដូចៗគ្នា។",
+    about_privacy_title: "🔒 សេចក្តីប្រកាសអំពីឯកជនភាព",
+    about_privacy_desc: "ការវិវឌ្ឍនៃការសិក្សា ពិន្ទុ និងសំណួរខុសៗរបស់អ្នកត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករក (Browser) របស់អ្នកផ្ទាល់ (localStorage)។ យើងមិនតាមដាន ឬលក់ទិន្នន័យរបស់និស្សិតទៅឱ្យភាគីទីបីឡើយ។",
+    
   }
 };
 
