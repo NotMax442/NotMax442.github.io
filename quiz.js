@@ -87,16 +87,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ==========================================================================
 
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch((err) => {
-      console.warn(`Error attempting to enable fullscreen: ${err.message}`);
-    });
+  const docEl = document.documentElement;
+  const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+
+  if (!isFs) {
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen().catch((err) => console.warn(`Fullscreen error: ${err.message}`));
+    } else if (docEl.webkitRequestFullscreen) { /* Safari / Older WebKit */
+      docEl.webkitRequestFullscreen();
+    } else if (docEl.msRequestFullscreen) { /* IE/Edge */
+      docEl.msRequestFullscreen();
+    }
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
   }
-}
 
 // Automatically sync button text when entering/exiting fullscreen (including ESC key)
 document.addEventListener('fullscreenchange', () => {
@@ -655,3 +665,14 @@ function scrollToLatestUnansweredQuestion() {
     }
   }
 }
+
+// Automatically sync button text (Letters only for Exit state)
+['fullscreenchange', 'webkitfullscreenchange', 'msfullscreenchange'].forEach(eventType => {
+  document.addEventListener(eventType, () => {
+    const fsBtn = document.getElementById('fullscreen-btn');
+    const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+    if (fsBtn) {
+      fsBtn.textContent = isFs ? 'Exit Fullscreen' : '⛶ Fullscreen';
+    }
+  });
+});
