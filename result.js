@@ -1,5 +1,5 @@
 // ==========================================================================
-// RESULTS & REVIEW BREAKDOWN LOGIC (result.html)
+// RESULTS & REVIEW BREAKDOWN LOGIC (result.js)
 // ==========================================================================
 
 let resultData = null;
@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Trigger the Pie Chart & Counter Animation
   animatePieChartAndCounters(correctCount, incorrectCount, totalQuestions);
 
-  renderScoreSummary();
   setupFilterControls();
   renderReviewBreakdown();
   checkMissedQuestions();
@@ -36,31 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Suppress error if adblocker is active
   }
 });
-
-function renderScoreSummary() {
-  const { questions, userScore } = resultData;
-  const finalScore = document.getElementById('final-score');
-  const scorePercentageEl = document.getElementById('score-percentage');
-  const progressBarFillEl = document.getElementById('progress-bar-fill');
-
-  const total = questions ? questions.length : 0;
-  const percentage = total > 0 ? Math.round((userScore / total) * 100) : 0;
-
-  if (finalScore) {
-    finalScore.textContent = `You answered ${userScore} out of ${total} questions correctly!`;
-  }
-
-  if (scorePercentageEl) {
-    scorePercentageEl.textContent = `${percentage}%`;
-  }
-
-  if (progressBarFillEl) {
-    progressBarFillEl.style.width = '0%';
-    setTimeout(() => {
-      progressBarFillEl.style.width = `${percentage}%`;
-    }, 150);
-  }
-}
 
 function setupFilterControls() {
   const filterWrongBtn = document.getElementById('filter-wrong-btn');
@@ -217,12 +191,11 @@ function animatePieChartAndCounters(correct, incorrect, total) {
     incorrectArc.setAttribute('transform', `rotate(${correctAngleDegrees} 50 50)`);
   }
 
-  const phase1Duration = 1000; // 1.0s for green arc
-  const phase2Duration = 800;  // 0.8s for red arc
+  const phase1Duration = 1000;
+  const phase2Duration = 800;
 
   let startTime = null;
 
-  // --- Phase 1: Draw Green Arc & Count Correct Stats ---
   function runPhase1(timestamp) {
     if (!startTime) startTime = timestamp;
     const elapsed = timestamp - startTime;
@@ -242,13 +215,11 @@ function animatePieChartAndCounters(correct, incorrect, total) {
     if (progress < 1) {
       requestAnimationFrame(runPhase1);
     } else {
-      // Snap to exact final totals at end of Phase 1
       if (correctArc) correctArc.style.strokeDashoffset = CIRCUMFERENCE - (CIRCUMFERENCE * correctRatio);
       if (centerPercentEl) centerPercentEl.textContent = `${correctPct}%`;
       if (correctCountEl) correctCountEl.textContent = correct;
       if (correctPercentEl) correctPercentEl.textContent = `${correctPct}%`;
 
-      // Start Phase 2 if there are incorrect answers
       if (incorrect > 0) {
         startTime = null;
         requestAnimationFrame(runPhase2);
@@ -256,7 +227,6 @@ function animatePieChartAndCounters(correct, incorrect, total) {
     }
   }
 
-  // --- Phase 2: Draw Red Arc & Count Incorrect Stats ---
   function runPhase2(timestamp) {
     if (!startTime) startTime = timestamp;
     const elapsed = timestamp - startTime;
@@ -275,7 +245,6 @@ function animatePieChartAndCounters(correct, incorrect, total) {
     if (progress < 1) {
       requestAnimationFrame(runPhase2);
     } else {
-      // Snap to exact final totals at end of Phase 2
       if (incorrectArc) incorrectArc.style.strokeDashoffset = CIRCUMFERENCE - (CIRCUMFERENCE * incorrectRatio);
       if (incorrectCountEl) incorrectCountEl.textContent = incorrect;
       if (incorrectPercentEl) incorrectPercentEl.textContent = `${incorrectPct}%`;
