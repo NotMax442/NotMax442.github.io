@@ -860,11 +860,51 @@ p {
   opacity: 0.7;
 }
 
-/* Automatically collapse empty AdSense slots when no ad is served */
-ins.adsbygoogle[data-ad-status="unfilled"] {
-  display: none !important;
-}
-/* Hide navbar on quiz and study screens */
+/* ==========================================================================
+   QUIZ PAGE SPECIAL LAYOUT & COMPACT DESKTOP STYLES
+   ========================================================================== */
+
+/* 1. Hide Navbar on Quiz Page */
 .quiz-body .main-navbar {
   display: none !important;
+}
+
+/* 2. Compact PC Layout for Quiz & Study Screen */
+@media (min-width: 768px) {
+  .quiz-body .app-container {
+    max-width: 820px;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .quiz-body .screen {
+    margin-top: 0;
+  }
+
+  .quiz-body #session-info {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quiz-body #question-text {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .quiz-body .options-grid {
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .quiz-body .option-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    min-height: auto;
+  }
+
+  .quiz-body #next-btn {
+    margin-top: 1rem;
+    padding: 0.65rem 1.5rem;
+  }
 }
