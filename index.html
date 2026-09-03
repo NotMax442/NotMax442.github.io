@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TestforUHS - Medical Study & Quiz Platform</title>
   <meta name="title" content="TestforUHS - Medical Study & Quiz Platform">
-  <meta name="description" content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
+  <meta name="description"
+    content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
 
   <!-- Open Graph / Telegram / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://testforuhs.com/">
   <meta property="og:site_name" content="TestforUHS">
   <meta property="og:title" content="TestforUHS - Medical Study & Quiz Platform">
-  <meta property="og:description" content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
+  <meta property="og:description"
+    content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
   <meta property="og:image" content="https://testforuhs.com/assets/logo.png">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://testforuhs.com/">
   <meta property="twitter:title" content="TestforUHS - Medical Study & Quiz Platform">
-  <meta property="twitter:description" content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
+  <meta property="twitter:description"
+    content="Free interactive medical quiz and study platform for UHS students. Practice Year 1 to Year 6 subjects, review missed questions, and export to Anki.">
   <meta property="twitter:image" content="https://testforuhs.com/assets/logo.png">
 
   <!-- Icons & CSS -->
@@ -28,19 +32,23 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4210272281940886" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4210272281940886"
+    crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="app-container">
 
     <!-- Top Navigation Bar -->
     <nav class="main-navbar">
       <div class="nav-links">
-        <a href="/" class="nav-item active" data-i18n="nav_home">HOME</a>
-        <a href="about.html" class="nav-item" data-i18n="nav_about">ABOUT</a>
-        <a href="contact.html" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
-        <a href="account.html" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
-        <button id="nav-donate-btn" class="nav-item" data-i18n="nav_donate" style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support Us</button>
+        <a href="/" class="nav-item" data-i18n="nav_home">HOME</a>
+        <a href="/about" class="nav-item" data-i18n="nav_about">ABOUT</a>
+        <a href="/contact" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
+        <a href="/account" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
+        <button id="nav-donate-btn" class="nav-item" data-i18n="nav_donate"
+          style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support
+          Us</button>
       </div>
       <div class="nav-controls" style="display: flex; gap: 0.5rem; align-items: center;">
         <select id="language-select" class="lang-select">
@@ -55,12 +63,15 @@
     <div id="landing-screen" class="screen">
       <h1 data-i18n="landing_title">Medical Study Platform</h1>
       <p data-i18n="landing_sub">Select your academic year, review saved missed questions, or test your knowledge.</p>
-      <button id="enter-study-btn" class="btn primary-btn" style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;" data-i18n="btn_start_study">🚀 Start Studying</button>
+      <button id="enter-study-btn" class="btn primary-btn"
+        style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;" data-i18n="btn_start_study">🚀 Start
+        Studying</button>
     </div>
 
     <!-- 2. Year Selection Section (Hidden by default) -->
     <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back">⬅️ Back</button>
+      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back">⬅️
+        Back</button>
       <h2 data-i18n="year_selection_title">Select Academic Year</h2>
       <div class="year-grid">
         <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
@@ -74,35 +85,36 @@
 
     <!-- 3. Subject Selection Section (Hidden by default) -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back_years">⬅️ Back to Years</button>
+      <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;" data-i18n="btn_back_years">⬅️
+        Back to Years</button>
       <h2 id="selected-year-title">Subjects</h2>
 
       <!-- Native-Styled Subject Ad Banner -->
-      <div class="subject-ad-wrapper" style="margin: 1.5rem 0; text-align: center; min-height: 90px; background: var(--bg-subcard); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-sub);">
-        <span class="ad-label" style="display: block; font-size: 0.7rem; color: var(--text-sub); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;">Sponsored</span>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-4210272281940886"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+      <div class="subject-ad-wrapper"
+        style="margin: 1.5rem 0; text-align: center; min-height: 90px; background: var(--bg-subcard); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-sub);">
+        <span class="ad-label"
+          style="display: block; font-size: 0.7rem; color: var(--text-sub); margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;">Sponsored</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4210272281940886" data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
       </div>
 
       <div id="subject-list" class="subject-grid"></div>
     </div>
 
     <!-- Home Page AdSense Banner Unit -->
-    <div class="home-ad-container" style="margin: 2.5rem 0 1rem 0; text-align: center; min-height: 90px; background: var(--bg-subcard); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-sub);">
-      <span class="ad-label" style="display: block; font-size: 0.75rem; color: var(--text-sub); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Sponsored</span>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-4210272281940886"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
+    <div class="home-ad-container"
+      style="margin: 2.5rem 0 1rem 0; text-align: center; min-height: 90px; background: var(--bg-subcard); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-sub);">
+      <span class="ad-label"
+        style="display: block; font-size: 0.75rem; color: var(--text-sub); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Sponsored</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4210272281940886" data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     </div>
 
     <!-- Site Footer -->
-    <footer class="main-footer" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.85rem; color: var(--text-sub);">
-      <p>© 2026 TestforUHS. All rights reserved. | <a href="#" id="open-privacy-btn" style="color: var(--text-heading); text-decoration: underline;">Privacy Policy</a></p>
+    <footer class="main-footer"
+      style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.85rem; color: var(--text-sub);">
+      <p>© 2026 TestforUHS. All rights reserved. | <a href="#" id="open-privacy-btn"
+          style="color: var(--text-heading); text-decoration: underline;">Privacy Policy</a></p>
     </footer>
 
   </div>
@@ -123,30 +135,37 @@
       <button id="close-donate-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
       <div class="donate-grid">
         <div class="donate-info">
-          <p class="donate-tagline" data-i18n="donate_tagline">Every little bit is greatly appreciated! Thank you for your support 😊</p>
+          <p class="donate-tagline" data-i18n="donate_tagline">Every little bit is greatly appreciated! Thank you for
+            your support 😊</p>
           <h3 class="donate-cta" data-i18n="donate_cta">You may donate through our KHQR here.</h3>
         </div>
         <div class="donate-qr-wrapper"><img src="assets/khqr.png" alt="KHQR Code" class="khqr-card-img"></div>
       </div>
       <div style="margin-top: 1.5rem; text-align: center;">
-        <button id="bottom-close-donate-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;" data-i18n="btn_close">Close</button>
+        <button id="bottom-close-donate-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;"
+          data-i18n="btn_close">Close</button>
       </div>
     </div>
   </div>
 
   <div id="privacy-modal" class="modal-overlay hidden">
-    <div class="modal-card" style="max-width: 600px; text-align: left; max-height: 80vh; overflow-y: auto; position: relative; padding: 2.5rem 1.5rem 1.5rem 1.5rem;">
+    <div class="modal-card"
+      style="max-width: 600px; text-align: left; max-height: 80vh; overflow-y: auto; position: relative; padding: 2.5rem 1.5rem 1.5rem 1.5rem;">
       <button id="close-privacy-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
       <h3 style="margin-bottom: 1rem; color: var(--text-main);">Privacy Policy</h3>
       <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-sub);">
-        <p>At <strong>TestforUHS</strong> (accessible from testforuhs.com), visitor privacy is one of our main priorities.</p>
+        <p>At <strong>TestforUHS</strong> (accessible from testforuhs.com), visitor privacy is one of our main
+          priorities.</p>
         <h4 style="color: var(--text-main); margin: 1.25rem 0 0.5rem;">Google DoubleClick DART Cookie & AdSense</h4>
-        <p>Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to testforuhs.com.</p>
+        <p>Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site
+          visitors based upon their visit to testforuhs.com.</p>
         <h4 style="color: var(--text-main); margin: 1.25rem 0 0.5rem;">Log Files & Local Storage</h4>
-        <p>TestforUHS uses browser Local Storage to save user progress, quiz results, and user preferences locally on your device.</p>
+        <p>TestforUHS uses browser Local Storage to save user progress, quiz results, and user preferences locally on
+          your device.</p>
       </div>
       <div style="margin-top: 1.5rem; text-align: center;">
-        <button id="bottom-close-privacy-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;" data-i18n="btn_close">Close</button>
+        <button id="bottom-close-privacy-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;"
+          data-i18n="btn_close">Close</button>
       </div>
     </div>
   </div>
@@ -154,4 +173,5 @@
   <script src="shared.js"></script>
   <script src="home.js"></script>
 </body>
+
 </html>
