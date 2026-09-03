@@ -204,8 +204,10 @@ function setLanguage(lang) {
 
   const langSelect = document.getElementById('language-select');
   if (langSelect) langSelect.value = lang;
-}
 
+  // 🎯 Broadcast language update to active page scripts
+  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+}
 function applyTheme(theme) {
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   if (theme === 'light') {
