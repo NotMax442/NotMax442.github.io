@@ -8,7 +8,7 @@ let userAnswers = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
-let isSessionActive = false;
+let isSessionActive = true; // Set active immediately on page load
 
 let timerInterval = null;
 let timeRemaining = 3600;
@@ -75,20 +75,26 @@ function showLeaveConfirmModal() {
 }
 
 function setupNavigationGuards() {
-  // 1. Push a dummy state into browser history to capture the back button action
-  history.pushState({ quizActive: true }, '', window.location.href);
+  // 1. Push initial guard state into history stack
+  try {
+    history.pushState({ guard: true }, '', window.location.href);
+  } catch (e) {}
 
   // 2. Intercept Browser Back Button / Mobile Back Swipe
-  window.addEventListener('popstate', async (e) => {
+  window.addEventListener('popstate', (e) => {
     if (isSessionActive) {
-      // Re-push state to trap navigation until confirmed
-      history.pushState({ quizActive: true }, '', window.location.href);
+      // Synchronously re-push state immediately to lock history
+      try {
+        history.pushState({ guard: true }, '', window.location.href);
+      } catch (err) {}
 
-      const wantsToLeave = await showLeaveConfirmModal();
-      if (wantsToLeave) {
-        isSessionActive = false;
-        window.location.href = 'index.html';
-      }
+      // Prompt modal
+      showLeaveConfirmModal().then((wantsToLeave) => {
+        if (wantsToLeave) {
+          isSessionActive = false;
+          window.location.href = 'index.html';
+        }
+      });
     }
   });
 
