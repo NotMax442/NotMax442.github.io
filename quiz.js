@@ -18,7 +18,7 @@ let autoScrollTimer = null;
 document.addEventListener('DOMContentLoaded', async () => {
   const rawConfig = sessionStorage.getItem('activeSessionConfig');
   if (!rawConfig) {
-    window.location.href = 'index.html';
+    window.location.href = '/';
     return;
   }
 
@@ -130,7 +130,7 @@ function setupNavigationGuards() {
     showLeaveConfirmModal().then((wantsToLeave) => {
       if (wantsToLeave) {
         isSessionActive = false;
-        window.location.href = 'index.html';
+        window.location.href = '/';
       }
     });
   });
@@ -148,7 +148,7 @@ function setupNavigationGuards() {
       showLeaveConfirmModal().then((wantsToLeave) => {
         if (wantsToLeave) {
           isSessionActive = false;
-          window.location.href = 'index.html';
+          window.location.href = '/';
         }
       });
     }
@@ -180,10 +180,10 @@ function setupNavigationGuards() {
         const wantsToLeave = await showLeaveConfirmModal();
         if (wantsToLeave) {
           isSessionActive = false;
-          window.location.href = 'index.html';
+          window.location.href = '/';
         }
       } else {
-        window.location.href = 'index.html';
+        window.location.href = '/';
       }
     });
   }
@@ -235,7 +235,7 @@ async function initSession() {
     const rawMissed = localStorage.getItem(key);
     if (!rawMissed) {
       alert("No saved missed questions found for this subject!");
-      window.location.href = 'index.html';
+      window.location.href = '/';
       return;
     }
     const missedList = JSON.parse(rawMissed);
@@ -269,7 +269,7 @@ async function initSession() {
     }
   } catch (error) {
     alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
-    window.location.href = 'index.html';
+    window.location.href = '/';
   } finally {
     if (loadingOverlay) loadingOverlay.classList.add('hidden');
   }
@@ -545,5 +545,5 @@ function finishSession() {
   };
 
   sessionStorage.setItem('lastQuizResult', JSON.stringify(lastQuizResult));
-  window.location.href = 'result.html';
+  window.location.href = '/result';
 }
