@@ -1105,3 +1105,40 @@ p {
 :-webkit-full-screen .floating-pill-btn {
   z-index: 2147483647 !important; /* Maximum browser stacking context */
 }
+/* ==========================================================================
+   EDGE-TO-EDGE FULLSCREEN LAYOUT OVERRIDE
+   ========================================================================== */
+
+:fullscreen body,
+:-webkit-full-screen body {
+  background-color: var(--bg-body) !important;
+  overflow-y: auto !important;
+}
+
+:fullscreen .app-container,
+:-webkit-full-screen .app-container {
+  max-width: 100% !important;
+  width: 100vw !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 1.5rem 2rem !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Hide top header bar/back button in fullscreen mode */
+:fullscreen .quiz-header,
+:-webkit-full-screen .quiz-header,
+:fullscreen .back-btn,
+:-webkit-full-screen .back-btn {
+  display: none !important;
+}
+
+/* Ensure question container fills available width */
+:fullscreen .score-card,
+:-webkit-full-screen .score-card,
+:fullscreen .study-q-card,
+:-webkit-full-screen .study-q-card {
+  max-width: 100% !important;
+  width: 100% !important;
+}
