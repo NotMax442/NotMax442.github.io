@@ -111,6 +111,11 @@ body {
   width: 100%;
 }
 
+#nav-donate-btn {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .theme-btn {
   background-color: var(--bg-card);
   color: var(--text-main);
@@ -126,6 +131,23 @@ body {
 
 .theme-btn:hover {
   transform: scale(1.03);
+}
+
+.lang-select {
+  background: var(--bg-card, #1e293b);
+  color: var(--text-main, #ffffff);
+  border: 1px solid var(--border-color, #334155);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.lang-select:hover {
+  border-color: var(--primary-color, #0284c7);
 }
 
 /* --- Typography & Headings --- */
@@ -454,7 +476,7 @@ p {
   gap: 0.75rem;
 }
 
-/* --- Custom Confirmation & Delete Warning Modal Overlays --- */
+/* --- Custom Confirmation & Modal Overlays --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -514,23 +536,6 @@ p {
   padding: 10px 16px;
 }
 
-/* --- Anki Modal Stacked Buttons --- */
-#anki-modal .modal-card {
-  max-width: 420px;
-}
-
-#anki-modal .modal-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  width: 100%;
-}
-
-#anki-modal .modal-actions .btn {
-  width: 100%;
-  text-align: center;
-}
-
 @keyframes modalFadeIn {
   from {
     opacity: 0;
@@ -542,79 +547,139 @@ p {
   }
 }
 
-/* --- Mobile & Tablet Overrides --- */
-@media (max-width: 768px) {
-  .app-container {
-    padding: 1rem;
-  }
-
-  .main-navbar {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0.75rem 1rem;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .nav-links {
-    justify-content: space-around;
-    gap: 0.5rem 0.75rem;
-  }
-
-  .nav-item {
-    font-size: 0.75rem;
-    padding: 2px 4px;
-  }
-
-  .theme-btn {
-    align-self: center;
-    width: 100%;
-    text-align: center;
-    padding: 8px;
-    margin-top: 0.25rem;
-  }
-
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.3rem; }
-  p { font-size: 0.95rem; }
-
-  .year-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-
-  .year-card {
-    padding: 1.25rem 0.5rem;
-    font-size: 1rem;
-  }
-
-  .quiz-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .quiz-header h2 { font-size: 1.1rem; }
-  .question-box h3 { font-size: 1.05rem; }
-
-  .option-btn {
-    padding: 12px 14px;
-    font-size: 0.9rem;
-  }
-
-  .percentage-badge { font-size: 2.2rem; }
-  .score-card { padding: 1.25rem; }
+/* --- KHQR Donation Modal Styling (Desktop Proportional Polish) --- */
+.donate-card-wide {
+  position: relative !important;
+  max-width: 620px !important;
+  width: 90% !important;
+  max-height: 85vh !important;
+  overflow-y: auto !important;
+  padding: 2.5rem 2rem 1.75rem 2rem !important;
+  text-align: left !important;
+  align-items: stretch !important;
 }
 
-@media (max-width: 480px) {
-  .nav-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    text-align: center;
-  }
+.modal-close-icon {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1.25rem !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--border-color, #334155) !important;
+  color: var(--text-main, #ffffff) !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  font-size: 1.25rem !important;
+  font-weight: bold;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+  transition: all 0.2s ease !important;
+}
 
-  .nav-item { padding: 4px; }
-  .subject-actions { flex-direction: column; }
+.modal-close-icon:hover {
+  background: #ef4444 !important;
+  border-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.donate-grid {
+  display: grid;
+  grid-template-columns: 1fr 190px; /* Balanced column proportion for 100% zoom */
+  gap: 1.75rem;
+  align-items: center; /* Vertically centers text and QR together */
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.donate-info {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.donate-tagline {
+  font-size: 0.95rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.donate-cta {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.donate-qr-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.donate-qr-wrapper img,
+.khqr-card-img {
+  width: 100% !important;
+  max-width: 190px !important;
+  max-height: 260px !important; /* Prevents standee image from blowing up vertically */
+  height: auto !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.donate-founder-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+.founder-quote {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text-main);
+  margin: 0 0 0.75rem 0;
+}
+
+.founder-text-km {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 0.5rem;
+}
+
+.founder-text-en {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.founder-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sig-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.sig-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--text-sub);
+  margin-top: 2px;
 }
 
 /* --- Account Toolbar & Selection Mode --- */
@@ -628,13 +693,6 @@ p {
   background-color: var(--bg-subcard);
   border-radius: 8px;
   border: 1px solid var(--border-sub);
-}
-
-.subject-card-selectable {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  cursor: pointer;
 }
 
 .card-checkbox {
@@ -675,4 +733,129 @@ p {
   background-color: rgba(16, 185, 129, 0.15);
   color: #10b981;
   border: 1px solid #10b981;
+}
+
+/* ==========================================================================
+   RESPONSIVE MOBILE OVERHAUL
+   ========================================================================== */
+@media (max-width: 640px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .main-navbar {
+    padding: 0.75rem 0.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.4rem 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .nav-item {
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.65rem !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--border-color, #334155) !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+
+  #nav-donate-btn {
+    width: 100% !important;
+    max-width: 200px !important;
+    margin: 0.25rem auto 0 auto !important;
+    text-align: center !important;
+  }
+
+  .nav-controls {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1)) !important;
+    padding-top: 0.65rem !important;
+  }
+
+  .lang-select,
+  .theme-btn {
+    flex: 1 !important;
+    max-width: 140px !important;
+    text-align: center !important;
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.5rem !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+  }
+
+  .donate-card-wide {
+    padding: 2.75rem 1.25rem 1.25rem 1.25rem !important;
+  }
+
+  .donate-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .donate-info {
+    text-align: center;
+    align-self: center;
+    padding-top: 0;
+  }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  p { font-size: 0.95rem; }
+
+  .year-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .year-card {
+    padding: 1.25rem 0.5rem;
+    font-size: 1rem;
+  }
+
+  .subject-actions {
+    flex-direction: column;
+  }
+}
+/* --- Post-Quiz Ad Container Styling --- */
+.result-ad-container {
+  background-color: var(--bg-inner);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 0.85rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  min-height: 110px; /* Prevents layout jump while ad loads */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ad-label {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
 }

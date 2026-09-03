@@ -1,4 +1,50 @@
-// DOM Element Selectors
+// ==========================================================================
+// CLIENT-SIDE INSPECT & DEVTOOLS BLOCKER
+// ==========================================================================
+
+// 1. Block Right-Click Context Menu
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
+// 2. Block Keyboard Shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Cmd+Option+I/J/C)
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toUpperCase();
+  const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+
+  if (
+    key === 'F12' ||
+    (isCmdOrCtrl && e.shiftKey && ['I', 'J', 'C', 'K'].includes(key)) ||
+    (isCmdOrCtrl && ['U', 'S'].includes(key))
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
+
+// 3. Anti-Debugging Loop (Freezes performance & clears page if DevTools is opened)
+setInterval(() => {
+  const startTime = performance.now();
+  debugger;
+  const endTime = performance.now();
+
+  if (endTime - startTime > 100) {
+    document.body.innerHTML = `
+      <div style="display:flex; justify-content:center; align-items:center; height:100vh; background:#0f172a; color:#ef4444; font-family:sans-serif; text-align:center; padding:1rem;">
+        <div>
+          <h2>⚠️ Developer Tools Disabled</h2>
+          <p style="color:#94a3b8;">Please close DevTools and refresh the page to continue studying.</p>
+        </div>
+      </div>
+    `;
+  }
+}, 1000);
+
+// ==========================================================================
+// DOM ELEMENT SELECTORS
+// ==========================================================================
+
 const screens = document.querySelectorAll('.screen');
 const enterStudyBtn = document.getElementById('enter-study-btn');
 const yearCards = document.querySelectorAll('.year-card');
@@ -34,6 +80,10 @@ const progressBarFillEl = document.getElementById('progress-bar-fill');
 const reviewContainer = document.getElementById('review-container');
 const accountSubjectList = document.getElementById('account-subject-list');
 
+// Review Filter Selectors
+const filterWrongBtn = document.getElementById('filter-wrong-btn');
+const filterAllBtn = document.getElementById('filter-all-btn');
+
 // Theme Toggle Selector
 const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
@@ -53,17 +103,164 @@ const ankiKeepBtn = document.getElementById('anki-keep-btn');
 const ankiClearBtn = document.getElementById('anki-clear-btn');
 const ankiCancelBtn = document.getElementById('anki-cancel-btn');
 
-// App State
+// ==========================================================================
+// LOCALIZATION & TRANSLATIONS
+// ==========================================================================
+
+const translations = {
+  en: {
+    nav_home: "HOME",
+    nav_about: "ABOUT",
+    nav_contact: "CONTACT US",
+    nav_account: "MY ACCOUNT",
+    landing_title: "Medical Study Platform",
+    landing_sub: "Select your year, review saved missed questions, or test your knowledge.",
+    btn_start_study: "🚀 Start Studying",
+    btn_cancel: "Cancel",
+    btn_leave: "Leave",
+    leave_modal_title: "⚠️ Leave Study Session?",
+    leave_modal_desc: "Your active test progress will be lost.",
+    contact_title: "Report Question Error",
+    contact_notice: "Found an incorrect question or answer? Send us a report below!",
+    contact_desc_label: "Description:",
+    contact_submit_btn: "📤 Send Feedback",
+    cooldown_alert: "⏱️ Cooldown Active:\nPlease wait {mins} minute(s) before sending feedback again.",
+    btn_back: "⬅️ Back",
+    account_title: "My Account & Vault",
+    account_empty_vault: "🎉 Fantastic! You have 0 missed questions in your vault.",
+    year_selection_title: "Select Academic Year",
+    year_1: "Year 1",
+    year_2: "Year 2",
+    year_3: "Year 3",
+    year_4: "Year 4",
+    year_5: "Year 5",
+    year_6: "Year 6",
+    btn_back_years: "⬅️ Back to Years",
+    btn_study_all: "📖 Study All",
+    btn_quiz: "📝 Quiz",
+    btn_review_missed: "🎯 Review Missed",
+    btn_clear_missed: "🗑️ Clear Saved Missed",
+    subjects_header: "Year {year} Subjects",
+    missed_badge: "⚠️ {count} saved missed question(s)",
+    loading_text: "Loading Questions...",
+    nav_donate: "☕ Support Us",
+    donate_modal_title: "☕ Support testforuhs.com",
+    donate_modal_desc: "Your donations help keep the platform free, maintain servers, and add new study features!",
+    btn_close: "Close",
+    donate_tagline: "Every little bit is greatly appreciated! Thank you for your support 😊",
+    donate_cta: "You may donate through our KHQR here.",
+    founder_quote: "\"A new step in the right direction, a more promising one\"",
+    founder_text_km: "ដោយមានជំនួយពីពួកអ្នក ពួគយើងនឹងបន្តធ្វើឱ្យ​ TestforUHS​ កាន់តែអស្ចារ្យឡើង។ សូមអរគុណក្នុងការគាំទ្ររហូតមក។",
+    founder_text_en: "With your help, together, we will push TestForUHS to its fullest potential.\nMy deepest gratitude for your supports all this way.",
+    founder_sig_title: "Much Obliged.",
+    founder_sig_sub: "FOUNDER OF TESTFORUHS"
+  },
+  km: {
+    nav_home: "ទំព័រដើម",
+    nav_about: "អំពីពួកយើង",
+    nav_contact: "ទំនាក់ទំនង",
+    nav_account: "គណនីខ្ញុំ",
+    landing_title: "កម្មវិធីសិក្សាវេជ្ជសាស្ត្រ",
+    landing_sub: "ជ្រើសរើសឆ្នាំសិក្សា រំលឹកសំណួរដែលខុស ឬប្រឡងតេស្តសមត្ថភាព។",
+    btn_start_study: "🚀 ចាប់ផ្តើមសិក្សា",
+    btn_cancel: "បោះបង់",
+    btn_leave: "ចាកចេញ",
+    leave_modal_title: "⚠️ តើអ្នកពិតជាចង់ចាកចេញឬ?",
+    leave_modal_desc: "ការវិវឌ្ឍនៃការធ្វើតេស្តរបស់អ្នកនឹងត្រូវបាត់បង់។",
+    contact_title: "ផ្តល់មតិត្រឡប់ / រាយការណ៍កំហុស",
+    contact_notice: "តើអ្នកប្រទះឃើញសំណួរ ឬចម្លើយមិនត្រឹមត្រូវមែនទេ? សូមផ្ញើការរាយការណ៍មកកាន់យើង!",
+    contact_desc_label: "ការបរិយាយ:",
+    contact_submit_btn: "📤 ផ្ញើការរាយការណ៍",
+    cooldown_alert: "⏱️ រយៈពេលរង់ចាំ:\nសូមរង់ចាំ {mins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។",
+    btn_back: "⬅️ ត្រឡប់ក្រោយ",
+    account_title: "គណនី និងឃ្លាំងសំណួររបស់ខ្ញុំ",
+    account_empty_vault: "🎉 អស្ចារ្យណាស់! អ្នកគ្មានសំណួរដែលខុសនៅក្នុងឃ្លាំងទេ។",
+    year_selection_title: "ជ្រើសរើសឆ្នាំសិក្សា",
+    year_1: "ឆ្នាំទី ១",
+    year_2: "ឆ្នាំទី ២",
+    year_3: "ឆ្នាំទី ៣",
+    year_4: "ឆ្នាំទី ៤",
+    year_5: "ឆ្នាំទី ៥",
+    year_6: "ឆ្នាំទី ៦",
+    btn_back_years: "⬅️ ត្រឡប់ទៅឆ្នាំ",
+    btn_study_all: "📖 សិក្សាទាំងអស់",
+    btn_quiz: "📝 ប្រឡងតេស្ត",
+    btn_review_missed: "🎯 រំលឹកសំណួរខុស",
+    btn_clear_missed: "🗑️ លុបសំណួរខុស",
+    subjects_header: "មុខវិជ្ជាឆ្នាំទី {year}",
+    missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
+    loading_text: "កំពុងទាញយកសំណួរ...",
+    nav_donate: "☕ ឧបត្ថម្ភ",
+    donate_modal_title: "☕ ឧបត្ថម្ភ testforuhs.com",
+    donate_modal_desc: "ការឧបត្ថម្ភរបស់លោកអ្នកជួយគាំទ្រដល់ការចំណាយលើ Server និងអភិវឌ្ឍន៍កម្មវិធីសិក្សាឱ្យនៅតែឥតគិតថ្លៃ!",
+    btn_close: "បិទ",
+    donate_tagline: "ទៅតាមទឹកចិត្តរបស់អ្នករៀងៗខ្លួន។ តិចឬច្រើន គឺជាការលើកទឹកចិត្តយ៉ាងធំធេង! អរគុណសម្រាប់ការគាំទ្រ 😊",
+    donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖",
+    founder_quote: "\"ជំហានថ្មីក្នុងទិសដៅត្រឹមត្រូវ និងមានសង្ឃឹមជាងមុន\"",
+    founder_text_km: "ដោយមានជំនួយពីពួកអ្នក ពួគយើងនឹងបន្តធ្វើឱ្យ​ TestforUHS​ កាន់តែអស្ចារ្យឡើង។ សូមអរគុណក្នុងការគាំទ្ររហូតមក។",
+    founder_text_en: "With your help, together, we will push TestForUHS to its fullest potential.\nMy deepest gratitude for your supports all this way.",
+    founder_sig_title: "ដោយគោរពដ៏ខ្ពង់ខ្ពស់",
+    founder_sig_sub: "ស្ថាបនិក TESTFORUHS"
+  }
+};
+
+let currentLang = localStorage.getItem('app_language') || 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('app_language', lang);
+  document.documentElement.setAttribute('lang', lang);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.placeholder = translations[lang][key];
+    }
+  });
+
+  if (currentScreen === 'subject-screen' && currentYear) {
+    loadSubjectsForYear(currentYear);
+  }
+
+  const langSelect = document.getElementById('language-select');
+  if (langSelect) langSelect.value = lang;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const langSelect = document.getElementById('language-select');
+  setLanguage(currentLang);
+
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
+  }
+});
+
+// ==========================================================================
+// GLOBAL APPLICATION STATE
+// ==========================================================================
+
 let currentYear = null;
 let currentSubject = '';
 let currentMode = 'study';
 let questions = [];
-let userAnswers = []; // Tracks user option picks in Quiz Mode
+let userAnswers = []; 
 let missedQuestions = [];
 let currentQuestionIndex = 0;
 let userScore = 0;
 let studyAnsweredCount = 0;
 let activeExportSubjectKey = null;
+let currentScreen = 'landing-screen';
+let isSessionActive = false; 
+let currentReviewFilter = 'wrong'; // Default review view: 'wrong' only
 
 // Bulk Selection State
 let isSelectMode = false;
@@ -76,7 +273,7 @@ let autoScrollTimer = null;
 
 // Manifest data mapping years to available subjects
 const manifestData = {
-  "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "F-N-S", "I-D-A-Khmer"],
+  "1": ["I-D-A", "MED-PRO-B1", "MED-PRO", "MED-PRO-250", "I-D-A-Khmer"],
   "2": [],
   "3": [],
   "4": [],
@@ -84,7 +281,10 @@ const manifestData = {
   "6": ["MED-PRO"]
 };
 
-// --- Theme Toggle Logic ---
+// ==========================================================================
+// THEME SWITCHER
+// ==========================================================================
+
 function applyTheme(theme) {
   if (theme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -112,7 +312,10 @@ function getStorageKey(year = currentYear, subject = currentSubject) {
   return `missed_y${year}_${subject.toLowerCase()}`;
 }
 
-// --- Vault Mastery Manager (Streak >= 2 Removes Question Automatically) ---
+// ==========================================================================
+// VAULT MASTERY MANAGER (Streak >= 2 Removes Question Automatically)
+// ==========================================================================
+
 function recordQuestionResult(questionObj, isCorrect, year = currentYear, subject = currentSubject) {
   const key = getStorageKey(year, subject);
   const raw = localStorage.getItem(key);
@@ -121,14 +324,12 @@ function recordQuestionResult(questionObj, isCorrect, year = currentYear, subjec
   const existingIndex = vault.findIndex(item => item.question === questionObj.question);
 
   if (!isCorrect) {
-    // Answered wrong: Add to vault or reset streak counter to 0
     if (existingIndex >= 0) {
       vault[existingIndex].streak = 0;
     } else {
       vault.push({ ...questionObj, streak: 0 });
     }
   } else {
-    // Answered correct: Increment streak. If streak >= 2, question is Mastered (removed)
     if (existingIndex >= 0) {
       vault[existingIndex].streak = (vault[existingIndex].streak || 0) + 1;
       if (vault[existingIndex].streak >= 2) {
@@ -170,26 +371,29 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// --- Custom Exit Confirm Modal ---
-function showCustomConfirm() {
+// ==========================================================================
+// NAVIGATION ROUTER & MODAL GUARDS
+// ==========================================================================
+
+function showLeaveConfirmModal() {
   return new Promise((resolve) => {
-    const modal = document.getElementById('confirm-modal');
-    const confirmBtn = document.getElementById('modal-confirm-btn');
-    const cancelBtn = document.getElementById('modal-cancel-btn');
+    const modal = document.getElementById('leave-confirm-modal');
+    const confirmBtn = document.getElementById('leave-confirm-btn');
+    const cancelBtn = document.getElementById('leave-cancel-btn');
 
     if (!modal) return resolve(true);
 
     modal.classList.remove('hidden');
 
-    function handleConfirm() {
+    const handleConfirm = () => {
       cleanup();
       resolve(true);
-    }
+    };
 
-    function handleCancel() {
+    const handleCancel = () => {
       cleanup();
       resolve(false);
-    }
+    };
 
     function cleanup() {
       modal.classList.add('hidden');
@@ -202,27 +406,46 @@ function showCustomConfirm() {
   });
 }
 
-window.addEventListener('beforeunload', (e) => {
-  const quizScreen = document.getElementById('quiz-screen');
-  if (quizScreen && !quizScreen.classList.contains('hidden')) {
-    e.preventDefault();
-    e.returnValue = '';
+async function navigateTo(screenId, isBackAction = false) {
+  // Check if leaving an active session midway
+  if (currentScreen === 'quiz-screen' && isSessionActive && screenId !== 'result-screen') {
+    const userWantsToLeave = await showLeaveConfirmModal();
+    if (!userWantsToLeave) return;
+    isSessionActive = false; 
   }
-});
 
-// --- Navigation & Screen Storage State ---
-function navigateTo(screenId, isBackAction = false) {
   clearInterval(timerInterval);
   cancelAutoScroll();
 
+  // 🎯 FIX: Always reset scroll position to top when switching screens
+  window.scrollTo(0, 0);
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0;
+
+  currentScreen = screenId;
+
+  // Hide all screens and show target screen
   screens.forEach(screen => screen.classList.add('hidden'));
-  const targetScreen = document.getElementById(screenId);
-  if (targetScreen) {
-    targetScreen.classList.remove('hidden');
+  const targetElement = document.getElementById(screenId);
+  if (targetElement) {
+    targetElement.classList.remove('hidden');
   }
 
   if (screenId === 'account-screen') {
     renderAccountDashboard();
+  }
+
+  if (screenId === 'contact-screen') {
+    renderMyFeedbacks();
+  }
+
+  // Trigger AdSense refresh when entering result screen
+  if (screenId === 'result-screen') {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      // Suppress error if adblocker is active
+    }
   }
 
   if (!isBackAction) {
@@ -238,16 +461,11 @@ function navigateTo(screenId, isBackAction = false) {
 
 // --- Browser Back/Forward Button Handler ---
 window.addEventListener('popstate', async (event) => {
-  const quizScreen = document.getElementById('quiz-screen');
-  const isQuizActive = quizScreen && !quizScreen.classList.contains('hidden');
-
-  if (isQuizActive) {
+  if (currentScreen === 'quiz-screen' && isSessionActive) {
     history.pushState({ screenId: 'quiz-screen' }, '');
-
-    const isConfirmed = await showCustomConfirm();
-    if (isConfirmed) {
-      clearInterval(timerInterval);
-      cancelAutoScroll();
+    const userWantsToLeave = await showLeaveConfirmModal();
+    if (userWantsToLeave) {
+      isSessionActive = false;
       navigateTo('subject-screen');
     }
   } else {
@@ -278,6 +496,14 @@ window.addEventListener('DOMContentLoaded', () => {
     navigateTo(savedScreen);
   } else {
     navigateTo('landing-screen');
+  }
+});
+
+// Browser tab close / refresh guard during active test
+window.addEventListener('beforeunload', (e) => {
+  if (currentScreen === 'quiz-screen' && isSessionActive) {
+    e.preventDefault();
+    e.returnValue = '';
   }
 });
 
@@ -319,21 +545,29 @@ if (restartBtn) {
 }
 
 if (quitSessionBtn) {
-  quitSessionBtn.addEventListener('click', async () => {
-    const isConfirmed = await showCustomConfirm();
-    if (isConfirmed) {
-      clearInterval(timerInterval);
-      cancelAutoScroll();
-      navigateTo('subject-screen');
-    }
+  quitSessionBtn.addEventListener('click', () => {
+    navigateTo('subject-screen');
   });
 }
 
-// --- Subject Cards Rendering ---
+const loadingOverlay = document.getElementById('loading-overlay');
+
+// ==========================================================================
+// SUBJECT LISTING & CARDS
+// ==========================================================================
+
 function loadSubjectsForYear(year) {
+  if (!subjectList) return;
   subjectList.innerHTML = '';
   const subjects = manifestData[year] || [];
-  
+  const t = translations[currentLang] || translations.en;
+
+  if (selectedYearTitle) {
+    selectedYearTitle.textContent = t.subjects_header 
+      ? t.subjects_header.replace('{year}', year) 
+      : `Year ${year} Subjects`;
+  }
+
   subjects.forEach(subject => {
     const storageKey = getStorageKey(year, subject);
     const savedMissed = localStorage.getItem(storageKey);
@@ -341,19 +575,23 @@ function loadSubjectsForYear(year) {
 
     const subjectCard = document.createElement('div');
     subjectCard.classList.add('subject-card');
-    
+
+    const badgeText = t.missed_badge 
+      ? t.missed_badge.replace('{count}', missedCount) 
+      : `⚠️ ${missedCount} saved missed question(s)`;
+
     subjectCard.innerHTML = `
       <h3>${subject}</h3>
-      ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question${missedCount > 1 ? 's' : ''}</p>` : ''}
+      ${missedCount > 0 ? `<p class="missed-badge">${badgeText}</p>` : ''}
       
       <div class="subject-actions">
-        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">📖 Study All</button>
-        <button class="btn quiz-btn" onclick="startSession('${subject}', 'quiz')">📝 Quiz</button>
+        <button class="btn study-btn" onclick="startSession('${subject}', 'study')">${t.btn_study_all}</button>
+        <button class="btn quiz-btn" onclick="startSession('${subject}', 'quiz')">${t.btn_quiz}</button>
       </div>
 
       ${missedCount > 0 ? `
-        <button class="btn study-missed-btn" onclick="startMissedSession('${subject}')">🎯 Review Missed (${missedCount})</button>
-        <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">🗑️ Clear Saved Missed</button>
+        <button class="btn study-missed-btn" onclick="startMissedSession('${subject}')">${t.btn_review_missed} (${missedCount})</button>
+        <button class="btn clear-btn" onclick="clearSavedMissed('${subject}')">${t.btn_clear_missed}</button>
       ` : ''}
     `;
     
@@ -361,13 +599,78 @@ function loadSubjectsForYear(year) {
   });
 }
 
-// --- Review Missed Session Launcher ---
+// ==========================================================================
+// SESSION INITIALIZATION & QUESTION LOADING
+// ==========================================================================
+
+async function startSession(subjectName, mode) {
+  currentSubject = subjectName;
+  currentMode = mode;
+  currentQuestionIndex = 0;
+  userScore = 0;
+  studyAnsweredCount = 0;
+  isSessionActive = true;
+
+  const savedMissed = localStorage.getItem(getStorageKey());
+  missedQuestions = savedMissed ? JSON.parse(savedMissed) : [];
+
+  if (sessionInfo) {
+    sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
+  }
+
+  const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
+
+  if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+
+  try {
+    const response = await fetch(`${filePath}?t=${Date.now()}`);
+    if (!response.ok) throw new Error(`File not found at: ${filePath}`);
+    const data = await response.json();
+
+    let processedQuestions = shuffleArray(data.questions);
+
+    if (mode === 'quiz') {
+      processedQuestions = processedQuestions.slice(0, 60);
+    }
+
+    userAnswers = new Array(processedQuestions.length).fill(null);
+
+    questions = processedQuestions.map(q => {
+      const originalCorrectText = q.options[q.correctIndex];
+      const shuffledOptions = shuffleArray(q.options);
+      const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
+
+      return {
+        ...q,
+        options: shuffledOptions,
+        correctIndex: newCorrectIndex
+      };
+    });
+
+    navigateTo('quiz-screen');
+
+    if (currentMode === 'study') {
+      if (timerDisplay) timerDisplay.classList.add('hidden');
+      renderStudyMode();
+    } else {
+      startQuizTimer();
+      renderQuizQuestion();
+    }
+  } catch (error) {
+    alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
+    console.error(error);
+  } finally {
+    if (loadingOverlay) loadingOverlay.classList.add('hidden');
+  }
+}
+
 function startMissedSession(subjectName) {
   currentSubject = subjectName;
   currentMode = 'study';
   currentQuestionIndex = 0;
   userScore = 0;
   studyAnsweredCount = 0;
+  isSessionActive = true;
 
   const savedMissed = localStorage.getItem(getStorageKey());
   if (!savedMissed) return;
@@ -378,6 +681,8 @@ function startMissedSession(subjectName) {
   if (sessionInfo) {
     sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (REVIEW MISSED MODE)`;
   }
+
+  userAnswers = new Array(rawMissed.length).fill(null);
 
   questions = shuffleArray(rawMissed).map(q => {
     const originalCorrectText = q.options[q.correctIndex];
@@ -432,63 +737,10 @@ function updateTimerUI() {
   timerDisplay.textContent = `⏱️ ${formattedMins}:${formattedSecs}`;
 }
 
-// --- Session Initialization ---
-async function startSession(subjectName, mode) {
-  currentSubject = subjectName;
-  currentMode = mode;
-  currentQuestionIndex = 0;
-  userScore = 0;
-  studyAnsweredCount = 0;
+// ==========================================================================
+// STUDY MODE LOGIC
+// ==========================================================================
 
-  const savedMissed = localStorage.getItem(getStorageKey());
-  missedQuestions = savedMissed ? JSON.parse(savedMissed) : [];
-
-  if (sessionInfo) {
-    sessionInfo.textContent = `Year ${currentYear} - ${subjectName} (${mode.toUpperCase()} MODE)`;
-  }
-
-  const filePath = `data/year${currentYear}/${subjectName.toLowerCase()}.json`;
-
-  try {
-    const response = await fetch(`${filePath}?t=${Date.now()}`);
-    if (!response.ok) throw new Error(`File not found at: ${filePath}`);
-    const data = await response.json();
-
-    let processedQuestions = shuffleArray(data.questions);
-
-    if (mode === 'quiz') {
-      processedQuestions = processedQuestions.slice(0, 60);
-      userAnswers = new Array(processedQuestions.length).fill(null);
-    }
-
-    questions = processedQuestions.map(q => {
-      const originalCorrectText = q.options[q.correctIndex];
-      const shuffledOptions = shuffleArray(q.options);
-      const newCorrectIndex = shuffledOptions.indexOf(originalCorrectText);
-
-      return {
-        ...q,
-        options: shuffledOptions,
-        correctIndex: newCorrectIndex
-      };
-    });
-
-    navigateTo('quiz-screen');
-
-    if (currentMode === 'study') {
-      if (timerDisplay) timerDisplay.classList.add('hidden');
-      renderStudyMode();
-    } else {
-      startQuizTimer();
-      renderQuizQuestion();
-    }
-  } catch (error) {
-    alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
-    console.error(error);
-  }
-}
-
-// --- STUDY MODE ---
 function renderStudyMode() {
   progressText.textContent = `Total Questions: ${questions.length}`;
   questionText.textContent = '';
@@ -526,6 +778,9 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   const allBtns = optsDiv.querySelectorAll('.option-btn');
   const isCorrect = selectedIndex === q.correctIndex;
 
+  // Track answer for results review breakdown
+  userAnswers[qIndex] = selectedIndex;
+
   allBtns.forEach(btn => btn.style.pointerEvents = 'none');
 
   if (isCorrect) {
@@ -539,13 +794,12 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     allBtns[q.correctIndex].style.color = '#ffffff';
   }
 
-  // Update streak / mastery in permanent storage
   recordQuestionResult(q, isCorrect);
-
   studyAnsweredCount++;
 
   if (studyAnsweredCount === questions.length) {
     cancelAutoScroll();
+    isSessionActive = false;
     setTimeout(() => showResults(), 1500);
     return;
   }
@@ -559,7 +813,10 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   }, 1000);
 }
 
-// --- QUIZ MODE ---
+// ==========================================================================
+// QUIZ MODE LOGIC
+// ==========================================================================
+
 function renderQuizQuestion() {
   nextBtn.classList.add('hidden');
   optionsContainer.innerHTML = '';
@@ -618,32 +875,81 @@ if (nextBtn) {
 
 function finishQuiz() {
   clearInterval(timerInterval);
-
+  cancelAutoScroll();
   userScore = 0;
+
   questions.forEach((q, idx) => {
     const chosen = userAnswers[idx];
     const isCorrect = chosen !== null && chosen === q.correctIndex;
     if (isCorrect) userScore++;
     recordQuestionResult(q, isCorrect);
   });
-
+  
+  isSessionActive = false;
   showResults();
+}
+
+// ==========================================================================
+// RESULTS SCREEN & REVIEW BREAKDOWN (FILTER SUPPORT)
+// ==========================================================================
+
+if (filterWrongBtn) {
+  filterWrongBtn.addEventListener('click', () => {
+    currentReviewFilter = 'wrong';
+    renderReviewBreakdown();
+  });
+}
+
+if (filterAllBtn) {
+  filterAllBtn.addEventListener('click', () => {
+    currentReviewFilter = 'all';
+    renderReviewBreakdown();
+  });
 }
 
 function renderReviewBreakdown() {
   if (!reviewContainer) return;
   reviewContainer.innerHTML = '';
 
+  // Update button active styling
+  if (filterWrongBtn && filterAllBtn) {
+    if (currentReviewFilter === 'wrong') {
+      filterWrongBtn.className = 'btn primary-btn';
+      filterAllBtn.className = 'btn secondary-btn';
+    } else {
+      filterWrongBtn.className = 'btn secondary-btn';
+      filterAllBtn.className = 'btn primary-btn';
+    }
+  }
+
+  // Filter questions based on active toggle
+  const itemsToDisplay = [];
   questions.forEach((q, idx) => {
     const userChoiceIdx = userAnswers[idx];
     const isCorrect = userChoiceIdx !== null && userChoiceIdx === q.correctIndex;
 
+    if (currentReviewFilter === 'all' || !isCorrect) {
+      itemsToDisplay.push({ q, idx, userChoiceIdx, isCorrect });
+    }
+  });
+
+  // Display perfect score celebration if no wrong answers on 'wrong' filter
+  if (itemsToDisplay.length === 0 && currentReviewFilter === 'wrong') {
+    reviewContainer.innerHTML = `
+      <div class="score-card" style="text-align: center; padding: 1.5rem;">
+        <p style="margin: 0; color: #10b981; font-weight: 600;">🎉 Perfect score! You answered all questions correctly!</p>
+      </div>
+    `;
+    return;
+  }
+
+  itemsToDisplay.forEach(({ q, idx, userChoiceIdx, isCorrect }) => {
     const card = document.createElement('div');
     card.classList.add('review-card', isCorrect ? 'correct' : 'incorrect');
 
     const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
       ? q.options[userChoiceIdx]
-      : "⚠️ No Answer (Timed Out)";
+      : "⚠️ Unanswered / Skipped";
 
     card.innerHTML = `
       <h4>${idx + 1}. ${q.question}</h4>
@@ -682,11 +988,11 @@ function showResults() {
     }, 150);
   }
 
-  if (currentMode === 'quiz') {
-    renderReviewBreakdown();
-  } else if (reviewContainer) {
-    reviewContainer.innerHTML = '';
-  }
+  // Reset filter to 'wrong' by default for every session completion
+  currentReviewFilter = 'wrong';
+
+  // Render review list for BOTH Quiz and Study modes
+  renderReviewBreakdown();
 
   const savedMissed = localStorage.getItem(getStorageKey());
   const missedList = savedMissed ? JSON.parse(savedMissed) : [];
@@ -709,6 +1015,7 @@ if (retryMissedBtn) {
     currentQuestionIndex = 0;
     userScore = 0;
     studyAnsweredCount = 0;
+    isSessionActive = true;
 
     navigateTo('quiz-screen');
 
@@ -725,7 +1032,6 @@ if (retryMissedBtn) {
 // MY ACCOUNT DASHBOARD, BULK DELETION & ANKI EXPORT (.TXT) LOGIC
 // ==========================================================================
 
-// --- Toggle Select Mode ---
 if (toggleSelectModeBtn) {
   toggleSelectModeBtn.addEventListener('click', () => {
     isSelectMode = !isSelectMode;
@@ -744,7 +1050,6 @@ if (toggleSelectModeBtn) {
   });
 }
 
-// --- Select / Deselect All ---
 if (selectAllBtn) {
   selectAllBtn.addEventListener('click', () => {
     const allCheckboxes = document.querySelectorAll('.card-checkbox');
@@ -775,7 +1080,6 @@ function updateDeleteButtonState() {
   }
 }
 
-// --- Trigger Delete Warning Modal ---
 if (deleteSelectedBtn) {
   deleteSelectedBtn.addEventListener('click', () => {
     if (selectedSubjectKeys.size === 0) return;
@@ -792,7 +1096,6 @@ if (cancelDeleteBtn) {
   });
 }
 
-// --- Execute Bulk Deletion ---
 if (confirmDeleteBtn) {
   confirmDeleteBtn.addEventListener('click', () => {
     selectedSubjectKeys.forEach(key => {
@@ -810,7 +1113,6 @@ if (confirmDeleteBtn) {
   });
 }
 
-// --- Render Account Vault Dashboard ---
 function renderAccountDashboard() {
   if (!accountSubjectList) return;
   accountSubjectList.innerHTML = '';
@@ -879,15 +1181,19 @@ function renderAccountDashboard() {
   if (totalMissedAcrossApp === 0) {
     if (toggleSelectModeBtn) toggleSelectModeBtn.classList.add('hidden');
     if (bulkControls) bulkControls.classList.add('hidden');
+    
+    const emptyText = translations[currentLang]?.account_empty_vault 
+      || "🎉 Fantastic! You have 0 missed questions in your vault.";
+
     accountSubjectList.innerHTML = `
       <div class="score-card" style="text-align: center; padding: 2rem;">
-        <p style="margin: 0; color: var(--text-sub);">🎉 Fantastic! You have 0 missed questions in your vault.</p>
+        <p style="margin: 0; color: var(--text-sub);" data-i18n="account_empty_vault">${emptyText}</p>
       </div>
     `;
   } else {
     if (toggleSelectModeBtn) toggleSelectModeBtn.classList.remove('hidden');
   }
-}
+} 
 
 function launchAccountReview(year, subject) {
   currentYear = year;
@@ -928,7 +1234,6 @@ function executeAnkiDownload(shouldClearAfter) {
 
   const questionsList = JSON.parse(raw);
   
-  // Format as Tab-Separated Values for direct Anki import
   let fileContent = "#separator:Tab\n#html:true\n";
 
   questionsList.forEach(q => {
@@ -959,11 +1264,10 @@ function executeAnkiDownload(shouldClearAfter) {
 }
 
 // ==========================================================================
-// TELEGRAM FEEDBACK, COOLDOWN & STATUS SYNC LOGIC
+// TELEGRAM FEEDBACK VIA CLOUDFLARE WORKER PROXY
 // ==========================================================================
 
-const TELEGRAM_BOT_TOKEN = "8757492792:AAGj5G-kCqMNSIVWrzjO07qD4sp9ivi3TyI";
-const TELEGRAM_CHAT_ID = "1145051277";
+const WORKER_URL = "https://telegram-proxy.pensamkhan9.workers.dev";
 
 const feedbackForm = document.getElementById('feedback-form');
 const feedbackText = document.getElementById('feedback-text');
@@ -975,19 +1279,17 @@ const myFeedbackList = document.getElementById('my-feedback-list');
 
 let pendingFeedbackPayload = null;
 
-// --- Fetch Internet Time (Prevents phone clock tampering) ---
 async function getInternetTime() {
   try {
-    const response = await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC');
+    const response = await fetch(`${WORKER_URL}/time`);
     if (!response.ok) throw new Error("Time API unavailable");
     const data = await response.json();
-    return new Date(data.utc_datetime).getTime();
+    return data.timestamp;
   } catch (err) {
     return Date.now();
   }
 }
 
-// --- Submit Form Listener ---
 if (feedbackForm) {
   feedbackForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -997,7 +1299,7 @@ if (feedbackForm) {
 
     if (lastSentTime) {
       const elapsed = nowInternet - parseInt(lastSentTime, 10);
-      const cooldownMs = 30 * 60 * 1000; // 30 minutes
+      const cooldownMs = 30 * 60 * 1000;
 
       if (elapsed < cooldownMs) {
         const remainingMins = Math.ceil((cooldownMs - elapsed) / 60000);
@@ -1023,7 +1325,6 @@ if (cancelFeedbackBtn) {
   });
 }
 
-// --- Send to Telegram API ---
 if (confirmFeedbackBtn) {
   confirmFeedbackBtn.addEventListener('click', async () => {
     if (!pendingFeedbackPayload) return;
@@ -1032,48 +1333,33 @@ if (confirmFeedbackBtn) {
     confirmFeedbackBtn.textContent = "Sending... / កំពុងផ្ញើ...";
 
     const { text, file, timestamp } = pendingFeedbackPayload;
-    let telegramMsgId = null;
 
     try {
-      let res;
+      const formData = new FormData();
+      formData.append('text', text);
       if (file) {
-        const formData = new FormData();
-        formData.append('chat_id', TELEGRAM_CHAT_ID);
-        formData.append('caption', `📝 **New Question Report**\n\n${text}`);
         formData.append('photo', file);
-
-        res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
-          method: 'POST',
-          body: formData
-        });
-      } else {
-        res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: `📝 **New Question Report**\n\n${text}`,
-            parse_mode: 'Markdown'
-          })
-        });
       }
 
-      if (res.ok) {
-        const data = await res.json();
-        telegramMsgId = data.result ? data.result.message_id : null;
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.ok && data.result) {
+        const telegramMsgId = data.result.message_id;
+        localStorage.setItem('last_feedback_internet_time', timestamp.toString());
+        saveLocalFeedbackLog(text, timestamp, telegramMsgId);
+
+        feedbackForm.reset();
+        alert("✅ Feedback Sent Successfully! / បានផ្ញើដោយជោគជ័យ!");
+      } else {
+        alert(`⚠️ Telegram Error:\n${data.description || 'Failed to deliver message.'}`);
       }
     } catch (err) {
-      console.error(err);
-    }
-
-    if (telegramMsgId) {
-      localStorage.setItem('last_feedback_internet_time', timestamp.toString());
-      saveLocalFeedbackLog(text, timestamp, telegramMsgId);
-
-      feedbackForm.reset();
-      alert("✅ Feedback Sent Successfully! / បានផ្ញើដោយជោគជ័យ!");
-    } else {
-      alert("⚠️ Submission failed. Please check your connection or Telegram bot configuration.");
+      alert(`⚠️ Connection Error:\n${err.message}`);
     }
 
     confirmFeedbackBtn.disabled = false;
@@ -1087,7 +1373,7 @@ if (confirmFeedbackBtn) {
 function saveLocalFeedbackLog(text, timestamp, msgId) {
   const raw = localStorage.getItem('my_submitted_feedbacks');
   const logs = raw ? JSON.parse(raw) : [];
-  
+
   logs.unshift({
     id: Date.now(),
     telegram_msg_id: msgId,
@@ -1099,7 +1385,6 @@ function saveLocalFeedbackLog(text, timestamp, msgId) {
   localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
 }
 
-// --- Check Telegram API for Admin Replies ---
 async function syncFeedbackStatusWithTelegram() {
   const raw = localStorage.getItem('my_submitted_feedbacks');
   if (!raw) return;
@@ -1110,7 +1395,7 @@ async function syncFeedbackStatusWithTelegram() {
   if (pendingLogs.length === 0) return;
 
   try {
-    const res = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`);
+    const res = await fetch(`${WORKER_URL}/getUpdates`);
     if (!res.ok) return;
 
     const data = await res.json();
@@ -1119,15 +1404,12 @@ async function syncFeedbackStatusWithTelegram() {
     let updated = false;
 
     data.result.forEach(update => {
-      // Check direct messages, edited messages, or channel/group posts
       const msg = update.message || update.edited_message || update.channel_post || update.edited_channel_post;
-      
+
       if (msg && msg.reply_to_message) {
         const repliedId = msg.reply_to_message.message_id;
-        
-        // Match IDs reliably using string conversion
         const matchedLog = logs.find(l => String(l.telegram_msg_id) === String(repliedId));
-        
+
         if (matchedLog && matchedLog.status !== 'Checked ✅') {
           matchedLog.status = 'Checked ✅';
           updated = true;
@@ -1146,7 +1428,6 @@ async function syncFeedbackStatusWithTelegram() {
 async function renderMyFeedbacks() {
   if (!myFeedbackList) return;
 
-  // Sync with Telegram first
   await syncFeedbackStatusWithTelegram();
 
   myFeedbackList.innerHTML = '';
@@ -1176,11 +1457,63 @@ async function renderMyFeedbacks() {
   });
 }
 
-// Navigation override
-const originalNavigateTo = navigateTo;
-navigateTo = function(screenId, isBackAction = false) {
-  originalNavigateTo(screenId, isBackAction);
-  if (screenId === 'contact-screen') {
-    renderMyFeedbacks();
-  }
-};
+// ==========================================================================
+// ABA KHQR DONATION MODAL LOGIC
+// ==========================================================================
+
+const navDonateBtn = document.getElementById('nav-donate-btn');
+const donateModal = document.getElementById('donate-modal');
+const closeDonateBtn = document.getElementById('close-donate-btn');
+const bottomCloseDonateBtn = document.getElementById('bottom-close-donate-btn');
+
+function closeDonateModal() {
+  if (donateModal) donateModal.classList.add('hidden');
+}
+
+if (navDonateBtn) {
+  navDonateBtn.addEventListener('click', () => {
+    if (donateModal) donateModal.classList.remove('hidden');
+  });
+}
+
+if (closeDonateBtn) closeDonateBtn.addEventListener('click', closeDonateModal);
+if (bottomCloseDonateBtn) bottomCloseDonateBtn.addEventListener('click', closeDonateModal);
+
+if (donateModal) {
+  donateModal.addEventListener('click', (e) => {
+    if (e.target === donateModal) {
+      closeDonateModal();
+    }
+  });
+}
+
+// ==========================================================================
+// PRIVACY POLICY MODAL LOGIC
+// ==========================================================================
+
+const openPrivacyBtn = document.getElementById('open-privacy-btn');
+const privacyModal = document.getElementById('privacy-modal');
+const closePrivacyBtn = document.getElementById('close-privacy-btn');
+const bottomClosePrivacyBtn = document.getElementById('bottom-close-privacy-btn');
+
+function closePrivacyModal() {
+  if (privacyModal) privacyModal.classList.add('hidden');
+}
+
+if (openPrivacyBtn) {
+  openPrivacyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (privacyModal) privacyModal.classList.remove('hidden');
+  });
+}
+
+if (closePrivacyBtn) closePrivacyBtn.addEventListener('click', closePrivacyModal);
+if (bottomClosePrivacyBtn) bottomClosePrivacyBtn.addEventListener('click', closePrivacyModal);
+
+if (privacyModal) {
+  privacyModal.addEventListener('click', (e) => {
+    if (e.target === privacyModal) {
+      closePrivacyModal();
+    }
+  });
+}
