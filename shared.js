@@ -141,6 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Reset navigation view to Landing ("Start Studying") when clicking HOME
+  const homeNavLinks = document.querySelectorAll('[data-i18n="nav_home"]');
+  homeNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      localStorage.setItem('lastView', 'landing');
+      localStorage.removeItem('lastActiveYear');
+      sessionStorage.setItem('lastView', 'landing');
+      sessionStorage.removeItem('lastActiveYear');
+    });
+  });
+
   setupSharedModals();
 });
 
