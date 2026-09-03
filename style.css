@@ -1059,8 +1059,13 @@ p {
   border: 1px solid var(--border-color);
   margin-bottom: 1.5rem !important;
 }
-/* --- Light Mode Option Hover Contrast Fix --- */
+/* --- Option Hover Highlight (Dark & Light Mode) --- */
+.option-btn:hover {
+  background-color: rgba(56, 189, 248, 0.15); /* Soft dark-blue glow */
+  border-color: var(--text-heading);           /* Sky-blue border highlight */
+}
+
 [data-theme="light"] .option-btn:hover {
-  background-color: #e0f2fe; /* Soft sky-blue hover tint */
-  border-color: var(--text-heading); /* Sky-blue border highlight */
+  background-color: #e0f2fe;                   /* Soft sky-blue tint */
+  border-color: var(--text-heading);
 }
