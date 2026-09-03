@@ -155,17 +155,32 @@ function renderMyFeedbacks() {
     card.classList.add('subject-card');
     card.style.cssText = 'text-align: left; padding: 1rem;';
 
+    const safeDescription = escapeHTML(item.description || '');
+
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-        <strong style="color: var(--text-main);">Reported on ${item.date}</strong>
+        <strong style="color: var(--text-main);">Reported on ${item.date || 'Unknown Date'}</strong>
         <span class="badge" style="background: #10b981; color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px;">Submitted</span>
       </div>
-      <p style="margin: 0; color: var(--text-sub); font-size: 0.9rem; line-height: 1.4;">${escapeHTML(item.description)}</p>
+      <p style="margin: 0; color: var(--text-sub); font-size: 0.9rem; line-height: 1.4;">${safeDescription}</p>
       ${item.image ? `<img src="${item.image}" alt="Screenshot" style="max-width: 100%; max-height: 150px; margin-top: 0.75rem; border-radius: 6px; border: 1px solid var(--border-sub);">` : ''}
     `;
 
     container.appendChild(card);
   });
+}
+
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
 }
 
 function escapeHTML(str) {
