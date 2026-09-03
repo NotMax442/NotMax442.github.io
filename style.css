@@ -1097,3 +1097,11 @@ p {
   border-color: var(--text-heading);
   color: var(--text-main);
 }
+
+/* --- Native Fullscreen Layer Fix for Floating Buttons --- */
+:fullscreen .floating-round-btn,
+:fullscreen .floating-pill-btn,
+:-webkit-full-screen .floating-round-btn,
+:-webkit-full-screen .floating-pill-btn {
+  z-index: 2147483647 !important; /* Maximum browser stacking context */
+}
