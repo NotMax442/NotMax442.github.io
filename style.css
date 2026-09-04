@@ -2624,3 +2624,81 @@ p {
   gap: 0.5rem;
   width: 100%;
 }
+
+/* Full Review Card Container */
+.review-card.full-style {
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: var(--bg-subcard);
+  border: 1px solid var(--border-sub);
+  margin-bottom: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card.full-style:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Question Title */
+.review-card-title {
+  margin: 0 0 1rem 0;
+  color: var(--text-main);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+/* Base Option Item */
+.review-option-pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border-sub);
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+/* Correct Option (Soft Green Tint) */
+.review-option-pill.is-correct {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+  font-weight: 600;
+}
+
+/* User's Wrong Pick (Soft Red Tint) */
+.review-option-pill.is-user-wrong {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid #ef4444;
+  font-weight: 600;
+}
+
+/* Neutral Unselected Option */
+.review-option-pill.is-neutral {
+  opacity: 0.6;
+}
+
+/* Status Pill Badges */
+.review-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.review-badge.badge-correct {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.review-badge.badge-wrong {
+  background: #ef4444;
+  color: #ffffff;
+}
