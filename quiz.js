@@ -289,7 +289,7 @@ async function initSession() {
   }
 
   // JSON Fetch Path Example: data/med/year1/i-d-a/dr-smith.json
-  const filePath = `data/${major.toLowerCase()}/year${year}/${subject.toLowerCase()}/${profSlug}.json`;
+  const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
   try {
