@@ -93,6 +93,21 @@ const translations = {
     morale_4: "🌱 Don't be scared, This is not the exam.",
     morale_5: "🛡️ Don't be sad, I'll be here for you until you get a good scoring.",
     morale_6: "🩺 Rest for a bit. Then try again later 💞",
+
+    //Contact Us
+    contact_title: "Report Question Error",
+    contact_notice: "Found an incorrect question or answer? Send us a report below!",
+    contact_desc_label: "Description:",
+    contact_placeholder: "Describe what is wrong with the question...",
+    contact_upload_label: "Upload Screenshot (Optional):",
+    contact_submit_btn: "📤 Send Feedback",
+    contact_reports_header: "My Submitted Reports",
+    contact_modal_title: "⚠️ Confirm Submission",
+    contact_modal_desc: "Are you sure? You can only send feedback once every 30 minutes.",
+    btn_send: "Send",
+    status_pending: "⏳ Pending Review",
+    status_checked: "✅ Reviewed & Fixed",
+    no_reports: "You haven't submitted any feedback reports yet.",
   },
   km: {
     // Navigation & Modals
@@ -184,6 +199,21 @@ const translations = {
     morale_4: "🌱 នេះមិនមែនជាការប្រឡងទេ កុំភ័យអី",
     morale_5: "🛡️ កុំពិបាកចិត្តអី ខ្ញុំនឹងនៅរង់ចាំពេល you ធ្វើបានសម្រេចល្អ",
     morale_6: "🩺 សម្រាកមួយភ្លែតសិន។ ចាំសាកម្តងទៀតពេលក្រាយ 💞",
+
+    //Contact Us
+    contact_title: "ផ្តល់មតិត្រឡប់ / រាយការណ៍កំហុស",
+    contact_notice: "តើអ្នកប្រទះឃើញសំណួរ ឬចម្លើយមិនត្រឹមត្រូវមែនទេ? សូមផ្ញើការរាយការណ៍មកកាន់យើង!",
+    contact_desc_label: "ការបរិយាយ:",
+    contact_placeholder: "សូមរៀបរាប់អំពីបញ្ហានៃសំណួរ ឬចម្លើយ...",
+    contact_upload_label: "បង្ហោះរូបភាពគំរូ/រូបភាពប្រក្រតី (ជម្រើស):",
+    contact_submit_btn: "📤 ផ្ញើការរាយការណ៍",
+    contact_reports_header: "ការរាយការណ៍ដែលបានផ្ញើ",
+    contact_modal_title: "⚠️ បញ្ជាក់ការផ្ញើ",
+    contact_modal_desc: "តើអ្នកពិតជាចង់ផ្ញើមែនទេ? អ្នកអាចផ្ញើការរាយការណ៍បានតែម្តងគត់ក្នុងរយៈពេល ៣០ នាទី។",
+    btn_send: "ផ្ញើ",
+    status_pending: "⏳ កំពុងរង់ចាំការពិនិត្យ",
+    status_checked: "✅ បានពិនិត្យ និងកែប្រែរួចរាល់",
+    no_reports: "អ្នកមិនទាន់មានការរាយការណ៍នៅឡើយទេ។",
   }
 };
 
