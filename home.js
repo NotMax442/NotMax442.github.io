@@ -5,43 +5,27 @@
 // Nested Data Hierarchy: Major -> Year -> Semester -> Subject -> [Professors]
 const manifestData = {
   "MED": {
-    "1": {
-      "1": {
-        
-      },
-      "2": {
-       
-      }
-    },
+    "1": { "1": {}, "2": {} },
     "2": { 
       "1": {
-      "ANATOMIE" : 
-        ["Pr-Ung-Chan"], 
-        ["Pr-Sin-Sagata"], 
-        ["Pr-Nhem-Aklinn"], 
-        ["Pr-Nam_BunSocheat"], 
-        ["Pr-Lim-Taing-&-Dr-Meng-Sok"], 
-        ["Pr-Ich-Khuy"],
-        ["Dr-Say-Tang"]
-        
-        
+        "ANATOMIE": [
+          "Pr-Ung-Chan", 
+          "Pr-Sin-Sagata", 
+          "Pr-Nhem-Aklinn", 
+          "Pr-Nam_BunSocheat", 
+          "Pr-Lim-Taing-&-Dr-Meng-Sok", 
+          "Pr-Ich-Khuy",
+          "Dr-Say-Tang"
+        ]
       }, 
-      "2": {
-        
-      } 
+      "2": {} 
     },
     "3": { "1": {}, "2": {} },
     "4": { "1": {}, "2": {} },
     "5": { "1": {}, "2": {} },
-    "6": {
-      "1": {
-        "MED-PRO": ["Dr. David"]
-      },
-      "2": {}
-    }
+    "6": { "1": {}, "2": {} }
   }
 };
-
 let currentMajor = null;
 let currentYear = null;
 let currentSemester = null;
