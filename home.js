@@ -35,6 +35,7 @@ let currentSubject = null;
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   restoreLastView();
+  initUpdateSystem();
 
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -346,4 +347,100 @@ function clearSavedMissed(profName) {
 
   localStorage.removeItem(key);
   showProfessors(currentMajor, currentYear, currentSemester, currentSubject);
+}
+
+// ==========================================================================
+// UPDATE NOTIFICATION SYSTEM
+// ==========================================================================
+const APP_VERSION = "1.0.0"; // Change this string whenever you release an update!
+
+let patchNotesEN = "";
+let patchNotesKM = "";
+let currentModalLang = "EN"; // Local state for update modal only
+
+document.addEventListener('DOMContentLoaded', () => {
+  initUpdateSystem();
+});
+
+async function initUpdateSystem() {
+  const versionBadge = document.getElementById('update-version-badge');
+  if (versionBadge) versionBadge.textContent = `v${APP_VERSION}`;
+
+  setupUpdateModalListeners();
+
+  // Show automatically if current version hasn't been dismissed yet
+  const lastSeenVersion = localStorage.getItem('lastSeenUpdateVersion');
+  if (lastSeenVersion !== APP_VERSION) {
+    await fetchPatchNotes();
+    showUpdateModal();
+  }
+}
+
+async function fetchPatchNotes() {
+  try {
+    // Cache-busted fetch ensures browsers don't load outdated cached text
+    const [resEN, resKM] = await Promise.all([
+      fetch(`english-update.txt?v=${APP_VERSION}`),
+      fetch(`khmer-update.txt?v=${APP_VERSION}`)
+    ]);
+
+    patchNotesEN = resEN.ok ? await resEN.text() : "No English release notes available.";
+    patchNotesKM = resKM.ok ? await resKM.text() : "គ្មានព័ត៌មានបច្ចុប្បន្នភាពភាសាខ្មែរទេ។";
+  } catch (e) {
+    patchNotesEN = "Failed to load release notes.";
+    patchNotesKM = "បរាជ័យក្នុងការទាញយកព័ត៌មានបច្ចុប្បន្នភាព។";
+  }
+  renderModalContent();
+}
+
+function renderModalContent() {
+  const container = document.getElementById('update-text-container');
+  if (!container) return;
+  container.textContent = currentModalLang === "EN" ? patchNotesEN : patchNotesKM;
+}
+
+function setupUpdateModalListeners() {
+  const modal = document.getElementById('update-modal');
+  const triggerBtn = document.getElementById('update-info-btn');
+  const closeBtn = document.getElementById('close-update-modal-btn');
+  const btnEN = document.getElementById('update-lang-en');
+  const btnKM = document.getElementById('update-lang-km');
+
+  // Manual trigger via "Update Info" landing page button
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', async () => {
+      if (!patchNotesEN) await fetchPatchNotes();
+      showUpdateModal();
+    });
+  }
+
+  // Dismiss modal & mark this version as seen
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      localStorage.setItem('lastSeenUpdateVersion', APP_VERSION);
+      if (modal) modal.classList.add('hidden');
+    });
+  }
+
+  // In-modal language toggles
+  if (btnEN && btnKM) {
+    btnEN.addEventListener('click', () => {
+      currentModalLang = "EN";
+      btnEN.classList.add('active');
+      btnKM.classList.remove('active');
+      renderModalContent();
+    });
+
+    btnKM.addEventListener('click', () => {
+      currentModalLang = "KM";
+      btnKM.classList.add('active');
+      btnEN.classList.remove('active');
+      renderModalContent();
+    });
+  }
+}
+
+function showUpdateModal() {
+  const modal = document.getElementById('update-modal');
+  if (modal) modal.classList.remove('hidden');
 }
