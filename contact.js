@@ -120,7 +120,7 @@ function renderMyFeedbacks() {
   myFeedbackList.innerHTML = '';
 
   if (logs.length === 0) {
-    myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">No submitted reports yet.</p>`;
+    myFeedbackList.innerHTML = `<p style="color: var(--text-sub); font-size: 0.9rem;">${getTranslation('no_reports')}</p>`;
     return;
   }
 
@@ -129,12 +129,14 @@ function renderMyFeedbacks() {
     card.classList.add('subject-card');
     card.style.padding = '1rem';
 
-    const statusClass = log.status === 'Checked ✅' ? 'status-checked' : 'status-pending';
+    const isChecked = log.status === 'Checked ✅' || log.status === 'checked';
+    const statusClass = isChecked ? 'status-checked' : 'status-pending';
+    const statusText = isChecked ? getTranslation('status_checked') : getTranslation('status_pending');
 
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
         <span style="font-size:0.8rem; color:var(--text-sub);">${log.date || ''}</span>
-        <span class="feedback-status-badge ${statusClass}">${log.status || 'Submitted'}</span>
+        <span class="feedback-status-badge ${statusClass}">${statusText}</span>
       </div>
       <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${escapeHTML(log.text || '')}</p>
     `;
