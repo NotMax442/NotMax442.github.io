@@ -13,50 +13,38 @@
   --border-sub: #475569;
   --badge-warning: #f59e0b;
 
-  /* Theme-aware Navigation Card Colors (Dark Mode) */
-  --major-bg: #0f766e;
-  --major-hover: #14b8a6;
-  --major-border: #2dd4bf;
-  --major-shadow: rgba(20, 184, 166, 0.35);
+  /* Theme-aware Accent Borders & Shadows (Dark Mode) */
+  --major-accent: #14b8a6;
+  --major-shadow: rgba(20, 184, 166, 0.25);
 
-  --year-bg: #1e40af;
-  --year-hover: #3b82f6;
-  --year-border: #60a5fa;
-  --year-shadow: rgba(59, 130, 246, 0.35);
+  --year-accent: #38bdf8;
+  --year-shadow: rgba(56, 189, 248, 0.25);
 
-  --semester-bg: #3730a3;
-  --semester-hover: #4f46e5;
-  --semester-border: #818cf8;
-  --semester-shadow: rgba(99, 102, 241, 0.35);
+  --semester-accent: #818cf8;
+  --semester-shadow: rgba(129, 140, 248, 0.25);
 }
 
 [data-theme="light"] {
-  --bg-body: #cbd5e1;      /* Soft grey outer background (Slate 300) */
-  --bg-card: #e2e8f0;      /* Gentle grey main container (Slate 200) */
-  --bg-subcard: #f1f5f9;   /* Soft off-grey for navbar & buttons (Slate 100) */
-  --bg-inner: #cbd5e1;     /* Deeper grey for question cards & containers */
-  --text-main: #0f172a;    /* Dark slate text for high contrast */
-  --text-sub: #334155;     /* Slate subtext */
-  --text-heading: #0284c7;  /* Medical sky blue accent */
-  --border-color: #94a3b8; /* Medium grey borders */
-  --border-sub: #cbd5e1;    /* Subtle inner borders */
+  --bg-body: #cbd5e1;      /* Soft grey outer background */
+  --bg-card: #e2e8f0;      /* Gentle grey main container */
+  --bg-subcard: #f1f5f9;   /* Soft off-grey for subcards & buttons */
+  --bg-inner: #f8fafc;     /* Clean slate white for inner cards */
+  --text-main: #0f172a;    /* Dark slate main text */
+  --text-sub: #334155;     /* Subtext color */
+  --text-heading: #0284c7;  /* Accent blue heading */
+  --border-color: #cbd5e1; /* Card borders */
+  --border-sub: #e2e8f0;    /* Subtle inner borders */
   --badge-warning: #d97706;
 
-  /* Theme-aware Navigation Card Colors (Light Mode) */
-  --major-bg: #0d9488;
-  --major-hover: #0f766e;
-  --major-border: #14b8a6;
-  --major-shadow: rgba(13, 148, 136, 0.25);
+  /* Theme-aware Accent Borders & Shadows (Light Mode) */
+  --major-accent: #0d9488;
+  --major-shadow: rgba(13, 148, 136, 0.2);
 
-  --year-bg: #2563eb;
-  --year-hover: #1d4ed8;
-  --year-border: #3b82f6;
-  --year-shadow: rgba(37, 99, 235, 0.25);
+  --year-accent: #0284c7;
+  --year-shadow: rgba(2, 132, 199, 0.2);
 
-  --semester-bg: #4f46e5;
-  --semester-hover: #3730a3;
-  --semester-border: #6366f1;
-  --semester-shadow: rgba(79, 70, 229, 0.25);
+  --semester-accent: #4f46e5;
+  --semester-shadow: rgba(79, 70, 229, 0.2);
 }
 
 /* ==========================================================================
@@ -288,174 +276,63 @@ p {
    ========================================================================== */
 .year-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.25rem;
 }
 
-/* Base Navigation Card Styling */
+/* Base Unified Slate Card Styling */
 .year-card {
-  color: #ffffff !important;
-  padding: 2rem;
-  border-radius: 12px;
+  background-color: var(--bg-inner);
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-color);
+  border-left-width: 6px; /* Thick accent bar on the left */
+  border-radius: 10px;
+  padding: 1.75rem 1.5rem;
   text-align: center;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* --- MAJOR CARDS (Teal Accent) --- */
+.year-card:hover {
+  transform: translateY(-3px) scale(1.015);
+  background-color: var(--bg-subcard);
+}
+
+.year-card:active {
+  transform: scale(0.99);
+}
+
+/* --- MAJOR CARDS (Teal Accent Bar) --- */
 .year-card[data-major] {
-  background-color: var(--major-bg);
-  border: 1.5px solid var(--major-border);
+  border-left-color: var(--major-accent);
 }
 
 .year-card[data-major]:hover {
-  transform: scale(1.03);
-  background-color: var(--major-hover);
-  box-shadow: 0 8px 22px var(--major-shadow);
+  border-color: var(--major-accent);
+  box-shadow: 0 8px 20px var(--major-shadow);
 }
 
-.year-card[data-major]:active {
-  transform: scale(1.05);
-}
-
-/* --- YEAR CARDS (Royal Blue) --- */
+/* --- YEAR CARDS (Sky Blue Accent Bar) --- */
 .year-card[data-year] {
-  background-color: var(--year-bg);
-  border: 1.5px solid var(--year-border);
+  border-left-color: var(--year-accent);
 }
 
 .year-card[data-year]:hover {
-  transform: scale(1.03);
-  background-color: var(--year-hover);
-  box-shadow: 0 8px 22px var(--year-shadow);
+  border-color: var(--year-accent);
+  box-shadow: 0 8px 20px var(--year-shadow);
 }
 
-.year-card[data-year]:active {
-  transform: scale(1.05);
-}
-
-/* --- SEMESTER CARDS (Indigo Accent) --- */
+/* --- SEMESTER CARDS (Indigo Accent Bar) --- */
 .year-card[data-semester] {
-  background-color: var(--semester-bg);
-  border: 1.5px solid var(--semester-border);
+  border-left-color: var(--semester-accent);
 }
 
 .year-card[data-semester]:hover {
-  transform: scale(1.03);
-  background-color: var(--semester-hover);
-  box-shadow: 0 8px 22px var(--semester-shadow);
+  border-color: var(--semester-accent);
+  box-shadow: 0 8px 20px var(--semester-shadow);
 }
-
-.year-card[data-semester]:active {
-  transform: scale(1.05);
-}
-
-.subject-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Base Subject Card Styling */
-.subject-card {
-  background-color: var(--bg-inner);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Enlarge ONLY subject cards on hover */
-.subject-card:not(.prof-card):hover {
-  transform: scale(1.025);
-  border-color: var(--text-heading);
-  background-color: var(--bg-subcard);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-.subject-card:not(.prof-card):active {
-  transform: scale(1.04);
-}
-
-/* Professor Card Container (Static) */
-.subject-card.prof-card {
-  cursor: default;
-}
-
-.subject-card h3 {
-  font-size: 1.2rem;
-  color: var(--text-heading);
-  margin-bottom: 0.5rem;
-}
-
-.missed-badge {
-  color: var(--badge-warning);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.subject-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-/* Enlarge ONLY buttons inside Professor Cards on hover/press */
-.subject-card.prof-card .btn {
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.subject-card.prof-card .btn:hover {
-  transform: scale(1.025);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
-.subject-card.prof-card .btn:active {
-  transform: scale(1.04);
-}
-
-.study-btn {
-  background-color: #0284c7;
-  color: white;
-  flex: 1;
-}
-
-.quiz-btn {
-  background-color: #10b981;
-  color: white;
-  flex: 1;
-}
-
-.study-missed-btn {
-  background-color: #d97706;
-  color: #ffffff;
-  width: 100%;
-  margin-top: 6px;
-}
-
-.study-missed-btn:hover {
-  background-color: #b45309;
-}
-
-.clear-btn {
-  background-color: var(--bg-subcard);
-  color: var(--text-sub);
-  border: 1px solid var(--border-sub);
-  width: 100%;
-  margin-top: 6px;
-  font-size: 0.8rem;
-  padding: 6px;
-}
-
-.clear-btn:hover {
-  background-color: #ef4444;
-  color: white;
-}
-
 /* ==========================================================================
    6. QUIZ & STUDY SESSION CARDS
    ========================================================================== */
