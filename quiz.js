@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         sessionStorage.setItem('lastView', 'professor');
         sessionStorage.setItem('lastActiveMajor', config.major);
         sessionStorage.setItem('lastActiveYear', config.year);
+        sessionStorage.setItem('lastActiveSemester', config.semester);
         sessionStorage.setItem('lastActiveSubject', config.subject);
       } catch (e) {}
     }
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   sessionStorage.setItem('lastView', 'professor');
   sessionStorage.setItem('lastActiveMajor', sessionConfig.major);
   sessionStorage.setItem('lastActiveYear', sessionConfig.year);
+  sessionStorage.setItem('lastActiveSemester', sessionConfig.semester);
   sessionStorage.setItem('lastActiveSubject', sessionConfig.subject);
 
   // Wire up Fullscreen Button
@@ -85,6 +87,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupNavigationGuards();
   await initSession();
 });
+
+// Helper for generating filename/storage key slugs
+function getProfSlug(profName) {
+  if (!profName) return '';
+  return profName
+    .toLowerCase()
+    .replace(/\./g, '')           // Strip dots ("Pr." -> "pr")
+    .replace(/\s+/g, '-')         // Convert spaces to dashes
+    .replace(/[^a-z0-9-&]/g, ''); // Retain letters, numbers, dashes, and ampersands
+}
 
 function shuffleArray(array) {
   const shuffled = [...array];
@@ -239,12 +251,12 @@ function setupNavigationGuards() {
 
 // Session Initialization
 async function initSession() {
-  const { major, year, subject, professor, mode, resume } = sessionConfig;
+  const { major, year, semester, subject, professor, mode, resume } = sessionConfig;
   const sessionInfo = document.getElementById('session-info');
   const loadingOverlay = document.getElementById('loading-overlay');
 
   if (sessionInfo) {
-    sessionInfo.textContent = `${major} Y${year} - ${subject} (${professor}) [${mode.toUpperCase()} MODE]`;
+    sessionInfo.textContent = `${major} Y${year} S${semester} - ${subject} (${professor}) [${mode.toUpperCase()} MODE]`;
   }
 
   isSessionActive = true;
@@ -252,8 +264,8 @@ async function initSession() {
   currentQuestionIndex = 0;
   studyAnsweredCount = 0;
 
-  const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
-  const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
+  const profSlug = getProfSlug(professor);
+  const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 
   // Resume saved Study progress
   if (mode === 'study' && resume) {
@@ -274,7 +286,10 @@ async function initSession() {
 
   // Load Missed Vault
   if (mode === 'missed') {
-    const key = getStorageKey(major, year, subject, professor);
+    const key = (typeof getStorageKey === 'function')
+      ? getStorageKey(major, year, semester, subject, professor)
+      : `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+
     const rawMissed = localStorage.getItem(key);
     if (!rawMissed) {
       alert("No saved missed questions found for this professor!");
@@ -288,7 +303,7 @@ async function initSession() {
     return;
   }
 
-  // JSON Fetch Path Example: data/med/year1/i-d-a/dr-smith.json
+  // JSON Fetch Path Example: data/med/year2/sem1/anatomie/pr-ung-chan.json
   const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
@@ -363,9 +378,9 @@ function updateTimerUI() {
 // Auto-save Study progress
 function saveStudyProgress() {
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const { major, year, subject, professor } = sessionConfig;
-    const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
-    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
+    const { major, year, semester, subject, professor } = sessionConfig;
+    const profSlug = getProfSlug(professor);
+    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 
     const progressData = {
       questions: questions,
@@ -474,14 +489,17 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
     }
   }
 
-  recordQuestionResult(
-    q,
-    isCorrect,
-    sessionConfig.major,
-    sessionConfig.year,
-    sessionConfig.subject,
-    sessionConfig.professor
-  );
+  if (typeof recordQuestionResult === 'function') {
+    recordQuestionResult(
+      q,
+      isCorrect,
+      sessionConfig.major,
+      sessionConfig.year,
+      sessionConfig.semester,
+      sessionConfig.subject,
+      sessionConfig.professor
+    );
+  }
   studyAnsweredCount++;
 
   saveStudyProgress();
@@ -579,9 +597,9 @@ function finishSession() {
   cancelAutoScroll();
 
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const { major, year, subject, professor } = sessionConfig;
-    const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
-    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
+    const { major, year, semester, subject, professor } = sessionConfig;
+    const profSlug = getProfSlug(professor);
+    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
     localStorage.removeItem(studyProgressKey);
   }
 
@@ -591,14 +609,17 @@ function finishSession() {
       const chosen = userAnswers[idx];
       const isCorrect = chosen !== null && chosen === q.correctIndex;
       if (isCorrect) userScore++;
-      recordQuestionResult(
-        q,
-        isCorrect,
-        sessionConfig.major,
-        sessionConfig.year,
-        sessionConfig.subject,
-        sessionConfig.professor
-      );
+      if (typeof recordQuestionResult === 'function') {
+        recordQuestionResult(
+          q,
+          isCorrect,
+          sessionConfig.major,
+          sessionConfig.year,
+          sessionConfig.semester,
+          sessionConfig.subject,
+          sessionConfig.professor
+        );
+      }
     });
   }
 
@@ -610,6 +631,7 @@ function finishSession() {
     userScore: userScore,
     major: sessionConfig.major,
     year: sessionConfig.year,
+    semester: sessionConfig.semester,
     subject: sessionConfig.subject,
     professor: sessionConfig.professor,
     mode: sessionConfig.mode
