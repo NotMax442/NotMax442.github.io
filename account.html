@@ -66,25 +66,37 @@
         missed questions, and local study vault.</p>
 
       <!-- 1. Quiz Preferences Card -->
-      <div class="info-card"
-        style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-sub); margin-bottom: 2rem;">
-        <h3 style="margin-top: 0; color: var(--text-main);" data-i18n="account_pref_title">⚙️ Quiz Preferences</h3>
+<div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-sub); margin-bottom: 2rem;">
+  <h3 style="margin-top: 0; color: var(--text-main);" data-i18n="account_pref_title">⚙️ Quiz Preferences</h3>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1rem;">
-          <div>
-            <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_autoadv_title">Auto-advance in Quiz Mode
-            </h4>
-            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);"
-              data-i18n="account_autoadv_desc">
-              Automatically move to the next question after selecting an option without having to click "Next Question".
-            </p>
-          </div>
-          <label class="switch">
-            <input type="checkbox" id="auto-advance-toggle">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
+  <!-- Auto advance toggle -->
+  <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1rem;">
+    <div>
+      <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_autoadv_title">Auto-advance in Quiz Mode</h4>
+      <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);" data-i18n="account_autoadv_desc">
+        Automatically move to the next question after selecting an option without having to click "Next Question".
+      </p>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="auto-advance-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- Review Layout Switcher -->
+  <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-sub); flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px;">
+      <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_review_style_title">Result Review Display Style</h4>
+      <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);" data-i18n="account_review_style_desc">
+        Choose whether to display result reviews as a compact text summary or full study-style options.
+      </p>
+    </div>
+    <select id="review-style-select" class="lang-select" style="padding: 0.5rem 0.8rem; font-weight: 600;">
+      <option value="compact" data-i18n="option_style_compact">Compact (Text Summary)</option>
+      <option value="full" data-i18n="option_style_full">Full Options (Study Style)</option>
+    </select>
+  </div>
+</div>
 
       <!-- 2. Missed Questions Vault Section -->
       <div
