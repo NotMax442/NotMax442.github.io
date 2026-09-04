@@ -2702,3 +2702,8 @@ p {
   background: #ef4444;
   color: #ffffff;
 }
+.feedback-status-badge {
+  pointer-events: none !important;
+  cursor: default !important;
+  user-select: none;
+}
