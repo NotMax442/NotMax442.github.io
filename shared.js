@@ -119,9 +119,25 @@ const translations = {
     morale_1: "💪 You can do this! I believe in you.",
     morale_2: "🏃 Don't lose hope. You still have time.",
     morale_3: "🌟 You can try again. Maybe next time it'll be better.",
-    morale_4: "🌱 Don't be scared, This is not the exam.",
+    morale_4: "🌱 Don't be scared, This is not the real exam.",
     morale_5: "🛡️ Don't be sad, I'll be here for you until you get a good scoring.",
     morale_6: "🩺 Rest for a bit. Then try again later 💞",
+
+    //quiz
+    mode_study: "STUDY",
+    mode_quiz: "QUIZ",
+    mode_missed: "MISSED",
+    quiz_progress: "Question {current} of {total}",
+    study_progress: "Total Questions: {total} (Answered: {answered})",
+    btn_next_question: "Next Question ➡️",
+    btn_finish_quiz: "Finish Quiz 🏁",
+    btn_fullscreen: "⛶ Fullscreen",
+    btn_exit_fullscreen: "Exit Fullscreen",
+    time_up_alert: "⏱️ Time is up! Submitting your quiz now.",
+    no_missed_alert: "No saved missed questions found for this professor!",
+    load_error_alert: "Could not load questions!\nMake sure your file exists at:\n\"{path}\"",
+    leave_modal_desc_study: "Are you sure you want to leave? Your progress will be saved, don't worry!",
+    leave_modal_desc_quiz: "Are you sure you want to leave? Your active timed quiz progress will be lost.",
   },
   km: {
     // Navigation & Modals
@@ -239,9 +255,25 @@ const translations = {
     morale_1: "💪 You​ នឹងធ្វើបាន! ខ្ញុំជឿចឹង",
     morale_2: "🏃 កុំអស់សង្ឃឹមអី យើងនៅសល់ពេលទៀត។",
     morale_3: "🌟 ខុសប៉ុណ្ណឹងមានអី យើងនៅសាកម្តងទៀតបាន",
-    morale_4: "🌱 នេះមិនមែនជាការប្រឡងទេ កុំភ័យអី",
+    morale_4: "🌱 នេះមិនមែនជាការប្រឡងពិតទេ កុំភ័យអី",
     morale_5: "🛡️ កុំពិបាកចិត្តអី ខ្ញុំនឹងនៅរង់ចាំពេល you ធ្វើបានសម្រេចល្អ",
     morale_6: "🩺 សម្រាកមួយភ្លែតសិន។ ចាំសាកម្តងទៀតពេលក្រាយ 💞",
+
+    // quiz
+    mode_study: "សិក្សា",
+    mode_quiz: "ប្រឡង",
+    mode_missed: "សំណួរខុស",
+    quiz_progress: "សំណួរទី {current} នៃ {total}",
+    study_progress: "សំណួរសរុប៖ {total} (បានឆ្លើយ៖ {answered})",
+    btn_next_question: "សំណួរបន្ទាប់ ➡️",
+    btn_finish_quiz: "បញ្ចប់ការប្រឡង 🏁",
+    btn_fullscreen: "⛶ ពេញអេក្រង់",
+    btn_exit_fullscreen: "ចាកចេញពីពេញអេក្រង់",
+    time_up_alert: "⏱️ អស់ពេលហើយ! ប្រព័ន្ធកំពុងបញ្ជូនចម្លើយរបស់អ្នក។",
+    no_missed_alert: "មិនមានសំណួរខុសដែលបានរក្សាទុកសម្រាប់សាស្ត្រាចារ្យនេះទេ!",
+    load_error_alert: "មិនអាចទាញយកសំណួរបានទេ!\nសូមពិនិត្យមើលថាឯកសារមាននៅ៖\n\"{path}\"",
+    leave_modal_desc_study: "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!",
+    leave_modal_desc_quiz: "ការវិវឌ្ឍនៃការធ្វើតេស្តប្រឡងរបស់អ្នកនឹងត្រូវបាត់បង់។",
   }
 };
 
