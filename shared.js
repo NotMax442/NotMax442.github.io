@@ -73,10 +73,18 @@ const translations = {
     // About Page
     about_title: "About TestforUHS",
     about_sub: "A free, dedicated study and self-assessment platform for medical students.",
-    mission_title: "🎯 Our Mission",
-    mission_desc: "TestforUHS was created to give medical students an intuitive, accessible way to review questions, practice exam simulation, and track missed topics across their academic years—100% free of charge.",
-    funding_title: "🤝 How TestforUHS Stays Free & Funded",
-    funding_desc: "To keep this platform open and free for everyone without charging subscriptions or putting study materials behind paywalls, we cover server, domain, and maintenance costs using transparent methods.",
+    about_mission_title: "🎯 Our Mission",
+    about_mission_desc: "TestforUHS was created to give medical students an intuitive, accessible way to review questions, practice exam simulation, and track missed topics across their academic years—100% free of charge.",
+    about_funding_title: "🤝 How TestforUHS Stays Free & Funded",
+    about_funding_desc: "To keep this platform open and free for everyone without charging subscriptions or putting study materials behind paywalls, we cover server, domain, and maintenance costs using two transparent methods:",
+    about_ad_title: "1. Non-Intrusive Advertisements (Google AdSense)",
+    about_ad_loc: "<strong>Where ads appear:</strong> Only at the bottom of the Home page and on the Session Results summary page.",
+    about_ad_zero: "<strong>Zero Interruptions:</strong> We never place ads inside active quiz screens or study sessions so your focus remains 100% on learning.",
+    about_ad_filter: "<strong>Strict Content Filtering:</strong> All advertisements are heavily filtered. We strictly block adult content, social casino/gambling, clickbait, and misleading supplements.",
+    about_donate_title: "2. Voluntary Community Support (KHQR Donations)",
+    about_donate_desc: "If TestforUHS helps you in your studies, you can voluntarily support platform development via our Support Us button (KHQR). Every contribution directly covers domain fees and hosting infrastructure. Donations are completely optional and unlock no special privileges—every student receives full access to all features.",
+    about_privacy_title: "🔒 Our Privacy Promise",
+    about_privacy_desc: "Your study progress, missed questions, and test scores are stored locally inside your browser (localStorage). We do not track your personal study choices or sell student data to third parties.",
 
     // Morale Boost Messages
     morale_1: "💪 You can do this! I believe in you.",
@@ -156,10 +164,18 @@ const translations = {
     // About Page
     about_title: "អំពី TestforUHS",
     about_sub: "កម្មវិធីសិក្សា និងវាយតម្លៃសមត្ថភាពដោយឥតគិតថ្លៃសម្រាប់និស្សិតវេជ្ជសាស្ត្រ។",
-    mission_title: "🎯 បេសកកម្មរបស់យើង",
-    mission_desc: "TestforUHS ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់ជូននិស្សិតវេជ្ជសាស្ត្រនូវវិធីងាយស្រួលក្នុងការរំលឹកសំណួរ ធ្វើតេស្តសមត្ថភាព និងតាមដានសំណួរដែលខុស—ដោយឥតគិតថ្លៃ ១០០%។",
-    funding_title: "🤝 របៀបដែល TestforUHS ដំណើរការដោយឥតគិតថ្លៃ",
-    funding_desc: "ដើម្បីរក្សាកម្មវិធីនេះឱ្យនៅតែបើកចំហ និងឥតគិតថ្លៃសម្រាប់អ្នករាល់គ្នា យើងរ៉ាប់រងការចំណាយលើ Server, Domain និងការថែទាំតាមរយៈវិធីសាស្ត្រតម្លាភាព។",
+    about_mission_title: "🎯 បេសកកម្មរបស់យើង",
+    about_mission_desc: "TestforUHS ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់ជូននិស្សិតវេជ្ជសាស្ត្រនូវវិធីងាយស្រួលក្នុងការរំលឹកសំណួរ ធ្វើតេស្តសមត្ថភាព និងតាមដានសំណួរដែលខុស—ដោយឥតគិតថ្លៃ ១០០%។",
+    about_funding_title: "🤝 របៀបដែល TestforUHS ដំណើរការដោយឥតគិតថ្លៃ",
+    about_funding_desc: "ដើម្បីរក្សាកម្មវិធីនេះឱ្យនៅតែបើកចំហ និងឥតគិតថ្លៃសម្រាប់អ្នករាល់គ្នា ដោយមិនមានការបង់ប្រាក់ប្រចាំខែ ឬដាក់សម្ភារសិក្សានៅពីក្រោយ paywall យើងរ៉ាប់រងការចំណាយលើ Server, Domain និងការថែទាំតាមរយៈវិធីសាស្ត្រតម្លាភាពចំនួនពីរ៖",
+    about_ad_title: "១. ពាណិជ្ជកម្មដែលមិនរំខានដល់ការសិក្សា (Google AdSense)",
+    about_ad_loc: "<strong>ទីតាំងបង្ហាញពាណិជ្ជកម្ម៖</strong> មានតែនៅផ្នែកខាងក្រោមនៃទំព័រដើម និងទំព័រសរុបលទ្ធផលប៉ុណ្ណោះ។",
+    about_ad_zero: "<strong>គ្មានការរំខាន៖</strong> យើងមិនដែលដាក់ពាណិជ្ជកម្មនៅក្នុងផ្ទាំងប្រឡង ឬផ្ទាំងសិក្សាឡើយ ដើម្បីឱ្យអារម្មណ៍របស់អ្នកផ្តោតលើការសិក្សា ១០០%។",
+    about_ad_filter: "<strong>ការចោះត្រងខ្លឹមសារយ៉ាងតឹងរ៉ឹង៖</strong> ពាណិជ្ជកម្មទាំងអស់ត្រូវប្រយ័ត្នប្រយែងបំផុត។ យើងបិទពាណិជ្ជកម្មអាសអាភាស ល្បែងស៊ីសង ព័ត៌មានបោកប្រាស់ និងអាហារបំប៉នភូតភរ។",
+    about_donate_title: "២. ការចូលរួមគាំទ្រពីសហគមន៍ (ការឧបត្ថម្ភតាម KHQR)",
+    about_donate_desc: "ប្រសិនបើ TestforUHS មានប្រយោជន៍ដល់ការសិក្សារបស់អ្នក អ្នកអាចស្ម័គ្រចិត្តចូលរួមឧបត្ថម្ភការអភិវឌ្ឍតាមរយៈប៊ូតុង ឧបត្ថម្ភ (KHQR)។ ថវិកាភាគច្រើនត្រូវប្រើប្រាស់លើថ្លៃ Domain និង Server។ ការឧបត្ថម្ភគឺអាស្រ័យលើទឹកចិត្ត ហើយមិនទទួលបានឯកសិទ្ធិពិសេសឡើយ—និស្សិតគ្រប់រូបទទួលបានការប្រើប្រាស់មុខងារទាំងអស់ស្មើៗគ្នា។",
+    about_privacy_title: "🔒 ការប្តេជ្ញាចិត្តលើឯកជនភាព",
+    about_privacy_desc: "ការវិវឌ្ឍនៃការសិក្សា សំណួរដែលខុស និងពិន្ទុតេស្តរបស់អ្នកត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីជ្រាវជ្រោល (browser) របស់អ្នកផ្ទាល់ (localStorage)។ យើងមិនតាមដានទិន្នន័យផ្ទាល់ខ្លួន ឬលក់ទិន្នន័យនិស្សិតទៅកាន់ភាគីទីបីឡើយ។",
 
     // Morale Boost Messages
     morale_1: "💪 You​ នឹងធ្វើបាន! ខ្ញុំជឿចឹង",
@@ -192,7 +208,7 @@ function applyStaticTranslations() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[currentLang] && translations[currentLang][key]) {
-      el.textContent = translations[currentLang][key];
+      el.innerHTML = translations[currentLang][key]; // Uses innerHTML for formatting tags like <strong>
     }
   });
 
