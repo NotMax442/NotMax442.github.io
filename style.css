@@ -1357,3 +1357,113 @@ p {
   box-shadow: none !important;
   cursor: default !important;
 }
+
+/* ==========================================================================
+   UPDATE MODAL STYLES
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+.update-modal-content {
+  background-color: var(--bg-inner, #1e293b);
+  border: 1px solid var(--border-color, #334155);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 550px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.update-modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color, #334155);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.update-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.update-title-group h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-heading, #f8fafc);
+}
+
+.version-badge {
+  background-color: var(--accent-color, #0284c7);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.update-lang-toggle {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 2px;
+  border: 1px solid var(--border-color, #334155);
+}
+
+.update-lang-toggle .lang-btn {
+  background: none;
+  border: none;
+  color: var(--text-sub, #94a3b8);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.update-lang-toggle .lang-btn.active {
+  background-color: var(--accent-color, #0284c7);
+  color: #ffffff;
+}
+
+.update-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  color: var(--text-main, #e2e8f0);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+#update-text-container {
+  white-space: pre-wrap; /* Preserves text line breaks, bullets, and formatting */
+  word-break: break-word;
+  font-family: inherit;
+}
+
+.update-modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color, #334155);
+  text-align: right;
+  background-color: rgba(0, 0, 0, 0.15);
+}
