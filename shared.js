@@ -145,6 +145,11 @@ const translations = {
     review_unanswered: "⚠️ Unanswered / Skipped",
     label_your_choice: "Your Choice",
     label_correct_choice: "Correct Choice",
+
+    // continue study
+    
+    btn_continue_study: "▶️ Continue ({answered}/{total})",
+    btn_restart_study: "🔄 Restart Study All",
   },
   km: {
     // Navigation & Modals
@@ -287,6 +292,11 @@ const translations = {
     review_unanswered: "⚠️ មិនបានឆ្លើយ / បានរំលង",
     label_your_choice: "ចម្លើយរបស់អ្នក",
     label_correct_choice: "ចម្លើយត្រឹមត្រូវ",
+
+    // continue studying
+    
+    btn_continue_study: "▶️ បន្ត ({answered}/{total})",
+    btn_restart_study: "🔄 ចាប់ផ្តើមសិក្សាឡើងវិញ",
   }
 };
 
