@@ -2598,3 +2598,29 @@ p {
   font-weight: 600;
   color: var(--text-heading, #38bdf8);
 }
+
+/* Continue Study Button Accent */
+.btn.continue-btn {
+  background: #8b5cf6;
+  color: #ffffff;
+  border: 1px solid #7c3aed;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn.continue-btn:hover {
+  background: #7c3aed;
+}
+
+/* Equal-width 2-Column Button Grid */
+.btn-row-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+}
