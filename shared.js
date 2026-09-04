@@ -79,12 +79,12 @@ const translations = {
     funding_desc: "To keep this platform open and free for everyone without charging subscriptions or putting study materials behind paywalls, we cover server, domain, and maintenance costs using transparent methods.",
 
     // Morale Boost Messages
-    morale_1: "💪 Don't give up! Every mistake is a stepping stone toward mastering the material.",
-    morale_2: "🏃 Medicine is a marathon, not a sprint. Take a short break, review your missed questions, and try again!",
-    morale_3: "🌟 Failure isn't the opposite of success—it's part of it. Keep pushing forward!",
-    morale_4: "🌱 Every expert was once a beginner. Keep practicing and watch your score grow!",
-    morale_5: "🛡️ Dust yourself off! Reviewing your missed questions now is what turns weak points into strengths.",
-    morale_6: "🩺 Great doctors are built through persistence. Take a deep breath and dive back in!",
+    morale_1: "💪 You can do this! I believe in you.",
+    morale_2: "🏃 Don't lose hope. You still have time.",
+    morale_3: "🌟 You can try again. This many incorrect doesn't define who you are.",
+    morale_4: "🌱 Don't be scared, This is not the exam.",
+    morale_5: "🛡️ Don't be sad, I'll be here for you until you get a good scoring.",
+    morale_6: "🩺 Rest for a bit. Then try again later 💞",
   },
   km: {
     // Navigation & Modals
@@ -162,12 +162,12 @@ const translations = {
     funding_desc: "ដើម្បីរក្សាកម្មវិធីនេះឱ្យនៅតែបើកចំហ និងឥតគិតថ្លៃសម្រាប់អ្នករាល់គ្នា យើងរ៉ាប់រងការចំណាយលើ Server, Domain និងការថែទាំតាមរយៈវិធីសាស្ត្រតម្លាភាព។",
 
     // Morale Boost Messages
-    morale_1: "💪 កុំចុះចាញ់! គ្រប់កំហុសឆ្គងទាំងអស់គឺជាមេរៀនដើម្បីឈានទៅរកភាពស្ទាត់ជំនាញ។",
-    morale_2: "🏃 ការសិក្សាវេជ្ជសាស្ត្រគឺជាការរត់ប្រណាំងចម្ងាយឆ្ងាយ។ សម្រាកបន្តិច រំលឹកសំណួរដែលខុស ហើយព្យាយាមម្តងទៀត!",
-    morale_3: "🌟 ការខុសឆ្គងមិនមែនជាការបរាជ័យទេ ប៉ុន្តែវាជាផ្នែកមួយនៃភាពជោគជ័យ។ បន្តប្រឹងប្រែងទៅមុខទៀត!",
-    morale_4: "🌱 អ្នកជំនាញគ្រប់រូបសុទ្ធតែធ្លាប់ចាប់ផ្តើមពីចំណុចដំបូង។ បន្តប្រឹងប្រែងរំលឹក នោះពិន្ទុរបស់អ្នកនឹងកើនឡើង!",
-    morale_5: "🛡️ កុំបាក់ទឹកចិត្ត! ការពិនិត្យសំណួរដែលខុសឡើងវិញនៅពេលនេះ នឹងបំប្លែងចំណុចខ្សោយឲ្យក្លាយជាចំណុចខ្លាំង។",
-    morale_6: "🩺 គ្រូពេទ្យដ៏ពូកែត្រូវកើតចេញពីការតស៊ូស្វិតស្វាញ។ ដកដង្ហើមវែងៗ ហើយចាប់ផ្តើមសារជាថ្មី!",
+    morale_1: "💪 You​ នឹងធ្វើបាន! ខ្ញុំជឿចឹង",
+    morale_2: "🏃 កុំអស់សង្ឃឹមអី យើងនៅសល់ពេលទៀត។",
+    morale_3: "🌟 ខុសប៉ុណ្ណឹងមានអី យើងនៅសាកម្តងទៀតបាន",
+    morale_4: "🌱 នេះមិនមែនជាការប្រឡងទេ កុំភ័យអី",
+    morale_5: "🛡️ កុំពិបាកចិត្តអី ខ្ញុំនឹងនៅរង់ចាំពេល you ធ្វើបានសម្រេចល្អ",
+    morale_6: "🩺 សម្រាកមួយភ្លែតសិន។ ចាំសាកម្តងទៀតពេលក្រាយ 💞",
   }
 };
 
