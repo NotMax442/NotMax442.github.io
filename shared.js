@@ -145,6 +145,10 @@ const translations = {
     review_unanswered: "⚠️ Unanswered / Skipped",
     label_your_choice: "Your Choice",
     label_correct_choice: "Correct Choice",
+    account_review_style_title: "Result Review Display Style",
+    account_review_style_desc: "Choose whether to display result reviews as a compact text summary or full study-style options.",
+    option_style_compact: "Compact (Text Summary)",
+    option_style_full: "Full Options (Study Style)",
 
     // continue study
     
@@ -292,6 +296,10 @@ const translations = {
     review_unanswered: "⚠️ មិនបានឆ្លើយ / បានរំលង",
     label_your_choice: "ចម្លើយរបស់អ្នក",
     label_correct_choice: "ចម្លើយត្រឹមត្រូវ",
+    account_review_style_title: "ទម្រង់ពិនិត្យលទ្ធផលឡើងវិញ",
+    account_review_style_desc: "ជ្រើសរើសរវាងទម្រង់សង្ខេប (អត្ថបទ) ឬទម្រង់បង្ហាញជម្រើសទាំងអស់ (ដូច Study Mode)។",
+    option_style_compact: "ទម្រង់សង្ខេប (អត្ថបទ)",
+    option_style_full: "ទម្រង់បង្ហាញជម្រើសទាំងអស់",
 
     // continue studying
     
