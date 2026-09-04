@@ -157,7 +157,7 @@ const translations = {
 
     // coming soon
     coming_soon_title: "Coming Soon!",
-    coming_soon_sub: "Content for this section is currently being prepared.",
+    coming_soon_sub: "There is nothing here yet. Sorry🙏.",
   },
   km: {
     // Navigation & Modals
@@ -313,7 +313,7 @@ const translations = {
 
     // coming soon
     coming_soon_title: "នឹងមកដល់ឆាប់ៗនេះ!",
-    coming_soon_sub: "កន្លែងនេះនឹងមកឆាប់ៗ។",
+    coming_soon_sub: "ទំព័រនេះមិនទាន់មានអ្វីទេ។ សុំទោស​🙏",
     
   }
 };
