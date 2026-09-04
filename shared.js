@@ -138,6 +138,13 @@ const translations = {
     load_error_alert: "Could not load questions!\nMake sure your file exists at:\n\"{path}\"",
     leave_modal_desc_study: "Are you sure you want to leave? Your progress will be saved, don't worry!",
     leave_modal_desc_quiz: "Are you sure you want to leave? Your active timed quiz progress will be lost.",
+
+    // result
+
+    review_perfect_score: "🎉 Perfect score! You answered all questions correctly!",
+    review_unanswered: "⚠️ Unanswered / Skipped",
+    label_your_choice: "Your Choice",
+    label_correct_choice: "Correct Choice",
   },
   km: {
     // Navigation & Modals
@@ -274,6 +281,12 @@ const translations = {
     load_error_alert: "មិនអាចទាញយកសំណួរបានទេ!\nសូមពិនិត្យមើលថាឯកសារមាននៅ៖\n\"{path}\"",
     leave_modal_desc_study: "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!",
     leave_modal_desc_quiz: "ការវិវឌ្ឍនៃការធ្វើតេស្តប្រឡងរបស់អ្នកនឹងត្រូវបាត់បង់។",
+
+    // result
+    review_perfect_score: "🎉 ពិន្ទុពេញ! អ្នកបានឆ្លើយត្រូវគ្រប់សំណួរទាំងអស់!",
+    review_unanswered: "⚠️ មិនបានឆ្លើយ / បានរំលង",
+    label_your_choice: "ចម្លើយរបស់អ្នក",
+    label_correct_choice: "ចម្លើយត្រឹមត្រូវ",
   }
 };
 
