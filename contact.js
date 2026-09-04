@@ -4,7 +4,8 @@
 
 const WORKER_URL = 'https://telegram-proxy.pensamkhan9.workers.dev';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await syncPendingFeedbacks();
   renderMyFeedbacks();
 
   const feedbackForm = document.getElementById('feedback-form');
@@ -43,6 +44,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Check status ONLY for items still marked 'pending'
+async function syncPendingFeedbacks() {
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  if (!raw) return;
+
+  let logs = JSON.parse(raw);
+  const pendingLogs = logs.filter(log => log.status !== 'checked' && log.status !== 'Checked ✅');
+
+  // Skip API call completely if 0 pending reports exist
+  if (pendingLogs.length === 0) return;
+
+  const pendingIds = pendingLogs.map(log => log.id);
+
+  try {
+    const response = await fetch(`${WORKER_URL}/check-status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: pendingIds })
+    });
+
+    const data = await response.json();
+    if (data.ok && data.statuses) {
+      let updated = false;
+      logs = logs.map(log => {
+        if (data.statuses[log.id] === 'checked') {
+          updated = true;
+          return { ...log, status: 'checked' };
+        }
+        return log;
+      });
+
+      if (updated) {
+        localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+      }
+    }
+  } catch (e) {
+    console.warn('Status sync error:', e);
+  }
+}
+
 async function submitFeedback() {
   const feedbackText = document.getElementById('feedback-text');
   const feedbackImage = document.getElementById('feedback-image');
@@ -77,7 +118,7 @@ async function submitFeedback() {
     }
 
     localStorage.setItem('last_feedback_time', Date.now().toString());
-    saveLocalFeedbackLog(textValue, Date.now(), data.result?.message_id);
+    saveLocalFeedbackLog(textValue, Date.now(), data.result?.message_id, data.report_id);
 
     feedbackText.value = '';
     if (feedbackImage) feedbackImage.value = '';
@@ -95,19 +136,29 @@ async function submitFeedback() {
   }
 }
 
-function saveLocalFeedbackLog(text, timestamp, msgId) {
+function saveLocalFeedbackLog(text, timestamp, msgId, reportId) {
   const raw = localStorage.getItem('my_submitted_feedbacks');
   const logs = raw ? JSON.parse(raw) : [];
 
   logs.unshift({
-    id: Date.now(),
+    id: reportId || Date.now().toString(),
     telegram_msg_id: msgId,
     text: text,
     date: new Date(timestamp).toLocaleDateString() + ' ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    status: 'Pending ⏳'
+    status: 'pending'
   });
 
   localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+}
+
+function deleteLocalFeedback(id) {
+  const raw = localStorage.getItem('my_submitted_feedbacks');
+  if (!raw) return;
+
+  let logs = JSON.parse(raw);
+  logs = logs.filter(log => String(log.id) !== String(id));
+  localStorage.setItem('my_submitted_feedbacks', JSON.stringify(logs));
+  renderMyFeedbacks();
 }
 
 function renderMyFeedbacks() {
@@ -136,7 +187,10 @@ function renderMyFeedbacks() {
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
         <span style="font-size:0.8rem; color:var(--text-sub);">${log.date || ''}</span>
-        <span class="feedback-status-badge ${statusClass}">${statusText}</span>
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <span class="feedback-status-badge ${statusClass}">${statusText}</span>
+          <button onclick="deleteLocalFeedback('${log.id}')" title="Delete report" style="background:none; border:none; cursor:pointer; font-size:0.9rem; opacity:0.7; padding:0 4px;">🗑️</button>
+        </div>
       </div>
       <p style="margin:0; font-size:0.95rem; color:var(--text-main); line-height:1.4;">${escapeHTML(log.text || '')}</p>
     `;
