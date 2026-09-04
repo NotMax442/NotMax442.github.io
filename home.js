@@ -238,28 +238,31 @@ function showProfessors(major, year, semester, subject) {
     if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
 
     let continueBtnHTML = '';
-    let studyBtnLabel = "📖 Study All";
+    let studyBtnLabel = getTranslation('btn_study_all');
 
     if (studyProgress && studyProgress.studyAnsweredCount > 0) {
       const answered = studyProgress.studyAnsweredCount;
       const total = studyProgress.questions ? studyProgress.questions.length : 0;
-      continueBtnHTML = `<button class="btn primary-btn" style="background:#10b981; margin-bottom:0.5rem;" onclick="continueStudySession('${prof}')">▶️ Continue (${answered}/${total})</button>`;
-      studyBtnLabel = "🔄 Restart Study All";
+      if (answered < total) {
+        const continueText = getTranslation('btn_continue_study', { answered, total });
+        continueBtnHTML = `<button class="btn primary-btn" style="background:#10b981; margin-bottom:0.5rem;" onclick="continueStudySession('${prof}')">${continueText}</button>`;
+        studyBtnLabel = getTranslation('btn_restart_study');
+      }
     }
 
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
     card.innerHTML = `
       <h3>${prof}</h3>
-      ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question(s)</p>` : ''}
+      ${missedCount > 0 ? `<p class="missed-badge">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
       <div class="subject-actions">
         ${continueBtnHTML}
         <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-        <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">📝 Quiz</button>
+        <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">${getTranslation('btn_quiz')}</button>
       </div>
       ${missedCount > 0 ? `
-        <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">🎯 Review Missed (${missedCount})</button>
-        <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">🗑️ Clear Missed</button>
+        <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">${getTranslation('btn_review_missed')}</button>
+        <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">${getTranslation('btn_clear_missed')}</button>
       ` : ''}
     `;
     profList.appendChild(card);
