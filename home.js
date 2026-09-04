@@ -9,13 +9,13 @@ const manifestData = {
     "2": { 
       "1": {
         "ANATOMIE": [
-          "Pr-Ung-Chan", 
-          "Pr-Sin-Sagata", 
-          "Pr-Nhem-Aklinn", 
-          "Pr-Nam_BunSocheat", 
-          "Pr-Lim-Taing-&-Dr-Meng-Sok", 
-          "Pr-Ich-Khuy",
-          "Dr-Say-Tang"
+          "Pr. Ung Chan",
+          "Pr. Sin Sagata",
+          "Pr. Nhem Aklinn",
+          "Pr. Mam Bunsocheat",
+          "Pr. Lim Taing & Dr. Meng Sok",
+          "Pr. Ich Khuy",
+          "Dr. Say Tang"
         ]
       }, 
       "2": {} 
