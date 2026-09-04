@@ -139,15 +139,10 @@ function showLeaveConfirmModal() {
     }
 
     if (descEl) {
-      const isKm = currentLang === 'km';
       if (sessionConfig && sessionConfig.mode === 'study') {
-        descEl.textContent = isKm
-          ? "តើអ្នកពិតជាចង់ចាកចេញឬ? កុំបារម្ភ ការវិវឌ្ឍរបស់អ្នកត្រូវបានរក្សាទុក!"
-          : "Are you sure you want to leave? Your progress will be saved, don't worry!";
+        descEl.textContent = getTranslation('leave_modal_desc_study');
       } else {
-        descEl.textContent = isKm
-          ? "ការវិវឌ្ឍនៃការធ្វើតេស្តប្រឡងរបស់អ្នកនឹងត្រូវបាត់បង់។"
-          : "Are you sure you want to leave? Your active timed quiz progress will be lost.";
+        descEl.textContent = getTranslation('leave_modal_desc_quiz');
       }
     }
 
@@ -256,7 +251,8 @@ async function initSession() {
   const loadingOverlay = document.getElementById('loading-overlay');
 
   if (sessionInfo) {
-    sessionInfo.textContent = `${major} Y${year} S${semester} - ${subject} (${professor}) [${mode.toUpperCase()} MODE]`;
+    const modeLabel = getTranslation(`mode_${mode}`).toUpperCase();
+    sessionInfo.textContent = `${major} Y${year} S${semester} - ${subject} (${professor}) [${modeLabel} MODE]`;
   }
 
   isSessionActive = true;
@@ -292,7 +288,7 @@ async function initSession() {
 
     const rawMissed = localStorage.getItem(key);
     if (!rawMissed) {
-      alert("No saved missed questions found for this professor!");
+      alert(getTranslation('no_missed_alert'));
       window.location.href = '/';
       return;
     }
@@ -303,7 +299,7 @@ async function initSession() {
     return;
   }
 
-  // JSON Fetch Path Example: data/med/year2/sem1/anatomie/pr-ung-chan.json
+  // JSON Fetch Path
   const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
@@ -327,7 +323,7 @@ async function initSession() {
       renderQuizQuestion();
     }
   } catch (error) {
-    alert(`Could not load questions!\nMake sure your file exists at:\n"${filePath}"`);
+    alert(getTranslation('load_error_alert', { path: filePath }));
     window.location.href = '/';
   } finally {
     if (loadingOverlay) loadingOverlay.classList.add('hidden');
@@ -361,7 +357,7 @@ function startQuizTimer() {
 
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
-      alert("⏱️ Time is up! Submitting your quiz now.");
+      alert(getTranslation('time_up_alert'));
       finishSession();
     }
   }, 1000);
@@ -401,7 +397,12 @@ function renderStudyMode() {
   const optionsContainer = document.getElementById('options-container');
   const nextBtn = document.getElementById('next-btn');
 
-  if (progressText) progressText.textContent = `Total Questions: ${questions.length} (Answered: ${studyAnsweredCount})`;
+  if (progressText) {
+    progressText.textContent = getTranslation('study_progress', {
+      total: questions.length,
+      answered: studyAnsweredCount
+    });
+  }
   if (questionText) questionText.textContent = '';
   if (optionsContainer) optionsContainer.innerHTML = '';
   if (nextBtn) nextBtn.classList.add('hidden');
@@ -505,7 +506,12 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   saveStudyProgress();
 
   const progressText = document.getElementById('progress-text');
-  if (progressText) progressText.textContent = `Total Questions: ${questions.length} (Answered: ${studyAnsweredCount})`;
+  if (progressText) {
+    progressText.textContent = getTranslation('study_progress', {
+      total: questions.length,
+      answered: studyAnsweredCount
+    });
+  }
 
   if (studyAnsweredCount === questions.length) {
     cancelAutoScroll();
@@ -534,13 +540,18 @@ function renderQuizQuestion() {
   if (optionsContainer) optionsContainer.innerHTML = '';
 
   const q = questions[currentQuestionIndex];
-  if (progressText) progressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+  if (progressText) {
+    progressText.textContent = getTranslation('quiz_progress', {
+      current: currentQuestionIndex + 1,
+      total: questions.length
+    });
+  }
   if (questionText) questionText.textContent = q.question;
 
   if (nextBtn) {
     nextBtn.textContent = (currentQuestionIndex === questions.length - 1)
-      ? "Finish Quiz 🏁"
-      : "Next Question ➡️";
+      ? getTranslation('btn_finish_quiz')
+      : getTranslation('btn_next_question');
   }
 
   q.options.forEach((optionText, index) => {
@@ -709,7 +720,7 @@ function toggleFullscreen() {
     const fsBtn = document.getElementById('fullscreen-btn');
     const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
     if (fsBtn) {
-      fsBtn.textContent = isFs ? 'Exit Fullscreen' : '⛶ Fullscreen';
+      fsBtn.textContent = isFs ? getTranslation('btn_exit_fullscreen') : getTranslation('btn_fullscreen');
     }
   });
 });
