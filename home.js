@@ -193,7 +193,7 @@ function showSubjects(major, year, semester) {
   // Render "Coming Soon!" card if no subjects exist for this semester
   if (subjects.length === 0) {
     subjectList.innerHTML = `
-      <div class="subject-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
+      <div class="empty-state-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
         <h3 style="color: var(--text-heading); font-size: 1.4rem; margin-bottom: 0.5rem;">${getTranslation('coming_soon_title')}</h3>
         <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 0;">${getTranslation('coming_soon_sub')}</p>
       </div>
@@ -238,7 +238,7 @@ function showProfessors(major, year, semester, subject) {
   // Render "Coming Soon!" card if no professors exist for this subject
   if (professors.length === 0) {
     profList.innerHTML = `
-      <div class="subject-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
+      <div class="empty-state-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
         <h3 style="color: var(--text-heading); font-size: 1.4rem; margin-bottom: 0.5rem;">${getTranslation('coming_soon_title')}</h3>
         <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 0;">${getTranslation('coming_soon_sub')}</p>
       </div>
