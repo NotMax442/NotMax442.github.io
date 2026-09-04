@@ -63,13 +63,43 @@
     <div id="landing-screen" class="screen">
       <h1 data-i18n="landing_title">Medical Study Platform</h1>
       <p data-i18n="landing_sub">Select your major, year, subject, and professor to start studying.</p>
-      <button id="enter-study-btn" class="btn primary-btn" data-i18n="btn_start_study"
-        style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;">🚀 Start Studying</button>
+
+      <!-- Action Button Row -->
+      <div class="landing-btn-group"
+        style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 1.5rem;">
+        <button id="enter-study-btn" class="btn primary-btn" data-i18n="btn_start_study"
+          style="font-size: 1.1rem; padding: 0.75rem 2rem;">🚀 Start Studying</button>
+        <button id="update-info-btn" class="btn secondary-btn" style="font-size: 1.1rem; padding: 0.75rem 1.5rem;">📢
+          Update Info</button>
+      </div>
+    </div>
+
+    <!-- Place fixed overlays at the bottom of <body>, outside all screen containers -->
+    <div id="update-modal" class="modal-overlay hidden">
+      <div class="update-modal-content">
+        <div class="update-modal-header">
+          <div class="update-title-group">
+            <h3>Patch Notes</h3>
+            <span id="update-version-badge" class="version-badge">v1.0.0</span>
+          </div>
+          <div class="update-lang-toggle">
+            <button id="update-lang-en" class="lang-btn active">EN</button>
+            <button id="update-lang-km" class="lang-btn">KM</button>
+          </div>
+        </div>
+        <div class="update-modal-body">
+          <div id="update-text-container">Loading release notes...</div>
+        </div>
+        <div class="update-modal-footer">
+          <button id="close-update-modal-btn" class="btn">Got it!</button>
+        </div>
+      </div>
     </div>
 
     <!-- 2. Major Selection Screen -->
     <div id="major-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-landing-btn" class="btn back-btn" data-i18n="btn_back_home" style="margin-bottom: 1rem;">⬅️ Back to Home</button>
+      <button id="back-to-landing-btn" class="btn back-btn" data-i18n="btn_back_home" style="margin-bottom: 1rem;">⬅️
+        Back to Home</button>
       <h2 data-i18n="title_select_major">Select Major</h2>
       <div id="major-grid" class="year-grid">
         <div class="year-card" data-major="MED" data-i18n="major_med">
@@ -80,7 +110,8 @@
 
     <!-- 3. Year Selection Section -->
     <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-majors-btn" class="btn back-btn" data-i18n="btn_back_majors" style="margin-bottom: 1rem;">⬅️ Back to Majors</button>
+      <button id="back-to-majors-btn" class="btn back-btn" data-i18n="btn_back_majors" style="margin-bottom: 1rem;">⬅️
+        Back to Majors</button>
       <h2 id="selected-major-title">Select Academic Year</h2>
       <div class="year-grid">
         <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
@@ -94,24 +125,27 @@
 
     <!-- 3. Semester Selection Screen -->
     <div id="semester-screen" class="screen hidden" style="margin-top: 1rem;">
-       <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years" style="margin-bottom: 1rem;">⬅️ Back to Years</button>
-       <h2 id="selected-year-title">Select Semester</h2>
-       <div class="year-grid">
-         <div class="year-card" data-semester="1" data-i18n="semester_1">Semester 1</div>
-         <div class="year-card" data-semester="2" data-i18n="semester_2">Semester 2</div>
-       </div>
-   </div>
+      <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years" style="margin-bottom: 1rem;">⬅️
+        Back to Years</button>
+      <h2 id="selected-year-title">Select Semester</h2>
+      <div class="year-grid">
+        <div class="year-card" data-semester="1" data-i18n="semester_1">Semester 1</div>
+        <div class="year-card" data-semester="2" data-i18n="semester_2">Semester 2</div>
+      </div>
+    </div>
 
     <!-- 4. Subject Selection Section -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-semesters-btn" class="btn back-btn" data-i18n="btn_back_semesters" style="margin-bottom: 1rem;">⬅️ Back to Semesters</button>
+      <button id="back-to-semesters-btn" class="btn back-btn" data-i18n="btn_back_semesters"
+        style="margin-bottom: 1rem;">⬅️ Back to Semesters</button>
       <h2 id="selected-subject-screen-title">Subjects</h2>
       <div id="subject-list" class="subject-grid"></div>
     </div>
 
     <!-- 5. Professor Selection Section -->
     <div id="professor-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-subjects-btn" class="btn back-btn" data-i18n="btn_back_subjects" style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
+      <button id="back-to-subjects-btn" class="btn back-btn" data-i18n="btn_back_subjects"
+        style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
       <h2 id="selected-prof-screen-title">Professors</h2>
       <div id="professor-list" class="subject-grid"></div>
     </div>
