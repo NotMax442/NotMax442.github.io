@@ -76,14 +76,16 @@ function renderReviewBreakdown() {
   const { questions, userAnswers } = resultData;
   const itemsToDisplay = [];
 
-  questions.forEach((q, idx) => {
-    const userChoiceIdx = userAnswers[idx];
-    const isCorrect = userChoiceIdx !== null && userChoiceIdx === q.correctIndex;
+  if (questions) {
+    questions.forEach((q, idx) => {
+      const userChoiceIdx = userAnswers[idx];
+      const isCorrect = userChoiceIdx !== null && userChoiceIdx === q.correctIndex;
 
-    if (currentReviewFilter === 'all' || !isCorrect) {
-      itemsToDisplay.push({ q, idx, userChoiceIdx, isCorrect });
-    }
-  });
+      if (currentReviewFilter === 'all' || !isCorrect) {
+        itemsToDisplay.push({ q, idx, userChoiceIdx, isCorrect });
+      }
+    });
+  }
 
   if (itemsToDisplay.length === 0 && currentReviewFilter === 'wrong') {
     reviewContainer.innerHTML = `
@@ -112,13 +114,13 @@ function renderReviewBreakdown() {
       : "⚠️ Unanswered / Skipped";
 
     card.innerHTML = `
-      <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${q.question}</h4>
+      <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
       <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
-        <strong>Your Choice:</strong> ${userChoiceText} ${isCorrect ? '✓' : '✗'}
+        <strong>Your Choice:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
       </p>
       ${!isCorrect ? `
         <p style="margin: 0; font-size: 0.9rem; color: #10b981; font-weight: 600;">
-          <strong>Correct Choice:</strong> ${q.options[q.correctIndex]}
+          <strong>Correct Choice:</strong> ${escapeHTML(q.options[q.correctIndex])}
         </p>
       ` : ''}
     `;
@@ -128,13 +130,14 @@ function renderReviewBreakdown() {
 }
 
 function checkMissedQuestions() {
-  const { major, year, subject, professor } = resultData;
+  const { major, year, semester, subject, professor } = resultData;
   const retryMissedBtn = document.getElementById('retry-missed-btn');
   const missedCountEl = document.getElementById('missed-count');
 
+  const profSlug = professor ? professor.toLowerCase().replace(/\s+/g, '-') : '';
   const key = (typeof getStorageKey === 'function')
-    ? getStorageKey(major, year, subject, professor)
-    : `missed_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${professor.toLowerCase().replace(/\s+/g, '-')}`;
+    ? getStorageKey(major, year, semester, subject, professor)
+    : `missed_${major ? major.toLowerCase() : ''}_y${year}_s${semester}_${subject ? subject.toLowerCase() : ''}_${profSlug}`;
 
   const savedMissed = localStorage.getItem(key);
   const missedList = savedMissed ? JSON.parse(savedMissed) : [];
@@ -156,6 +159,7 @@ function setupActionButtons() {
       const sessionConfig = {
         major: resultData.major,
         year: resultData.year,
+        semester: resultData.semester,
         subject: resultData.subject,
         professor: resultData.professor,
         mode: 'missed'
@@ -186,7 +190,7 @@ function animatePieChartAndCounters(correct, incorrect, total) {
   const centerPercentEl = document.getElementById('center-percent');
   const correctCountEl = document.getElementById('correct-count-display');
   const correctPercentEl = document.getElementById('correct-percent-display');
-  const incorrectCountEl = document contestEl = document.getElementById('incorrect-count-display');
+  const incorrectCountEl = document.getElementById('incorrect-count-display');
   const incorrectPercentEl = document.getElementById('incorrect-percent-display');
 
   const correctAngleDegrees = correctRatio * 360;
@@ -255,4 +259,15 @@ function animatePieChartAndCounters(correct, incorrect, total) {
   }
 
   requestAnimationFrame(runPhase1);
+}
+
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  }[tag] || tag));
 }
