@@ -99,34 +99,78 @@ function renderReviewBreakdown() {
     return;
   }
 
+  // Check saved review style (defaults to 'compact')
+  const reviewStyle = localStorage.getItem('result_review_style') || 'compact';
+
   itemsToDisplay.forEach(({ q, idx, userChoiceIdx, isCorrect }) => {
     const card = document.createElement('div');
     card.classList.add('review-card', isCorrect ? 'correct' : 'incorrect');
     card.style.cssText = `
-      padding: 1rem;
+      padding: 1.25rem;
       border-radius: 8px;
       background: var(--bg-subcard);
       border-left: 4px solid ${isCorrect ? '#10b981' : '#ef4444'};
       border-top: 1px solid var(--border-sub);
       border-right: 1px solid var(--border-sub);
       border-bottom: 1px solid var(--border-sub);
+      margin-bottom: 1rem;
     `;
 
-    const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
-      ? q.options[userChoiceIdx]
-      : getTranslation('review_unanswered');
+    if (reviewStyle === 'compact') {
+      // -------------------------------------------------------------
+      // OLD DESIGN: Compact Text Summary
+      // -------------------------------------------------------------
+      const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
+        ? q.options[userChoiceIdx]
+        : getTranslation('review_unanswered');
 
-    card.innerHTML = `
-      <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
-      <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
-        <strong>${getTranslation('label_your_choice')}:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
-      </p>
-      ${!isCorrect ? `
-        <p style="margin: 0; font-size: 0.9rem; color: #10b981; font-weight: 600;">
-          <strong>${getTranslation('label_correct_choice')}:</strong> ${escapeHTML(q.options[q.correctIndex])}
+      card.innerHTML = `
+        <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
+        <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
+          <strong>${getTranslation('label_your_choice')}:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
         </p>
-      ` : ''}
-    `;
+        ${!isCorrect ? `
+          <p style="margin: 0; font-size: 0.9rem; color: #10b981; font-weight: 600;">
+            <strong>${getTranslation('label_correct_choice')}:</strong> ${escapeHTML(q.options[q.correctIndex])}
+          </p>
+        ` : ''}
+      `;
+    } else {
+      // -------------------------------------------------------------
+      // NEW DESIGN: Full Options Layout (Study Mode Style)
+      // -------------------------------------------------------------
+      const qTitle = `<h4 style="margin: 0 0 0.85rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>`;
+      
+      let optionsHTML = '<div class="options-grid" style="display: flex; flex-direction: column; gap: 0.5rem;">';
+
+      q.options.forEach((optText, optIdx) => {
+        let btnStyle = "pointer-events: none; text-align: left; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;";
+
+        if (optIdx === q.correctIndex) {
+          // Correct Answer -> Green
+          btnStyle += " background-color: #10b981; color: #ffffff; border: 1px solid #059669;";
+        } else if (optIdx === userChoiceIdx && !isCorrect) {
+          // User's Wrong Answer -> Red
+          btnStyle += " background-color: #ef4444; color: #ffffff; border: 1px solid #dc2626;";
+        } else {
+          // Neutral Unselected Option
+          btnStyle += " background-color: var(--bg-subcard); color: var(--text-main); border: 1px solid var(--border-sub); opacity: 0.7;";
+        }
+
+        const isUserChoice = (optIdx === userChoiceIdx);
+        const choiceBadge = isUserChoice ? `<span>${isCorrect ? '✓' : '✗'}</span>` : '';
+
+        optionsHTML += `
+          <button class="option-btn" style="${btnStyle}">
+            <span>${escapeHTML(optText)}</span>
+            ${choiceBadge}
+          </button>
+        `;
+      });
+
+      optionsHTML += '</div>';
+      card.innerHTML = qTitle + optionsHTML;
+    }
 
     reviewContainer.appendChild(card);
   });
