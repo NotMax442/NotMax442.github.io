@@ -1279,11 +1279,11 @@ p {
   box-shadow: none !important;
 }
 
+/* Prevent hover transforms while keeping the orange left accent bar intact */
 #my-feedback-list .subject-card:hover {
   transform: none !important;
-  background-color: var(--bg-inner) !important;
-  border-color: var(--border-color) !important;
   box-shadow: none !important;
+  background-color: var(--bg-inner) !important;
 }
 
 .feedback-status-badge {
