@@ -358,10 +358,6 @@ let patchNotesEN = "";
 let patchNotesKM = "";
 let currentModalLang = "EN"; // Local state for update modal only
 
-document.addEventListener('DOMContentLoaded', () => {
-  initUpdateSystem();
-});
-
 async function initUpdateSystem() {
   const versionBadge = document.getElementById('update-version-badge');
   if (versionBadge) versionBadge.textContent = `v${APP_VERSION}`;
