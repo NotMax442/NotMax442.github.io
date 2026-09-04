@@ -2,28 +2,36 @@
 // HOME PAGE LOGIC (home.js)
 // ==========================================================================
 
-// Nested Data Hierarchy: Major -> Year -> Subject -> [Professors]
+// Nested Data Hierarchy: Major -> Year -> Semester -> Subject -> [Professors]
 const manifestData = {
   "MED": {
     "1": {
-      "I-D-A": ["Dr. Smith", "Dr. John"],
-      "MED-PRO-B1": ["Dr. Alice"],
-      "MED-PRO": ["Dr. Bob"],
-      "MED-PRO-250": ["Dr. Charlie"],
-      "I-D-A-Khmer": ["Dr. Sok"]
+      "1": {
+        "I-D-A": ["Dr. Smith", "Dr. John"],
+        "MED-PRO-B1": ["Dr. Alice"]
+      },
+      "2": {
+        "MED-PRO": ["Dr. Bob"],
+        "MED-PRO-250": ["Dr. Charlie"],
+        "I-D-A-Khmer": ["Dr. Sok"]
+      }
     },
-    "2": {},
-    "3": {},
-    "4": {},
-    "5": {},
+    "2": { "1": {}, "2": {} },
+    "3": { "1": {}, "2": {} },
+    "4": { "1": {}, "2": {} },
+    "5": { "1": {}, "2": {} },
     "6": {
-      "MED-PRO": ["Dr. David"]
+      "1": {
+        "MED-PRO": ["Dr. David"]
+      },
+      "2": {}
     }
   }
 };
 
 let currentMajor = null;
 let currentYear = null;
+let currentSemester = null;
 let currentSubject = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -36,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showScreen(screenId) {
-  const screens = ['landing-screen', 'major-screen', 'year-screen', 'subject-screen', 'professor-screen'];
+  const screens = ['landing-screen', 'major-screen', 'year-screen', 'semester-screen', 'subject-screen', 'professor-screen'];
   screens.forEach(id => {
     const el = document.getElementById(id);
     if (el) {
@@ -51,6 +59,7 @@ function setupNavigation() {
   const backToLandingBtn = document.getElementById('back-to-landing-btn');
   const backToMajorsBtn = document.getElementById('back-to-majors-btn');
   const backToYearsBtn = document.getElementById('back-to-years-btn');
+  const backToSemestersBtn = document.getElementById('back-to-semesters-btn');
   const backToSubjectsBtn = document.getElementById('back-to-subjects-btn');
 
   // Landing -> Major
@@ -70,7 +79,7 @@ function setupNavigation() {
     });
   }
 
-  // Select Major
+  // Select Major -> Show Years
   document.querySelectorAll('#major-grid .year-card').forEach(card => {
     card.addEventListener('click', () => {
       currentMajor = card.getAttribute('data-major');
@@ -89,22 +98,41 @@ function setupNavigation() {
     });
   }
 
-  // Select Year
+  // Select Year -> Show Semesters
   document.querySelectorAll('#year-screen .year-card').forEach(card => {
     card.addEventListener('click', () => {
       currentYear = card.getAttribute('data-year');
       sessionStorage.setItem('lastActiveYear', currentYear);
-      sessionStorage.setItem('lastView', 'subject');
-      showSubjects(currentMajor, currentYear);
+      sessionStorage.setItem('lastView', 'semester');
+      showSemesters(currentMajor, currentYear);
     });
   });
 
-  // Subject -> Year
+  // Semester -> Year
   if (backToYearsBtn) {
     backToYearsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'year');
-      sessionStorage.removeItem('lastActiveSubject');
+      sessionStorage.removeItem('lastActiveSemester');
       showYears(currentMajor);
+    });
+  }
+
+  // Select Semester -> Show Subjects
+  document.querySelectorAll('#semester-screen .year-card').forEach(card => {
+    card.addEventListener('click', () => {
+      currentSemester = card.getAttribute('data-semester');
+      sessionStorage.setItem('lastActiveSemester', currentSemester);
+      sessionStorage.setItem('lastView', 'subject');
+      showSubjects(currentMajor, currentYear, currentSemester);
+    });
+  });
+
+  // Subject -> Semester
+  if (backToSemestersBtn) {
+    backToSemestersBtn.addEventListener('click', () => {
+      sessionStorage.setItem('lastView', 'semester');
+      sessionStorage.removeItem('lastActiveSubject');
+      showSemesters(currentMajor, currentYear);
     });
   }
 
@@ -112,7 +140,7 @@ function setupNavigation() {
   if (backToSubjectsBtn) {
     backToSubjectsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'subject');
-      showSubjects(currentMajor, currentYear);
+      showSubjects(currentMajor, currentYear, currentSemester);
     });
   }
 }
@@ -121,12 +149,15 @@ function restoreLastView() {
   const savedView = sessionStorage.getItem('lastView');
   currentMajor = sessionStorage.getItem('lastActiveMajor');
   currentYear = sessionStorage.getItem('lastActiveYear');
+  currentSemester = sessionStorage.getItem('lastActiveSemester');
   currentSubject = sessionStorage.getItem('lastActiveSubject');
 
-  if (savedView === 'professor' && currentMajor && currentYear && currentSubject) {
-    showProfessors(currentMajor, currentYear, currentSubject);
-  } else if (savedView === 'subject' && currentMajor && currentYear) {
-    showSubjects(currentMajor, currentYear);
+  if (savedView === 'professor' && currentMajor && currentYear && currentSemester && currentSubject) {
+    showProfessors(currentMajor, currentYear, currentSemester, currentSubject);
+  } else if (savedView === 'subject' && currentMajor && currentYear && currentSemester) {
+    showSubjects(currentMajor, currentYear, currentSemester);
+  } else if (savedView === 'semester' && currentMajor && currentYear) {
+    showSemesters(currentMajor, currentYear);
   } else if (savedView === 'year' && currentMajor) {
     showYears(currentMajor);
   } else if (savedView === 'major') {
@@ -142,16 +173,24 @@ function showYears(major) {
   if (title) title.textContent = `${major} - Select Academic Year`;
 }
 
-function showSubjects(major, year) {
+function showSemesters(major, year) {
+  showScreen('semester-screen');
+  const title = document.getElementById('selected-year-title');
+  if (title) title.textContent = `${major} Year ${year} - Select Semester`;
+}
+
+function showSubjects(major, year, semester) {
   showScreen('subject-screen');
   const title = document.getElementById('selected-year-title');
-  if (title) title.textContent = `${major} - Year ${year} Subjects`;
+  if (title) title.textContent = `${major} Y${year} S${semester} - Subjects`;
 
   const subjectList = document.getElementById('subject-list');
   if (!subjectList) return;
   subjectList.innerHTML = '';
 
-  const subjects = manifestData[major]?.[year] ? Object.keys(manifestData[major][year]) : [];
+  const subjects = manifestData[major]?.[year]?.[semester] 
+    ? Object.keys(manifestData[major][year][semester]) 
+    : [];
 
   subjects.forEach(subject => {
     const card = document.createElement('div');
@@ -168,7 +207,7 @@ function showSubjects(major, year) {
       currentSubject = subject;
       sessionStorage.setItem('lastActiveSubject', currentSubject);
       sessionStorage.setItem('lastView', 'professor');
-      showProfessors(major, year, subject);
+      showProfessors(major, year, semester, subject);
     };
 
     card.addEventListener('click', triggerSelect);
@@ -183,7 +222,7 @@ function showSubjects(major, year) {
   });
 }
 
-function showProfessors(major, year, subject) {
+function showProfessors(major, year, semester, subject) {
   showScreen('professor-screen');
   const title = document.getElementById('selected-subject-title');
   if (title) title.textContent = `${subject} - Select Professor`;
@@ -192,14 +231,18 @@ function showProfessors(major, year, subject) {
   if (!profList) return;
   profList.innerHTML = '';
 
-  const professors = manifestData[major]?.[year]?.[subject] || [];
+  const professors = manifestData[major]?.[year]?.[semester]?.[subject] || [];
 
   professors.forEach(prof => {
-    const storageKey = getStorageKey(major, year, subject, prof);
+    const profSlug = prof.toLowerCase().replace(/\s+/g, '-');
+    const storageKey = (typeof getStorageKey === 'function')
+      ? getStorageKey(major, year, semester, subject, prof)
+      : `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
 
-    const studyKey = `saved_study_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${prof.toLowerCase().replace(/\s+/g, '-')}`;
+    const studyKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
     const savedStudyRaw = localStorage.getItem(studyKey);
     let studyProgress = null;
     if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
@@ -215,28 +258,29 @@ function showProfessors(major, year, subject) {
     }
 
     const card = document.createElement('div');
-  card.classList.add('subject-card', 'prof-card'); // Added 'prof-card' class
-  card.innerHTML = `
-    <h3>${prof}</h3>
-    ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question(s)</p>` : ''}
-    <div class="subject-actions">
-      ${continueBtnHTML}
-      <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-      <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">📝 Quiz</button>
-    </div>
-    ${missedCount > 0 ? `
-      <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">🎯 Review Missed (${missedCount})</button>
-      <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">🗑️ Clear Missed</button>
-    ` : ''}
-  `;
-  profList.appendChild(card);
-});
+    card.classList.add('subject-card', 'prof-card');
+    card.innerHTML = `
+      <h3>${prof}</h3>
+      ${missedCount > 0 ? `<p class="missed-badge">⚠️ ${missedCount} saved missed question(s)</p>` : ''}
+      <div class="subject-actions">
+        ${continueBtnHTML}
+        <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
+        <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">📝 Quiz</button>
+      </div>
+      ${missedCount > 0 ? `
+        <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">🎯 Review Missed (${missedCount})</button>
+        <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">🗑️ Clear Missed</button>
+      ` : ''}
+    `;
+    profList.appendChild(card);
+  });
 }
 
 function startSession(profName, mode) {
   const sessionConfig = {
     major: currentMajor,
     year: currentYear,
+    semester: currentSemester,
     subject: currentSubject,
     professor: profName,
     mode: mode,
@@ -250,6 +294,7 @@ function continueStudySession(profName) {
   const sessionConfig = {
     major: currentMajor,
     year: currentYear,
+    semester: currentSemester,
     subject: currentSubject,
     professor: profName,
     mode: 'study',
@@ -263,6 +308,7 @@ function startMissedSession(profName) {
   const sessionConfig = {
     major: currentMajor,
     year: currentYear,
+    semester: currentSemester,
     subject: currentSubject,
     professor: profName,
     mode: 'missed',
@@ -273,7 +319,11 @@ function startMissedSession(profName) {
 }
 
 function clearSavedMissed(profName) {
-  const key = getStorageKey(currentMajor, currentYear, currentSubject, profName);
+  const profSlug = profName.toLowerCase().replace(/\s+/g, '-');
+  const key = (typeof getStorageKey === 'function')
+    ? getStorageKey(currentMajor, currentYear, currentSemester, currentSubject, profName)
+    : `missed_${currentMajor.toLowerCase()}_y${currentYear}_s${currentSemester}_${currentSubject.toLowerCase()}_${profSlug}`;
+
   localStorage.removeItem(key);
-  showProfessors(currentMajor, currentYear, currentSubject);
+  showProfessors(currentMajor, currentYear, currentSemester, currentSubject);
 }
