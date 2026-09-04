@@ -89,7 +89,7 @@ const translations = {
     // Morale Boost Messages
     morale_1: "💪 You can do this! I believe in you.",
     morale_2: "🏃 Don't lose hope. You still have time.",
-    morale_3: "🌟 You can try again. This many incorrect doesn't define who you are.",
+    morale_3: "🌟 You can try again. Maybe next time it'll be better.",
     morale_4: "🌱 Don't be scared, This is not the exam.",
     morale_5: "🛡️ Don't be sad, I'll be here for you until you get a good scoring.",
     morale_6: "🩺 Rest for a bit. Then try again later 💞",
