@@ -2,6 +2,8 @@
 // QUIZ & STUDY RUNNER LOGIC (quiz.js)
 // ==========================================================================
 
+const IMAGE_BASE_URL = 'https://notmax442.github.io/testforuhs-images/';
+
 let sessionConfig = null;
 let questions = [];
 let userAnswers = [];
@@ -55,6 +57,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     fullscreenBtn.addEventListener('click', toggleFullscreen);
   }
 
+  // Wire up Image Zoom Modal Dismissal
+  const imageZoomModal = document.getElementById('image-zoom-modal');
+  if (imageZoomModal) {
+    imageZoomModal.addEventListener('click', () => {
+      imageZoomModal.classList.add('hidden');
+    });
+  }
+
+  // Wire up Quiz Mode Image Click-to-Zoom
+  const quizImg = document.getElementById('question-image');
+  if (quizImg) {
+    quizImg.addEventListener('click', () => {
+      if (quizImg.src) openZoomModal(quizImg.src);
+    });
+  }
+
   // Wire up "Next Question" button click handler
   const nextBtn = document.getElementById('next-btn');
   if (nextBtn) {
@@ -87,6 +105,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupNavigationGuards();
   await initSession();
 });
+
+// Helper: Open Zoom Modal
+function openZoomModal(imgSrc) {
+  const zoomModal = document.getElementById('image-zoom-modal');
+  const zoomedImg = document.getElementById('zoomed-image');
+  if (zoomModal && zoomedImg) {
+    zoomedImg.src = imgSrc;
+    zoomModal.classList.remove('hidden');
+  }
+}
 
 // Helper for generating filename/storage key slugs
 function getProfSlug(profName) {
@@ -417,6 +445,22 @@ function renderStudyMode() {
     qTitle.textContent = `${qIndex + 1}. ${q.question}`;
     qCard.appendChild(qTitle);
 
+    // Render Question Image for Study Mode
+    if (q.image && q.image.trim() !== '') {
+      const imgWrapper = document.createElement('div');
+      imgWrapper.style.cssText = 'text-align: center; margin: 1rem 0;';
+      
+      const img = document.createElement('img');
+      const fullImgUrl = IMAGE_BASE_URL + q.image.trim();
+      img.src = fullImgUrl;
+      img.alt = `Diagram for question ${qIndex + 1}`;
+      img.className = 'question-img';
+      img.addEventListener('click', () => openZoomModal(fullImgUrl));
+
+      imgWrapper.appendChild(img);
+      qCard.appendChild(imgWrapper);
+    }
+
     const optsDiv = document.createElement('div');
     optsDiv.classList.add('options-grid');
     optsDiv.style.cssText = 'display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;';
@@ -535,6 +579,8 @@ function renderQuizQuestion() {
   const optionsContainer = document.getElementById('options-container');
   const progressText = document.getElementById('progress-text');
   const questionText = document.getElementById('question-text');
+  const imgWrapper = document.getElementById('question-image-wrapper');
+  const imgElement = document.getElementById('question-image');
 
   if (nextBtn) nextBtn.classList.add('hidden');
   if (optionsContainer) optionsContainer.innerHTML = '';
@@ -547,6 +593,17 @@ function renderQuizQuestion() {
     });
   }
   if (questionText) questionText.textContent = q.question;
+
+  // Handle Question Image in Quiz Mode
+  if (imgWrapper && imgElement) {
+    if (q.image && q.image.trim() !== '') {
+      imgElement.src = IMAGE_BASE_URL + q.image.trim();
+      imgWrapper.classList.remove('hidden');
+    } else {
+      imgElement.src = '';
+      imgWrapper.classList.add('hidden');
+    }
+  }
 
   if (nextBtn) {
     nextBtn.textContent = (currentQuestionIndex === questions.length - 1)
