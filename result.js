@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupFilterControls() {
   const filterWrongBtn = document.getElementById('filter-wrong-btn');
   const filterAllBtn = document.getElementById('filter-all-btn');
+  const toggleStyleBtn = document.getElementById('toggle-style-btn');
 
   if (filterWrongBtn) {
     filterWrongBtn.addEventListener('click', () => {
@@ -56,6 +57,35 @@ function setupFilterControls() {
       renderReviewBreakdown();
     });
   }
+
+  // Instant Review Style Switcher with Scroll Stability
+  if (toggleStyleBtn) {
+    updateStyleToggleUI();
+
+    toggleStyleBtn.addEventListener('click', () => {
+      const scrollPos = window.scrollY; // Preserve scroll position
+      const currentStyle = localStorage.getItem('result_review_style') || 'compact';
+      const newStyle = currentStyle === 'compact' ? 'full' : 'compact';
+      
+      localStorage.setItem('result_review_style', newStyle);
+      updateStyleToggleUI();
+      renderReviewBreakdown();
+      
+      window.scrollTo({ top: scrollPos, behavior: 'instant' }); // Prevent view jump
+    });
+  }
+}
+
+function updateStyleToggleUI() {
+  const styleLabel = document.getElementById('toggle-style-label');
+  if (!styleLabel) return;
+
+  const currentStyle = localStorage.getItem('result_review_style') || 'compact';
+  const labelText = currentStyle === 'compact' 
+    ? getTranslation('option_style_compact') 
+    : getTranslation('option_style_full');
+
+  styleLabel.textContent = labelText;
 }
 
 function renderReviewBreakdown() {
@@ -118,7 +148,7 @@ function renderReviewBreakdown() {
 
     if (reviewStyle === 'compact') {
       // -------------------------------------------------------------
-      // OLD DESIGN: Compact Text Summary
+      // COMPACT DESIGN: Text Summary
       // -------------------------------------------------------------
       const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
         ? q.options[userChoiceIdx]
@@ -137,7 +167,7 @@ function renderReviewBreakdown() {
       `;
     } else {
       // -------------------------------------------------------------
-      // NEW DESIGN: Full Options Layout (Study Mode Style)
+      // FULL OPTIONS DESIGN: Study Mode Style Options
       // -------------------------------------------------------------
       const qTitle = `<h4 style="margin: 0 0 0.85rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>`;
       
@@ -147,10 +177,10 @@ function renderReviewBreakdown() {
         let btnStyle = "pointer-events: none; text-align: left; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;";
 
         if (optIdx === q.correctIndex) {
-          // Correct Answer -> Green
+          // Correct Answer -> Green Accent
           btnStyle += " background-color: #10b981; color: #ffffff; border: 1px solid #059669;";
         } else if (optIdx === userChoiceIdx && !isCorrect) {
-          // User's Wrong Answer -> Red
+          // User's Wrong Answer -> Red Accent
           btnStyle += " background-color: #ef4444; color: #ffffff; border: 1px solid #dc2626;";
         } else {
           // Neutral Unselected Option
@@ -181,10 +211,9 @@ function checkMissedQuestions() {
   const retryMissedBtn = document.getElementById('retry-missed-btn');
   const missedCountEl = document.getElementById('missed-count');
 
-  const profSlug = professor ? professor.toLowerCase().replace(/\s+/g, '-') : '';
   const key = (typeof getStorageKey === 'function')
     ? getStorageKey(major, year, semester, subject, professor)
-    : `missed_${major ? major.toLowerCase() : ''}_y${year}_s${semester}_${subject ? subject.toLowerCase() : ''}_${profSlug}`;
+    : `missed_${major ? major.toLowerCase() : ''}_y${year}_s${semester}_${subject ? subject.toLowerCase() : ''}_${typeof getProfSlug === 'function' ? getProfSlug(professor) : professor}`;
 
   const savedMissed = localStorage.getItem(key);
   const missedList = savedMissed ? JSON.parse(savedMissed) : [];
