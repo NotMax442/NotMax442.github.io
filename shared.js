@@ -4,50 +4,81 @@
 
 const translations = {
   en: {
+    // Navigation & Modals
     nav_home: "HOME",
     nav_about: "ABOUT",
     nav_contact: "CONTACT US",
     nav_account: "MY ACCOUNT",
-    landing_title: "Medical Study Platform",
-    landing_sub: "Select your year, review saved missed questions, or test your knowledge.",
-    btn_start_study: "🚀 Start Studying",
-    btn_cancel: "Cancel",
-    btn_leave: "Leave",
-    leave_modal_title: "⚠️ Leave Study Session?",
-    leave_modal_desc: "Your active test progress will be lost.",
-    contact_title: "Report Question Error",
-    contact_notice: "Found an incorrect question or answer? Send us a report below!",
-    contact_desc_label: "Description:",
-    contact_submit_btn: "📤 Send Feedback",
-    cooldown_alert: "⏱️ Cooldown Active:\nPlease wait {mins} minute(s) before sending feedback again.",
-    btn_back: "⬅️ Back",
-    account_title: "My Account & Vault",
-    account_empty_vault: "🎉 Fantastic! You have 0 missed questions in your vault.",
-    year_selection_title: "Select Academic Year",
-    year_1: "Year 1",
-    year_2: "Year 2",
-    year_3: "Year 3",
-    year_4: "Year 4",
-    year_5: "Year 5",
-    year_6: "Year 6",
-    semester_selection_title: "Select Semester",
-    semester_1: "Semester 1",
-    semester_2: "Semester 2",
-    btn_back_years: "⬅️ Back to Years",
-    btn_back_semesters: "⬅️ Back to Semesters",
-    btn_study_all: "📖 Study All",
-    btn_quiz: "📝 Quiz",
-    btn_review_missed: "🎯 Review Missed",
-    btn_clear_missed: "🗑️ Clear Saved Missed",
-    subjects_header: "Year {year} S{semester} Subjects",
-    missed_badge: "⚠️ {count} saved missed question(s)",
-    loading_text: "Loading Questions...",
     nav_donate: "☕ Support Us",
     donate_modal_title: "☕ Support testforuhs.com",
     donate_modal_desc: "Your donations help keep the platform free, maintain servers, and add new study features!",
     btn_close: "Close",
     donate_tagline: "Every little bit is greatly appreciated! Thank you for your support 😊",
     donate_cta: "You may donate through our KHQR here.",
+
+    // Landing & Page Headers
+    landing_title: "Medical Study Platform",
+    landing_sub: "Select your year, review saved missed questions, or test your knowledge.",
+    btn_start_study: "🚀 Start Studying",
+    title_select_major: "Select Major",
+    title_select_year: "{major} - Select Academic Year",
+    title_select_semester: "{major} Year {year} - Select Semester",
+    title_subjects: "{major} Y{year} S{semester} - Subjects",
+    title_select_prof: "{subject} - Select Professor",
+    click_select_prof: "Click to select professor",
+
+    // Back Buttons
+    btn_back_home: "⬅️ Back to Home",
+    btn_back_majors: "⬅️ Back to Majors",
+    btn_back_years: "⬅️ Back to Years",
+    btn_back_semesters: "⬅️ Back to Semesters",
+    btn_back_subjects: "⬅️ Back to Subjects",
+
+    // Cards (Major / Year / Semester)
+    major_med: "Medicine (MED)",
+    year_1: "Year 1",
+    year_2: "Year 2",
+    year_3: "Year 3",
+    year_4: "Year 4",
+    year_5: "Year 5",
+    year_6: "Year 6",
+    semester_1: "Semester 1",
+    semester_2: "Semester 2",
+
+    // Study & Professor Actions
+    btn_study_all: "📖 Study All",
+    btn_quiz: "📝 Quiz",
+    btn_review_missed: "🎯 Review Missed",
+    btn_clear_missed: "🗑️ Clear Saved Missed",
+    missed_badge: "⚠️ {count} saved missed question(s)",
+    loading_text: "Loading Questions...",
+
+    // Leave Guard Modal
+    btn_cancel: "Cancel",
+    btn_leave: "Leave",
+    leave_modal_title: "⚠️ Leave Study Session?",
+    leave_modal_desc: "Your active test progress will be lost.",
+
+    // Contact / Feedback Page
+    contact_title: "Report Question Error",
+    contact_notice: "Found an incorrect question or answer? Send us a report below!",
+    contact_desc_label: "Description:",
+    contact_submit_btn: "📤 Send Feedback",
+    cooldown_alert: "⏱️ Cooldown Active:\nPlease wait {mins} minute(s) before sending feedback again.",
+
+    // Vault / Account Page
+    account_title: "My Account & Vault",
+    account_empty_vault: "🎉 Fantastic! You have 0 missed questions in your vault.",
+
+    // About Page
+    about_title: "About TestforUHS",
+    about_sub: "A free, dedicated study and self-assessment platform for medical students.",
+    mission_title: "🎯 Our Mission",
+    mission_desc: "TestforUHS was created to give medical students an intuitive, accessible way to review questions, practice exam simulation, and track missed topics across their academic years—100% free of charge.",
+    funding_title: "🤝 How TestforUHS Stays Free & Funded",
+    funding_desc: "To keep this platform open and free for everyone without charging subscriptions or putting study materials behind paywalls, we cover server, domain, and maintenance costs using transparent methods.",
+
+    // Morale Boost Messages
     morale_1: "💪 Don't give up! Every mistake is a stepping stone toward mastering the material.",
     morale_2: "🏃 Medicine is a marathon, not a sprint. Take a short break, review your missed questions, and try again!",
     morale_3: "🌟 Failure isn't the opposite of success—it's part of it. Keep pushing forward!",
@@ -56,50 +87,81 @@ const translations = {
     morale_6: "🩺 Great doctors are built through persistence. Take a deep breath and dive back in!",
   },
   km: {
+    // Navigation & Modals
     nav_home: "ទំព័រដើម",
     nav_about: "អំពីពួកយើង",
     nav_contact: "ទំនាក់ទំនង",
     nav_account: "គណនីខ្ញុំ",
-    landing_title: "កម្មវិធីសិក្សាវេជ្ជសាស្ត្រ",
-    landing_sub: "ជ្រើសរើសឆ្នាំសិក្សា រំលឹកសំណួរដែលខុស ឬប្រឡងតេស្តសមត្ថភាព។",
-    btn_start_study: "🚀 ចាប់ផ្តើមសិក្សា",
-    btn_cancel: "បោះបង់",
-    btn_leave: "ចាកចេញ",
-    leave_modal_title: "⚠️ តើអ្នកពិតជាចង់ចាកចេញឬ?",
-    leave_modal_desc: "ការវិវឌ្ឍនៃការធ្វើតេស្តរបស់អ្នកនឹងត្រូវបាត់បង់។",
-    contact_title: "ផ្តល់មតិត្រឡប់ / រាយការណ៍កំហុស",
-    contact_notice: "តើអ្នកប្រទះឃើញសំណួរ ឬចម្លើយមិនត្រឹមត្រូវមែនទេ? សូមផ្ញើការរាយការណ៍មកកាន់យើង!",
-    contact_desc_label: "ការបរិយាយ:",
-    contact_submit_btn: "📤 ផ្ញើការរាយការណ៍",
-    cooldown_alert: "⏱️ រយៈពេលរង់ចាំ:\nសូមរង់ចាំ {mins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។",
-    btn_back: "⬅️ ត្រឡប់ក្រោយ",
-    account_title: "គណនី និងឃ្លាំងសំណួររបស់ខ្ញុំ",
-    account_empty_vault: "🎉 អស្ចារ្យណាស់! អ្នកគ្មានសំណួរដែលខុសនៅក្នុងឃ្លាំងទេ។",
-    year_selection_title: "ជ្រើសរើសឆ្នាំសិក្សា",
-    year_1: "ឆ្នាំទី ១",
-    year_2: "ឆ្នាំទី ២",
-    year_3: "ឆ្នាំទី ៣",
-    year_4: "ឆ្នាំទី ៤",
-    year_5: "ឆ្នាំទី ៥",
-    year_6: "ឆ្នាំទី ៦",
-    semester_selection_title: "ជ្រើសរើសឆមាស",
-    semester_1: "ឆមាសទី ១",
-    semester_2: "ឆមាសទី ២",
-    btn_back_years: "⬅️ ត្រឡប់ទៅឆ្នាំ",
-    btn_back_semesters: "⬅️ ត្រឡប់ទៅឆមាស",
-    btn_study_all: "📖 សិក្សាទាំងអស់",
-    btn_quiz: "📝 ប្រឡងតេស្ត",
-    btn_review_missed: "🎯 រំលឹកសំណួរខុស",
-    btn_clear_missed: "🗑️ លុបសំណួរខុស",
-    subjects_header: "មុខវិជ្ជាឆ្នាំទី {year} ឆមាស {semester}",
-    missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
-    loading_text: "កំពុងទាញយកសំណួរ...",
     nav_donate: "☕ ឧបត្ថម្ភ",
     donate_modal_title: "☕ ឧបត្ថម្ភ testforuhs.com",
     donate_modal_desc: "ការឧបត្ថម្ភរបស់លោកអ្នកជួយគាំទ្រដល់ការចំណាយលើ Server និងអភិវឌ្ឍន៍កម្មវិធីសិក្សាឱ្យនៅតែឥតគិតថ្លៃ!",
     btn_close: "បិទ",
     donate_tagline: "ទៅតាមទឹកចិត្តរបស់អ្នករៀងៗខ្លួន។ តិចឬច្រើន គឺជាការលើកទឹកចិត្តយ៉ាងធំធេង! អរគុណសម្រាប់ការគាំទ្រ 😊",
     donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖",
+
+    // Landing & Page Headers
+    landing_title: "កម្មវិធីសិក្សាវេជ្ជសាស្ត្រ",
+    landing_sub: "ជ្រើសរើសឆ្នាំសិក្សា រំលឹកសំណួរដែលខុស ឬប្រឡងតេស្តសមត្ថភាព។",
+    btn_start_study: "🚀 ចាប់ផ្តើមសិក្សា",
+    title_select_major: "ជ្រើសរើសជំនាញសិក្សា",
+    title_select_year: "{major} - ជ្រើសរើសឆ្នាំសិក្សា",
+    title_select_semester: "{major} ឆ្នាំទី {year} - ជ្រើសរើសឆមាស",
+    title_subjects: "មុខវិជ្ជា {major} ឆ្នាំទី {year} ឆមាស {semester}",
+    title_select_prof: "{subject} - ជ្រើសរើសសាស្ត្រាចារ្យ",
+    click_select_prof: "ចុចទីនេះដើម្បីជ្រើសរើសសាស្ត្រាចារ្យ",
+
+    // Back Buttons
+    btn_back_home: "⬅️ ត្រឡប់ទៅទំព័រដើម",
+    btn_back_majors: "⬅️ ត្រឡប់ទៅជំនាញ",
+    btn_back_years: "⬅️ ត្រឡប់ទៅឆ្នាំសិក្សា",
+    btn_back_semesters: "⬅️ ត្រឡប់ទៅឆមាស",
+    btn_back_subjects: "⬅️ ត្រឡប់ទៅមុខវិជ្ជា",
+
+    // Cards (Major / Year / Semester)
+    major_med: "វេជ្ជសាស្ត្រ (MED)",
+    year_1: "ឆ្នាំទី ១",
+    year_2: "ឆ្នាំទី ២",
+    year_3: "ឆ្នាំទី ៣",
+    year_4: "ឆ្នាំទី ៤",
+    year_5: "ឆ្នាំទី ៥",
+    year_6: "ឆ្នាំទី ៦",
+    semester_1: "ឆមាសទី ១",
+    semester_2: "ឆមាសទី ២",
+
+    // Study & Professor Actions
+    btn_study_all: "📖 សិក្សាទាំងអស់",
+    btn_quiz: "📝 ប្រឡងតេស្ត",
+    btn_review_missed: "🎯 រំលឹកសំណួរខុស",
+    btn_clear_missed: "🗑️ លុបសំណួរខុស",
+    missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
+    loading_text: "កំពុងទាញយកសំណួរ...",
+
+    // Leave Guard Modal
+    btn_cancel: "បោះបង់",
+    btn_leave: "ចាកចេញ",
+    leave_modal_title: "⚠️ តើអ្នកពិតជាចង់ចាកចេញឬ?",
+    leave_modal_desc: "ការវិវឌ្ឍនៃការធ្វើតេស្តរបស់អ្នកនឹងត្រូវបាត់បង់។",
+
+    // Contact / Feedback Page
+    contact_title: "ផ្តល់មតិត្រឡប់ / រាយការណ៍កំហុស",
+    contact_notice: "តើអ្នកប្រទះឃើញសំណួរ ឬចម្លើយមិនត្រឹមត្រូវមែនទេ? សូមផ្ញើការរាយការណ៍មកកាន់យើង!",
+    contact_desc_label: "ការបរិយាយ:",
+    contact_submit_btn: "📤 ផ្ញើការរាយការណ៍",
+    cooldown_alert: "⏱️ រយៈពេលរង់ចាំ:\nសូមរង់ចាំ {mins} នាទីទៀតមុនពេលផ្ញើម្តងទៀត។",
+
+    // Vault / Account Page
+    account_title: "គណនី និងឃ្លាំងសំណួររបស់ខ្ញុំ",
+    account_empty_vault: "🎉 អស្ចារ្យណាស់! អ្នកគ្មានសំណួរដែលខុសនៅក្នុងឃ្លាំងទេ។",
+
+    // About Page
+    about_title: "អំពី TestforUHS",
+    about_sub: "កម្មវិធីសិក្សា និងវាយតម្លៃសមត្ថភាពដោយឥតគិតថ្លៃសម្រាប់និស្សិតវេជ្ជសាស្ត្រ។",
+    mission_title: "🎯 បេសកកម្មរបស់យើង",
+    mission_desc: "TestforUHS ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់ជូននិស្សិតវេជ្ជសាស្ត្រនូវវិធីងាយស្រួលក្នុងការរំលឹកសំណួរ ធ្វើតេស្តសមត្ថភាព និងតាមដានសំណួរដែលខុស—ដោយឥតគិតថ្លៃ ១០០%។",
+    funding_title: "🤝 របៀបដែល TestforUHS ដំណើរការដោយឥតគិតថ្លៃ",
+    funding_desc: "ដើម្បីរក្សាកម្មវិធីនេះឱ្យនៅតែបើកចំហ និងឥតគិតថ្លៃសម្រាប់អ្នករាល់គ្នា យើងរ៉ាប់រងការចំណាយលើ Server, Domain និងការថែទាំតាមរយៈវិធីសាស្ត្រតម្លាភាព។",
+
+    // Morale Boost Messages
     morale_1: "💪 កុំចុះចាញ់! គ្រប់កំហុសឆ្គងទាំងអស់គឺជាមេរៀនដើម្បីឈានទៅរកភាពស្ទាត់ជំនាញ។",
     morale_2: "🏃 ការសិក្សាវេជ្ជសាស្ត្រគឺជាការរត់ប្រណាំងចម្ងាយឆ្ងាយ។ សម្រាកបន្តិច រំលឹកសំណួរដែលខុស ហើយព្យាយាមម្តងទៀត!",
     morale_3: "🌟 ការខុសឆ្គងមិនមែនជាការបរាជ័យទេ ប៉ុន្តែវាជាផ្នែកមួយនៃភាពជោគជ័យ។ បន្តប្រឹងប្រែងទៅមុខទៀត!",
@@ -110,6 +172,19 @@ const translations = {
 };
 
 const currentLang = localStorage.getItem('app_language') || 'en';
+
+// Dynamic string translation helper with parameter substitution (e.g. {year}, {major})
+function getTranslation(key, params = {}) {
+  let str = (translations[currentLang] && translations[currentLang][key]) 
+    || (translations.en && translations.en[key]) 
+    || key;
+
+  Object.keys(params).forEach(param => {
+    str = str.replace(new RegExp(`\\{${param}\\}`, 'g'), params[param]);
+  });
+
+  return str;
+}
 
 function applyStaticTranslations() {
   document.documentElement.setAttribute('lang', currentLang);
