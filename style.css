@@ -12,6 +12,22 @@
   --border-color: #334155;
   --border-sub: #475569;
   --badge-warning: #f59e0b;
+
+  /* Theme-aware Navigation Card Colors (Dark Mode) */
+  --major-bg: #0f766e;
+  --major-hover: #14b8a6;
+  --major-border: #2dd4bf;
+  --major-shadow: rgba(20, 184, 166, 0.35);
+
+  --year-bg: #1e40af;
+  --year-hover: #3b82f6;
+  --year-border: #60a5fa;
+  --year-shadow: rgba(59, 130, 246, 0.35);
+
+  --semester-bg: #3730a3;
+  --semester-hover: #4f46e5;
+  --semester-border: #818cf8;
+  --semester-shadow: rgba(99, 102, 241, 0.35);
 }
 
 [data-theme="light"] {
@@ -25,6 +41,22 @@
   --border-color: #94a3b8; /* Medium grey borders */
   --border-sub: #cbd5e1;    /* Subtle inner borders */
   --badge-warning: #d97706;
+
+  /* Theme-aware Navigation Card Colors (Light Mode) */
+  --major-bg: #0d9488;
+  --major-hover: #0f766e;
+  --major-border: #14b8a6;
+  --major-shadow: rgba(13, 148, 136, 0.25);
+
+  --year-bg: #2563eb;
+  --year-hover: #1d4ed8;
+  --year-border: #3b82f6;
+  --year-shadow: rgba(37, 99, 235, 0.25);
+
+  --semester-bg: #4f46e5;
+  --semester-hover: #3730a3;
+  --semester-border: #6366f1;
+  --semester-shadow: rgba(79, 70, 229, 0.25);
 }
 
 /* ==========================================================================
@@ -260,13 +292,13 @@ p {
   gap: 1.25rem;
 }
 
-/* Base Year & Major Card Styling */
+/* Base Navigation Card Styling */
 .year-card {
-  color: #ffffff;
+  color: #ffffff !important;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.25rem;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
@@ -274,32 +306,30 @@ p {
 
 /* --- MAJOR CARDS (Teal Accent) --- */
 .year-card[data-major] {
-  background-color: #0f766e;
-  border: 1px solid #14b8a6;
+  background-color: var(--major-bg);
+  border: 1.5px solid var(--major-border);
 }
 
 .year-card[data-major]:hover {
   transform: scale(1.03);
-  background-color: #0d9488;
-  border-color: #2dd4bf;
-  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.4);
+  background-color: var(--major-hover);
+  box-shadow: 0 8px 22px var(--major-shadow);
 }
 
 .year-card[data-major]:active {
   transform: scale(1.05);
 }
 
-/* --- YEAR CARDS (Uniform Royal Blue for All Years 1-6) --- */
+/* --- YEAR CARDS (Royal Blue) --- */
 .year-card[data-year] {
-  background-color: #1e3a8a;
-  border: 1px solid #3b82f6;
+  background-color: var(--year-bg);
+  border: 1.5px solid var(--year-border);
 }
 
 .year-card[data-year]:hover {
   transform: scale(1.03);
-  background-color: #2563eb;
-  border-color: #60a5fa;
-  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.4);
+  background-color: var(--year-hover);
+  box-shadow: 0 8px 22px var(--year-shadow);
 }
 
 .year-card[data-year]:active {
@@ -308,15 +338,14 @@ p {
 
 /* --- SEMESTER CARDS (Indigo Accent) --- */
 .year-card[data-semester] {
-  background-color: #312e81;
-  border: 1px solid #6366f1;
+  background-color: var(--semester-bg);
+  border: 1.5px solid var(--semester-border);
 }
 
 .year-card[data-semester]:hover {
   transform: scale(1.03);
-  background-color: #4338ca;
-  border-color: #818cf8;
-  box-shadow: 0 8px 22px rgba(67, 56, 202, 0.4);
+  background-color: var(--semester-hover);
+  box-shadow: 0 8px 22px var(--semester-shadow);
 }
 
 .year-card[data-semester]:active {
@@ -426,6 +455,7 @@ p {
   background-color: #ef4444;
   color: white;
 }
+
 /* ==========================================================================
    6. QUIZ & STUDY SESSION CARDS
    ========================================================================== */
@@ -493,7 +523,7 @@ p {
 }
 
 [data-theme="light"] .option-btn:hover {
-  background-color: #e0f2fe;                   /* Soft sky-blue tint */
+  background-color: #e0f2fe;                    /* Soft sky-blue tint */
   border-color: var(--text-heading);
 }
 
@@ -1184,6 +1214,7 @@ p {
     font-size: 1.1rem;
   }
 }
+
 /* --- Fix Mobile Fullscreen Shrinking --- */
 :fullscreen,
 :-webkit-full-screen {
@@ -1254,6 +1285,7 @@ p {
   stroke-dasharray: 251.327;
   stroke-dashoffset: 251.327;
 }
+
 .pie-center-text {
   position: absolute;
   top: 50%;
