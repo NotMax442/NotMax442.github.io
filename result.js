@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. Trigger the Pie Chart & Counter Animation
   animatePieChartAndCounters(correctCount, incorrectCount, totalQuestions);
 
+  // 3. Render Morale Boost Banner if score is under 50%
+  renderMoraleBoost(correctCount, totalQuestions);
+
   setupFilterControls();
   renderReviewBreakdown();
   checkMissedQuestions();
@@ -35,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Suppress error if adblocker is active
   }
 });
-
 function setupFilterControls() {
   const filterWrongBtn = document.getElementById('filter-wrong-btn');
   const filterAllBtn = document.getElementById('filter-all-btn');
