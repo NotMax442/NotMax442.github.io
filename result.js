@@ -273,3 +273,40 @@ function escapeHTML(str) {
     '"': '&quot;'
   }[tag] || tag));
 }
+
+function renderMoraleBoost(correct, total) {
+  const container = document.getElementById('morale-boost-banner');
+  if (!container) return;
+
+  const accuracy = total > 0 ? (correct / total) * 100 : 0;
+
+  if (accuracy < 50) {
+    const randomIndex = Math.floor(Math.random() * 6) + 1;
+    const key = `morale_${randomIndex}`;
+
+    const lang = localStorage.getItem('app_language') || 'en';
+    const message = (typeof translations !== 'undefined' && translations[lang] && translations[lang][key])
+      ? translations[lang][key]
+      : (typeof translations !== 'undefined' && translations.en[key])
+        ? translations.en[key]
+        : "💪 Keep going! Mistakes are just stepping stones to mastery.";
+
+    container.innerHTML = `
+      <div class="score-card" style="
+        background: rgba(239, 68, 68, 0.1); 
+        border: 1px solid #ef4444; 
+        padding: 1rem 1.25rem; 
+        margin-bottom: 1.5rem; 
+        border-radius: 10px;
+        text-align: center;">
+        <p style="margin: 0; color: var(--text-main); font-weight: 600; font-size: 0.95rem; line-height: 1.5;">
+          ${message}
+        </p>
+      </div>
+    `;
+    container.classList.remove('hidden');
+  } else {
+    container.innerHTML = '';
+    container.classList.add('hidden');
+  }
+}
