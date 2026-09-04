@@ -149,6 +149,8 @@ const translations = {
     account_review_style_desc: "Choose whether to display result reviews as a compact text summary or full study-style options.",
     option_style_compact: "Compact (Text Summary)",
     option_style_full: "Full Options (Study Style)",
+    option_style_compact: "Compact View",
+    option_style_full: "Full Options View",
 
     // continue study
     
@@ -300,6 +302,8 @@ const translations = {
     account_review_style_desc: "ជ្រើសរើសរវាងទម្រង់សង្ខេប (អត្ថបទ) ឬទម្រង់បង្ហាញជម្រើសទាំងអស់ (ដូច Study Mode)។",
     option_style_compact: "ទម្រង់សង្ខេប (អត្ថបទ)",
     option_style_full: "ទម្រង់បង្ហាញជម្រើសទាំងអស់",
+    option_style_compact: "ទម្រង់សង្ខេប",
+    option_style_full: "ទម្រង់ពេញ",
 
     // continue studying
     
