@@ -140,7 +140,6 @@ const translations = {
     leave_modal_desc_quiz: "Are you sure you want to leave? Your active timed quiz progress will be lost.",
 
     // result
-
     review_perfect_score: "🎉 Perfect score! You answered all questions correctly!",
     review_unanswered: "⚠️ Unanswered / Skipped",
     label_your_choice: "Your Choice",
@@ -153,9 +152,12 @@ const translations = {
     option_style_full: "Full Options View",
 
     // continue study
-    
     btn_continue_study: "▶️ Continue ({answered}/{total})",
     btn_restart_study: "🔄 Restart Study All",
+
+    // coming soon
+    coming_soon_title: "Coming Soon!",
+    coming_soon_sub: "Content for this section is currently being prepared.",
   },
   km: {
     // Navigation & Modals
@@ -306,9 +308,13 @@ const translations = {
     option_style_full: "ទម្រង់ពេញ",
 
     // continue studying
-    
     btn_continue_study: "▶️ បន្ត ({answered}/{total})",
     btn_restart_study: "🔄 ចាប់ផ្តើមសិក្សាឡើងវិញ",
+
+    // coming soon
+    coming_soon_title: "នឹងមកដល់ឆាប់ៗនេះ!",
+    coming_soon_sub: "កន្លែងនេះនឹងមកឆាប់ៗ។",
+    
   }
 };
 
