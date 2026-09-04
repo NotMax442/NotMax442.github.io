@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 2. Initialize Result Review Style Setting
+  const reviewStyleSelect = document.getElementById('review-style-select');
+  if (reviewStyleSelect) {
+    const savedStyle = localStorage.getItem('result_review_style') || 'compact';
+    reviewStyleSelect.value = savedStyle;
+
+    reviewStyleSelect.addEventListener('change', (e) => {
+      localStorage.setItem('result_review_style', e.target.value);
+    });
+  }
+
   // 2. Initialize Vault Dashboard & Listeners
   renderAccountDashboard();
 
