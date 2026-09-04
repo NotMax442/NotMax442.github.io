@@ -167,19 +167,19 @@ function restoreLastView() {
 function showYears(major) {
   showScreen('year-screen');
   const title = document.getElementById('selected-major-title');
-  if (title) title.textContent = `${major} - Select Academic Year`;
+  if (title) title.textContent = getTranslation('title_select_year', { major });
 }
 
 function showSemesters(major, year) {
   showScreen('semester-screen');
   const title = document.getElementById('selected-year-title');
-  if (title) title.textContent = `${major} Year ${year} - Select Semester`;
+  if (title) title.textContent = getTranslation('title_select_semester', { major, year });
 }
 
 function showSubjects(major, year, semester) {
   showScreen('subject-screen');
-  const title = document.getElementById('selected-year-title');
-  if (title) title.textContent = `${major} Y${year} S${semester} - Subjects`;
+  const title = document.getElementById('selected-subject-screen-title');
+  if (title) title.textContent = getTranslation('title_subjects', { major, year, semester });
 
   const subjectList = document.getElementById('subject-list');
   if (!subjectList) return;
@@ -197,7 +197,7 @@ function showSubjects(major, year, semester) {
 
     card.innerHTML = `
       <h3>${subject}</h3>
-      <p style="color:var(--text-sub); font-size:0.85rem; margin-bottom: 0;">Click to select professor</p>
+      <p style="color:var(--text-sub); font-size:0.85rem; margin-bottom: 0;">${getTranslation('click_select_prof')}</p>
     `;
 
     const triggerSelect = () => {
@@ -208,21 +208,14 @@ function showSubjects(major, year, semester) {
     };
 
     card.addEventListener('click', triggerSelect);
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        triggerSelect();
-      }
-    });
-
     subjectList.appendChild(card);
   });
 }
 
 function showProfessors(major, year, semester, subject) {
   showScreen('professor-screen');
-  const title = document.getElementById('selected-subject-title');
-  if (title) title.textContent = `${subject} - Select Professor`;
+  const title = document.getElementById('selected-prof-screen-title');
+  if (title) title.textContent = getTranslation('title_select_prof', { subject });
 
   const profList = document.getElementById('professor-list');
   if (!profList) return;
