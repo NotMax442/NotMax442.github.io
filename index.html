@@ -63,57 +63,56 @@
     <div id="landing-screen" class="screen">
       <h1 data-i18n="landing_title">Medical Study Platform</h1>
       <p data-i18n="landing_sub">Select your major, year, subject, and professor to start studying.</p>
-      <button id="enter-study-btn" class="btn primary-btn"
+      <button id="enter-study-btn" class="btn primary-btn" data-i18n="btn_start_study"
         style="margin-top: 1.5rem; font-size: 1.1rem; padding: 0.75rem 2rem;">🚀 Start Studying</button>
     </div>
 
     <!-- 2. Major Selection Screen -->
     <div id="major-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-landing-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Home</button>
-      <h2>Select Major</h2>
+      <button id="back-to-landing-btn" class="btn back-btn" data-i18n="btn_back_home" style="margin-bottom: 1rem;">⬅️ Back to Home</button>
+      <h2 data-i18n="title_select_major">Select Major</h2>
       <div id="major-grid" class="year-grid">
-        <div class="year-card" data-major="MED">
+        <div class="year-card" data-major="MED" data-i18n="major_med">
           Medicine (MED)
         </div>
-        <!-- Future majors will be added here -->
       </div>
     </div>
 
     <!-- 3. Year Selection Section -->
     <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-majors-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Majors</button>
+      <button id="back-to-majors-btn" class="btn back-btn" data-i18n="btn_back_majors" style="margin-bottom: 1rem;">⬅️ Back to Majors</button>
       <h2 id="selected-major-title">Select Academic Year</h2>
       <div class="year-grid">
-        <div class="year-card" data-year="1">Year 1</div>
-        <div class="year-card" data-year="2">Year 2</div>
-        <div class="year-card" data-year="3">Year 3</div>
-        <div class="year-card" data-year="4">Year 4</div>
-        <div class="year-card" data-year="5">Year 5</div>
-        <div class="year-card" data-year="6">Year 6</div>
+        <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
+        <div class="year-card" data-year="2" data-i18n="year_2">Year 2</div>
+        <div class="year-card" data-year="3" data-i18n="year_3">Year 3</div>
+        <div class="year-card" data-year="4" data-i18n="year_4">Year 4</div>
+        <div class="year-card" data-year="5" data-i18n="year_5">Year 5</div>
+        <div class="year-card" data-year="6" data-i18n="year_6">Year 6</div>
       </div>
     </div>
 
     <!-- 3. Semester Selection Screen -->
     <div id="semester-screen" class="screen hidden" style="margin-top: 1rem;">
-       <button id="back-to-years-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Years</button>
+       <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years" style="margin-bottom: 1rem;">⬅️ Back to Years</button>
        <h2 id="selected-year-title">Select Semester</h2>
        <div class="year-grid">
-         <div class="year-card" data-semester="1">Semester 1</div>
-         <div class="year-card" data-semester="2">Semester 2</div>
+         <div class="year-card" data-semester="1" data-i18n="semester_1">Semester 1</div>
+         <div class="year-card" data-semester="2" data-i18n="semester_2">Semester 2</div>
        </div>
    </div>
 
     <!-- 4. Subject Selection Section -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-semesters-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Semesters</button>
-      <h2 id="selected-year-title">Subjects</h2>
+      <button id="back-to-semesters-btn" class="btn back-btn" data-i18n="btn_back_semesters" style="margin-bottom: 1rem;">⬅️ Back to Semesters</button>
+      <h2 id="selected-subject-screen-title">Subjects</h2>
       <div id="subject-list" class="subject-grid"></div>
     </div>
 
     <!-- 5. Professor Selection Section -->
     <div id="professor-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-subjects-btn" class="btn back-btn" style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
-      <h2 id="selected-subject-title">Professors</h2>
+      <button id="back-to-subjects-btn" class="btn back-btn" data-i18n="btn_back_subjects" style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
+      <h2 id="selected-prof-screen-title">Professors</h2>
       <div id="professor-list" class="subject-grid"></div>
     </div>
 
