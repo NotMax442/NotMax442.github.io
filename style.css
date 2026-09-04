@@ -306,6 +306,23 @@ p {
   transform: scale(1.05);
 }
 
+/* --- SEMESTER CARDS (Indigo Accent) --- */
+.year-card[data-semester] {
+  background-color: #312e81;
+  border: 1px solid #6366f1;
+}
+
+.year-card[data-semester]:hover {
+  transform: scale(1.03);
+  background-color: #4338ca;
+  border-color: #818cf8;
+  box-shadow: 0 8px 22px rgba(67, 56, 202, 0.4);
+}
+
+.year-card[data-semester]:active {
+  transform: scale(1.05);
+}
+
 .subject-grid {
   display: flex;
   flex-direction: column;
