@@ -189,6 +189,17 @@ function showSubjects(major, year, semester) {
     ? Object.keys(manifestData[major][year][semester]) 
     : [];
 
+  // Render "Coming Soon!" card if no subjects exist for this semester
+  if (subjects.length === 0) { // or professors.length === 0
+    subjectList.innerHTML = `
+      <div class="subject-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
+        <h3 style="color: var(--text-heading); font-size: 1.4rem; margin-bottom: 0.5rem;">${getTranslation('coming_soon_title')}</h3>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 0;">${getTranslation('coming_soon_sub')}</p>
+      </div>
+    `;
+    return;
+  }
+
   subjects.forEach(subject => {
     const card = document.createElement('div');
     card.classList.add('subject-card');
@@ -223,6 +234,17 @@ function showProfessors(major, year, semester, subject) {
 
   const professors = manifestData[major]?.[year]?.[semester]?.[subject] || [];
 
+  // Render "Coming Soon!" card if no professors exist for this subject
+  if (professors.length === 0) { // or professors.length === 0
+    professors.innerHTML = `
+      <div class="subject-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
+        <h3 style="color: var(--text-heading); font-size: 1.4rem; margin-bottom: 0.5rem;">${getTranslation('coming_soon_title')}</h3>
+        <p style="color: var(--text-sub); font-size: 0.95rem; margin-bottom: 0;">${getTranslation('coming_soon_sub')}</p>
+      </div>
+    `;
+    return;
+  }
+
   professors.forEach(prof => {
     const profSlug = getProfSlug(prof);
     const storageKey = getStorageKey(major, year, semester, subject, prof);
@@ -247,6 +269,31 @@ function showProfessors(major, year, semester, subject) {
         studyBtnLabel = getTranslation('btn_restart_study');
       }
     }
+
+    const card = document.createElement('div');
+    card.classList.add('subject-card', 'prof-card');
+    card.innerHTML = `
+      <h3>${prof}</h3>
+      ${missedCount > 0 ? `<p class="missed-badge">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
+      
+      <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
+        ${continueBtnHTML}
+        <div class="btn-row-dual">
+          <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
+          <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">${getTranslation('btn_quiz')}</button>
+        </div>
+      </div>
+
+      ${missedCount > 0 ? `
+        <div class="btn-row-dual" style="margin-top: 0.5rem;">
+          <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">${getTranslation('btn_review_missed')}</button>
+          <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">${getTranslation('btn_clear_missed')}</button>
+        </div>
+      ` : ''}
+    `;
+    profList.appendChild(card);
+  });
+}
 
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
