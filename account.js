@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const bulkControls = document.getElementById('bulk-controls');
       if (isSelectMode) {
-        toggleSelectModeBtn.textContent = '❌ Cancel';
+        toggleSelectModeBtn.textContent = getTranslation('btn_cancel_select');
         if (bulkControls) bulkControls.classList.remove('hidden');
       } else {
-        toggleSelectModeBtn.textContent = '☑️ Select';
+        toggleSelectModeBtn.textContent = getTranslation('btn_select');
         if (bulkControls) bulkControls.classList.add('hidden');
       }
       
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (selectedSubjectKeys.size === 0) return;
       const deleteWarningText = document.getElementById('delete-warning-text');
       if (deleteWarningText) {
-        deleteWarningText.textContent = `Are you sure you want to permanently delete missed questions from ${selectedSubjectKeys.size} selected subject(s)?`;
+        deleteWarningText.textContent = getTranslation('delete_modal_desc', { count: selectedSubjectKeys.size });
       }
       if (deleteConfirmModal) deleteConfirmModal.classList.remove('hidden');
     });
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isSelectMode = false;
       
       const bulkControls = document.getElementById('bulk-controls');
-      if (toggleSelectModeBtn) toggleSelectModeBtn.textContent = '☑️ Select';
+      if (toggleSelectModeBtn) toggleSelectModeBtn.textContent = getTranslation('btn_select');
       if (bulkControls) bulkControls.classList.add('hidden');
       if (deleteConfirmModal) deleteConfirmModal.classList.add('hidden');
       
@@ -117,14 +117,14 @@ function updateDeleteButtonState() {
   if (!deleteSelectedBtn) return;
 
   const count = selectedSubjectKeys.size;
-  deleteSelectedBtn.textContent = `🗑️ Delete Selected (${count})`;
+  deleteSelectedBtn.textContent = getTranslation('btn_delete_selected', { count });
   deleteSelectedBtn.disabled = count === 0;
 
   if (selectAllBtn) {
     const totalCards = document.querySelectorAll('.card-checkbox').length;
     selectAllBtn.textContent = (totalCards > 0 && selectedSubjectKeys.size === totalCards) 
-      ? 'Deselect All' 
-      : 'Select All';
+      ? getTranslation('btn_deselect_all') 
+      : getTranslation('btn_select_all');
   }
 }
 
@@ -184,17 +184,20 @@ function renderAccountDashboard() {
         ? `<input type="checkbox" class="card-checkbox" data-key="${key}" ${isChecked}>` 
         : '';
 
+      const missedText = getTranslation('missed_badge', { count: missedArray.length });
+      const profText = getTranslation('card_prof_label', { prof: formattedProf });
+
       card.innerHTML = `
         <div style="display: flex; gap: 1rem; align-items: flex-start;">
           ${checkboxHTML}
           <div style="flex: 1;">
             <h3>${major} Year ${year} - ${subject}</h3>
-            <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: var(--text-heading); font-weight: 600;">👨‍🏫 Professor: ${formattedProf}</p>
-            <p class="missed-badge">⚠️ ${missedArray.length} Missed Question${missedArray.length > 1 ? 's' : ''} Saved</p>
+            <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: var(--text-heading); font-weight: 600;">${profText}</p>
+            <p class="missed-badge">${missedText}</p>
             ${!isSelectMode ? `
               <div class="subject-actions" style="flex-direction: column;">
-                <button class="btn study-missed-btn" onclick="launchAccountReview('${major}', '${year}', '${subject}', '${formattedProf}')">🎯 Practice Missed (${missedArray.length})</button>
-                <button class="btn primary-btn" onclick="promptAnkiExport('${key}')">📦 Export to Anki (.txt)</button>
+                <button class="btn study-missed-btn" onclick="launchAccountReview('${major}', '${year}', '${subject}', '${formattedProf}')">${getTranslation('card_practice_missed', { count: missedArray.length })}</button>
+                <button class="btn primary-btn" onclick="promptAnkiExport('${key}')">${getTranslation('card_export_anki')}</button>
               </div>
             ` : ''}
           </div>
@@ -225,12 +228,9 @@ function renderAccountDashboard() {
     if (toggleSelectModeBtn) toggleSelectModeBtn.classList.add('hidden');
     if (bulkControls) bulkControls.classList.add('hidden');
     
-    const emptyText = translations[currentLang]?.account_empty_vault 
-      || "🎉 Fantastic! You have 0 missed questions in your vault.";
-
     accountSubjectList.innerHTML = `
       <div class="score-card" style="text-align: center; padding: 2rem;">
-        <p style="margin: 0; color: var(--text-sub);" data-i18n="account_empty_vault">${emptyText}</p>
+        <p style="margin: 0; color: var(--text-sub);" data-i18n="account_empty_vault">${getTranslation('account_empty_vault')}</p>
       </div>
     `;
   } else {
