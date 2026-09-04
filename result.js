@@ -64,7 +64,7 @@ function setupFilterControls() {
 
     toggleStyleBtn.addEventListener('click', () => {
       const scrollPos = window.scrollY; // Preserve scroll position
-      const currentStyle = localStorage.getItem('result_review_style') || 'compact';
+      const currentStyle = localStorage.getItem('result_review_style') || 'full';
       const newStyle = currentStyle === 'compact' ? 'full' : 'compact';
       
       localStorage.setItem('result_review_style', newStyle);
@@ -80,7 +80,7 @@ function updateStyleToggleUI() {
   const styleLabel = document.getElementById('toggle-style-label');
   if (!styleLabel) return;
 
-  const currentStyle = localStorage.getItem('result_review_style') || 'compact';
+  const currentStyle = localStorage.getItem('result_review_style') || 'full';
   const labelText = currentStyle === 'compact' 
     ? getTranslation('option_style_compact') 
     : getTranslation('option_style_full');
@@ -130,7 +130,7 @@ function renderReviewBreakdown() {
   }
 
   // Check saved review style (defaults to 'compact')
-  const reviewStyle = localStorage.getItem('result_review_style') || 'compact';
+  const reviewStyle = localStorage.getItem('result_review_style') || 'full';
 
   itemsToDisplay.forEach(({ q, idx, userChoiceIdx, isCorrect }) => {
     const card = document.createElement('div');
