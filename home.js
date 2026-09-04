@@ -36,10 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   restoreLastView();
   initUpdateSystem();
-
-  try {
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
-  } catch (e) {}
 });
 
 function showScreen(screenId) {
@@ -463,3 +459,4 @@ function showUpdateModal() {
   const modal = document.getElementById('update-modal');
   if (modal) modal.classList.remove('hidden');
 }
+
