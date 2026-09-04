@@ -389,10 +389,33 @@ async function fetchPatchNotes() {
   renderModalContent();
 }
 
+function parseSimpleMarkdown(text) {
+  if (!text) return "";
+
+  // 1. Escape HTML special characters to prevent XSS
+  let html = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // 2. **bold text** -> <strong>bold text</strong>
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  // 3. ## Section Headers -> <h3>Header</h3>
+  html = html.replace(/^## (.*$)/gim, '<h3 style="margin: 1rem 0 0.4rem; color: var(--text-heading);">$1</h3>');
+
+  // 4. Bullet points (- item or * item) -> styled bullet items
+  html = html.replace(/^[\-\*]\s+(.*$)/gim, '<li style="margin-left: 1.2rem; list-style-type: disc; margin-bottom: 0.25rem;">$1</li>');
+
+  return html;
+}
+
 function renderModalContent() {
   const container = document.getElementById('update-text-container');
   if (!container) return;
-  container.textContent = currentModalLang === "EN" ? patchNotesEN : patchNotesKM;
+
+  const rawText = currentModalLang === "EN" ? patchNotesEN : patchNotesKM;
+  container.innerHTML = parseSimpleMarkdown(rawText);
 }
 
 function setupUpdateModalListeners() {
