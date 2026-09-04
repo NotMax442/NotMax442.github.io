@@ -1,5 +1,5 @@
 // ==========================================================================
-// RESULTS & REVIEW BREAKDOWN LOGIC (result.html)
+// RESULTS & REVIEW BREAKDOWN LOGIC (result.js)
 // ==========================================================================
 
 let resultData = null;
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Suppress error if adblocker is active
   }
 });
+
 function setupFilterControls() {
   const filterWrongBtn = document.getElementById('filter-wrong-btn');
   const filterAllBtn = document.getElementById('filter-all-btn');
@@ -92,7 +93,7 @@ function renderReviewBreakdown() {
   if (itemsToDisplay.length === 0 && currentReviewFilter === 'wrong') {
     reviewContainer.innerHTML = `
       <div class="score-card" style="text-align: center; padding: 1.5rem;">
-        <p style="margin: 0; color: #10b981; font-weight: 600;">🎉 Perfect score! You answered all questions correctly!</p>
+        <p style="margin: 0; color: #10b981; font-weight: 600;">${getTranslation('review_perfect_score')}</p>
       </div>
     `;
     return;
@@ -113,16 +114,16 @@ function renderReviewBreakdown() {
 
     const userChoiceText = (userChoiceIdx !== null && userChoiceIdx !== undefined)
       ? q.options[userChoiceIdx]
-      : "⚠️ Unanswered / Skipped";
+      : getTranslation('review_unanswered');
 
     card.innerHTML = `
       <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
       <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
-        <strong>Your Choice:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
+        <strong>${getTranslation('label_your_choice')}:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
       </p>
       ${!isCorrect ? `
         <p style="margin: 0; font-size: 0.9rem; color: #10b981; font-weight: 600;">
-          <strong>Correct Choice:</strong> ${escapeHTML(q.options[q.correctIndex])}
+          <strong>${getTranslation('label_correct_choice')}:</strong> ${escapeHTML(q.options[q.correctIndex])}
         </p>
       ` : ''}
     `;
@@ -270,7 +271,7 @@ function escapeHTML(str) {
     '<': '&lt;',
     '>': '&gt;',
     "'": '&#39;',
-    '"': '&quot;'
+    '"': '&#34;'
   }[tag] || tag));
 }
 
@@ -282,14 +283,7 @@ function renderMoraleBoost(correct, total) {
 
   if (accuracy < 50) {
     const randomIndex = Math.floor(Math.random() * 6) + 1;
-    const key = `morale_${randomIndex}`;
-
-    const lang = localStorage.getItem('app_language') || 'en';
-    const message = (typeof translations !== 'undefined' && translations[lang] && translations[lang][key])
-      ? translations[lang][key]
-      : (typeof translations !== 'undefined' && translations.en[key])
-        ? translations.en[key]
-        : "💪 Keep going! Mistakes are just stepping stones to mastery.";
+    const message = getTranslation(`morale_${randomIndex}`);
 
     container.innerHTML = `
       <div class="score-card" style="
