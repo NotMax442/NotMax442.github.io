@@ -2,6 +2,8 @@
 // RESULTS & REVIEW BREAKDOWN LOGIC (result.js)
 // ==========================================================================
 
+const IMAGE_BASE_URL = 'https://notmax442.github.io/testforuhs-images/';
+
 let resultData = null;
 let currentReviewFilter = 'wrong';
 
@@ -11,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!rawResult) {
     window.location.href = '/';
     return;
+  }
+
+  // Wire up zoom modal dismissal
+  const imageZoomModal = document.getElementById('image-zoom-modal');
+  if (imageZoomModal) {
+    imageZoomModal.addEventListener('click', () => {
+      imageZoomModal.classList.add('hidden');
+    });
   }
 
   // Populate global resultData
@@ -38,6 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Suppress error if adblocker is active
   }
 });
+
+// Helper: Open Image Zoom Modal
+function openZoomModal(imgSrc) {
+  const zoomModal = document.getElementById('image-zoom-modal');
+  const zoomedImg = document.getElementById('zoomed-image');
+  if (zoomModal && zoomedImg) {
+    zoomedImg.src = imgSrc;
+    zoomModal.classList.remove('hidden');
+  }
+}
 
 function setupFilterControls() {
   const filterWrongBtn = document.getElementById('filter-wrong-btn');
@@ -129,7 +149,7 @@ function renderReviewBreakdown() {
     return;
   }
 
-  // Check saved review style (defaults to 'compact')
+  // Check saved review style (defaults to 'full')
   const reviewStyle = localStorage.getItem('result_review_style') || 'full';
 
   itemsToDisplay.forEach(({ q, idx, userChoiceIdx, isCorrect }) => {
@@ -146,6 +166,17 @@ function renderReviewBreakdown() {
       margin-bottom: 1rem;
     `;
 
+    // Construct Image HTML if diagram exists
+    let imgHTML = '';
+    if (q.image && q.image.trim() !== '') {
+      const fullImgUrl = IMAGE_BASE_URL + q.image.trim();
+      imgHTML = `
+        <div style="text-align: center; margin: 0.75rem 0;">
+          <img src="${fullImgUrl}" alt="Question Diagram" class="question-img" onclick="openZoomModal('${fullImgUrl}')" />
+        </div>
+      `;
+    }
+
     if (reviewStyle === 'compact') {
       // -------------------------------------------------------------
       // COMPACT DESIGN: Text Summary
@@ -156,6 +187,7 @@ function renderReviewBreakdown() {
 
       card.innerHTML = `
         <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
+        ${imgHTML}
         <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
           <strong>${getTranslation('label_your_choice')}:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
         </p>
@@ -199,7 +231,7 @@ function renderReviewBreakdown() {
       });
 
       optionsHTML += '</div>';
-      card.innerHTML = qTitle + optionsHTML;
+      card.innerHTML = qTitle + imgHTML + optionsHTML;
     }
 
     reviewContainer.appendChild(card);
