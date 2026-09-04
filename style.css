@@ -1328,3 +1328,32 @@ p {
   color: #10b981 !important;
   border: 1px solid rgba(16, 185, 129, 0.35) !important;
 }
+
+/* ==========================================================================
+   EMPTY STATE / COMING SOON CARD (Static & Read-Only)
+   ========================================================================== */
+.empty-state-card {
+  background-color: var(--bg-inner);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-left: 6px solid var(--border-sub); /* Subtle slate bar instead of interactive accent */
+  border-radius: 10px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: default !important;
+  user-select: none;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+/* Hard reset to prevent hover glow or scaling */
+.empty-state-card:hover,
+.empty-state-card:focus,
+.empty-state-card:active {
+  transform: none !important;
+  background-color: var(--bg-inner) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
