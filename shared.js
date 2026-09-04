@@ -30,12 +30,16 @@ const translations = {
     year_4: "Year 4",
     year_5: "Year 5",
     year_6: "Year 6",
+    semester_selection_title: "Select Semester",
+    semester_1: "Semester 1",
+    semester_2: "Semester 2",
     btn_back_years: "⬅️ Back to Years",
+    btn_back_semesters: "⬅️ Back to Semesters",
     btn_study_all: "📖 Study All",
     btn_quiz: "📝 Quiz",
     btn_review_missed: "🎯 Review Missed",
     btn_clear_missed: "🗑️ Clear Saved Missed",
-    subjects_header: "Year {year} Subjects",
+    subjects_header: "Year {year} S{semester} Subjects",
     missed_badge: "⚠️ {count} saved missed question(s)",
     loading_text: "Loading Questions...",
     nav_donate: "☕ Support Us",
@@ -72,12 +76,16 @@ const translations = {
     year_4: "ឆ្នាំទី ៤",
     year_5: "ឆ្នាំទី ៥",
     year_6: "ឆ្នាំទី ៦",
+    semester_selection_title: "ជ្រើសរើសឆមាស",
+    semester_1: "ឆមាសទី ១",
+    semester_2: "ឆមាសទី ២",
     btn_back_years: "⬅️ ត្រឡប់ទៅឆ្នាំ",
+    btn_back_semesters: "⬅️ ត្រឡប់ទៅឆមាស",
     btn_study_all: "📖 សិក្សាទាំងអស់",
     btn_quiz: "📝 ប្រឡងតេស្ត",
     btn_review_missed: "🎯 រំលឹកសំណួរខុស",
     btn_clear_missed: "🗑️ លុបសំណួរខុស",
-    subjects_header: "មុខវិជ្ជាឆ្នាំទី {year}",
+    subjects_header: "មុខវិជ្ជាឆ្នាំទី {year} ឆមាស {semester}",
     missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
     loading_text: "កំពុងទាញយកសំណួរ...",
     nav_donate: "☕ ឧបត្ថម្ភ",
@@ -147,8 +155,10 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       localStorage.setItem('lastView', 'landing');
       localStorage.removeItem('lastActiveYear');
+      localStorage.removeItem('lastActiveSemester');
       sessionStorage.setItem('lastView', 'landing');
       sessionStorage.removeItem('lastActiveYear');
+      sessionStorage.removeItem('lastActiveSemester');
     });
   });
 
@@ -168,15 +178,15 @@ function applyTheme(theme) {
 }
 
 // --- Vault Storage Helpers ---
-function getStorageKey(major, year, subject, professor) {
-  if (!major || !year || !subject || !professor) return '';
+function getStorageKey(major, year, semester, subject, professor) {
+  if (!major || !year || !semester || !subject || !professor) return '';
   const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
-  return `missed_${major.toLowerCase()}_y${year}_${subject.toLowerCase()}_${profSlug}`;
+  return `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 }
 
-function recordQuestionResult(questionObj, isCorrect, major, year, subject, professor) {
-  if (!major || !year || !subject || !professor) return;
-  const key = getStorageKey(major, year, subject, professor);
+function recordQuestionResult(questionObj, isCorrect, major, year, semester, subject, professor) {
+  if (!major || !year || !semester || !subject || !professor) return;
+  const key = getStorageKey(major, year, semester, subject, professor);
   const raw = localStorage.getItem(key);
   let vault = raw ? JSON.parse(raw) : [];
 
