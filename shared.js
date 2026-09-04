@@ -47,7 +47,13 @@ const translations = {
     donate_modal_desc: "Your donations help keep the platform free, maintain servers, and add new study features!",
     btn_close: "Close",
     donate_tagline: "Every little bit is greatly appreciated! Thank you for your support 😊",
-    donate_cta: "You may donate through our KHQR here."
+    donate_cta: "You may donate through our KHQR here.",
+    morale_1: "💪 Don't give up! Every mistake is a stepping stone toward mastering the material.",
+    morale_2: "🏃 Medicine is a marathon, not a sprint. Take a short break, review your missed questions, and try again!",
+    morale_3: "🌟 Failure isn't the opposite of success—it's part of it. Keep pushing forward!",
+    morale_4: "🌱 Every expert was once a beginner. Keep practicing and watch your score grow!",
+    morale_5: "🛡️ Dust yourself off! Reviewing your missed questions now is what turns weak points into strengths.",
+    morale_6: "🩺 Great doctors are built through persistence. Take a deep breath and dive back in!",
   },
   km: {
     nav_home: "ទំព័រដើម",
@@ -93,7 +99,13 @@ const translations = {
     donate_modal_desc: "ការឧបត្ថម្ភរបស់លោកអ្នកជួយគាំទ្រដល់ការចំណាយលើ Server និងអភិវឌ្ឍន៍កម្មវិធីសិក្សាឱ្យនៅតែឥតគិតថ្លៃ!",
     btn_close: "បិទ",
     donate_tagline: "ទៅតាមទឹកចិត្តរបស់អ្នករៀងៗខ្លួន។ តិចឬច្រើន គឺជាការលើកទឹកចិត្តយ៉ាងធំធេង! អរគុណសម្រាប់ការគាំទ្រ 😊",
-    donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖"
+    donate_cta: "អ្នកអាចធ្វើការឧបត្ថម្ភតាមរយៈ KHQR នៅទីនេះ៖",
+    morale_1: "💪 កុំចុះចាញ់! គ្រប់កំហុសឆ្គងទាំងអស់គឺជាមេរៀនដើម្បីឈានទៅរកភាពស្ទាត់ជំនាញ។",
+    morale_2: "🏃 ការសិក្សាវេជ្ជសាស្ត្រគឺជាការរត់ប្រណាំងចម្ងាយឆ្ងាយ។ សម្រាកបន្តិច រំលឹកសំណួរដែលខុស ហើយព្យាយាមម្តងទៀត!",
+    morale_3: "🌟 ការខុសឆ្គងមិនមែនជាការបរាជ័យទេ ប៉ុន្តែវាជាផ្នែកមួយនៃភាពជោគជ័យ។ បន្តប្រឹងប្រែងទៅមុខទៀត!",
+    morale_4: "🌱 អ្នកជំនាញគ្រប់រូបសុទ្ធតែធ្លាប់ចាប់ផ្តើមពីចំណុចដំបូង។ បន្តប្រឹងប្រែងរំលឹក នោះពិន្ទុរបស់អ្នកនឹងកើនឡើង!",
+    morale_5: "🛡️ កុំបាក់ទឹកចិត្ត! ការពិនិត្យសំណួរដែលខុសឡើងវិញនៅពេលនេះ នឹងបំប្លែងចំណុចខ្សោយឲ្យក្លាយជាចំណុចខ្លាំង។",
+    morale_6: "🩺 គ្រូពេទ្យដ៏ពូកែត្រូវកើតចេញពីការតស៊ូស្វិតស្វាញ។ ដកដង្ហើមវែងៗ ហើយចាប់ផ្តើមសារជាថ្មី!",
   }
 };
 
