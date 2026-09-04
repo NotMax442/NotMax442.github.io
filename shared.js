@@ -396,7 +396,7 @@ function applyTheme(theme) {
 // --- Vault Storage Helpers ---
 function getStorageKey(major, year, semester, subject, professor) {
   if (!major || !year || !semester || !subject || !professor) return '';
-  const profSlug = professor.toLowerCase().replace(/\s+/g, '-');
+  const profSlug = getProfSlug(professor);
   return `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 }
 
@@ -479,4 +479,15 @@ function setupSharedModals() {
       if (e.target === privacyModal) closePrivacy();
     });
   }
+}
+
+
+
+function getProfSlug(profName) {
+  if (!profName) return '';
+  return profName
+    .toLowerCase()
+    .replace(/\./g, '')           // Strip dots ("Pr." -> "pr")
+    .replace(/\s+/g, '-')         // Convert spaces to dashes
+    .replace(/[^a-z0-9-&]/g, ''); // Retain valid characters
 }
