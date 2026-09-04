@@ -7,16 +7,29 @@ const manifestData = {
   "MED": {
     "1": {
       "1": {
-        "I-D-A": ["Dr. Smith", "Dr. John"],
-        "MED-PRO-B1": ["Dr. Alice"]
+        
       },
       "2": {
-        "MED-PRO": ["Dr. Bob"],
-        "MED-PRO-250": ["Dr. Charlie"],
-        "I-D-A-Khmer": ["Dr. Sok"]
+       
       }
     },
-    "2": { "1": {}, "2": {} },
+    "2": { 
+      "1": {
+      "ANATOMIE" : 
+        ["Pr-Ung-Chan"], 
+        ["Pr-Sin-Sagata"], 
+        ["Pr-Nhem-Aklinn"], 
+        ["Pr-Nam_BunSocheat"], 
+        ["Pr-Lim-Taing-&-Dr-Meng-Sok"], 
+        ["Pr-Ich-Khuy"],
+        ["Dr-Say-Tang"]
+        
+        
+      }, 
+      "2": {
+        
+      } 
+    },
     "3": { "1": {}, "2": {} },
     "4": { "1": {}, "2": {} },
     "5": { "1": {}, "2": {} },
