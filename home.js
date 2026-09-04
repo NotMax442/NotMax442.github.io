@@ -224,10 +224,8 @@ function showProfessors(major, year, semester, subject) {
   const professors = manifestData[major]?.[year]?.[semester]?.[subject] || [];
 
   professors.forEach(prof => {
-    const profSlug = prof.toLowerCase().replace(/\s+/g, '-');
-    const storageKey = (typeof getStorageKey === 'function')
-      ? getStorageKey(major, year, semester, subject, prof)
-      : `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+    const profSlug = getProfSlug(prof);
+    const storageKey = getStorageKey(major, year, semester, subject, prof);
 
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
