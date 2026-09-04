@@ -1467,3 +1467,33 @@ p {
   text-align: right;
   background-color: rgba(0, 0, 0, 0.15);
 }
+/* Question Diagram Image Styling */
+.question-img {
+  max-width: 100%;
+  max-height: 380px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--border-sub, #334155);
+  background-color: #ffffff; /* Ensures contrast for anatomical line drawings in dark mode */
+  padding: 0.5rem;
+  margin: 0.75rem auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.question-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Image Zoom Modal Styling */
+#image-zoom-modal {
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+#zoomed-image {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
