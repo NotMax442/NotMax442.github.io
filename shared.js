@@ -423,6 +423,18 @@ function getStorageKey(major, year, semester, subject, professor) {
   return `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 }
 
+// Helper: Unique signature for questions (handles repetitive titles like "Find the correct answer:")
+function getQuestionSignature(q) {
+  if (!q) return '';
+  const text = (q.question || '').trim();
+  const img = Array.isArray(q.images) && q.images.length > 0 
+    ? q.images.join(',') 
+    : (q.image || '').trim();
+  const sortedOpts = Array.isArray(q.options) ? [...q.options].sort().join('|') : '';
+  return `${q.id || ''}_${text}_${img}_${sortedOpts}`;
+}
+
+// Record question result in vault
 function recordQuestionResult(questionObj, isCorrect, major, year, semester, subject, professor) {
   if (!major || year === undefined || semester === undefined || !subject || !professor) return;
   const key = getStorageKey(major, year, semester, subject, professor);
@@ -431,10 +443,11 @@ function recordQuestionResult(questionObj, isCorrect, major, year, semester, sub
   const raw = localStorage.getItem(key);
   let vault = raw ? JSON.parse(raw) : [];
 
-  const qText = (questionObj.question || '').trim();
-  if (!qText) return;
+  const targetSig = getQuestionSignature(questionObj);
+  if (!targetSig) return;
 
-  const existingIndex = vault.findIndex(item => (item.question || '').trim() === qText);
+  // Find existing question by unique signature rather than text alone
+  const existingIndex = vault.findIndex(item => getQuestionSignature(item) === targetSig);
 
   if (!isCorrect) {
     // Answered incorrectly -> reset streak and ensure question is saved in vault
