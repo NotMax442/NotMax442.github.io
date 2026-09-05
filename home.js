@@ -88,7 +88,17 @@ let currentYear = null;
 let currentSemester = null;
 let currentSubject = null;
 
-// --- Helper Functions for Flexible Professor Data & Drawers ---
+// Robust slug generator (strips dots, accents, ampersands, and spaces)
+function getProfSlug(name) {
+  if (!name) return '';
+  return name
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Removes accents (e.g. SÉMIOLOGIE -> semiologie)
+    .replace(/[^a-z0-9\s-]/g, '')                     // Strips dots, commas, ampersands
+    .trim()
+    .replace(/\s+/g, '-');                            // Converts spaces to hyphens
+}
+
 function getProfName(prof) {
   return typeof prof === 'object' && prof !== null ? prof.name : prof;
 }
@@ -109,29 +119,31 @@ function toggleProfDrawer(drawerId, btnEl) {
 // Automatically inspects the JSON file to fetch question length
 async function fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl) {
   if (!badgeEl) return;
-  const profSlug = typeof getProfSlug === 'function' 
-    ? getProfSlug(profName) 
-    : profName.toLowerCase().replace(/\s+/g, '-');
-    
+  
+  const profSlug = getProfSlug(profName);
   const jsonPath = `questions/${major.toLowerCase()}/y${year}/s${semester}/${subject.toLowerCase()}/${profSlug}.json`;
 
   try {
     const res = await fetch(jsonPath);
-    if (!res.ok) return;
+    if (!res.ok) {
+      console.warn(`Badge missing: File not found at "${jsonPath}"`);
+      return;
+    }
     const data = await res.json();
     
-    // Handle both array format [...] or object format { questions: [...] }
-    const count = Array.isArray(data) ? data.length : (Array.isArray(data.questions) ? data.questions.length : 0);
+    // Supports array [...] or wrapped object { questions: [...] }
+    const count = Array.isArray(data) 
+      ? data.length 
+      : (Array.isArray(data?.questions) ? data.questions.length : 0);
     
     if (count > 0) {
       badgeEl.textContent = `${count} Qs`;
       badgeEl.style.display = 'inline-block';
     }
   } catch (e) {
-    // Silently skip if JSON does not exist yet
+    console.error(`Error loading questions for ${profName}:`, e);
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   restoreLastView();
