@@ -1328,7 +1328,45 @@ p {
   color: #10b981 !important;
   border: 1px solid rgba(16, 185, 129, 0.35) !important;
 }
+/* Screen Transition Animations */
+.slide-in-right {
+  animation: slideInRight 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.slide-out-left {
+  animation: slideOutLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.slide-in-left {
+  animation: slideInLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.slide-out-right {
+  animation: slideOutRight 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
+@keyframes slideInRight {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-24px); opacity: 0; }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(24px); opacity: 0; }
+}
+
+/* Mobile Touch Feedback */
+.year-card:active,
+.subject-card:active,
+.btn:active {
+  transform: scale(0.97) !important;
+  opacity: 0.9;
+  transition: transform 0.08s ease, opacity 0.08s ease;
+}
 /* ==========================================================================
    EMPTY STATE / COMING SOON CARD (Static & Read-Only)
    ========================================================================== */
