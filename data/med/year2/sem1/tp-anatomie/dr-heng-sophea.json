@@ -3,7 +3,10 @@
     {
       "id": 1,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-1.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-1.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-1.jpg",
       "options": [
         "Plis inguinal",
         "Cuisse",
@@ -16,7 +19,10 @@
     {
       "id": 2,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-2.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-2.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-2.jpg",
       "options": [
         "Plis inguinal",
         "Cuisse",
@@ -29,7 +35,10 @@
     {
       "id": 3,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-3.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-3.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-3.jpg",
       "options": [
         "Plis inguinal",
         "Cuisse",
@@ -42,7 +51,10 @@
     {
       "id": 4,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-4.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-4.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-4.jpg",
       "options": [
         "Plis inguinal",
         "Cuisse",
@@ -55,7 +67,10 @@
     {
       "id": 5,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-5.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-5.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-5.jpg",
       "options": [
         "Plis inguinal",
         "Cuisse",
@@ -68,7 +83,10 @@
     {
       "id": 6,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-6.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-6.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-6.jpg",
       "options": [
         "Cuisse",
         "Genou",
@@ -81,7 +99,10 @@
     {
       "id": 7,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-7.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-7.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-7.jpg",
       "options": [
         "Fesse",
         "Plis fessier",
@@ -94,7 +115,10 @@
     {
       "id": 8,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-8.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-8.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-8.jpg",
       "options": [
         "Fesse",
         "Plis fessier",
@@ -107,7 +131,10 @@
     {
       "id": 9,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au fleche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-9.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-9.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-9.jpg",
       "options": [
         "Fesse",
         "Plis fessier",
@@ -120,7 +147,10 @@
     {
       "id": 10,
       "question": "Les propositions suivantes concernant les élements cutanés du corps humain, quel est le nom d'un élément marqué au fleche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-10.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-10.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-10.jpg",
       "options": [
         "Fesse",
         "Plis fessier",
@@ -133,9 +163,13 @@
     {
       "id": 11,
       "question": "Les propositions suivantes concernant la ceinture pelvienne, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-11.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-11.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-11.jpg",
       "options": [
         "Crête iliaque",
+        "Articulation sacro-iliaque",
         "Acétabulum",
         "Tête fémorale",
         "Col fémoral"
@@ -145,7 +179,10 @@
     {
       "id": 12,
       "question": "Les propositions suivantes concernant la ceinture pelvienne, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-12.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-12.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-12.jpg",
       "options": [
         "Crête iliaque",
         "Articulation sacro-iliaque",
@@ -158,11 +195,14 @@
     {
       "id": 13,
       "question": "Les propositions suivantes concernant la ceinture pelvienne, quel est le nom d'un élément anatomique marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-13.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-13.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-13.jpg",
       "options": [
         "Symphyse pubienne",
         "Tête fémorale",
-        "Col fémoral",
+        "Col femoral",
         "Grand trochanter",
         "Petit trochanter"
       ],
@@ -171,7 +211,10 @@
     {
       "id": 14,
       "question": "Les propositions suivantes concernant l'articulation coxofémorale, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-14.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-14.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-14.jpg",
       "options": [
         "Aile iliaque",
         "Art.sacro-iliaque",
@@ -184,20 +227,26 @@
     {
       "id": 15,
       "question": "Les propositions suivantes concernant l'articulation coxofémorale, quel est le nom d'un élément marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-15.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-15.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-15.jpg",
       "options": [
         "Aile iliaque",
         "Art.sacro-iliaque",
         "Acétabulum",
         "Tête fémorale",
-        "Col fémoral"
+        "Col femoral"
       ],
       "correctIndex": 3
     },
     {
       "id": 16,
       "question": "Les propositions suivantes concernant l'extrémité supérieure du fémur, quel est le nom d'un élément anatomique marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-16.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-16.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-16.jpg",
       "options": [
         "Epine ischiatique",
         "Grand trochanter",
@@ -210,7 +259,10 @@
     {
       "id": 17,
       "question": "Les propositions suivantes concernant l'extrémité supérieure du fémur, quel est le nom d'un élément anatomique marqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-17.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-17.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-17.jpg",
       "options": [
         "Epine ischiatique",
         "Grand trochanter",
@@ -223,7 +275,10 @@
     {
       "id": 18,
       "question": "Un des propositions suivantes concerne les ligaments de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-18.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-18.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-18.jpg",
       "options": [
         "Lig.ilio-femoral",
         "Lig.pubo-fémoral",
@@ -236,11 +291,14 @@
     {
       "id": 19,
       "question": "Un des propositions suivantes concerne les ligaments de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-19.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-19.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-19.jpg",
       "options": [
         "Lig.ilio-fémoral",
         "Lig.pubo-fémoral",
-        "Lig.ischio-fémoral",
+        "Lig.ischio-femoral",
         "Lig.sacro-épineux",
         "Lig.sacro-tuberositaire"
       ],
@@ -248,8 +306,11 @@
     },
     {
       "id": 20,
-      "question": "Un des muscles de la région glutéale, lequel est indiqué au flèche? (insertion entre sacro-iliaque et ligne glutéale)",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-20.webp",
+      "question": "Un des muscles de la région glutéale, lequel est indiqué au flèche? (insertion entre sacro-iliaque et ligne glutéale",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-20.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-20.jpg",
       "options": [
         "M.grand fessier (glutéal)",
         "M.moyen fessier (glutéal)",
@@ -262,7 +323,10 @@
     {
       "id": 21,
       "question": "Un des muscles de la région glutéale, lequel est indiqué au flèche (insertion de l'os iliaque et terminaison au niveau de la grande trochanter)?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-21.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-21.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-21.jpg",
       "options": [
         "M.grand fessier (glutéal)",
         "M.moyen fessier (glutéal)",
@@ -275,7 +339,10 @@
     {
       "id": 22,
       "question": "Un des muscles de la région glutéale, lequel est indiqué au flèche (insertion de l'os iliaque et terminaison au niveau de la grande trochanter)?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-22.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-22.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-22.jpg",
       "options": [
         "M.grand fessier (glutéal)",
         "M.moyen fessier (glutéal)",
@@ -288,7 +355,10 @@
     {
       "id": 23,
       "question": "Un des muscles de la région glutéale, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-23.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-23.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-23.jpg",
       "options": [
         "M.grand fessier (glutéal)",
         "M.moyen fessier (glutéal)",
@@ -301,7 +371,10 @@
     {
       "id": 24,
       "question": "Un des muscles du tronc et de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-24.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-24.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-24.jpg",
       "options": [
         "M.grand fessier (glutéal)",
         "M.moyen fessier (glutéal)",
@@ -314,7 +387,10 @@
     {
       "id": 25,
       "question": "Un des muscles rotateurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-25.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-25.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-25.jpg",
       "options": [
         "M.obturateur externe",
         "M.obturateur interne",
@@ -327,7 +403,10 @@
     {
       "id": 26,
       "question": "Un des muscles rotateurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-26.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-26.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-26.jpg",
       "options": [
         "M.obturateur interne",
         "M.obturateur externe",
@@ -340,20 +419,26 @@
     {
       "id": 27,
       "question": "Un des muscles rotateurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-27.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-27.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-27.jpg",
       "options": [
         "M.obturateur interne",
         "M.obturateur externe",
         "M.jumeau supérieur et inférieur",
         "M.carré fémoral",
-        "M.piriform (pyramidal)"
+        "M.piriform (pyramidal"
       ],
       "correctIndex": 2
     },
     {
       "id": 28,
       "question": "Un des muscles rotateurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-28.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-28.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-28.jpg",
       "options": [
         "M.Jumeau supérieur",
         "M.Obturateur interne",
@@ -366,7 +451,10 @@
     {
       "id": 29,
       "question": "Un des muscles rotateurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-29.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-29.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-29.jpg",
       "options": [
         "M.Jumeau supérieur",
         "M.Obturateur interne",
@@ -379,7 +467,10 @@
     {
       "id": 30,
       "question": "Un des muscles adducteurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-30.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-30.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-30.jpg",
       "options": [
         "M.pectiné",
         "M.court adducteur",
@@ -392,7 +483,10 @@
     {
       "id": 31,
       "question": "Un des muscles adducteurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-31.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-31.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-31.jpg",
       "options": [
         "M.pectiné",
         "M.court adducteur",
@@ -405,7 +499,10 @@
     {
       "id": 32,
       "question": "Un des muscles adducteurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-32.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-32.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-32.jpg",
       "options": [
         "M.pectiné",
         "M.court adducteur",
@@ -418,7 +515,10 @@
     {
       "id": 33,
       "question": "Un des muscles adducteurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-33.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-33.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-33.jpg",
       "options": [
         "M.pectiné",
         "M.court adducteur",
@@ -431,7 +531,10 @@
     {
       "id": 34,
       "question": "Un des muscles adducteurs de la hanche, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-34.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-34.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-34.jpg",
       "options": [
         "M.pectiné",
         "M.court adducteur",
@@ -444,7 +547,10 @@
     {
       "id": 35,
       "question": "Un des muscles de la partie antérieure de la cuisse, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-35.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-35.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-35.jpg",
       "options": [
         "M.vaste latéral",
         "M.vaste medial",
@@ -457,7 +563,10 @@
     {
       "id": 36,
       "question": "Un des muscles de la partie antérieure de la cuisse (quadriceps), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-36.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-36.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-36.jpg",
       "options": [
         "M.vaste latéral",
         "M.vaste medial",
@@ -470,7 +579,10 @@
     {
       "id": 37,
       "question": "Un des muscles de la partie antérieure de la cuisse (quadriceps), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-37.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-37.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-37.jpg",
       "options": [
         "M.vaste lateral",
         "M.vaste medial",
@@ -483,7 +595,10 @@
     {
       "id": 38,
       "question": "Un des muscles de la partie antérieure de la cuisse (quadriceps), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-38.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-38.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-38.jpg",
       "options": [
         "M.vaste latéral",
         "M.vaste medial",
@@ -496,7 +611,10 @@
     {
       "id": 39,
       "question": "Un des muscles de la partie postérieur de la cuisse (quadriceps), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-39.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-39.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-39.jpg",
       "options": [
         "M.semi-membraneux",
         "M.semi-tendineux",
@@ -509,7 +627,10 @@
     {
       "id": 40,
       "question": "Un des muscles de la partie postérieur de la cuisse, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-40.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-40.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-40.jpg",
       "options": [
         "M.semi-membraneux",
         "M.semi-tendineux",
@@ -522,7 +643,10 @@
     {
       "id": 41,
       "question": "Un des muscles de la partie postérieur de la cuisse, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-41.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-41.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-41.jpg",
       "options": [
         "M.semi-membraneux",
         "M.semi-tendineux",
@@ -535,7 +659,10 @@
     {
       "id": 42,
       "question": "Quels sont les éléments anatomiques qui se forment une triangle fémorale (scarpa)?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-42.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-42.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-42.jpg",
       "options": [
         "M.Droit antérieur-M.gracile-iliopsoas",
         "M.Sartorius-M.long adducteur-ligament inguinal",
@@ -548,7 +675,10 @@
     {
       "id": 43,
       "question": "Quel est le nom d'un élément indiqué au flèche, parmi des éléments vasculo-nerveux de triangle de scarpa?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-43.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-43.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-43.jpg",
       "options": [
         "Nerf femoral",
         "Artère fémorale",
@@ -561,7 +691,10 @@
     {
       "id": 44,
       "question": "Quel est le nom d'un élément indiqué au flèche, parmi des éléments vasculo-nerveux de triangle de scarpa?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-44.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-44.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-44.jpg",
       "options": [
         "Nerf fémoral",
         "Artère fémorale",
@@ -574,7 +707,10 @@
     {
       "id": 45,
       "question": "Quel est le nom d'un élément indiqué au flèche, parmi des éléments vasculo-nerveux de triangle de scarpa?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-45.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-45.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-45.jpg",
       "options": [
         "Nerf fémoral",
         "Artère fémorale",
@@ -587,7 +723,10 @@
     {
       "id": 46,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-46.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-46.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-46.jpg",
       "options": [
         "Extension",
         "Flexion",
@@ -600,7 +739,10 @@
     {
       "id": 47,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-47.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-47.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-47.jpg",
       "options": [
         "Extension",
         "Flexion",
@@ -613,7 +755,10 @@
     {
       "id": 48,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-48.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-48.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-48.jpg",
       "options": [
         "Extension",
         "Flexion",
@@ -626,7 +771,10 @@
     {
       "id": 49,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-49.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-49.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-49.jpg",
       "options": [
         "Extension",
         "Flexion",
@@ -639,7 +787,10 @@
     {
       "id": 50,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-50.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-50.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-50.jpg",
       "options": [
         "Extension",
         "Rotation médiale",
@@ -652,7 +803,10 @@
     {
       "id": 51,
       "question": "Quel est le mouvement de la hanche, indiqué dans cet image?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-51.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-51.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-51.jpg",
       "options": [
         "Extension",
         "Rotation médiale",
@@ -665,7 +819,10 @@
     {
       "id": 52,
       "question": "Quel os est indiqué parmi des os du genou?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-52.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-52.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-52.jpg",
       "options": [
         "Femur distal",
         "Talus",
@@ -678,7 +835,10 @@
     {
       "id": 53,
       "question": "Quel os est indiqué parmi des os du genou?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-53.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-53.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-53.jpg",
       "options": [
         "Femur distal",
         "Talus",
@@ -691,7 +851,10 @@
     {
       "id": 54,
       "question": "Quel os est indiqué parmi des os du genou?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-54.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-54.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-54.jpg",
       "options": [
         "Femur distal",
         "Talus",
@@ -704,7 +867,10 @@
     {
       "id": 55,
       "question": "Quel os est indiqué parmi des os du genou?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-55.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-55.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-55.jpg",
       "options": [
         "Femur distal",
         "Talus",
@@ -717,7 +883,10 @@
     {
       "id": 56,
       "question": "Un des propositions suivantes concernent un des ménisques, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-56.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-56.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-56.jpg",
       "options": [
         "Ménisque lateral",
         "Ménisque médial",
@@ -729,7 +898,10 @@
     {
       "id": 57,
       "question": "Une des propositions suivantes concernent un des ménisques, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-57.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-57.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-57.jpg",
       "options": [
         "Ménisque latéral",
         "Ménisque medial",
@@ -742,7 +914,10 @@
     {
       "id": 58,
       "question": "Une des propositions suivantes concerne un des ligaments du genou, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-58.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-58.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-58.jpg",
       "options": [
         "Lig.collatéral medial",
         "Lig.collatéral lateral",
@@ -755,7 +930,10 @@
     {
       "id": 59,
       "question": "Une des propositions suivantes concerne un des ligaments du genou, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-59.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-59.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-59.jpg",
       "options": [
         "Lig.collatéral medial",
         "Lig.collatéral lateral",
@@ -768,7 +946,10 @@
     {
       "id": 60,
       "question": "Une des propositions suivantes concerne un des ligaments du genou, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-60.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-60.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-60.jpg",
       "options": [
         "Lig.collatéral medial",
         "Lig.collatéral lateral",
@@ -781,7 +962,10 @@
     {
       "id": 61,
       "question": "Une des propositions suivantes concerne un des ligaments du genou, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-61.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-61.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-61.jpg",
       "options": [
         "Lig.collatéral medial",
         "Lig.collatéral lateral",
@@ -794,7 +978,10 @@
     {
       "id": 62,
       "question": "Une des propositions suivantes concerne un des ligaments du genou, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-62.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-62.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-62.jpg",
       "options": [
         "Lig.collatéral medial",
         "Lig.collatéral lateral",
@@ -807,7 +994,10 @@
     {
       "id": 63,
       "question": "Un des muscles de la patte d'oie, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-63.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-63.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-63.jpg",
       "options": [
         "M.semi-tendineux",
         "M.semi-membraneux",
@@ -820,7 +1010,10 @@
     {
       "id": 64,
       "question": "Un des muscles de la patte d'oie, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-64.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-64.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-64.jpg",
       "options": [
         "M.semi-tendineux",
         "M.semi-membraneux",
@@ -833,7 +1026,10 @@
     {
       "id": 65,
       "question": "Un des muscles de la patte d'oie, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-65.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-65.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-65.jpg",
       "options": [
         "M.semi-tendineux",
         "M.semi-membraneux",
@@ -846,7 +1042,10 @@
     {
       "id": 66,
       "question": "Un muscle triangulaire de la loge postérieure et profonde de la jambe, en arrière du genou, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-66.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-66.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-66.jpg",
       "options": [
         "M.poplité",
         "M.plantaire",
@@ -859,7 +1058,10 @@
     {
       "id": 67,
       "question": "Un muscle accessoire de la loge postérieure de la jambe avec sa terminaison commun au tendon d'Achilles, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-67.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-67.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-67.jpg",
       "options": [
         "M.poplité",
         "M.plantaire",
@@ -872,7 +1074,10 @@
     {
       "id": 68,
       "question": "Un des muscles de la loge postérieure de la jambe avec sa terminaison commun au tendon d'Achilles, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-68.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-68.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-68.jpg",
       "options": [
         "M.poplité",
         "M.plantaire",
@@ -885,7 +1090,10 @@
     {
       "id": 69,
       "question": "Un des muscles de la loge postérieure de la jambe avec sa terminaison commun au tendon d'Achilles, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-69.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-69.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-69.jpg",
       "options": [
         "M.poplité",
         "M.plantaire",
@@ -898,7 +1106,10 @@
     {
       "id": 70,
       "question": "Un des nerfs du creux poplité, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-70.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-70.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-70.jpg",
       "options": [
         "Nerf sciatique poplité interne",
         "Nerf sciatique poplité externe",
@@ -911,7 +1122,10 @@
     {
       "id": 71,
       "question": "Un des nerfs du creux poplité, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-71.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-71.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-71.jpg",
       "options": [
         "Nerf sciatique poplité interne",
         "Nerf sciatique poplité externe",
@@ -924,7 +1138,10 @@
     {
       "id": 72,
       "question": "Un des nerfs du creux poplité, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-72.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-72.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-72.jpg",
       "options": [
         "Nerf sciatique poplité interne",
         "Nerf sciatique poplité externe",
@@ -937,7 +1154,10 @@
     {
       "id": 73,
       "question": "Une des artères du creux poplité, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-73.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-73.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-73.jpg",
       "options": [
         "A.Poplité",
         "A. Tibial antérieure",
@@ -950,7 +1170,10 @@
     {
       "id": 74,
       "question": "Une des artères du creux poplité, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-74.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-74.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-74.jpg",
       "options": [
         "A.Poplité",
         "A. Tibial antérieure",
@@ -963,11 +1186,14 @@
     {
       "id": 75,
       "question": "Une des artères du creux poplité, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-75.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-75.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-75.jpg",
       "options": [
         "A.Poplité",
         "A. Tibial antérieure",
-        "A. Tibial postérieur",
+        "A.Tibial postérieur",
         "A.fibulaire",
         "A.fémorale"
       ],
@@ -976,11 +1202,14 @@
     {
       "id": 76,
       "question": "Une des artères du creux poplité, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-76.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-76.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-76.jpg",
       "options": [
         "A.Poplité",
         "A. Tibial antérieure",
-        "A. Tibial postérieur",
+        "A.Tibial postérieur",
         "A.fibulaire",
         "A.fémorale"
       ],
@@ -989,7 +1218,10 @@
     {
       "id": 77,
       "question": "Un des muscles de la cheville, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-77.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-77.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-77.jpg",
       "options": [
         "M.tibial postérieur",
         "M.fléchisseur de l'hallus",
@@ -1002,7 +1234,10 @@
     {
       "id": 78,
       "question": "Un des muscles de la cheville, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-78.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-78.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-78.jpg",
       "options": [
         "M.tibial postérieur",
         "M.fléchisseur de l'hallus",
@@ -1015,7 +1250,10 @@
     {
       "id": 79,
       "question": "Un des ligaments de la cheville (face latérale), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-79.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-79.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-79.jpg",
       "options": [
         "Lig.talo-fibulaire postérieur",
         "Lig.tibio-fibulaire distal",
@@ -1028,7 +1266,10 @@
     {
       "id": 80,
       "question": "Un des ligaments de la cheville (face latérale), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-80.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-80.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-80.jpg",
       "options": [
         "Lig.talo-fibulaire postérieur",
         "Lig.tibio-fibulaire distal",
@@ -1041,7 +1282,10 @@
     {
       "id": 81,
       "question": "Un des ligaments de la cheville (face latérale), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-81.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-81.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-81.jpg",
       "options": [
         "Lig.talo-fibulaire postérieur",
         "Lig.tibio-fibulaire distal",
@@ -1054,7 +1298,10 @@
     {
       "id": 82,
       "question": "Un des éléments de la cheville (face latérale), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-82.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-82.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-82.jpg",
       "options": [
         "Tendon d'achille",
         "Lig.tibio-fibulaire distal",
@@ -1067,7 +1314,10 @@
     {
       "id": 83,
       "question": "Un des ligaments de la cheville (face médiale), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-83.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-83.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-83.jpg",
       "options": [
         "Tendon d'achille",
         "Lig.tibio-fibulaire distal",
@@ -1080,7 +1330,10 @@
     {
       "id": 84,
       "question": "Un des muscles de la cheville, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-84.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-84.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-84.jpg",
       "options": [
         "M.long extenseur commun des orteils",
         "M.long extenseur propre de l'hallus",
@@ -1093,7 +1346,10 @@
     {
       "id": 85,
       "question": "Un des tendons du muscle de la jambe et du pied (loge antérieure), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-85.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-85.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-85.jpg",
       "options": [
         "Tendon du muscle tibial postérieur",
         "Tendon du muscle tibial antérieur",
@@ -1105,7 +1361,10 @@
     {
       "id": 86,
       "question": "Un des tendons du muscle de la jambe et du pied (loge antérieure), lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-86.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-86.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-86.jpg",
       "options": [
         "Tendon du muscle tibial postérieur",
         "Tendon du muscle tibial antérieur",
@@ -1118,7 +1377,10 @@
     {
       "id": 87,
       "question": "Un des éléments anatomiques de la face médiale de la cheville, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-87.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-87.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-87.jpg",
       "options": [
         "Rétinaculum des fléchisseurs",
         "Rétinaculum des extenseurs",
@@ -1131,7 +1393,10 @@
     {
       "id": 88,
       "question": "Un des muscles du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-88.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-88.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-88.jpg",
       "options": [
         "M.adducteur du 5è orteil",
         "M.abducteur de hallux",
@@ -1144,7 +1409,10 @@
     {
       "id": 89,
       "question": "Un des muscles du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-89.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-89.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-89.jpg",
       "options": [
         "M.adducteur du 5è orteil",
         "M.abducteur de hallux",
@@ -1157,7 +1425,10 @@
     {
       "id": 90,
       "question": "Un des muscles du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-90.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-90.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-90.jpg",
       "options": [
         "M.adducteur du 5è orteil",
         "M.abducteur de 5è orteil",
@@ -1170,7 +1441,10 @@
     {
       "id": 91,
       "question": "Un des éléments anatomiques du plante du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-91.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-91.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-91.jpg",
       "options": [
         "Aponévrose plantaire",
         "Tendon calcanéen (achilléen)",
@@ -1183,7 +1457,10 @@
     {
       "id": 92,
       "question": "Un des muscles de la face dorsale du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-92.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-92.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-92.jpg",
       "options": [
         "M.long extenseur de hallux",
         "M.long extenseur commun des orteils",
@@ -1196,19 +1473,25 @@
     {
       "id": 93,
       "question": "Un des tendons musculaires de la jambe avec leur terminaison au niveau du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-93.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-93.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-93.jpg",
       "options": [
         "Tendon du muscle long fléchisseur propre de hallux",
         "Tendon du muscle long fléchisseur commun des orteils",
         "Tendon du muscle long extenseur commun des orteils",
-        "Tendon du muscle court fléchisseur propre de hallux."
+        "Tendon du muscle court fléchisseur propre de hallux"
       ],
       "correctIndex": 1
     },
     {
       "id": 94,
       "question": "Un des artères situées de la face antérieure de cheville, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-94.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-94.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-94.jpg",
       "options": [
         "A.tibial postérieure",
         "A.tibial antérieure",
@@ -1221,7 +1504,10 @@
     {
       "id": 95,
       "question": "Un des artères situées de la face antérieure de cheville, laquelle est indiquée au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-95.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-95.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-95.jpg",
       "options": [
         "A.tibial postérieure",
         "A.tibial antérieure",
@@ -1234,7 +1520,10 @@
     {
       "id": 96,
       "question": "Un des nerfs innervant dans la face dorsale du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-96.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-96.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-96.jpg",
       "options": [
         "N.fibulaire superficiel",
         "N.fibulaire profond",
@@ -1247,7 +1536,10 @@
     {
       "id": 97,
       "question": "Un des nerfs innervant dans la face dorsale du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-97.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-97.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-97.jpg",
       "options": [
         "N.fibulaire superficiel",
         "N.fibulaire profond",
@@ -1260,7 +1552,10 @@
     {
       "id": 98,
       "question": "Un des nerfs innervant dans la face dorsale du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-98.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-98.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-98.jpg",
       "options": [
         "N.fibulaire superficiel",
         "N.fibulaire profond",
@@ -1273,7 +1568,10 @@
     {
       "id": 99,
       "question": "Un des nerfs innervant dans la face dorsale du pied, lequel est indiqué au flèche?",
-      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-99.webp",
+      "images": [
+        "y2-tp-anatomie-dr-heng-sophea-q99-image-99.jpg"
+      ],
+      "image": "y2-tp-anatomie-dr-heng-sophea-q99-image-99.jpg",
       "options": [
         "N.fibulaire superficiel",
         "N.fibulaire profond",
