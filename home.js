@@ -117,11 +117,13 @@ function toggleProfDrawer(drawerId, btnEl) {
 }
 
 // Automatically inspects the JSON file to fetch question length
+// Automatically inspects the JSON file to fetch question length
 async function fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl) {
   if (!badgeEl) return;
   
   const profSlug = getProfSlug(profName);
-  const jsonPath = `questions/${major.toLowerCase()}/y${year}/s${semester}/${subject.toLowerCase()}/${profSlug}.json`;
+  // Path updated to match your structure: data/med/year2/sem1/[subject]/[profSlug].json
+  const jsonPath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
 
   try {
     const res = await fetch(jsonPath);
