@@ -53,6 +53,8 @@ const translations = {
     btn_clear_missed: "🗑️ Clear Saved Missed",
     missed_badge: "⚠️ {count} saved missed question(s)",
     loading_text: "Loading Questions...",
+    subject_assessments_title: "{subject} - Subject Assessments",
+    subject_assessments_desc: "Test your knowledge or study across all professors in this subject combined.",
 
     // Leave Guard Modal
     btn_cancel: "Cancel",
@@ -208,6 +210,8 @@ const translations = {
     btn_clear_missed: "🗑️ លុបសំណួរខុស",
     missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
     loading_text: "កំពុងទាញយកសំណួរ...",
+    subject_assessments_title: "{subject} - ការវាយតម្លៃប្រចាំមុខវិជ្ជា",
+    subject_assessments_desc: "ធ្វើតេស្តសមត្ថភាព ឬសិក្សារំលឹកសំណួររួមគ្នាតាមសាស្ត្រាចារ្យទាំងអស់ក្នុងមុខវិជ្ជានេះ។",
 
     // Leave Guard Modal
     btn_cancel: "បោះបង់",
