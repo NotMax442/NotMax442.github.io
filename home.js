@@ -46,15 +46,50 @@ document.addEventListener('DOMContentLoaded', () => {
   initUpdateSystem();
 });
 
-function showScreen(screenId) {
+// Directional Screen Switcher (Forward vs. Back Animations)
+function showScreen(screenId, direction = 'forward') {
   const screens = ['landing-screen', 'major-screen', 'year-screen', 'semester-screen', 'subject-screen', 'professor-screen'];
+  
+  const currentVisibleId = screens.find(id => {
+    const el = document.getElementById(id);
+    return el && !el.classList.contains('hidden');
+  });
+
+  const currentEl = document.getElementById(currentVisibleId);
+  const targetEl = document.getElementById(screenId);
+
+  if (!targetEl || currentVisibleId === screenId) return;
+
+  // Clear animation state
   screens.forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      if (id === screenId) el.classList.remove('hidden');
-      else el.classList.add('hidden');
-    }
+    if (el) el.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
   });
+
+  // Animate transition if switching screens interactively
+  if (currentEl && direction !== 'none') {
+    const exitClass = direction === 'forward' ? 'slide-out-left' : 'slide-out-right';
+    const enterClass = direction === 'forward' ? 'slide-in-right' : 'slide-in-left';
+
+    currentEl.classList.add(exitClass);
+    targetEl.classList.remove('hidden');
+    targetEl.classList.add(enterClass);
+
+    setTimeout(() => {
+      currentEl.classList.add('hidden');
+      currentEl.classList.remove(exitClass);
+      targetEl.classList.remove(enterClass);
+    }, 180);
+  } else {
+    // Instant swap for page restores or initial loads
+    screens.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        if (id === screenId) el.classList.remove('hidden');
+        else el.classList.add('hidden');
+      }
+    });
+  }
 }
 
 function setupNavigation() {
@@ -69,7 +104,7 @@ function setupNavigation() {
   if (enterStudyBtn) {
     enterStudyBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'major');
-      showScreen('major-screen');
+      showScreen('major-screen', 'forward');
     });
   }
 
@@ -78,7 +113,7 @@ function setupNavigation() {
     backToLandingBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'landing');
       sessionStorage.removeItem('lastActiveMajor');
-      showScreen('landing-screen');
+      showScreen('landing-screen', 'back');
     });
   }
 
@@ -88,7 +123,7 @@ function setupNavigation() {
       currentMajor = card.getAttribute('data-major');
       sessionStorage.setItem('lastActiveMajor', currentMajor);
       sessionStorage.setItem('lastView', 'year');
-      showYears(currentMajor);
+      showYears(currentMajor, 'forward');
     });
   });
 
@@ -97,7 +132,7 @@ function setupNavigation() {
     backToMajorsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'major');
       sessionStorage.removeItem('lastActiveYear');
-      showScreen('major-screen');
+      showScreen('major-screen', 'back');
     });
   }
 
@@ -107,7 +142,7 @@ function setupNavigation() {
       currentYear = card.getAttribute('data-year');
       sessionStorage.setItem('lastActiveYear', currentYear);
       sessionStorage.setItem('lastView', 'semester');
-      showSemesters(currentMajor, currentYear);
+      showSemesters(currentMajor, currentYear, 'forward');
     });
   });
 
@@ -116,7 +151,7 @@ function setupNavigation() {
     backToYearsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'year');
       sessionStorage.removeItem('lastActiveSemester');
-      showYears(currentMajor);
+      showYears(currentMajor, 'back');
     });
   }
 
@@ -126,7 +161,7 @@ function setupNavigation() {
       currentSemester = card.getAttribute('data-semester');
       sessionStorage.setItem('lastActiveSemester', currentSemester);
       sessionStorage.setItem('lastView', 'subject');
-      showSubjects(currentMajor, currentYear, currentSemester);
+      showSubjects(currentMajor, currentYear, currentSemester, 'forward');
     });
   });
 
@@ -135,7 +170,7 @@ function setupNavigation() {
     backToSemestersBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'semester');
       sessionStorage.removeItem('lastActiveSubject');
-      showSemesters(currentMajor, currentYear);
+      showSemesters(currentMajor, currentYear, 'back');
     });
   }
 
@@ -143,7 +178,7 @@ function setupNavigation() {
   if (backToSubjectsBtn) {
     backToSubjectsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'subject');
-      showSubjects(currentMajor, currentYear, currentSemester);
+      showSubjects(currentMajor, currentYear, currentSemester, 'back');
     });
   }
 }
@@ -156,34 +191,34 @@ function restoreLastView() {
   currentSubject = sessionStorage.getItem('lastActiveSubject');
 
   if (savedView === 'professor' && currentMajor && currentYear && currentSemester && currentSubject) {
-    showProfessors(currentMajor, currentYear, currentSemester, currentSubject);
+    showProfessors(currentMajor, currentYear, currentSemester, currentSubject, 'none');
   } else if (savedView === 'subject' && currentMajor && currentYear && currentSemester) {
-    showSubjects(currentMajor, currentYear, currentSemester);
+    showSubjects(currentMajor, currentYear, currentSemester, 'none');
   } else if (savedView === 'semester' && currentMajor && currentYear) {
-    showSemesters(currentMajor, currentYear);
+    showSemesters(currentMajor, currentYear, 'none');
   } else if (savedView === 'year' && currentMajor) {
-    showYears(currentMajor);
+    showYears(currentMajor, 'none');
   } else if (savedView === 'major') {
-    showScreen('major-screen');
+    showScreen('major-screen', 'none');
   } else {
-    showScreen('landing-screen');
+    showScreen('landing-screen', 'none');
   }
 }
 
-function showYears(major) {
-  showScreen('year-screen');
+function showYears(major, direction = 'forward') {
+  showScreen('year-screen', direction);
   const title = document.getElementById('selected-major-title');
   if (title) title.textContent = getTranslation('title_select_year', { major });
 }
 
-function showSemesters(major, year) {
-  showScreen('semester-screen');
+function showSemesters(major, year, direction = 'forward') {
+  showScreen('semester-screen', direction);
   const title = document.getElementById('selected-year-title');
   if (title) title.textContent = getTranslation('title_select_semester', { major, year });
 }
 
-function showSubjects(major, year, semester) {
-  showScreen('subject-screen');
+function showSubjects(major, year, semester, direction = 'forward') {
+  showScreen('subject-screen', direction);
   const title = document.getElementById('selected-subject-screen-title');
   if (title) title.textContent = getTranslation('title_subjects', { major, year, semester });
 
@@ -220,7 +255,7 @@ function showSubjects(major, year, semester) {
       currentSubject = subject;
       sessionStorage.setItem('lastActiveSubject', currentSubject);
       sessionStorage.setItem('lastView', 'professor');
-      showProfessors(major, year, semester, subject);
+      showProfessors(major, year, semester, subject, 'forward');
     };
 
     card.addEventListener('click', triggerSelect);
@@ -228,8 +263,8 @@ function showSubjects(major, year, semester) {
   });
 }
 
-function showProfessors(major, year, semester, subject) {
-  showScreen('professor-screen');
+function showProfessors(major, year, semester, subject, direction = 'forward') {
+  showScreen('professor-screen', direction);
   const title = document.getElementById('selected-prof-screen-title');
   if (title) title.textContent = getTranslation('title_select_prof', { subject });
 
@@ -249,28 +284,28 @@ function showProfessors(major, year, semester, subject) {
     return;
   }
 
-// --- Render Top Banner for Full Subject Assessments ---
-const subjectBanner = document.createElement('div');
-subjectBanner.classList.add('subject-card', 'prof-card');
-subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+  // --- 1. Render Top Banner for Full Subject Assessments ---
+  const subjectBanner = document.createElement('div');
+  subjectBanner.classList.add('subject-card', 'prof-card');
+  subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
 
-subjectBanner.innerHTML = `
-  <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
-    ${getTranslation('subject_assessments_title', { subject })}
-  </h3>
-  <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">
-    ${getTranslation('subject_assessments_desc')}
-  </p>
-  <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-    <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
-      ${getTranslation('btn_subject_quiz')}
-    </button>
-    <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
-      ${getTranslation('btn_subject_study_all')}
-    </button>
-  </div>
-`;
-profList.appendChild(subjectBanner);
+  subjectBanner.innerHTML = `
+    <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
+      ${getTranslation('subject_assessments_title', { subject })}
+    </h3>
+    <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">
+      ${getTranslation('subject_assessments_desc')}
+    </p>
+    <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
+        ${getTranslation('btn_subject_quiz')}
+      </button>
+      <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
+        ${getTranslation('btn_subject_study_all')}
+      </button>
+    </div>
+  `;
+  profList.appendChild(subjectBanner);
 
   // --- 2. Render Individual Professor Cards ---
   professors.forEach(prof => {
@@ -390,7 +425,7 @@ function clearSavedMissed(profName) {
     : `missed_${currentMajor.toLowerCase()}_y${currentYear}_s${currentSemester}_${currentSubject.toLowerCase()}_${profSlug}`;
 
   localStorage.removeItem(key);
-  showProfessors(currentMajor, currentYear, currentSemester, currentSubject);
+  showProfessors(currentMajor, currentYear, currentSemester, currentSubject, 'none');
 }
 
 // ==========================================================================
