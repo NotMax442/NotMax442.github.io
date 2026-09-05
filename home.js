@@ -93,8 +93,8 @@ function getProfSlug(name) {
   if (!name) return '';
   return name
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Removes accents (e.g. SÉMIOLOGIE -> semiologie)
-    .replace(/[^a-z0-9\s-]/g, '')                     // Strips dots, commas, ampersands
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Removes accents
+    .replace(/[^a-z0-9\s-&]/g, '')                    // Keeps & symbol to match repo filenames
     .trim()
     .replace(/\s+/g, '-');                            // Converts spaces to hyphens
 }
