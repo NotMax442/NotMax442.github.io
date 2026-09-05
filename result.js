@@ -206,7 +206,7 @@ function renderReviewBreakdown() {
 
     // Attach Professor name tag if session was Subject-Wide
     const profTag = (isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
-    const displayQuestionText = `${q.question}${profTag}`;
+    const displayQuestionText = q.question;
 
     if (reviewStyle === 'compact') {
       // -------------------------------------------------------------
