@@ -23,17 +23,14 @@ const manifestData = {
         ],
         "TP-ANATOMIE": [
           "Dr. Koam Phaly",
-          "Dr. Heng Sophea"
+          "Dr. Heng Sophea",
           "Pr. Ast Nhem Aklinn",
           "Pr. Ast Ich Khuy",
           "Pr. Sin Sagata"
-          "
         ],
         "TP-HISTOLOGIE": [
           "Pr. Chhut SereyVathana"
-
-        ],
-        
+        ]
       }, 
       "2": {} 
     },
@@ -293,28 +290,32 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     return;
   }
 
-  // --- 1. Render Top Banner for Full Subject Assessments ---
-  const subjectBanner = document.createElement('div');
-  subjectBanner.classList.add('subject-card', 'prof-card');
-  subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+  const isSingleProf = professors.length === 1;
 
-  subjectBanner.innerHTML = `
-    <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
-      ${getTranslation('subject_assessments_title', { subject })}
-    </h3>
-    <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">
-      ${getTranslation('subject_assessments_desc')}
-    </p>
-    <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
-        ${getTranslation('btn_subject_quiz')}
-      </button>
-      <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
-        ${getTranslation('btn_subject_study_all')}
-      </button>
-    </div>
-  `;
-  profList.appendChild(subjectBanner);
+  // --- 1. Render Top Banner ONLY if there are multiple professors ---
+  if (!isSingleProf) {
+    const subjectBanner = document.createElement('div');
+    subjectBanner.classList.add('subject-card', 'prof-card');
+    subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+
+    subjectBanner.innerHTML = `
+      <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
+        ${getTranslation('subject_assessments_title', { subject })}
+      </h3>
+      <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">
+        ${getTranslation('subject_assessments_desc')}
+      </p>
+      <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
+          ${getTranslation('btn_subject_quiz')}
+        </button>
+        <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
+          ${getTranslation('btn_subject_study_all')}
+        </button>
+      </div>
+    `;
+    profList.appendChild(subjectBanner);
+  }
 
   // --- 2. Render Individual Professor Cards ---
   professors.forEach(prof => {
@@ -330,7 +331,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
 
     let continueBtnHTML = '';
-    let studyBtnLabel = getTranslation('btn_study');
+    let studyBtnLabel = isSingleProf ? getTranslation('btn_subject_study_all') : getTranslation('btn_study');
 
     if (studyProgress && studyProgress.studyAnsweredCount > 0) {
       const answered = studyProgress.studyAnsweredCount;
@@ -344,16 +345,38 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
+
+    let actionsHTML = '';
+    if (isSingleProf) {
+      actionsHTML = `
+        <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
+          ${continueBtnHTML}
+          <div class="btn-row-dual" style="display: flex; gap: 0.75rem; width: 100%;">
+            <button class="btn quiz-btn" style="flex: 1; background: #10b981; color: white;" onclick="startSession('${prof}', 'quiz')">
+              ${getTranslation('btn_subject_quiz')}
+            </button>
+            <button class="btn study-btn" style="flex: 1; background: #8b5cf6; color: white;" onclick="startSession('${prof}', 'study')">
+              ${studyBtnLabel}
+            </button>
+          </div>
+        </div>
+      `;
+    } else {
+      actionsHTML = `
+        <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
+          ${continueBtnHTML}
+          <div class="btn-row-single" style="width: 100%;">
+            <button class="btn study-btn" style="width: 100%;" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
+          </div>
+        </div>
+      `;
+    }
+
     card.innerHTML = `
       <h3>${prof}</h3>
       ${missedCount > 0 ? `<p class="missed-badge">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
       
-      <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
-        ${continueBtnHTML}
-        <div class="btn-row-single" style="width: 100%;">
-          <button class="btn study-btn" style="width: 100%;" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-        </div>
-      </div>
+      ${actionsHTML}
 
       ${missedCount > 0 ? `
         <div class="btn-row-dual" style="margin-top: 0.5rem;">
