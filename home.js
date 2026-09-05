@@ -3,6 +3,7 @@
 // ==========================================================================
 
 // Nested Data Hierarchy: Major -> Year -> Semester -> Subject -> [Professors]
+// Professors can be strings (e.g. "Pr. Ung Chan") or objects (e.g. { name: "Pr. Ung Chan", count: 38 })
 const manifestData = {
   "MED": {
     "1": { "1": {}, "2": {} },
@@ -25,7 +26,6 @@ const manifestData = {
           "Dr. Chea Ong",
           "Pr. Ku No",
           "Pr. Ast Sann Sary"
-
         ],
         "HISTOLOGIE": [
           "Pr. Chhut Serey Vathana",
@@ -88,6 +88,28 @@ let currentMajor = null;
 let currentYear = null;
 let currentSemester = null;
 let currentSubject = null;
+
+// --- Helper Functions for Flexible Professor Data & Drawers ---
+function getProfName(prof) {
+  return typeof prof === 'object' && prof !== null ? prof.name : prof;
+}
+
+function getProfQuestionCount(prof) {
+  return typeof prof === 'object' && prof !== null ? prof.count : null;
+}
+
+function toggleProfDrawer(drawerId, btnEl) {
+  const drawer = document.getElementById(drawerId);
+  if (!drawer) return;
+  const isHidden = drawer.classList.contains('hidden');
+  if (isHidden) {
+    drawer.classList.remove('hidden');
+    btnEl.classList.add('open');
+  } else {
+    drawer.classList.add('hidden');
+    btnEl.classList.remove('open');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
@@ -339,7 +361,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
   if (!isSingleProf) {
     const subjectBanner = document.createElement('div');
     subjectBanner.classList.add('subject-card', 'prof-card');
-    subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+    subjectBanner.style.cssText = 'margin-bottom: 1rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
 
     subjectBanner.innerHTML = `
       <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
@@ -360,10 +382,12 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     profList.appendChild(subjectBanner);
   }
 
-  // --- 2. Render Individual Professor Cards ---
-  professors.forEach(prof => {
-    const profSlug = getProfSlug(prof);
-    const storageKey = getStorageKey(major, year, semester, subject, prof);
+  // --- 2. Render Uniform Individual Professor Cards ---
+  professors.forEach(profItem => {
+    const profName = getProfName(profItem);
+    const qCount = getProfQuestionCount(profItem);
+    const profSlug = getProfSlug(profName);
+    const storageKey = getStorageKey(major, year, semester, subject, profName);
 
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
@@ -381,59 +405,73 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
       const total = studyProgress.questions ? studyProgress.questions.length : 0;
       if (answered < total) {
         const continueText = getTranslation('btn_continue_study', { answered, total });
-        continueBtnHTML = `<button class="btn continue-btn" onclick="continueStudySession('${prof}')">${continueText}</button>`;
+        continueBtnHTML = `<button class="btn continue-btn" onclick="continueStudySession('${profName}')">${continueText}</button>`;
         studyBtnLabel = getTranslation('btn_restart_study');
       }
     }
 
+    const hasDrawerContent = continueBtnHTML || missedCount > 0;
+    const drawerId = `drawer-${profSlug}`;
+
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
 
-    let actionsHTML = '';
+    const qBadgeHTML = qCount ? `<span class="prof-q-badge">${qCount} Qs</span>` : '';
+
+    let primaryActionsHTML = '';
     if (isSingleProf) {
-      actionsHTML = `
-        <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
-          ${continueBtnHTML}
-          <div class="btn-row-dual" style="display: flex; gap: 0.75rem; width: 100%;">
-            <button class="btn quiz-btn" style="flex: 1; background: #10b981; color: white;" onclick="startSession('${prof}', 'quiz')">
-              ${getTranslation('btn_subject_quiz')}
-            </button>
-            <button class="btn study-btn" style="flex: 1; background: #8b5cf6; color: white;" onclick="startSession('${prof}', 'study')">
-              ${studyBtnLabel}
-            </button>
-          </div>
+      primaryActionsHTML = `
+        <div class="subject-actions" style="display: flex; gap: 0.5rem; width: 100%;">
+          <button class="btn quiz-btn" style="flex: 1; background: #10b981; color: white;" onclick="startSession('${profName}', 'quiz')">
+            ${getTranslation('btn_subject_quiz')}
+          </button>
+          <button class="btn study-btn" style="flex: 1; background: #8b5cf6; color: white;" onclick="startSession('${profName}', 'study')">
+            ${studyBtnLabel}
+          </button>
         </div>
       `;
     } else {
-      actionsHTML = `
-        <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
-          ${continueBtnHTML}
-          <div class="btn-row-single" style="width: 100%;">
-            <button class="btn study-btn" style="width: 100%;" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-          </div>
+      primaryActionsHTML = `
+        <div class="subject-actions" style="width: 100%;">
+          <button class="btn study-btn" style="width: 100%;" onclick="startSession('${profName}', 'study')">${studyBtnLabel}</button>
         </div>
       `;
     }
 
     card.innerHTML = `
-      <h3>${prof}</h3>
-      ${missedCount > 0 ? `<p class="missed-badge">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
-      
-      ${actionsHTML}
+      <div class="prof-card-top">
+        <h3 style="margin: 0;">${profName} ${qBadgeHTML}</h3>
+        ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
+      </div>
 
-      ${missedCount > 0 ? `
-        <div class="btn-row-dual" style="margin-top: 0.5rem;">
-          <button class="btn study-missed-btn" onclick="startMissedSession('${prof}')">${getTranslation('btn_review_missed')}</button>
-          <button class="btn clear-btn" onclick="clearSavedMissed('${prof}')">${getTranslation('btn_clear_missed')}</button>
+      <div style="margin-top: 0.75rem; width: 100%;">
+        ${primaryActionsHTML}
+      </div>
+
+      ${hasDrawerContent ? `
+        <button class="drawer-toggle-btn" onclick="toggleProfDrawer('${drawerId}', this)">
+          <span>⚙️ Saved Progress & Missed</span> <span class="chevron">▼</span>
+        </button>
+        <div id="${drawerId}" class="prof-drawer hidden">
+          ${continueBtnHTML}
+          ${missedCount > 0 ? `
+            <div class="btn-row-dual" style="margin-top: 0.35rem;">
+              <button class="btn study-missed-btn" onclick="startMissedSession('${profName}')">${getTranslation('btn_review_missed')}</button>
+              <button class="btn clear-btn" onclick="clearSavedMissed('${profName}')">${getTranslation('btn_clear_missed')}</button>
+            </div>
+          ` : ''}
         </div>
       ` : ''}
     `;
+
     profList.appendChild(card);
   });
 }
 
 function startSubjectSession(mode) {
-  const professors = manifestData[currentMajor]?.[currentYear]?.[currentSemester]?.[currentSubject] || [];
+  const rawProfList = manifestData[currentMajor]?.[currentYear]?.[currentSemester]?.[currentSubject] || [];
+  const professors = rawProfList.map(getProfName);
+
   const sessionConfig = {
     major: currentMajor,
     year: currentYear,
