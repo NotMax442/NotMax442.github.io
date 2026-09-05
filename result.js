@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Populate global resultData
   resultData = JSON.parse(rawResult);
 
+  // Update session header text if present
+  const sessionHeader = document.getElementById('result-session-header');
+  if (sessionHeader && resultData) {
+    const profDisplay = resultData.isSubjectWide ? 'All Professors' : resultData.professor;
+    const modeLabel = (typeof getTranslation === 'function') 
+      ? getTranslation(`mode_${resultData.mode}`).toUpperCase() 
+      : resultData.mode.toUpperCase();
+    sessionHeader.textContent = `${resultData.major} Y${resultData.year} S${resultData.semester} - ${resultData.subject} (${profDisplay}) [${modeLabel}]`;
+  }
+
   const totalQuestions = resultData.questions ? resultData.questions.length : 0;
   const correctCount = resultData.userScore || 0;
   const incorrectCount = totalQuestions - correctCount;
@@ -137,7 +147,7 @@ function renderReviewBreakdown() {
     }
   }
 
-  const { questions, userAnswers } = resultData;
+  const { questions, userAnswers, isSubjectWide } = resultData;
   const itemsToDisplay = [];
 
   if (questions) {
@@ -194,6 +204,10 @@ function renderReviewBreakdown() {
       `;
     }
 
+    // Attach Professor name tag if session was Subject-Wide
+    const profTag = (isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
+    const displayQuestionText = `${q.question}${profTag}`;
+
     if (reviewStyle === 'compact') {
       // -------------------------------------------------------------
       // COMPACT DESIGN: Text Summary
@@ -203,7 +217,7 @@ function renderReviewBreakdown() {
         : getTranslation('review_unanswered');
 
       card.innerHTML = `
-        <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>
+        <h4 style="margin: 0 0 0.5rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(displayQuestionText)}</h4>
         ${imgHTML}
         <p style="margin: 0 0 0.25rem 0; font-size: 0.9rem; color: ${isCorrect ? '#10b981' : '#ef4444'}; font-weight: 600;">
           <strong>${getTranslation('label_your_choice')}:</strong> ${escapeHTML(userChoiceText)} ${isCorrect ? '✓' : '✗'}
@@ -218,7 +232,7 @@ function renderReviewBreakdown() {
       // -------------------------------------------------------------
       // FULL OPTIONS DESIGN: Study Mode Style Options
       // -------------------------------------------------------------
-      const qTitle = `<h4 style="margin: 0 0 0.85rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(q.question)}</h4>`;
+      const qTitle = `<h4 style="margin: 0 0 0.85rem 0; color: var(--text-main); font-size: 1rem; line-height: 1.4;">${idx + 1}. ${escapeHTML(displayQuestionText)}</h4>`;
       
       let optionsHTML = '<div class="options-grid" style="display: flex; flex-direction: column; gap: 0.5rem;">';
 
@@ -256,9 +270,15 @@ function renderReviewBreakdown() {
 }
 
 function checkMissedQuestions() {
-  const { major, year, semester, subject, professor } = resultData;
+  const { major, year, semester, subject, professor, isSubjectWide } = resultData;
   const retryMissedBtn = document.getElementById('retry-missed-btn');
   const missedCountEl = document.getElementById('missed-count');
+
+  // Skip retry button check for subject-wide session since questions route to individual prof vaults
+  if (isSubjectWide || !professor) {
+    if (retryMissedBtn) retryMissedBtn.classList.add('hidden');
+    return;
+  }
 
   const key = (typeof getStorageKey === 'function')
     ? getStorageKey(major, year, semester, subject, professor)
