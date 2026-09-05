@@ -1636,3 +1636,98 @@ p {
 .subject-card.prof-card .btn-row-dual {
   margin-top: 0.35rem;
 }
+
+/* ==========================================================================
+   UNIFORM PROFESSOR CARDS & EXPANDABLE DRAWER
+   ========================================================================== */
+
+#professor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0.75rem;
+  align-items: stretch; /* All cards in a row match height */
+}
+
+/* Force Subject Banner to stay full-width */
+#professor-list > div:first-child {
+  grid-column: 1 / -1;
+}
+
+.subject-card.prof-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0 !important;
+  min-height: 120px;
+  height: 100%;
+}
+
+.prof-card-top h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+/* Question Count Badge */
+.prof-q-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-heading, #38bdf8);
+  background: var(--bg-subcard, #334155);
+  border: 1px solid var(--border-sub, #475569);
+  padding: 2px 7px;
+  border-radius: 12px;
+  margin-left: 4px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Drawer Toggle Button */
+.drawer-toggle-btn {
+  background: none;
+  border: none;
+  border-top: 1px dashed var(--border-sub, #475569);
+  color: var(--text-sub, #94a3b8);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0 0 0;
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: color 0.2s ease;
+}
+
+.drawer-toggle-btn:hover {
+  color: var(--text-heading, #38bdf8);
+}
+
+.drawer-toggle-btn .chevron {
+  transition: transform 0.2s ease;
+  font-size: 0.7rem;
+}
+
+.drawer-toggle-btn.open .chevron {
+  transform: rotate(180deg);
+}
+
+/* Expandable Drawer Tray */
+.prof-drawer {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-sub, #475569);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  animation: drawerSlideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawerSlideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
