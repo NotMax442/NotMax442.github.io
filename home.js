@@ -3,7 +3,6 @@
 // ==========================================================================
 
 // Nested Data Hierarchy: Major -> Year -> Semester -> Subject -> [Professors]
-// Professors can be strings (e.g. "Pr. Ung Chan") or objects (e.g. { name: "Pr. Ung Chan", count: 38 })
 const manifestData = {
   "MED": {
     "1": { "1": {}, "2": {} },
@@ -94,10 +93,6 @@ function getProfName(prof) {
   return typeof prof === 'object' && prof !== null ? prof.name : prof;
 }
 
-function getProfQuestionCount(prof) {
-  return typeof prof === 'object' && prof !== null ? prof.count : null;
-}
-
 function toggleProfDrawer(drawerId, btnEl) {
   const drawer = document.getElementById(drawerId);
   if (!drawer) return;
@@ -108,6 +103,32 @@ function toggleProfDrawer(drawerId, btnEl) {
   } else {
     drawer.classList.add('hidden');
     btnEl.classList.remove('open');
+  }
+}
+
+// Automatically inspects the JSON file to fetch question length
+async function fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl) {
+  if (!badgeEl) return;
+  const profSlug = typeof getProfSlug === 'function' 
+    ? getProfSlug(profName) 
+    : profName.toLowerCase().replace(/\s+/g, '-');
+    
+  const jsonPath = `questions/${major.toLowerCase()}/y${year}/s${semester}/${subject.toLowerCase()}/${profSlug}.json`;
+
+  try {
+    const res = await fetch(jsonPath);
+    if (!res.ok) return;
+    const data = await res.json();
+    
+    // Handle both array format [...] or object format { questions: [...] }
+    const count = Array.isArray(data) ? data.length : (Array.isArray(data.questions) ? data.questions.length : 0);
+    
+    if (count > 0) {
+      badgeEl.textContent = `${count} Qs`;
+      badgeEl.style.display = 'inline-block';
+    }
+  } catch (e) {
+    // Silently skip if JSON does not exist yet
   }
 }
 
@@ -131,13 +152,11 @@ function showScreen(screenId, direction = 'forward') {
 
   if (!targetEl || currentVisibleId === screenId) return;
 
-  // Clear animation state
   screens.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
   });
 
-  // Animate transition if switching screens interactively
   if (currentEl && direction !== 'none') {
     const exitClass = direction === 'forward' ? 'slide-out-left' : 'slide-out-right';
     const enterClass = direction === 'forward' ? 'slide-in-right' : 'slide-in-left';
@@ -152,7 +171,6 @@ function showScreen(screenId, direction = 'forward') {
       targetEl.classList.remove(enterClass);
     }, 180);
   } else {
-    // Instant swap for page restores or initial loads
     screens.forEach(id => {
       const el = document.getElementById(id);
       if (el) {
@@ -171,7 +189,6 @@ function setupNavigation() {
   const backToSemestersBtn = document.getElementById('back-to-semesters-btn');
   const backToSubjectsBtn = document.getElementById('back-to-subjects-btn');
 
-  // Landing -> Major
   if (enterStudyBtn) {
     enterStudyBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'major');
@@ -179,7 +196,6 @@ function setupNavigation() {
     });
   }
 
-  // Major -> Landing
   if (backToLandingBtn) {
     backToLandingBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'landing');
@@ -188,7 +204,6 @@ function setupNavigation() {
     });
   }
 
-  // Select Major -> Show Years
   document.querySelectorAll('#major-grid .year-card').forEach(card => {
     card.addEventListener('click', () => {
       currentMajor = card.getAttribute('data-major');
@@ -198,7 +213,6 @@ function setupNavigation() {
     });
   });
 
-  // Year -> Major
   if (backToMajorsBtn) {
     backToMajorsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'major');
@@ -207,7 +221,6 @@ function setupNavigation() {
     });
   }
 
-  // Select Year -> Show Semesters
   document.querySelectorAll('#year-screen .year-card').forEach(card => {
     card.addEventListener('click', () => {
       currentYear = card.getAttribute('data-year');
@@ -217,7 +230,6 @@ function setupNavigation() {
     });
   });
 
-  // Semester -> Year
   if (backToYearsBtn) {
     backToYearsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'year');
@@ -226,7 +238,6 @@ function setupNavigation() {
     });
   }
 
-  // Select Semester -> Show Subjects
   document.querySelectorAll('#semester-screen .year-card').forEach(card => {
     card.addEventListener('click', () => {
       currentSemester = card.getAttribute('data-semester');
@@ -236,7 +247,6 @@ function setupNavigation() {
     });
   });
 
-  // Subject -> Semester
   if (backToSemestersBtn) {
     backToSemestersBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'semester');
@@ -245,7 +255,6 @@ function setupNavigation() {
     });
   }
 
-  // Professor -> Subject
   if (backToSubjectsBtn) {
     backToSubjectsBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'subject');
@@ -357,7 +366,6 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
   const isSingleProf = professors.length === 1;
 
-  // --- 1. Render Top Banner ONLY if there are multiple professors ---
   if (!isSingleProf) {
     const subjectBanner = document.createElement('div');
     subjectBanner.classList.add('subject-card', 'prof-card');
@@ -382,11 +390,12 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     profList.appendChild(subjectBanner);
   }
 
-  // --- 2. Render Uniform Individual Professor Cards ---
   professors.forEach(profItem => {
     const profName = getProfName(profItem);
-    const qCount = getProfQuestionCount(profItem);
-    const profSlug = getProfSlug(profName);
+    const profSlug = typeof getProfSlug === 'function' 
+      ? getProfSlug(profName) 
+      : profName.toLowerCase().replace(/\s+/g, '-');
+      
     const storageKey = getStorageKey(major, year, semester, subject, profName);
 
     const savedMissed = localStorage.getItem(storageKey);
@@ -416,8 +425,6 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
 
-    const qBadgeHTML = qCount ? `<span class="prof-q-badge">${qCount} Qs</span>` : '';
-
     let primaryActionsHTML = '';
     if (isSingleProf) {
       primaryActionsHTML = `
@@ -440,7 +447,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
     card.innerHTML = `
       <div class="prof-card-top">
-        <h3 style="margin: 0;">${profName} ${qBadgeHTML}</h3>
+        <h3 style="margin: 0;">${profName} <span id="q-badge-${profSlug}" class="prof-q-badge" style="display: none;"></span></h3>
         ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
       </div>
 
@@ -465,6 +472,10 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     `;
 
     profList.appendChild(card);
+
+    // Asynchronously inspect JSON file and insert question count badge
+    const badgeEl = card.querySelector(`#q-badge-${profSlug}`);
+    fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl);
   });
 }
 
