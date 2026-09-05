@@ -447,7 +447,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
     card.innerHTML = `
       <div class="prof-card-top">
-        <h3 style="margin: 0;">${profName} <span id="q-badge-${profSlug}" class="prof-q-badge" style="display: none;"></span></h3>
+        <h3 style="margin: 0;">${profName} <span class="prof-q-badge" style="display: none;"></span></h3>
         ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
       </div>
 
@@ -473,8 +473,8 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
     profList.appendChild(card);
 
-    // Asynchronously inspect JSON file and insert question count badge
-    const badgeEl = card.querySelector(`#q-badge-${profSlug}`);
+    // Scoped element selection (prevents invalid ID selector crashes with & symbols)
+    const badgeEl = card.querySelector('.prof-q-badge');
     fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl);
   });
 }
