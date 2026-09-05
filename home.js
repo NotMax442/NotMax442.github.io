@@ -249,20 +249,28 @@ function showProfessors(major, year, semester, subject) {
     return;
   }
 
-  // --- 1. Render Top Banner for Full Subject Assessments ---
-  const subjectBanner = document.createElement('div');
-  subjectBanner.classList.add('subject-card', 'prof-card');
-  subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+// --- Render Top Banner for Full Subject Assessments ---
+const subjectBanner = document.createElement('div');
+subjectBanner.classList.add('subject-card', 'prof-card');
+subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
 
-  subjectBanner.innerHTML = `
-    <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">${subject} - Subject Assessments</h3>
-    <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">Test your knowledge or study across all professors in this subject combined.</p>
-    <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">${getTranslation('btn_subject_quiz')}</button>
-      <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">${getTranslation('btn_subject_study_all')}</button>
-    </div>
-  `;
-  profList.appendChild(subjectBanner);
+subjectBanner.innerHTML = `
+  <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">
+    ${getTranslation('subject_assessments_title', { subject })}
+  </h3>
+  <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">
+    ${getTranslation('subject_assessments_desc')}
+  </p>
+  <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
+      ${getTranslation('btn_subject_quiz')}
+    </button>
+    <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
+      ${getTranslation('btn_subject_study_all')}
+    </button>
+  </div>
+`;
+profList.appendChild(subjectBanner);
 
   // --- 2. Render Individual Professor Cards ---
   professors.forEach(prof => {
