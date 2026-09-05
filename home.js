@@ -42,7 +42,40 @@ const manifestData = {
           "Pr. Chhut SereyVathana"
         ]
       }, 
-      "2": {} 
+      "2": {
+        "BIOCHIMIE": [
+          "Pr. Ung Channy"
+        ],
+        "BIOPHYSIQUE": [
+          "Chhoeurt Koeurn",
+          "Mr. Chhom Sakborey",
+          "Mr. Chhom Sakborey2"
+        ],
+        "SÉMIOLOGIE": [
+          "Dr. Chhar Bunpaul",
+          "Dr. Khov Mong",
+          "Dr. Chea Sophanna",
+          "Dr. Din Vannak",
+          "Dr. Hor Sorithea",
+          "Dr. Huy Sruy",
+          "Dr. Plok Vuthy",
+          "Dr. Pol Vibol",
+          "Dr. Prok Vichetra",
+          "Dr. Sam ang Kimdany",
+          "Dr. Sim Kong",
+          "Dr. Sok Srun",
+          "Dr. Soth Vuthy",
+          "Dr. Uk Pisey",
+          "Dr. Yi Kok",
+          "Pr. Chak Thida",
+          "Pr. Chea Vannarith",
+          "Pr. Chhour Nareth",
+          "Pr. Ny Chanty",
+          "Pr. Thong You",
+          "Pr. Ung Chakravuth",
+          "Pr. Ast. Nhem Aklinn"
+        ]
+      } 
     },
     "3": { "1": {}, "2": {} },
     "4": { "1": {}, "2": {} },
