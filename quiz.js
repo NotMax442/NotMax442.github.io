@@ -65,14 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Wire up Quiz Mode Image Click-to-Zoom
-  const quizImg = document.getElementById('question-image');
-  if (quizImg) {
-    quizImg.addEventListener('click', () => {
-      if (quizImg.src) openZoomModal(quizImg.src);
-    });
-  }
-
   // Wire up "Next Question" button click handler
   const nextBtn = document.getElementById('next-btn');
   if (nextBtn) {
@@ -105,6 +97,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupNavigationGuards();
   await initSession();
 });
+
+// Helper: Extract image filenames as an array (supports images: [] or image: "")
+function getImageList(q) {
+  if (Array.isArray(q.images) && q.images.length > 0) {
+    return q.images.map(img => img.trim()).filter(Boolean);
+  }
+  if (q.image && typeof q.image === 'string' && q.image.trim() !== '') {
+    return [q.image.trim()];
+  }
+  return [];
+}
 
 // Helper: Open Zoom Modal
 function openZoomModal(imgSrc) {
@@ -445,19 +448,22 @@ function renderStudyMode() {
     qTitle.textContent = `${qIndex + 1}. ${q.question}`;
     qCard.appendChild(qTitle);
 
-    // Render Question Image for Study Mode
-    if (q.image && q.image.trim() !== '') {
+    // Render Question Images for Study Mode
+    const imgList = getImageList(q);
+    if (imgList.length > 0) {
       const imgWrapper = document.createElement('div');
-      imgWrapper.style.cssText = 'text-align: center; margin: 1rem 0;';
-      
-      const img = document.createElement('img');
-      const fullImgUrl = IMAGE_BASE_URL + q.image.trim();
-      img.src = fullImgUrl;
-      img.alt = `Diagram for question ${qIndex + 1}`;
-      img.className = 'question-img';
-      img.addEventListener('click', () => openZoomModal(fullImgUrl));
+      imgWrapper.style.cssText = 'text-align: center; margin: 1rem 0; display: flex; flex-direction: column; gap: 0.75rem; align-items: center;';
 
-      imgWrapper.appendChild(img);
+      imgList.forEach((imgName) => {
+        const img = document.createElement('img');
+        const fullImgUrl = IMAGE_BASE_URL + imgName;
+        img.src = fullImgUrl;
+        img.alt = `Diagram for question ${qIndex + 1}`;
+        img.className = 'question-img';
+        img.addEventListener('click', () => openZoomModal(fullImgUrl));
+        imgWrapper.appendChild(img);
+      });
+
       qCard.appendChild(imgWrapper);
     }
 
@@ -580,7 +586,6 @@ function renderQuizQuestion() {
   const progressText = document.getElementById('progress-text');
   const questionText = document.getElementById('question-text');
   const imgWrapper = document.getElementById('question-image-wrapper');
-  const imgElement = document.getElementById('question-image');
 
   if (nextBtn) nextBtn.classList.add('hidden');
   if (optionsContainer) optionsContainer.innerHTML = '';
@@ -594,13 +599,29 @@ function renderQuizQuestion() {
   }
   if (questionText) questionText.textContent = q.question;
 
-  // Handle Question Image in Quiz Mode
-  if (imgWrapper && imgElement) {
-    if (q.image && q.image.trim() !== '') {
-      imgElement.src = IMAGE_BASE_URL + q.image.trim();
+  // Handle Question Images in Quiz Mode
+  if (imgWrapper) {
+    const imgList = getImageList(q);
+    imgWrapper.innerHTML = ''; // Clear previous images
+
+    if (imgList.length > 0) {
+      imgWrapper.style.display = 'flex';
+      imgWrapper.style.flexDirection = 'column';
+      imgWrapper.style.gap = '0.75rem';
+      imgWrapper.style.alignItems = 'center';
+
+      imgList.forEach((imgName) => {
+        const img = document.createElement('img');
+        const fullImgUrl = IMAGE_BASE_URL + imgName;
+        img.src = fullImgUrl;
+        img.alt = 'Question Diagram';
+        img.className = 'question-img';
+        img.addEventListener('click', () => openZoomModal(fullImgUrl));
+        imgWrapper.appendChild(img);
+      });
+
       imgWrapper.classList.remove('hidden');
     } else {
-      imgElement.src = '';
       imgWrapper.classList.add('hidden');
     }
   }
