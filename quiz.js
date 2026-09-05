@@ -481,8 +481,7 @@ function renderStudyMode() {
     qCard.style.cssText = 'margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);';
 
     const qTitle = document.createElement('h3');
-    const profTag = (sessionConfig.isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
-    qTitle.textContent = `${qIndex + 1}. ${q.question}${profTag}`;
+    qTitle.textContent = `${qIndex + 1}. ${q.question}`;
     qCard.appendChild(qTitle);
 
     // Render Question Images for Study Mode
@@ -636,8 +635,7 @@ function renderQuizQuestion() {
     });
   }
   
-  const profTag = (sessionConfig.isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
-  if (questionText) questionText.textContent = `${q.question}${profTag}`;
+  if (questionText) questionText.textContent = q.question;
 
   // Handle Question Images in Quiz Mode
   if (imgWrapper) {
