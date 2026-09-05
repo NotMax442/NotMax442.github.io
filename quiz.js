@@ -696,9 +696,13 @@ function finishSession() {
     userScore = 0;
     questions.forEach((q, idx) => {
       const chosen = userAnswers[idx];
-      const isCorrect = chosen !== null && chosen === q.correctIndex;
+      const isAnswered = chosen !== null && chosen !== undefined;
+      const isCorrect = isAnswered && chosen === q.correctIndex;
+
       if (isCorrect) userScore++;
-      if (typeof recordQuestionResult === 'function') {
+
+      // Only process questions that were actually attempted
+      if (isAnswered && typeof recordQuestionResult === 'function') {
         recordQuestionResult(
           q,
           isCorrect,
