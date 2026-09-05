@@ -123,7 +123,7 @@ const translations = {
     morale_5: "🛡️ Don't be sad, I'll be here for you until you get a good scoring.",
     morale_6: "🩺 Rest for a bit. Then try again later 💞",
 
-    //quiz
+    // quiz
     mode_study: "STUDY",
     mode_quiz: "QUIZ",
     mode_missed: "MISSED",
@@ -146,8 +146,6 @@ const translations = {
     label_correct_choice: "Correct Choice",
     account_review_style_title: "Result Review Display Style",
     account_review_style_desc: "Choose whether to display result reviews as a compact text summary or full study-style options.",
-    option_style_compact: "Compact (Text Summary)",
-    option_style_full: "Full Options (Study Style)",
     option_style_compact: "Compact View",
     option_style_full: "Full Options View",
 
@@ -302,8 +300,6 @@ const translations = {
     label_correct_choice: "ចម្លើយត្រឹមត្រូវ",
     account_review_style_title: "ទម្រង់ពិនិត្យលទ្ធផលឡើងវិញ",
     account_review_style_desc: "ជ្រើសរើសរវាងទម្រង់សង្ខេប (អត្ថបទ) ឬទម្រង់បង្ហាញជម្រើសទាំងអស់ (ដូច Study Mode)។",
-    option_style_compact: "ទម្រង់សង្ខេប (អត្ថបទ)",
-    option_style_full: "ទម្រង់បង្ហាញជម្រើសទាំងអស់",
     option_style_compact: "ទម្រង់សង្ខេប",
     option_style_full: "ទម្រង់ពេញ",
 
@@ -314,7 +310,6 @@ const translations = {
     // coming soon
     coming_soon_title: "នឹងមកដល់ឆាប់ៗនេះ!",
     coming_soon_sub: "ទំព័រនេះមិនទាន់មានអ្វីទេ។ សុំទោស​🙏",
-    
   }
 };
 
@@ -411,32 +406,52 @@ function applyTheme(theme) {
   }
 }
 
+// --- Helper: Professor Slug Generator ---
+function getProfSlug(profName) {
+  if (!profName) return '';
+  return profName
+    .toLowerCase()
+    .replace(/\./g, '')           // Strip dots ("Pr." -> "pr")
+    .replace(/\s+/g, '-')         // Convert spaces to dashes
+    .replace(/[^a-z0-9-&]/g, ''); // Retain valid characters
+}
+
 // --- Vault Storage Helpers ---
 function getStorageKey(major, year, semester, subject, professor) {
-  if (!major || !year || !semester || !subject || !professor) return '';
+  if (!major || year === undefined || semester === undefined || !subject || !professor) return '';
   const profSlug = getProfSlug(professor);
   return `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
 }
 
 function recordQuestionResult(questionObj, isCorrect, major, year, semester, subject, professor) {
-  if (!major || !year || !semester || !subject || !professor) return;
+  if (!major || year === undefined || semester === undefined || !subject || !professor) return;
   const key = getStorageKey(major, year, semester, subject, professor);
+  if (!key) return;
+
   const raw = localStorage.getItem(key);
   let vault = raw ? JSON.parse(raw) : [];
 
-  const existingIndex = vault.findIndex(item => item.question === questionObj.question);
+  const qText = (questionObj.question || '').trim();
+  if (!qText) return;
+
+  const existingIndex = vault.findIndex(item => (item.question || '').trim() === qText);
 
   if (!isCorrect) {
+    // Answered incorrectly -> reset streak and ensure question is saved in vault
     if (existingIndex >= 0) {
-      vault[existingIndex].streak = 0;
+      vault[existingIndex] = { ...questionObj, streak: 0 };
     } else {
       vault.push({ ...questionObj, streak: 0 });
     }
   } else {
+    // Answered correctly -> increment streak if already in vault
     if (existingIndex >= 0) {
-      vault[existingIndex].streak = (vault[existingIndex].streak || 0) + 1;
-      if (vault[existingIndex].streak >= 2) {
+      const currentStreak = (vault[existingIndex].streak || 0) + 1;
+      if (currentStreak >= 2) {
+        // Remove from vault after 2 consecutive correct answers
         vault.splice(existingIndex, 1);
+      } else {
+        vault[existingIndex].streak = currentStreak;
       }
     }
   }
@@ -499,17 +514,6 @@ function setupSharedModals() {
   }
 }
 
-
-
-function getProfSlug(profName) {
-  if (!profName) return '';
-  return profName
-    .toLowerCase()
-    .replace(/\./g, '')           // Strip dots ("Pr." -> "pr")
-    .replace(/\s+/g, '-')         // Convert spaces to dashes
-    .replace(/[^a-z0-9-&]/g, ''); // Retain valid characters
-}
-
 // ==========================================================================
 // PREVENT DEVTOOLS & INSPECT SHORTCUTS
 // ==========================================================================
@@ -545,7 +549,6 @@ document.addEventListener('keydown', (e) => {
 // ==========================================================================
 (function startAntiDebug() {
   setInterval(() => {
-    // Dynamically invokes 'debugger' to avoid static code scanning
     (function () {}).constructor("debugger")();
   }, 100);
 })();
