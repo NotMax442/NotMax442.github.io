@@ -46,8 +46,9 @@ const translations = {
     semester_2: "Semester 2",
 
     // Study & Professor Actions
-    btn_study_all: "📖 Study All",
-    btn_quiz: "📝 Quiz",
+    btn_subject_quiz: "📝 Subject Quiz (60 Qs)",
+    btn_subject_study_all: "📖 Study All",
+    btn_study: "📖 Study", // Renamed from "Study All" for individual professors
     btn_review_missed: "🎯 Review Missed",
     btn_clear_missed: "🗑️ Clear Saved Missed",
     missed_badge: "⚠️ {count} saved missed question(s)",
@@ -200,8 +201,9 @@ const translations = {
     semester_2: "ឆមាសទី ២",
 
     // Study & Professor Actions
-    btn_study_all: "📖 សិក្សាទាំងអស់",
-    btn_quiz: "📝 ប្រឡងតេស្ត",
+    btn_subject_quiz: "📝 ប្រឡងតេស្ត (៦០ សំណួរ)",
+    btn_subject_study_all: "📖 សិក្សាទាំងអស់",
+    btn_study: "📖 សិក្សា",
     btn_review_missed: "🎯 រំលឹកសំណួរខុស",
     btn_clear_missed: "🗑️ លុបសំណួរខុស",
     missed_badge: "⚠️ {count} សំណួរខុសដែលបានរក្សាទុក",
