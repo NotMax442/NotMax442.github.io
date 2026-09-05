@@ -1560,25 +1560,27 @@ p {
 }
 
 /* ==========================================================================
-   COMPACT PROFESSOR CARD GRID
+   COMPACT PROFESSOR CARD GRID & ALIGNMENT FIX
    ========================================================================== */
 
-/* Turn professor container into a multi-column responsive grid */
+/* Multi-column grid top-aligned so cards don't stretch vertically */
 #professor-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 0.75rem;
+  align-items: start; /* Fixes empty vertical card stretching */
 }
 
-/* Force top Subject Banner to always span full width */
+/* Force top Subject Banner to span full width */
 #professor-list > div:first-child {
   grid-column: 1 / -1;
 }
 
-/* Compact padding and typography for professor cards */
+/* Compact padding and height constraint for professor cards */
 .subject-card.prof-card {
   padding: 0.85rem 1rem;
-  margin-bottom: 0 !important; /* Space is handled by grid gap */
+  margin-bottom: 0 !important;
+  height: fit-content; /* Restricts card height strictly to its inner content */
 }
 
 .subject-card.prof-card h3 {
@@ -1587,13 +1589,11 @@ p {
   line-height: 1.3;
 }
 
-/* Compact buttons for professor cards */
 .subject-card.prof-card .btn {
   padding: 8px 12px;
   font-size: 0.85rem;
 }
 
-/* Compact badges and margins */
 .subject-card.prof-card .missed-badge {
   font-size: 0.78rem;
   margin-bottom: 0.5rem;
