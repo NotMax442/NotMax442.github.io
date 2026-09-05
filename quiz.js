@@ -129,6 +129,15 @@ function getProfSlug(profName) {
     .replace(/[^a-z0-9-&]/g, ''); // Retain letters, numbers, dashes, and ampersands
 }
 
+function getStudyStorageKey() {
+  const { major, year, semester, subject, professor, isSubjectWide } = sessionConfig;
+  if (isSubjectWide) {
+    return `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_subject_all`;
+  }
+  const profSlug = getProfSlug(professor);
+  return `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+}
+
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -277,13 +286,14 @@ function setupNavigationGuards() {
 
 // Session Initialization
 async function initSession() {
-  const { major, year, semester, subject, professor, mode, resume } = sessionConfig;
+  const { major, year, semester, subject, professor, professors, isSubjectWide, mode, resume } = sessionConfig;
   const sessionInfo = document.getElementById('session-info');
   const loadingOverlay = document.getElementById('loading-overlay');
 
   if (sessionInfo) {
     const modeLabel = getTranslation(`mode_${mode}`).toUpperCase();
-    sessionInfo.textContent = `${major} Y${year} S${semester} - ${subject} (${professor}) [${modeLabel} MODE]`;
+    const targetLabel = isSubjectWide ? 'All Professors' : professor;
+    sessionInfo.textContent = `${major} Y${year} S${semester} - ${subject} (${targetLabel}) [${modeLabel} MODE]`;
   }
 
   isSessionActive = true;
@@ -291,8 +301,7 @@ async function initSession() {
   currentQuestionIndex = 0;
   studyAnsweredCount = 0;
 
-  const profSlug = getProfSlug(professor);
-  const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+  const studyProgressKey = getStudyStorageKey();
 
   // Resume saved Study progress
   if (mode === 'study' && resume) {
@@ -311,8 +320,9 @@ async function initSession() {
     }
   }
 
-  // Load Missed Vault
+  // Load Missed Vault (Single Professor Only)
   if (mode === 'missed') {
+    const profSlug = getProfSlug(professor);
     const key = (typeof getStorageKey === 'function')
       ? getStorageKey(major, year, semester, subject, professor)
       : `missed_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
@@ -330,16 +340,45 @@ async function initSession() {
     return;
   }
 
-  // JSON Fetch Path
-  const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   if (loadingOverlay) loadingOverlay.classList.remove('hidden');
 
   try {
-    const response = await fetch(`${filePath}?t=${Date.now()}`);
-    if (!response.ok) throw new Error(`File not found at: ${filePath}`);
-    const data = await response.json();
+    let rawQuestions = [];
 
-    let processed = shuffleArray(data.questions);
+    if (isSubjectWide && Array.isArray(professors) && professors.length > 0) {
+      // --- Fetch JSONs for ALL professors in parallel ---
+      const fetchPromises = professors.map(async (profName) => {
+        const pSlug = getProfSlug(profName);
+        const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${pSlug}.json`;
+        try {
+          const res = await fetch(`${filePath}?t=${Date.now()}`);
+          if (!res.ok) return [];
+          const data = await res.json();
+          // Tag each question with its professor's name for vault routing
+          return (data.questions || []).map(q => ({ ...q, professor: profName }));
+        } catch (err) {
+          console.warn(`Could not load questions for ${profName}:`, err);
+          return [];
+        }
+      });
+
+      const results = await Promise.all(fetchPromises);
+      rawQuestions = results.flat();
+    } else {
+      // --- Single Professor JSON Fetch ---
+      const profSlug = getProfSlug(professor);
+      const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
+      const response = await fetch(`${filePath}?t=${Date.now()}`);
+      if (!response.ok) throw new Error(`File not found at: ${filePath}`);
+      const data = await response.json();
+      rawQuestions = (data.questions || []).map(q => ({ ...q, professor: professor }));
+    }
+
+    if (rawQuestions.length === 0) {
+      throw new Error("No questions available.");
+    }
+
+    let processed = shuffleArray(rawQuestions);
     if (mode === 'quiz') {
       processed = processed.slice(0, 60);
     }
@@ -354,7 +393,7 @@ async function initSession() {
       renderQuizQuestion();
     }
   } catch (error) {
-    alert(getTranslation('load_error_alert', { path: filePath }));
+    alert(getTranslation('load_error_alert', { path: subject }));
     window.location.href = '/';
   } finally {
     if (loadingOverlay) loadingOverlay.classList.add('hidden');
@@ -405,10 +444,7 @@ function updateTimerUI() {
 // Auto-save Study progress
 function saveStudyProgress() {
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const { major, year, semester, subject, professor } = sessionConfig;
-    const profSlug = getProfSlug(professor);
-    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
-
+    const studyProgressKey = getStudyStorageKey();
     const progressData = {
       questions: questions,
       userAnswers: userAnswers,
@@ -445,7 +481,8 @@ function renderStudyMode() {
     qCard.style.cssText = 'margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);';
 
     const qTitle = document.createElement('h3');
-    qTitle.textContent = `${qIndex + 1}. ${q.question}`;
+    const profTag = (sessionConfig.isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
+    qTitle.textContent = `${qIndex + 1}. ${q.question}${profTag}`;
     qCard.appendChild(qTitle);
 
     // Render Question Images for Study Mode
@@ -541,6 +578,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
   }
 
   if (typeof recordQuestionResult === 'function') {
+    const targetProf = q.professor || sessionConfig.professor;
     recordQuestionResult(
       q,
       isCorrect,
@@ -548,7 +586,7 @@ function handleStudyOptionClick(qIndex, selectedIndex, selectedBtn, optsDiv) {
       sessionConfig.year,
       sessionConfig.semester,
       sessionConfig.subject,
-      sessionConfig.professor
+      targetProf
     );
   }
   studyAnsweredCount++;
@@ -597,12 +635,14 @@ function renderQuizQuestion() {
       total: questions.length
     });
   }
-  if (questionText) questionText.textContent = q.question;
+  
+  const profTag = (sessionConfig.isSubjectWide && q.professor) ? ` [${q.professor}]` : '';
+  if (questionText) questionText.textContent = `${q.question}${profTag}`;
 
   // Handle Question Images in Quiz Mode
   if (imgWrapper) {
     const imgList = getImageList(q);
-    imgWrapper.innerHTML = ''; // Clear previous images
+    imgWrapper.innerHTML = '';
 
     if (imgList.length > 0) {
       imgWrapper.style.display = 'flex';
@@ -686,9 +726,7 @@ function finishSession() {
   cancelAutoScroll();
 
   if (sessionConfig && sessionConfig.mode === 'study') {
-    const { major, year, semester, subject, professor } = sessionConfig;
-    const profSlug = getProfSlug(professor);
-    const studyProgressKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
+    const studyProgressKey = getStudyStorageKey();
     localStorage.removeItem(studyProgressKey);
   }
 
@@ -701,8 +739,8 @@ function finishSession() {
 
       if (isCorrect) userScore++;
 
-      // Only process questions that were actually attempted
       if (isAnswered && typeof recordQuestionResult === 'function') {
+        const targetProf = q.professor || sessionConfig.professor;
         recordQuestionResult(
           q,
           isCorrect,
@@ -710,7 +748,7 @@ function finishSession() {
           sessionConfig.year,
           sessionConfig.semester,
           sessionConfig.subject,
-          sessionConfig.professor
+          targetProf
         );
       }
     });
