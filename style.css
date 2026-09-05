@@ -1677,13 +1677,11 @@ p {
   color: var(--text-heading, #38bdf8);
   background: var(--bg-subcard, #334155);
   border: 1px solid var(--border-sub, #475569);
-  padding: 2px 7px;
+  padding: 3px 8px;
   border-radius: 12px;
-  margin-left: 4px;
-  vertical-align: middle;
   white-space: nowrap;
+  flex-shrink: 0;
 }
-
 /* Drawer Toggle Button */
 .drawer-toggle-btn {
   background: none;
