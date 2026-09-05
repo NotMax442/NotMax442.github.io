@@ -17,6 +17,16 @@ const manifestData = {
           "Pr. Ich Khuy",
           "Dr. Say Tang"
         ],
+        "PHYSIOLOGIE": [
+          "Pr. Im Bunthoeun",
+          "Pr. Duong Dararith",
+          "Dr. Sou Sipanha",
+          "Dr. Em Savoeun",
+          "Dr. Chea Ong",
+          "Pr. Ku No",
+          "Pr. Ast Sann Sary"
+
+        ],
         "HISTOLOGIE": [
           "Pr. Chhut Serey Vathana",
           "Pr. Pheav Piseth"
