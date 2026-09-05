@@ -1372,6 +1372,33 @@ p {
 .review-badge.badge-correct { background: #10b981; color: #ffffff; }
 .review-badge.badge-wrong { background: #ef4444; color: #ffffff; }
 
+
+/* ==========================================================================
+   PIE CHART SVG STROKE COLORS & RING THICKNESS
+   ========================================================================== */
+
+.pie-ring {
+  fill: none;
+  stroke-width: 16;
+}
+
+/* Base Track Ring */
+.bg-ring {
+  stroke: #1e293b;
+}
+
+/* Green Arc for Correct Answers */
+#correct-arc,
+.correct-ring {
+  stroke: #10b981 !important;
+}
+
+/* Red Arc for Incorrect Answers */
+#incorrect-arc,
+.incorrect-ring {
+  stroke: #ef4444 !important;
+}
+
 /* ==========================================================================
    14. FEEDBACK CARD CONTAINER & BADGE OVERRIDES
    ========================================================================== */
