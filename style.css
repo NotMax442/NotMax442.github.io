@@ -1467,11 +1467,10 @@ p {
   text-align: right;
   background-color: rgba(0, 0, 0, 0.15);
 }
-/* Question Diagram Image Styling */
 .question-img {
-  width: 100%;
-  max-width: 550px; /* Scales small screenshots up to fill the card */
-  max-height: 500px; /* Increases vertical height for detailed anatomical diagrams */
+  width: auto;
+  max-width: 100%;
+  max-height: 480px;
   height: auto;
   object-fit: contain;
   border-radius: 8px;
@@ -1481,6 +1480,11 @@ p {
   margin: 1rem auto;
   display: block;
   cursor: pointer;
+
+  /* Sharpening algorithms to reduce browser upscaling blur */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
