@@ -24,10 +24,7 @@ const manifestData = {
         "TP-ANATOMIE": [
           "Dr. Koam Phaly",
           "Dr. Heng Sophea"
-
-
         ]
-        
       }, 
       "2": {} 
     },
@@ -198,7 +195,6 @@ function showSubjects(major, year, semester) {
     ? Object.keys(manifestData[major][year][semester]) 
     : [];
 
-  // Render "Coming Soon!" card if no subjects exist for this semester
   if (subjects.length === 0) {
     subjectList.innerHTML = `
       <div class="empty-state-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
@@ -243,7 +239,6 @@ function showProfessors(major, year, semester, subject) {
 
   const professors = manifestData[major]?.[year]?.[semester]?.[subject] || [];
 
-  // Render "Coming Soon!" card if no professors exist for this subject
   if (professors.length === 0) {
     profList.innerHTML = `
       <div class="empty-state-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
@@ -254,6 +249,22 @@ function showProfessors(major, year, semester, subject) {
     return;
   }
 
+  // --- 1. Render Top Banner for Full Subject Assessments ---
+  const subjectBanner = document.createElement('div');
+  subjectBanner.classList.add('subject-card', 'prof-card');
+  subjectBanner.style.cssText = 'margin-bottom: 1.5rem; border-left: 4px solid var(--accent, #38bdf8); background: var(--bg-subcard, #1e293b); padding: 1.25rem; border-radius: 10px;';
+
+  subjectBanner.innerHTML = `
+    <h3 style="margin: 0 0 0.25rem 0; font-size: 1.1rem; color: var(--text-main);">${subject} - Subject Assessments</h3>
+    <p style="margin: 0 0 1rem 0; font-size: 0.85rem; color: var(--text-sub);">Test your knowledge or study across all professors in this subject combined.</p>
+    <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">${getTranslation('btn_subject_quiz')}</button>
+      <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">${getTranslation('btn_subject_study_all')}</button>
+    </div>
+  `;
+  profList.appendChild(subjectBanner);
+
+  // --- 2. Render Individual Professor Cards ---
   professors.forEach(prof => {
     const profSlug = getProfSlug(prof);
     const storageKey = getStorageKey(major, year, semester, subject, prof);
@@ -267,7 +278,7 @@ function showProfessors(major, year, semester, subject) {
     if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
 
     let continueBtnHTML = '';
-    let studyBtnLabel = getTranslation('btn_study_all');
+    let studyBtnLabel = getTranslation('btn_study');
 
     if (studyProgress && studyProgress.studyAnsweredCount > 0) {
       const answered = studyProgress.studyAnsweredCount;
@@ -287,9 +298,8 @@ function showProfessors(major, year, semester, subject) {
       
       <div class="subject-actions" style="display: flex; flex-direction: column; width: 100%;">
         ${continueBtnHTML}
-        <div class="btn-row-dual">
-          <button class="btn study-btn" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
-          <button class="btn quiz-btn" onclick="startSession('${prof}', 'quiz')">${getTranslation('btn_quiz')}</button>
+        <div class="btn-row-single" style="width: 100%;">
+          <button class="btn study-btn" style="width: 100%;" onclick="startSession('${prof}', 'study')">${studyBtnLabel}</button>
         </div>
       </div>
 
@@ -304,6 +314,22 @@ function showProfessors(major, year, semester, subject) {
   });
 }
 
+function startSubjectSession(mode) {
+  const professors = manifestData[currentMajor]?.[currentYear]?.[currentSemester]?.[currentSubject] || [];
+  const sessionConfig = {
+    major: currentMajor,
+    year: currentYear,
+    semester: currentSemester,
+    subject: currentSubject,
+    professors: professors,
+    isSubjectWide: true,
+    mode: mode,
+    resume: false
+  };
+  sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
+  window.location.href = '/quiz';
+}
+
 function startSession(profName, mode) {
   const sessionConfig = {
     major: currentMajor,
@@ -311,6 +337,7 @@ function startSession(profName, mode) {
     semester: currentSemester,
     subject: currentSubject,
     professor: profName,
+    isSubjectWide: false,
     mode: mode,
     resume: false
   };
@@ -325,6 +352,7 @@ function continueStudySession(profName) {
     semester: currentSemester,
     subject: currentSubject,
     professor: profName,
+    isSubjectWide: false,
     mode: 'study',
     resume: true
   };
@@ -339,6 +367,7 @@ function startMissedSession(profName) {
     semester: currentSemester,
     subject: currentSubject,
     professor: profName,
+    isSubjectWide: false,
     mode: 'missed',
     resume: false
   };
@@ -359,11 +388,11 @@ function clearSavedMissed(profName) {
 // ==========================================================================
 // UPDATE NOTIFICATION SYSTEM
 // ==========================================================================
-const APP_VERSION = "1.0.1"; // Change this string whenever you release an update!
+const APP_VERSION = "1.0.1";
 
 let patchNotesEN = "";
 let patchNotesKM = "";
-let currentModalLang = "EN"; // Local state for update modal only
+let currentModalLang = "EN";
 
 async function initUpdateSystem() {
   const versionBadge = document.getElementById('update-version-badge');
@@ -371,7 +400,6 @@ async function initUpdateSystem() {
 
   setupUpdateModalListeners();
 
-  // Show automatically if current version hasn't been dismissed yet
   const lastSeenVersion = localStorage.getItem('lastSeenUpdateVersion');
   if (lastSeenVersion !== APP_VERSION) {
     await fetchPatchNotes();
@@ -381,7 +409,6 @@ async function initUpdateSystem() {
 
 async function fetchPatchNotes() {
   try {
-    // Cache-busted fetch ensures browsers don't load outdated cached text
     const [resEN, resKM] = await Promise.all([
       fetch(`english-update.txt?v=${APP_VERSION}`),
       fetch(`khmer-update.txt?v=${APP_VERSION}`)
@@ -399,19 +426,13 @@ async function fetchPatchNotes() {
 function parseSimpleMarkdown(text) {
   if (!text) return "";
 
-  // 1. Escape HTML special characters to prevent XSS
   let html = text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
-  // 2. **bold text** -> <strong>bold text</strong>
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
-  // 3. ## Section Headers -> <h3>Header</h3>
   html = html.replace(/^## (.*$)/gim, '<h3 style="margin: 1rem 0 0.4rem; color: var(--text-heading);">$1</h3>');
-
-  // 4. Bullet points (- item or * item) -> styled bullet items
   html = html.replace(/^[\-\*]\s+(.*$)/gim, '<li style="margin-left: 1.2rem; list-style-type: disc; margin-bottom: 0.25rem;">$1</li>');
 
   return html;
@@ -432,7 +453,6 @@ function setupUpdateModalListeners() {
   const btnEN = document.getElementById('update-lang-en');
   const btnKM = document.getElementById('update-lang-km');
 
-  // Manual trigger via "Update Info" landing page button
   if (triggerBtn) {
     triggerBtn.addEventListener('click', async () => {
       if (!patchNotesEN) await fetchPatchNotes();
@@ -440,7 +460,6 @@ function setupUpdateModalListeners() {
     });
   }
 
-  // Dismiss modal & mark this version as seen
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       localStorage.setItem('lastSeenUpdateVersion', APP_VERSION);
@@ -448,7 +467,6 @@ function setupUpdateModalListeners() {
     });
   }
 
-  // In-modal language toggles
   if (btnEN && btnKM) {
     btnEN.addEventListener('click', () => {
       currentModalLang = "EN";
@@ -470,4 +488,3 @@ function showUpdateModal() {
   const modal = document.getElementById('update-modal');
   if (modal) modal.classList.remove('hidden');
 }
-
