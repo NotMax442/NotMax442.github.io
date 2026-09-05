@@ -1638,14 +1638,14 @@ p {
 }
 
 /* ==========================================================================
-   UNIFORM PROFESSOR CARDS & EXPANDABLE DRAWER
+   UNIFORM PROFESSOR CARDS & EXPANDABLE DRAWER FIX
    ========================================================================== */
 
 #professor-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 0.75rem;
-  align-items: stretch; /* All cards in a row match height */
+  align-items: start; /* Prevents neighboring cards from stretching vertically */
 }
 
 /* Force Subject Banner to stay full-width */
@@ -1656,11 +1656,10 @@ p {
 .subject-card.prof-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Keeps content tightly stacked at the top */
   padding: 1rem;
   margin-bottom: 0 !important;
-  min-height: 120px;
-  height: 100%;
+  height: auto; /* Shrink-wraps card height strictly to its inner content */
 }
 
 .prof-card-top h3 {
