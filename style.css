@@ -1168,44 +1168,47 @@ p {
 }
 
 /* ==========================================================================
-   13. 3D ANIMATED SVG PIE CHART & REAL-TIME STATS
+   13. FRONT-FACING 3D PIE CHART ILLUSION & REAL-TIME STATS
    ========================================================================== */
 
-/* Parent container perspective wrapper */
 #pie-chart-wrapper {
-  perspective: 1000px;
   padding: 1rem 0;
 }
 
-/* 3D Tilted Pie Chart Disc */
+/* Front-Facing 3D Sphere/Disc Illusion */
 .pie-chart-container {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 1rem auto 2rem auto;
+  width: 210px;
+  height: 210px;
+  margin: 1.5rem auto;
   border-radius: 50%;
+  overflow: hidden;
   
-  /* 3D Perspective Tilt */
-  transform: rotateX(58deg) rotateZ(0deg);
-  transform-style: preserve-3d;
-  
-  /* 3D Extruded Rim Depth & Ambient Drop Shadow */
+  /* Bevel & Emboss Layers: Top light, bottom shadow, outer depth ring */
   box-shadow: 
-    0 4px 0 #0f172a,
-    0 8px 0 #1e293b,
-    0 12px 0 #0f172a,
-    0 16px 25px rgba(0, 0, 0, 0.6);
-  
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    inset 0 6px 10px rgba(255, 255, 255, 0.35),  /* Top inner light reflection */
+    inset 0 -8px 14px rgba(0, 0, 0, 0.55),       /* Bottom inner shadow */
+    0 10px 25px rgba(0, 0, 0, 0.5),              /* Deep drop shadow behind chart */
+    0 0 0 6px rgba(15, 23, 42, 0.8);            /* Outer bezel frame ring */
 }
 
-.pie-chart-container:hover {
-  transform: rotateX(52deg) scale(1.03);
-  box-shadow: 
-    0 6px 0 #0f172a,
-    0 12px 0 #1e293b,
-    0 18px 0 #0f172a,
-    0 22px 30px rgba(0, 0, 0, 0.7);
+/* Glossy Glass Highlight Overlay */
+.pie-chart-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.3) 0%, 
+    rgba(255, 255, 255, 0.08) 40%, 
+    rgba(0, 0, 0, 0) 60%, 
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  pointer-events: none;
 }
 
 .pie-chart-svg {
@@ -1216,23 +1219,21 @@ p {
   display: block;
 }
 
-/* Center Percentage Text (Counter-rotated so it stands upright) */
 .pie-center-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* Counter-rotates text against the 58deg tilt so numbers stay flat & crisp */
-  transform: translate(-50%, -50%) rotateX(-58deg) scale(1.15);
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
   z-index: 10;
+  pointer-events: none;
 }
 
 #center-percent {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1;
@@ -1240,7 +1241,7 @@ p {
 }
 
 .center-label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-sub, #94a3b8);
   text-transform: uppercase;
