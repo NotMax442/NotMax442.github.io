@@ -24,7 +24,16 @@ const manifestData = {
         "TP-ANATOMIE": [
           "Dr. Koam Phaly",
           "Dr. Heng Sophea"
-        ]
+          "Pr. Ast Nhem Aklinn",
+          "Pr. Ast Ich Khuy",
+          "Pr. Sin Sagata"
+          "
+        ],
+        "TP-HISTOLOGIE": [
+          "Pr. Chhut SereyVathana"
+
+        ],
+        
       }, 
       "2": {} 
     },
