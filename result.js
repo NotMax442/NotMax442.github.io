@@ -49,6 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Helper: Extract image filenames as an array (supports images: [] or image: "")
+function getImageList(q) {
+  if (Array.isArray(q.images) && q.images.length > 0) {
+    return q.images.map(img => img.trim()).filter(Boolean);
+  }
+  if (q.image && typeof q.image === 'string' && q.image.trim() !== '') {
+    return [q.image.trim()];
+  }
+  return [];
+}
+
 // Helper: Open Image Zoom Modal
 function openZoomModal(imgSrc) {
   const zoomModal = document.getElementById('image-zoom-modal');
@@ -166,13 +177,19 @@ function renderReviewBreakdown() {
       margin-bottom: 1rem;
     `;
 
-    // Construct Image HTML if diagram exists
+    // Construct Image HTML for single or multiple diagrams
     let imgHTML = '';
-    if (q.image && q.image.trim() !== '') {
-      const fullImgUrl = IMAGE_BASE_URL + q.image.trim();
+    const imgList = getImageList(q);
+
+    if (imgList.length > 0) {
+      const imgsMarkup = imgList.map(imgName => {
+        const fullImgUrl = IMAGE_BASE_URL + imgName;
+        return `<img src="${fullImgUrl}" alt="Question Diagram" class="question-img" onclick="openZoomModal('${fullImgUrl}')" />`;
+      }).join('');
+
       imgHTML = `
-        <div style="text-align: center; margin: 0.75rem 0;">
-          <img src="${fullImgUrl}" alt="Question Diagram" class="question-img" onclick="openZoomModal('${fullImgUrl}')" />
+        <div style="text-align: center; margin: 0.75rem 0; display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
+          ${imgsMarkup}
         </div>
       `;
     }
