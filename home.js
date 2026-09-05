@@ -21,7 +21,7 @@ const manifestData = {
           "Pr. Chhut Serey Vathana",
           "Pr. Pheav Piseth"
         ],
-        "TP ANATOMIE": [
+        "TP-ANATOMIE": [
           "Dr. Koam Phaly",
           "Dr. Heng Sophea"
 
