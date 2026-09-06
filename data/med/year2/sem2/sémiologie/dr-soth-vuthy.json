@@ -7,11 +7,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-1.jpg",
       "options": [
-        "Appophyse coracoïde",
-        "Acromion",
-        "Trochin",
-        "Trochiter",
-        "Scapula"
+        "1-Appophyse coracoïde",
+        "2- Acromion",
+        "3-Trochin",
+        "4- Trochiter",
+        "5- Scapula"
       ],
       "correctIndex": 1,
       "id": 1
@@ -24,11 +24,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-2.jpg",
       "options": [
-        "Olécrâne",
-        "Epicondyle médial",
-        "Processus coronoïdienne",
-        "Epicondyle latéral",
-        "Tête radiale"
+        "1- Olécrâne",
+        "2- Epicondyle médial",
+        "3- Processus coronoïdienne",
+        "4- Epicondyle latéral",
+        "5-Tête radiale"
       ],
       "correctIndex": 1
     },
@@ -40,11 +40,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-3.jpg",
       "options": [
-        "Tubérosité bicipitale",
-        "Processus coronoïde",
-        "Olécrâne",
-        "Trochlée",
-        "Capitulum"
+        "1- Tubérosité bicipitale",
+        "2-Processus coronoïde",
+        "3- Olécrâne",
+        "4- Trochlée",
+        "5- Capitulum"
       ],
       "correctIndex": 0
     },
@@ -56,11 +56,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-4.jpg",
       "options": [
-        "Scaphoïde",
-        "Triquétrum",
-        "Lunatum",
-        "Trapèze",
-        "Pisiforme"
+        "1- Scaphoïde",
+        "2- Triquétrum",
+        "3- Lunatum",
+        "4- Trapèze",
+        "5- Pisiforme"
       ],
       "correctIndex": 0
     },
@@ -72,11 +72,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-5.jpg",
       "options": [
-        "Cuéniforme médiale",
-        "Cuéniforme intermédiaire",
-        "Phalange distale",
-        "Phalange moyenne",
-        "Phalange proximale"
+        "2- Cuéniforme médiale",
+        "3- Cuéniforme intermédiaire",
+        "7- Phalange distale",
+        "8- Phalange moyenne",
+        "9-Phalange proximale"
       ],
       "correctIndex": 3
     },
@@ -87,11 +87,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-6.jpg",
       "options": [
-        "Tibia",
-        "Fibula(péroné)",
-        "Talus(astragale)",
-        "Calcaneus",
-        "Os naviculaire"
+        "1- Tibia",
+        "2- Fibula(péroné)",
+        "3- Talus(astragale)",
+        "4- Calcaneus",
+        "5- Os naviculaire"
       ],
       "correctIndex": 4,
       "id": 6
@@ -104,11 +104,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-7.jpg",
       "options": [
-        "Trou obturateur",
-        "Symphyse pubienne",
-        "Epine iliaque antero-inférieure",
-        "Epine iliaque antero- superieure",
-        "Fosse acétabulaire"
+        "1- Trou obturateur",
+        "2-Symphyse pubienne",
+        "3- Epine iliaque antero-inférieure",
+        "7-Epine iliaque antero- superieure",
+        "8- Fosse acétabulaire"
       ],
       "correctIndex": 4
     },
@@ -120,11 +120,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-8.jpg",
       "options": [
-        "grand trochanter",
-        "Petit trochanter",
-        "Crête iliaque",
-        "Aile iliaque gauche",
-        "Pédicule"
+        "5-grand trochanter",
+        "6- Petit trochanter",
+        "7-Crête iliaque",
+        "8-Aile iliaque gauche",
+        "9- Pédicule"
       ],
       "correctIndex": 4
     },
@@ -136,11 +136,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-9.jpg",
       "options": [
-        "Appophyse articulaire supérieure",
-        "Appophyse articulaire inférieure",
-        "Appophyse odontoïde.",
-        "Appophyse épineuse de C2",
-        "Arc antérieur de C1"
+        "4- Appophyse articulaire supérieure",
+        "5- Appophyse articulaire inférieure",
+        "6- Appophyse odontoïde.",
+        "7- Appophyse épineuse de C2",
+        "8- Arc antérieur de C1"
       ],
       "correctIndex": 4
     },
@@ -152,11 +152,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-10.jpg",
       "options": [
-        "Odontoide",
-        "Masse latérale de C1",
-        "Appophyse transverse de C1",
-        "Apophyse articulaire supérieure de C2",
-        "Appophyse articulaire inférieure de C1"
+        "1- Odontoide",
+        "2- Masse latérale de C1",
+        "3- Appophyse transverse de C1",
+        "4- Apophyse articulaire supérieure de C2",
+        "5-Appophyse articulaire inférieure de C1"
       ],
       "correctIndex": 1
     },
@@ -167,11 +167,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-11.jpg",
       "options": [
-        "Arc postérieur de l'Atlas",
-        "Dent de l'axis",
-        "Arc antérieur de l'Atlas",
-        "Processus styloide",
-        "Foramen transverse"
+        "1- Arc postérieur de l'Atlas",
+        "2- Dent de l'axis",
+        "3- Arc antérieur de l'Atlas",
+        "4- Processus styloide",
+        "5- Foramen transverse"
       ],
       "correctIndex": 1,
       "id": 11
@@ -184,11 +184,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-12.jpg",
       "options": [
-        "Tendon du poplité",
-        "Tendon rotulien",
-        "Condyl externe",
-        "Paquet graisseux",
-        "Corne postérieur du ménisque"
+        "1- Tendon du poplité",
+        "2- Tendon rotulien",
+        "3- Condyl externe",
+        "4- Paquet graisseux",
+        "5- Corne postérieur du ménisque"
       ],
       "correctIndex": 4
     },
@@ -200,11 +200,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-13.jpg",
       "options": [
-        "Clivus",
-        "Dent de l'Axis",
-        "Arc antérieur de l'Atlas",
-        "Processus épineux de C4",
-        "Corps vertebral de C4"
+        "1- Clivus",
+        "2- Dent de l'Axis",
+        "3- Arc antérieur de l'Atlas",
+        "4- Processus épineux de C4",
+        "5- Corps vertebral de C4"
       ],
       "correctIndex": 0
     },
@@ -216,11 +216,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-14.jpg",
       "options": [
-        "Patella",
-        "Ménisque",
-        "Tendon rotulien",
-        "Ligament croisé postérieur",
-        "Paquet graisseux"
+        "1- Patella",
+        "2-Ménisque",
+        "3- Tendon rotulien",
+        "4- Ligament croisé postérieur",
+        "5- Paquet graisseux"
       ],
       "correctIndex": 3
     },
@@ -232,11 +232,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-15.jpg",
       "options": [
-        "Lame",
-        "Isthme",
-        "Processus articulaire inférieur",
-        "Pédicule",
-        "Processus articulaire supérieur"
+        "1- Lame",
+        "2- Isthme",
+        "3- Processus articulaire inférieur",
+        "4- Pédicule",
+        "5- Processus articulaire supérieur"
       ],
       "correctIndex": 1
     },
@@ -248,11 +248,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-16.jpg",
       "options": [
-        "Cône médullaire",
-        "Liquide céphalo-rachidienne",
-        "disque intervertebral",
-        "Moelle épinière",
-        "Corps vertebral du L5"
+        "1- Cône médullaire",
+        "2-Liquide céphalo-rachidienne",
+        "3- disque intervertebral",
+        "4-Moelle épinière",
+        "5-Corps vertebral du L5"
       ],
       "correctIndex": 0
     },
@@ -263,11 +263,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-17.jpg",
       "options": [
-        "Corps vertebral de L4",
-        "Corps vertebral de L5",
-        "Disque intervertebral",
-        "Ligament interépineux",
-        "sac dural"
+        "1- Corps vertebral de L4",
+        "2- Corps vertebral de L5",
+        "3- Disque intervertebral",
+        "4- Ligament interépineux",
+        "5- sac dural"
       ],
       "correctIndex": 2,
       "id": 17
@@ -280,11 +280,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-18.jpg",
       "options": [
-        "Foramen intervertébral",
-        "Ligament postérieur",
-        "Ligament jaune",
-        "Sac dural",
-        "Graisse"
+        "1- Foramen intervertébral",
+        "2- Ligament postérieur",
+        "3- Ligament jaune",
+        "4- Sac dural",
+        "5- Graisse"
       ],
       "correctIndex": 3
     },
@@ -296,11 +296,11 @@
       ],
       "image": "y2-semiologie-dr-soth-vuthy-q19-24-25-image-19.jpg",
       "options": [
-        "Coupe articulaire",
-        "Coupe pédiculo- luminaire",
-        "Coupe discale",
-        "Coupe foraminale",
-        "Coupe corporéale"
+        "1- Coupe articulaire",
+        "2- Coupe pédiculo- luminaire",
+        "3- Coupe discale",
+        "4- Coupe foraminale",
+        "5-Coupe corporéale"
       ],
       "correctIndex": 1
     }
