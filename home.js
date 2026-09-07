@@ -73,6 +73,11 @@ const manifestData = {
           "Pr. Thong You",
           "Pr. Ung Chakravuth",
           "Pr. Ast. Nhem Aklinn"
+        ],
+        "SANTÉ-PUBLIQUE": [
+          "Pr. Nong Saokry",
+          "Pr. Chhea Chorvann",
+          "Dr. Tol Bunkea"
         ]
       } 
     },
