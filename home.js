@@ -1174,12 +1174,7 @@ function showProfessors(
 // ==========================================================================
 
 function startSubjectSession(mode) {
-  const rawProfList =
-    manifestData[currentMajor]
-      ?.[currentYear]
-      ?.[currentSemester]
-      ?.[currentSubject]
-      || [];
+  const rawProfList = manifestData[currentMajor]?.[currentYear]?.[currentSemester]?.[currentSubject] || [];
 
   const professors =
     rawProfList.map(getProfName);
