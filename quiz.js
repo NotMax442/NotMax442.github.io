@@ -119,6 +119,21 @@ function openZoomModal(imgSrc) {
   }
 }
 
+// Helper: Preload Next Question Diagrams into Browser Cache
+function preloadNextQuestionImages(currentIndex, questionsArray) {
+  const nextIndex = currentIndex + 1;
+  if (!questionsArray || nextIndex >= questionsArray.length) return;
+
+  const nextQ = questionsArray[nextIndex];
+  const imgList = getImageList(nextQ);
+
+  imgList.forEach(imgName => {
+    const fullImgUrl = IMAGE_BASE_URL + imgName;
+    const imgPreloader = new Image();
+    imgPreloader.src = fullImgUrl;
+  });
+}
+
 // Helper for generating filename/storage key slugs
 function getProfSlug(profName) {
   if (!profName) return '';
@@ -684,6 +699,9 @@ function renderQuizQuestion() {
     btn.addEventListener('click', () => handleQuizOptionClick(index, btn));
     optionsContainer.appendChild(btn);
   });
+
+  // Preload next question's diagram into memory cache
+  preloadNextQuestionImages(currentQuestionIndex, questions);
 }
 
 function handleQuizOptionClick(selectedIndex, selectedBtn) {
