@@ -602,7 +602,7 @@ function setupSharedModals() {
 }
 
 // ==========================================================================
-// PREVENT DEVTOOLS & INSPECT SHORTCUTS
+// PREVENT DEVTOOLS KEYBOARD SHORTCUTS & RIGHT CLICK
 // ==========================================================================
 
 document.addEventListener('contextmenu', (e) => {
@@ -615,45 +615,16 @@ document.addEventListener('keydown', (e) => {
     return false;
   }
 
-  if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) {
+  const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+  const isShiftOrAlt = e.shiftKey || e.altKey;
+
+  if (isCmdOrCtrl && isShiftOrAlt && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
     e.preventDefault();
     return false;
   }
 
-  if (e.ctrlKey && ['U', 'S', 'u', 's'].includes(e.key)) {
+  if (isCmdOrCtrl && ['u', 's'].includes(e.key.toLowerCase())) {
     e.preventDefault();
     return false;
   }
 });
-
-// ==========================================================================
-// ANTI-DEBUGGING LOOP
-// ==========================================================================
-(function startAntiDebug() {
-  setInterval(() => {
-    (function () {}).constructor("debugger")();
-  }, 100);
-})();
-
-// ==========================================================================
-// DEVTOOLS DETECTION & PAGE WIPE
-// ==========================================================================
-(function detectDevTools() {
-  const detect = () => {
-    const threshold = 160;
-    const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-    const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-
-    if (widthThreshold || heightThreshold) {
-      document.body.innerHTML = `
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background-color:#0f172a; color:#f8fafc; font-family:sans-serif; text-align:center; padding: 2rem;">
-          <h1 style="font-size: 2rem; margin-bottom: 1rem; color: #ef4444;">⚠️ Developer Tools Restricted</h1>
-          <p style="font-size: 1.1rem; color: #94a3b8; max-width: 500px;">Access to platform source files and developer inspection is restricted on this site.</p>
-        </div>
-      `;
-    }
-  };
-
-  window.addEventListener('resize', detect);
-  setInterval(detect, 1000);
-})();
