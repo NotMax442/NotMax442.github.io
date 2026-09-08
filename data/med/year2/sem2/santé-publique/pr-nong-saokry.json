@@ -184,7 +184,7 @@
     },
     {
       "id": 14,
-      "question": "Step 1. Identify the smallest (minimum) observation and the largest (maximum) observation.\nStep 2. Add the minimum plus the maximum, then divide by two: is the formula for calculate the:",
+      "question": "Step 1. Identify the smallest (minimum) observation and the largest (maximum) observation. Step 2. Add the minimum plus the maximum, then divide by two: is the formula for calculate the:",
       "images": [],
       "image": "",
       "options": [
@@ -352,9 +352,11 @@
     },
     {
       "id": 26,
-      "question": "This Calculation indicate:\nNo of births reported during a given time period interval × 100\nEstimated mid interval population",
-      "images": [],
-      "image": "",
+      "question": "This Calculation indicate:",
+      "images": [
+        "y2-sante-publique-pr-nong-saokry-q136-image-1.jpg"
+      ],
+      "image": "y2-sante-publique-pr-nong-saokry-q136-image-1.jpg",
       "options": [
         "Fertility rate",
         "Mortality rate",
@@ -408,9 +410,11 @@
     },
     {
       "id": 30,
-      "question": "This formula refers to:\n# current cases (old and new) in a specified disease during a specified time period\nEstimated mid interval population at risk\nX100",
-      "images": [],
-      "image": "",
+      "question": "This formula refers to:",
+      "images": [
+        "y2-sante-publique-pr-nong-saokry-q136-image-2.jpg"
+      ],
+      "image": "y2-sante-publique-pr-nong-saokry-q136-image-2.jpg",
       "options": [
         "Prevalent rate",
         "Incidence rate",
@@ -576,9 +580,11 @@
     },
     {
       "id": 42,
-      "question": "This formula for calculated:\nTotal # deaths due to all causes in a defined area during a defined period X 1000\nMean population at risk in the same area during the same period",
-      "images": [],
-      "image": "",
+      "question": "This formula for calculated:",
+      "images": [
+        "y2-sante-publique-pr-nong-saokry-q136-image-3.jpg"
+      ],
+      "image": "y2-sante-publique-pr-nong-saokry-q136-image-3.jpg",
       "options": [
         "Crude death rate (CDR)",
         "Age- and Sex specific death rate",
@@ -590,9 +596,11 @@
     },
     {
       "id": 43,
-      "question": "This formula for calculated:\n# deaths of infant < 28 days of age in area during a given period × 100\n# Live births in the area during the same period",
-      "images": [],
-      "image": "",
+      "question": "This formula for calculated:",
+      "images": [
+        "y2-sante-publique-pr-nong-saokry-q136-image-4.jpg"
+      ],
+      "image": "y2-sante-publique-pr-nong-saokry-q136-image-4.jpg",
       "options": [
         "Perinatal mortality rate",
         "Neonatal mortality rate",
@@ -850,7 +858,7 @@
         "90 cases/1500 live births X1000",
         "45 cases/200 Live births X1000",
         "50 deaths/1500 live births X1000",
-        "1500 live births X1000/30000"
+        "1500 live births X1000/3000062"
       ],
       "correctIndex": 1
     },
@@ -864,7 +872,7 @@
         "90 cases/1500 live births X1000",
         "45 cases/200 Live births X1000",
         "50 deaths/1500 live births X1000",
-        "1500 live births X1000/30000"
+        "1500 live births X1000/3000062"
       ],
       "correctIndex": 2
     },
@@ -878,7 +886,7 @@
         "90 cases/1500 live births X1000",
         "45 cases/200 Live births X1000",
         "50 deaths/1500 live births X1000",
-        "1500 live births X1000/30000"
+        "1500 live births X1000/3000062"
       ],
       "correctIndex": 3
     },
@@ -1237,7 +1245,7 @@
       "image": "",
       "options": [
         "ក្នុងចំណោមទារក ១០០០ កើតរស់ មានមាកាស្លជា៦០ នាក់ទាក់ទងការមានផ្ទៃពោះ និងឆ្លងទន្លេ",
-        "ក្នុងចំណោមទារក ១០០០ កើតរស់ មានទារកស្លាប៦០០ នាក់ អាយុក្រោម ២៨ថ្ងៃ",
+        "ក្នុងចំណោមទារក ១០០០ កើតរស់ មានទារកស្លាប៦۰۰ នាក់ អាយុក្រោម ២៨ថ្ងៃ",
         "ក្នុងចំណោមទារក ១០០០ កើតរស់ មានទារកស្លាប់៦០ នាក់ អាយុក្រោម ៧ថ្ងៃ",
         "ក្នុងចំណោមទារក ១០០០ កើតរស់ មានទារកស្លាប់៤០ នាក់ អាយុក្រោម ១ឆ្នាំ",
         "ផ្សេងពីនេះ"
