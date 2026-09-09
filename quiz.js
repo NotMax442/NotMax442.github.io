@@ -361,32 +361,66 @@ async function initSession() {
     let rawQuestions = [];
 
     if (isSubjectWide && Array.isArray(professors) && professors.length > 0) {
-      // --- Fetch JSONs for ALL professors in parallel ---
+      // --- Fetch JSONs for ALL professors in parallel (with IndexedDB fallback) ---
       const fetchPromises = professors.map(async (profName) => {
         const pSlug = getProfSlug(profName);
         const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${pSlug}.json`;
+        let qList = [];
+
+        // 1. Try Network Fetch first
         try {
           const res = await fetch(`${filePath}?t=${Date.now()}`);
-          if (!res.ok) return [];
-          const data = await res.json();
-          // Tag each question with its professor's name for vault routing
-          return (data.questions || []).map(q => ({ ...q, professor: profName }));
+          if (res.ok) {
+            const data = await res.json();
+            qList = Array.isArray(data) ? data : (data.questions || []);
+          }
         } catch (err) {
-          console.warn(`Could not load questions for ${profName}:`, err);
-          return [];
+          console.warn(`Network fetch failed for ${profName}, checking offline package...`);
         }
+
+        // 2. Fallback to IndexedDB if network fetch yielded no questions
+        if (qList.length === 0 && typeof getOfflinePackage === 'function') {
+          const pkg = await getOfflinePackage(major, year, semester, subject, profName);
+          if (pkg && pkg.questions) {
+            qList = pkg.questions;
+          }
+        }
+
+        return qList.map(q => ({ ...q, professor: profName }));
       });
 
       const results = await Promise.all(fetchPromises);
       rawQuestions = results.flat();
     } else {
-      // --- Single Professor JSON Fetch ---
+      // --- Single Professor JSON Fetch (with IndexedDB fallback) ---
       const profSlug = getProfSlug(professor);
       const filePath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
-      const response = await fetch(`${filePath}?t=${Date.now()}`);
-      if (!response.ok) throw new Error(`File not found at: ${filePath}`);
-      const data = await response.json();
-      rawQuestions = (data.questions || []).map(q => ({ ...q, professor: professor }));
+      let qList = [];
+
+      // 1. Try Network Fetch first
+      try {
+        const response = await fetch(`${filePath}?t=${Date.now()}`);
+        if (response.ok) {
+          const data = await response.json();
+          qList = Array.isArray(data) ? data : (data.questions || []);
+        }
+      } catch (err) {
+        console.warn(`Network fetch failed for ${professor}, checking offline package...`);
+      }
+
+      // 2. Fallback to IndexedDB if network fetch yielded no questions
+      if (qList.length === 0 && typeof getOfflinePackage === 'function') {
+        const pkg = await getOfflinePackage(major, year, semester, subject, professor);
+        if (pkg && pkg.questions) {
+          qList = pkg.questions;
+        }
+      }
+
+      if (qList.length === 0) {
+        throw new Error(`No questions available online or offline for: ${professor}`);
+      }
+
+      rawQuestions = qList.map(q => ({ ...q, professor: professor }));
     }
 
     if (rawQuestions.length === 0) {
