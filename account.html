@@ -50,8 +50,8 @@
 
     .account-tab-btn {
       flex: 1;
-      padding: 0.65rem 1rem;
-      font-size: 0.95rem;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.9rem;
       font-weight: 700;
       border-radius: 8px;
       border: none;
@@ -102,6 +102,7 @@
       <div class="account-tab-bar">
         <button id="tab-stats-btn" class="account-tab-btn active" data-i18n="tab_stats">📊 Analytics & Stats</button>
         <button id="tab-vault-btn" class="account-tab-btn" data-i18n="tab_vault">🗂️ Vault & Settings</button>
+        <button id="tab-offline-btn" class="account-tab-btn" data-i18n="tab_offline">📥 Offline Packages</button>
       </div>
 
       <!-- =================================================================== -->
@@ -198,6 +199,47 @@
         </div>
 
         <div id="account-subject-list" class="subject-grid"></div>
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- TAB 3: OFFLINE PACKAGES VIEW                                        -->
+      <!-- =================================================================== -->
+      <div id="account-offline-view" class="hidden">
+        
+        <!-- Offline Storage Status Card -->
+        <div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-sub); margin-bottom: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <h3 style="margin: 0; color: var(--text-main);" data-i18n="offline_storage_title">💾 Offline Browser Storage</h3>
+              <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);" data-i18n="offline_storage_desc">
+                Questions saved here are stored directly inside your browser database (IndexedDB) for full offline studying without internet access.
+              </p>
+            </div>
+            <button id="clear-all-offline-btn" class="btn danger-btn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+              🗑️ Clear All Offline Data
+            </button>
+          </div>
+
+          <!-- Storage Statistics Summary -->
+          <div class="stats-summary-grid" style="margin-top: 1.25rem;">
+            <div class="stat-card">
+              <span class="stat-label" data-i18n="offline_saved_profs">Saved Professors</span>
+              <span id="offline-count-val" class="stat-value">0</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-label" data-i18n="offline_total_qs">Total Questions</span>
+              <span id="offline-questions-val" class="stat-value" style="color: #0284c7;">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downloaded Packages List Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="margin: 0; color: var(--text-main);" data-i18n="offline_list_title">Downloaded Professor Packages</h3>
+        </div>
+
+        <!-- Dynamic Container for Offline Cards -->
+        <div id="offline-package-list" class="subject-grid"></div>
       </div>
 
     </div>
