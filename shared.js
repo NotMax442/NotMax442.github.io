@@ -83,7 +83,6 @@ const translations = {
     account_sub: "View your performance analytics, study habits, and saved question vaults.",
     tab_stats: "📊 Analytics & Stats",
     tab_vault: "🗂️ Vault & Settings",
-    tab_offline: "📥 Offline Packages",
     stats_overview_title: "Overall Accuracy",
     stats_total_questions: "Questions Attempted",
     stats_correct_answers: "Correct Answers",
@@ -113,19 +112,6 @@ const translations = {
     card_prof_label: "👨‍🏫 Professor: {prof}",
     card_practice_missed: "🎯 Practice Missed ({count})",
     card_export_anki: "📦 Export to Anki (.txt)",
-
-    // Offline Storage Translations
-    offline_storage_title: "💾 Offline Browser Storage",
-    offline_storage_desc: "Questions saved here are stored directly inside your browser database (IndexedDB) for full offline studying without internet access.",
-    offline_saved_profs: "Saved Professors",
-    offline_total_qs: "Total Questions",
-    offline_list_title: "Downloaded Professor Packages",
-    offline_empty_list: "No offline packages downloaded yet. Click the download button next to a professor to study offline!",
-    btn_download_offline: "📥 Download Offline",
-    btn_downloaded: "✅ Saved Offline",
-    btn_delete_package: "🗑️ Delete Package",
-    offline_download_success: "Package successfully downloaded for offline study!",
-    offline_delete_confirm: "Are you sure you want to remove this offline package?",
 
     // About Page
     about_title: "About TestforUHS",
@@ -265,8 +251,7 @@ const translations = {
     account_sub: "ពិនិត្យមើលស្ថិតិនៃការសិក្សា ភាពត្រឹមត្រូវ និងឃ្លាំងសំណួរខុសរបស់អ្នក។",
     tab_stats: "📊 ស្ថិតិ និងការវិភាគ",
     tab_vault: "🗂️ ឃ្លាំង និងការកំណត់",
-    tab_offline: "📥 កញ្ចប់ Offline",
-    stats_overview_title: "ភាពត្រឹមត្រូវសរុប",
+    stats_overview_title: "អត្រាភាពត្រឹមត្រូវសរុប",
     stats_total_questions: "សំណួរដែលបានធ្វើសរុប",
     stats_correct_answers: "ចម្លើយត្រឹមត្រូវ",
     stats_incorrect_answers: "ចម្លើយមិនត្រឹមត្រូវ",
@@ -295,19 +280,6 @@ const translations = {
     card_prof_label: "👨‍🏫 សាស្ត្រាចារ្យ៖ {prof}",
     card_practice_missed: "🎯 អនុវត្តសំណួរខុស ({count})",
     card_export_anki: "📦 នាំចេញទៅ Anki (.txt)",
-
-    // Offline Storage Translations
-    offline_storage_title: "💾 ទិន្នន័យរក្សាទុកក្នុង Browser (Offline)",
-    offline_storage_desc: "សំណួរដែលបានរក្សាទុកនៅទីនេះត្រូវបានរក្សាទុកដោយផ្ទាល់នៅក្នុង Browser Database (IndexedDB) សម្រាប់ការសិក្សា Offline ដោយមិនបាច់មានអ៊ីនធឺណិត។",
-    offline_saved_profs: "សាស្ត្រាចារ្យដែលបានរក្សាទុក",
-    offline_total_qs: "សំណួរសរុប",
-    offline_list_title: "កញ្ចប់សំណួរតាមសាស្ត្រាចារ្យដែលបានទាញយក",
-    offline_empty_list: "មិនទាន់មានកញ្ចប់ Offline នៅឡើយទេ។ ចុចប៊ូតុងទាញយកនៅជិតឈ្មោះសាស្ត្រាចារ្យដើម្បីរៀន Offline!",
-    btn_download_offline: "📥 ទាញយក Offline",
-    btn_downloaded: "✅ បានរក្សាទុក Offline",
-    btn_delete_package: "🗑️ លុបកញ្ចប់ចេញ",
-    offline_download_success: "បានទាញយកកញ្ចប់សំណួរដោយជោគជ័យសម្រាប់ការសិក្សា Offline!",
-    offline_delete_confirm: "តើអ្នកពិតជាចង់លុបកញ្ចប់ Offline នេះមែនទេ?",
 
     // About Page
     about_title: "អំពី TestforUHS",
@@ -585,126 +557,6 @@ function shuffleArray(array) {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled;
-}
-
-// ==========================================================================
-// INDEXEDDB OFFLINE STORAGE ENGINE
-// ==========================================================================
-
-const OFFLINE_DB_NAME = 'TestForUHS_OfflineDB';
-const OFFLINE_DB_VERSION = 1;
-const OFFLINE_STORE = 'offline_packages';
-
-function openOfflineDB() {
-  return new Promise((resolve, reject) => {
-    if (!('indexedDB' in window)) {
-      reject(new Error('IndexedDB is not supported by your browser.'));
-      return;
-    }
-
-    const request = indexedDB.open(OFFLINE_DB_NAME, OFFLINE_DB_VERSION);
-
-    request.onupgradeneeded = (event) => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains(OFFLINE_STORE)) {
-        db.createObjectStore(OFFLINE_STORE, { keyPath: 'id' });
-      }
-    };
-
-    request.onsuccess = (event) => resolve(event.target.result);
-    request.onerror = (event) => reject(event.target.error);
-  });
-}
-
-// Save a professor package directly to IndexedDB
-async function saveOfflinePackage(major, year, semester, subject, professor, questions) {
-  const db = await openOfflineDB();
-  const profSlug = getProfSlug(professor);
-  const packageId = `${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
-
-  const packageData = {
-    id: packageId,
-    major,
-    year,
-    semester,
-    subject,
-    professor,
-    questions,
-    questionCount: questions.length,
-    downloadedAt: new Date().toISOString()
-  };
-
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(OFFLINE_STORE, 'readwrite');
-    const store = tx.objectStore(OFFLINE_STORE);
-    const request = store.put(packageData);
-
-    request.onsuccess = () => resolve(packageId);
-    request.onerror = (event) => reject(event.target.error);
-  });
-}
-
-// Retrieve a saved professor package from IndexedDB
-async function getOfflinePackage(major, year, semester, subject, professor) {
-  try {
-    const db = await openOfflineDB();
-    const profSlug = getProfSlug(professor);
-    const packageId = `${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
-
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(OFFLINE_STORE, 'readonly');
-      const store = tx.objectStore(OFFLINE_STORE);
-      const request = store.get(packageId);
-
-      request.onsuccess = () => resolve(request.result || null);
-      request.onerror = (event) => reject(event.target.error);
-    });
-  } catch (e) {
-    return null;
-  }
-}
-
-// Retrieve all saved packages for the Offline tab view
-async function getAllOfflinePackages() {
-  try {
-    const db = await openOfflineDB();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(OFFLINE_STORE, 'readonly');
-      const store = tx.objectStore(OFFLINE_STORE);
-      const request = store.getAll();
-
-      request.onsuccess = () => resolve(request.result || []);
-      request.onerror = (event) => reject(event.target.error);
-    });
-  } catch (e) {
-    return [];
-  }
-}
-
-// Delete a specific professor package from IndexedDB
-async function deleteOfflinePackage(packageId) {
-  const db = await openOfflineDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(OFFLINE_STORE, 'readwrite');
-    const store = tx.objectStore(OFFLINE_STORE);
-    const request = store.delete(packageId);
-
-    request.onsuccess = () => resolve(true);
-    request.onerror = (event) => reject(event.target.error);
-  });
-}
-
-// Clear all offline packages from IndexedDB
-async function clearAllOfflinePackages() {
-  const db = await openOfflineDB();
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(OFFLINE_STORE, 'readwrite');
-    const store = tx.objectStore(OFFLINE_STORE);
-    const request = store.clear();
-
-    request.onsuccess = () => resolve(true);
-    request.onerror = (event) => reject(event.target.error);
-  });
 }
 
 // --- Shared Modal Controller ---
