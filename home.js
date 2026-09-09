@@ -663,3 +663,4 @@ function showUpdateModal() {
   const modal = document.getElementById('update-modal');
   if (modal) modal.classList.remove('hidden');
 }
+ 
