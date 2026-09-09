@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <!-- Place fixed overlays at the bottom of <body>, outside all screen containers -->
+    <!-- Patch Notes Modal -->
     <div id="update-modal" class="modal-overlay hidden">
       <div class="update-modal-content">
         <div class="update-modal-header">
@@ -137,7 +137,7 @@
       </div>
     </div>
 
-    <!-- 3. Semester Selection Screen -->
+    <!-- 4. Semester Selection Screen -->
     <div id="semester-screen" class="screen hidden" style="margin-top: 1rem;">
       <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years"
         style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
@@ -150,7 +150,7 @@
       </div>
     </div>
 
-    <!-- 4. Subject Selection Section -->
+    <!-- 5. Subject Selection Section -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
       <button id="back-to-semesters-btn" class="btn back-btn" data-i18n="btn_back_semesters"
         style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
@@ -160,7 +160,7 @@
       <div id="subject-list" class="subject-grid"></div>
     </div>
 
-    <!-- 5. Professor Selection Section -->
+    <!-- 6. Professor Selection Section -->
     <div id="professor-screen" class="screen hidden" style="margin-top: 1rem;">
       <button id="back-to-subjects-btn" class="btn back-btn" data-i18n="btn_back_subjects"
         style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
@@ -207,8 +207,10 @@
       <button id="close-donate-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
       <div class="donate-grid">
         <div class="donate-info">
-          <p class="donate-tagline" data-i18n="donate_tagline">Every little bit is greatly appreciated! Thank you for
-            your support 😊</p>
+          <p class="donate-tagline" data-i18n="donate_tagline" style="display: flex; align-items: center; gap: 0.35rem;">
+            Every little bit is greatly appreciated! Thank you for your support
+            <i data-lucide="smile" style="width: 18px; height: 18px; display: inline-block;"></i>
+          </p>
           <h3 class="donate-cta" data-i18n="donate_cta">You may donate through our KHQR here.</h3>
         </div>
         <div class="donate-qr-wrapper"><img src="assets/khqr.png" alt="KHQR Code" class="khqr-card-img"></div>
@@ -245,7 +247,6 @@
   <script src="shared.js"></script>
   <script src="home.js"></script>
   <script>
-    // Initialize Lucide SVG icons on DOM load
     lucide.createIcons();
   </script>
 </body>
