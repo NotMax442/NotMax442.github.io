@@ -359,6 +359,10 @@ function showSubjects(major, year, semester, direction = 'forward') {
     card.addEventListener('click', triggerSelect);
     subjectList.appendChild(card);
   });
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function showProfessors(major, year, semester, subject, direction = 'forward') {
@@ -395,10 +399,10 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
         ${getTranslation('subject_assessments_desc')}
       </p>
       <div class="btn-row-dual" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981;" onclick="startSubjectSession('quiz')">
+        <button class="btn quiz-btn" style="flex: 1; min-width: 180px; background: #10b981; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startSubjectSession('quiz')">
           ${getTranslation('btn_subject_quiz')}
         </button>
-        <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white;" onclick="startSubjectSession('study')">
+        <button class="btn study-btn" style="flex: 1; min-width: 180px; background: #8b5cf6; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startSubjectSession('study')">
           ${getTranslation('btn_subject_study_all')}
         </button>
       </div>
@@ -427,7 +431,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
       const total = studyProgress.questions ? studyProgress.questions.length : 0;
       if (answered < total) {
         const continueText = getTranslation('btn_continue_study', { answered, total });
-        continueBtnHTML = `<button class="btn continue-btn" onclick="continueStudySession('${profName}')">${continueText}</button>`;
+        continueBtnHTML = `<button class="btn continue-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="continueStudySession('${profName}')">${continueText}</button>`;
         studyBtnLabel = getTranslation('btn_restart_study');
       }
     }
@@ -442,10 +446,10 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     if (isSingleProf) {
       primaryActionsHTML = `
         <div class="subject-actions" style="display: flex; gap: 0.5rem; width: 100%;">
-          <button class="btn quiz-btn" style="flex: 1; background: #10b981; color: white;" onclick="startSession('${profName}', 'quiz')">
+          <button class="btn quiz-btn" style="flex: 1; background: #10b981; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startSession('${profName}', 'quiz')">
             ${getTranslation('btn_subject_quiz')}
           </button>
-          <button class="btn study-btn" style="flex: 1; background: #8b5cf6; color: white;" onclick="startSession('${profName}', 'study')">
+          <button class="btn study-btn" style="flex: 1; background: #8b5cf6; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startSession('${profName}', 'study')">
             ${studyBtnLabel}
           </button>
         </div>
@@ -453,7 +457,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     } else {
       primaryActionsHTML = `
         <div class="subject-actions" style="width: 100%;">
-          <button class="btn study-btn" style="width: 100%;" onclick="startSession('${profName}', 'study')">${studyBtnLabel}</button>
+          <button class="btn study-btn" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startSession('${profName}', 'study')">${studyBtnLabel}</button>
         </div>
       `;
     }
@@ -462,7 +466,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
       <div class="prof-card-top" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; width: 100%;">
         <div>
           <h3 style="margin: 0;">${profName}</h3>
-          ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
+          ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0; display: inline-flex; align-items: center; gap: 0.3rem;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
         </div>
         <span class="prof-q-badge" style="display: none;"></span>
       </div>
@@ -470,15 +474,17 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
         ${primaryActionsHTML}
       </div>
       ${hasDrawerContent ? `
-        <button class="drawer-toggle-btn" onclick="toggleProfDrawer('${drawerId}', this)">
-          <span>⚙️ Saved Progress & Missed</span> <span class="chevron">▼</span>
+        <button class="drawer-toggle-btn" onclick="toggleProfDrawer('${drawerId}', this)" style="display: flex; align-items: center; gap: 0.4rem; width: 100%;">
+          <i data-lucide="settings" style="width: 16px; height: 16px;"></i>
+          <span>Saved Progress & Missed</span>
+          <i data-lucide="chevron-down" class="chevron" style="width: 16px; height: 16px; margin-left: auto;"></i>
         </button>
         <div id="${drawerId}" class="prof-drawer hidden">
           ${continueBtnHTML}
           ${missedCount > 0 ? `
-            <div class="btn-row-dual" style="margin-top: 0.35rem;">
-              <button class="btn study-missed-btn" onclick="startMissedSession('${profName}')">${getTranslation('btn_review_missed')}</button>
-              <button class="btn clear-btn" onclick="clearSavedMissed('${profName}')">${getTranslation('btn_clear_missed')}</button>
+            <div class="btn-row-dual" style="margin-top: 0.35rem; display: flex; gap: 0.5rem;">
+              <button class="btn study-missed-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="startMissedSession('${profName}')">${getTranslation('btn_review_missed')}</button>
+              <button class="btn clear-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="clearSavedMissed('${profName}')">${getTranslation('btn_clear_missed')}</button>
             </div>
           ` : ''}
         </div>
@@ -490,6 +496,10 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     const badgeEl = card.querySelector('.prof-q-badge');
     fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl);
   });
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function startSubjectSession(mode) {
@@ -598,9 +608,9 @@ async function fetchPatchNotes() {
 function parseSimpleMarkdown(text) {
   if (!text) return "";
   let html = text
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
   html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/^## (.*$)/gim, '<h3 style="margin: 1rem 0 0.4rem; color: var(--text-heading);">$1</h3>');
   html = html.replace(/^[\-\*]\s+(.*$)/gim, '<li style="margin-left: 1.2rem; list-style-type: disc; margin-bottom: 0.25rem;">$1</li>');
