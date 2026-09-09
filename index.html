@@ -72,7 +72,7 @@
 
       <!-- Action Button Row -->
       <div class="landing-btn-group"
-        style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 1.5rem;">
+        style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
         <button id="enter-study-btn" class="btn primary-btn hero-btn" data-i18n="btn_start_study"
           style="font-size: 1.1rem; padding: 0.75rem 2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
           <i data-lucide="rocket" style="width: 20px; height: 20px;"></i> Start Studying
@@ -226,16 +226,17 @@
     <div class="modal-card"
       style="max-width: 600px; text-align: left; max-height: 80vh; overflow-y: auto; position: relative; padding: 2.5rem 1.5rem 1.5rem 1.5rem;">
       <button id="close-privacy-btn" class="modal-close-icon" aria-label="Close modal">&times;</button>
-      <h3 style="margin-bottom: 1rem; color: var(--text-main);">Privacy Policy</h3>
-      <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-sub);">
-        <p>At <strong>TestforUHS</strong> (accessible from testforuhs.com), visitor privacy is one of our main
-          priorities.</p>
-        <h4 style="color: var(--text-main); margin: 1.25rem 0 0.5rem;">Google DoubleClick DART Cookie & AdSense</h4>
-        <p>Google is a third-party vendor on our site. It uses cookies, known as DART cookies, to serve ads to our site
-          visitors based upon their visit to testforuhs.com.</p>
-        <h4 style="color: var(--text-main); margin: 1.25rem 0 0.5rem;">Log Files & Local Storage</h4>
-        <p>TestforUHS uses browser Local Storage to save user progress, quiz results, and user preferences locally on
-          your device.</p>
+      <h3 style="margin-bottom: 1rem; color: var(--text-main);" data-i18n="about_privacy_title">Privacy Policy</h3>
+      <div style="font-size: 0.85rem; line-height: 1.6; color: var(--text-sub); display: flex; flex-direction: column; gap: 0.75rem;">
+        <p>At <strong>TestforUHS</strong>, visitor privacy is a top priority. This Privacy Policy details the types of information we collect and how it is used.</p>
+
+        <h4 style="color: var(--text-main); margin-top: 0.5rem;">1. Advertising & Third-Party Cookies</h4>
+        <p>We use <strong>Google AdSense</strong> to display advertisements. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites on the internet.</p>
+        <p>Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visit to our sites and/or other sites on the Internet.</p>
+        <p>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color: var(--text-heading); text-decoration: underline;">Google Ad Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener" style="color: var(--text-heading); text-decoration: underline;">aboutads.info</a>.</p>
+
+        <h4 style="color: var(--text-main); margin-top: 0.5rem;">2. Local Storage</h4>
+        <p>TestforUHS uses your browser's <code>localStorage</code> exclusively to save quiz progress, missed question logs, language settings, and theme preferences directly on your device. This data is never transmitted to external servers.</p>
       </div>
       <div style="margin-top: 1.5rem; text-align: center;">
         <button id="bottom-close-privacy-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;"
@@ -247,7 +248,9 @@
   <script src="shared.js"></script>
   <script src="home.js"></script>
   <script>
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   </script>
 </body>
 
