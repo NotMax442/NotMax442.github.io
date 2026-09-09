@@ -95,6 +95,12 @@ const manifestData = {
           "Dr. Ung Narin",
           "Pr. Ast. Nhem Aklin"
         ],
+        "PHYSIOLOGIE": [
+          "Pr. Ku No",
+          "Pr. Im Bunthoeun",
+          "Dr. Em Savoeun"
+          "Dr. Bun Bora"
+        ]
       }, 
       "2": {} 
     },
