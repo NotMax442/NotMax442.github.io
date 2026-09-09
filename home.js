@@ -109,10 +109,12 @@ const manifestData = {
     "6": { "1": {}, "2": {} }
   }
 };
+
 let currentMajor = null;
 let currentYear = null;
 let currentSemester = null;
 let currentSubject = null;
+
 // Robust slug generator (strips dots, accents, ampersands, and spaces)
 function getProfSlug(name) {
   if (!name) return '';
@@ -123,9 +125,11 @@ function getProfSlug(name) {
     .trim()
     .replace(/\s+/g, '-');                            // Converts spaces to hyphens
 }
+
 function getProfName(prof) {
   return typeof prof === 'object' && prof !== null ? prof.name : prof;
 }
+
 function toggleProfDrawer(drawerId, btnEl) {
   const drawer = document.getElementById(drawerId);
   if (!drawer) return;
@@ -138,13 +142,12 @@ function toggleProfDrawer(drawerId, btnEl) {
     btnEl.classList.remove('open');
   }
 }
-// Automatically inspects the JSON file to fetch question length
+
 // Automatically inspects the JSON file to fetch question length
 async function fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl) {
   if (!badgeEl) return;
   
   const profSlug = getProfSlug(profName);
-  // Path updated to match your structure: data/med/year2/sem1/[subject]/[profSlug].json
   const jsonPath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   try {
     const res = await fetch(jsonPath);
@@ -167,11 +170,13 @@ async function fetchProfQuestionCount(major, year, semester, subject, profName, 
     console.error(`Error loading questions for ${profName}:`, e);
   }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   setupNavigation();
   restoreLastView();
   initUpdateSystem();
 });
+
 // Directional Screen Switcher (Forward vs. Back Animations)
 function showScreen(screenId, direction = 'forward') {
   const screens = ['landing-screen', 'major-screen', 'year-screen', 'semester-screen', 'subject-screen', 'professor-screen'];
@@ -183,10 +188,12 @@ function showScreen(screenId, direction = 'forward') {
   const currentEl = document.getElementById(currentVisibleId);
   const targetEl = document.getElementById(screenId);
   if (!targetEl || currentVisibleId === screenId) return;
+
   screens.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
   });
+
   if (currentEl && direction !== 'none') {
     const exitClass = direction === 'forward' ? 'slide-out-left' : 'slide-out-right';
     const enterClass = direction === 'forward' ? 'slide-in-right' : 'slide-in-left';
@@ -208,6 +215,7 @@ function showScreen(screenId, direction = 'forward') {
     });
   }
 }
+
 function setupNavigation() {
   const enterStudyBtn = document.getElementById('enter-study-btn');
   const backToLandingBtn = document.getElementById('back-to-landing-btn');
@@ -215,6 +223,7 @@ function setupNavigation() {
   const backToYearsBtn = document.getElementById('back-to-years-btn');
   const backToSemestersBtn = document.getElementById('back-to-semesters-btn');
   const backToSubjectsBtn = document.getElementById('back-to-subjects-btn');
+
   if (enterStudyBtn) {
     enterStudyBtn.addEventListener('click', () => {
       sessionStorage.setItem('lastView', 'major');
@@ -280,12 +289,14 @@ function setupNavigation() {
     });
   }
 }
+
 function restoreLastView() {
   const savedView = sessionStorage.getItem('lastView');
   currentMajor = sessionStorage.getItem('lastActiveMajor');
   currentYear = sessionStorage.getItem('lastActiveYear');
   currentSemester = sessionStorage.getItem('lastActiveSemester');
   currentSubject = sessionStorage.getItem('lastActiveSubject');
+
   if (savedView === 'professor' && currentMajor && currentYear && currentSemester && currentSubject) {
     showProfessors(currentMajor, currentYear, currentSemester, currentSubject, 'none');
   } else if (savedView === 'subject' && currentMajor && currentYear && currentSemester) {
@@ -300,26 +311,32 @@ function restoreLastView() {
     showScreen('landing-screen', 'none');
   }
 }
+
 function showYears(major, direction = 'forward') {
   showScreen('year-screen', direction);
   const title = document.getElementById('selected-major-title');
   if (title) title.textContent = getTranslation('title_select_year', { major });
 }
+
 function showSemesters(major, year, direction = 'forward') {
   showScreen('semester-screen', direction);
   const title = document.getElementById('selected-year-title');
   if (title) title.textContent = getTranslation('title_select_semester', { major, year });
 }
+
 function showSubjects(major, year, semester, direction = 'forward') {
   showScreen('subject-screen', direction);
   const title = document.getElementById('selected-subject-screen-title');
   if (title) title.textContent = getTranslation('title_subjects', { major, year, semester });
+
   const subjectList = document.getElementById('subject-list');
   if (!subjectList) return;
   subjectList.innerHTML = '';
+
   const subjects = manifestData[major]?.[year]?.[semester] 
     ? Object.keys(manifestData[major][year][semester]) 
     : [];
+
   if (subjects.length === 0) {
     subjectList.innerHTML = `
       <div class="empty-state-card" style="cursor: default; text-align: center; padding: 2.5rem 1.5rem;">
@@ -329,6 +346,7 @@ function showSubjects(major, year, semester, direction = 'forward') {
     `;
     return;
   }
+
   subjects.forEach(subject => {
     const card = document.createElement('div');
     card.classList.add('subject-card');
@@ -348,13 +366,16 @@ function showSubjects(major, year, semester, direction = 'forward') {
     subjectList.appendChild(card);
   });
 }
+
 function showProfessors(major, year, semester, subject, direction = 'forward') {
   showScreen('professor-screen', direction);
   const title = document.getElementById('selected-prof-screen-title');
   if (title) title.textContent = getTranslation('title_select_prof', { subject });
+
   const profList = document.getElementById('professor-list');
   if (!profList) return;
   profList.innerHTML = '';
+
   const professors = manifestData[major]?.[year]?.[semester]?.[subject] || [];
   if (professors.length === 0) {
     profList.innerHTML = `
@@ -365,7 +386,9 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     `;
     return;
   }
+
   const isSingleProf = professors.length === 1;
+
   if (!isSingleProf) {
     const subjectBanner = document.createElement('div');
     subjectBanner.classList.add('subject-card', 'prof-card');
@@ -388,21 +411,23 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
     `;
     profList.appendChild(subjectBanner);
   }
+
   professors.forEach(profItem => {
     const profName = getProfName(profItem);
-    const profSlug = typeof getProfSlug === 'function' 
-      ? getProfSlug(profName) 
-      : profName.toLowerCase().replace(/\s+/g, '-');
+    const profSlug = getProfSlug(profName);
       
     const storageKey = getStorageKey(major, year, semester, subject, profName);
     const savedMissed = localStorage.getItem(storageKey);
     const missedCount = savedMissed ? JSON.parse(savedMissed).length : 0;
+
     const studyKey = `saved_study_${major.toLowerCase()}_y${year}_s${semester}_${subject.toLowerCase()}_${profSlug}`;
     const savedStudyRaw = localStorage.getItem(studyKey);
     let studyProgress = null;
     if (savedStudyRaw) { try { studyProgress = JSON.parse(savedStudyRaw); } catch(e) {} }
+
     let continueBtnHTML = '';
     let studyBtnLabel = isSingleProf ? getTranslation('btn_subject_study_all') : getTranslation('btn_study');
+
     if (studyProgress && studyProgress.studyAnsweredCount > 0) {
       const answered = studyProgress.studyAnsweredCount;
       const total = studyProgress.questions ? studyProgress.questions.length : 0;
@@ -412,10 +437,13 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
         studyBtnLabel = getTranslation('btn_restart_study');
       }
     }
+
     const hasDrawerContent = continueBtnHTML || missedCount > 0;
     const drawerId = `drawer-${profSlug}`;
+
     const card = document.createElement('div');
     card.classList.add('subject-card', 'prof-card');
+
     let primaryActionsHTML = '';
     if (isSingleProf) {
       primaryActionsHTML = `
@@ -435,13 +463,19 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
         </div>
       `;
     }
-card.innerHTML = `
+
+    card.innerHTML = `
       <div class="prof-card-top" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; width: 100%;">
         <div>
           <h3 style="margin: 0;">${profName}</h3>
           ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
         </div>
-        <span class="prof-q-badge" style="display: none;"></span>
+        <div style="display: flex; gap: 0.4rem; align-items: center;">
+          <button id="dl-btn-${profSlug}" class="btn secondary-btn" style="font-size: 0.78rem; padding: 0.35rem 0.65rem;" onclick="handleDownloadOffline('${profName}')">
+            ${getTranslation('btn_download_offline')}
+          </button>
+          <span class="prof-q-badge" style="display: none;"></span>
+        </div>
       </div>
       <div style="margin-top: 0.75rem; width: 100%;">
         ${primaryActionsHTML}
@@ -461,12 +495,82 @@ card.innerHTML = `
         </div>
       ` : ''}
     `;
+
     profList.appendChild(card);
-    // Fetch and display total questions badge in the top-right corner
+
+    // Fetch and display total questions badge
     const badgeEl = card.querySelector('.prof-q-badge');
     fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl);
+
+    // Check if package is already downloaded offline
+    checkAndSetOfflineStatus(major, year, semester, subject, profName, profSlug);
   });
 }
+
+// Check IndexedDB status and update Download button text accordingly
+async function checkAndSetOfflineStatus(major, year, semester, subject, profName, profSlug) {
+  const dlBtn = document.getElementById(`dl-btn-${profSlug}`);
+  if (!dlBtn) return;
+
+  if (typeof getOfflinePackage === 'function') {
+    const pkg = await getOfflinePackage(major, year, semester, subject, profName);
+    if (pkg) {
+      dlBtn.textContent = getTranslation('btn_downloaded');
+      dlBtn.style.background = 'rgba(16, 185, 129, 0.15)';
+      dlBtn.style.color = '#10b981';
+      dlBtn.style.borderColor = '#10b981';
+    }
+  }
+}
+
+// Download Professor's questions directly into IndexedDB for offline use
+async function handleDownloadOffline(profName) {
+  const profSlug = getProfSlug(profName);
+  const dlBtn = document.getElementById(`dl-btn-${profSlug}`);
+  const jsonPath = `data/${currentMajor.toLowerCase()}/year${currentYear}/sem${currentSemester}/${currentSubject.toLowerCase()}/${profSlug}.json`;
+
+  if (dlBtn) {
+    dlBtn.disabled = true;
+    dlBtn.textContent = "⏳ ...";
+  }
+
+  try {
+    const res = await fetch(jsonPath);
+    if (!res.ok) throw new Error("File not found");
+
+    const data = await res.json();
+    const questions = Array.isArray(data) ? data : (data?.questions || []);
+
+    if (questions.length === 0) {
+      alert("No questions found to download for this professor.");
+      if (dlBtn) {
+        dlBtn.disabled = false;
+        dlBtn.textContent = getTranslation('btn_download_offline');
+      }
+      return;
+    }
+
+    if (typeof saveOfflinePackage === 'function') {
+      await saveOfflinePackage(currentMajor, currentYear, currentSemester, currentSubject, profName, questions);
+      if (dlBtn) {
+        dlBtn.disabled = false;
+        dlBtn.textContent = getTranslation('btn_downloaded');
+        dlBtn.style.background = 'rgba(16, 185, 129, 0.15)';
+        dlBtn.style.color = '#10b981';
+        dlBtn.style.borderColor = '#10b981';
+      }
+      alert(getTranslation('offline_download_success'));
+    }
+  } catch (e) {
+    console.error(`Error downloading package for ${profName}:`, e);
+    alert(getTranslation('load_error_alert', { path: jsonPath }));
+    if (dlBtn) {
+      dlBtn.disabled = false;
+      dlBtn.textContent = getTranslation('btn_download_offline');
+    }
+  }
+}
+
 function startSubjectSession(mode) {
   const rawProfList = manifestData[currentMajor]?.[currentYear]?.[currentSemester]?.[currentSubject] || [];
   const professors = rawProfList.map(getProfName);
@@ -483,6 +587,7 @@ function startSubjectSession(mode) {
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = '/quiz';
 }
+
 function startSession(profName, mode) {
   const sessionConfig = {
     major: currentMajor,
@@ -497,6 +602,7 @@ function startSession(profName, mode) {
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = '/quiz';
 }
+
 function continueStudySession(profName) {
   const sessionConfig = {
     major: currentMajor,
@@ -511,6 +617,7 @@ function continueStudySession(profName) {
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = '/quiz';
 }
+
 function startMissedSession(profName) {
   const sessionConfig = {
     major: currentMajor,
@@ -525,6 +632,7 @@ function startMissedSession(profName) {
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
   window.location.href = '/quiz';
 }
+
 function clearSavedMissed(profName) {
   const profSlug = profName.toLowerCase().replace(/\s+/g, '-');
   const key = (typeof getStorageKey === 'function')
@@ -533,6 +641,7 @@ function clearSavedMissed(profName) {
   localStorage.removeItem(key);
   showProfessors(currentMajor, currentYear, currentSemester, currentSubject, 'none');
 }
+
 // ==========================================================================
 // UPDATE NOTIFICATION SYSTEM
 // ==========================================================================
@@ -540,6 +649,7 @@ const APP_VERSION = "1.0.1";
 let patchNotesEN = "";
 let patchNotesKM = "";
 let currentModalLang = "EN";
+
 async function initUpdateSystem() {
   const versionBadge = document.getElementById('update-version-badge');
   if (versionBadge) versionBadge.textContent = `v${APP_VERSION}`;
@@ -550,6 +660,7 @@ async function initUpdateSystem() {
     showUpdateModal();
   }
 }
+
 async function fetchPatchNotes() {
   try {
     const [resEN, resKM] = await Promise.all([
@@ -564,6 +675,7 @@ async function fetchPatchNotes() {
   }
   renderModalContent();
 }
+
 function parseSimpleMarkdown(text) {
   if (!text) return "";
   let html = text
@@ -575,18 +687,21 @@ function parseSimpleMarkdown(text) {
   html = html.replace(/^[\-\*]\s+(.*$)/gim, '<li style="margin-left: 1.2rem; list-style-type: disc; margin-bottom: 0.25rem;">$1</li>');
   return html;
 }
+
 function renderModalContent() {
   const container = document.getElementById('update-text-container');
   if (!container) return;
   const rawText = currentModalLang === "EN" ? patchNotesEN : patchNotesKM;
   container.innerHTML = parseSimpleMarkdown(rawText);
 }
+
 function setupUpdateModalListeners() {
   const modal = document.getElementById('update-modal');
   const triggerBtn = document.getElementById('update-info-btn');
   const closeBtn = document.getElementById('close-update-modal-btn');
   const btnEN = document.getElementById('update-lang-en');
   const btnKM = document.getElementById('update-lang-km');
+
   if (triggerBtn) {
     triggerBtn.addEventListener('click', async () => {
       if (!patchNotesEN) await fetchPatchNotes();
@@ -614,6 +729,7 @@ function setupUpdateModalListeners() {
     });
   }
 }
+
 function showUpdateModal() {
   const modal = document.getElementById('update-modal');
   if (modal) modal.classList.remove('hidden');
