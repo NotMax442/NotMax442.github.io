@@ -11,7 +11,7 @@
 
   <!-- Open Graph / Telegram / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://testforuhs.com/account.html">
+  <meta property="og:url" content="https://testforuhs.com/account">
   <meta property="og:site_name" content="TestforUHS">
   <meta property="og:title" content="My Account & Vault - TestforUHS">
   <meta property="og:description"
@@ -20,7 +20,7 @@
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://testforuhs.com/account.html">
+  <meta property="twitter:url" content="https://testforuhs.com/account">
   <meta property="twitter:title" content="My Account & Vault - TestforUHS">
   <meta property="twitter:description"
     content="Manage your saved missed questions, track subject progress, and export flashcards to Anki.">
@@ -36,7 +36,6 @@
     crossorigin="anonymous"></script>
 
   <style>
-    /* Sub-Navbar Tab Styling */
     .account-tab-bar {
       display: flex;
       justify-content: center;
@@ -76,10 +75,10 @@
     <!-- Top Navigation Bar -->
     <nav class="main-navbar">
       <div class="nav-links">
-        <a href="/" class="nav-item" data-i18n="nav_home">HOME</a>
-        <a href="/about" class="nav-item" data-i18n="nav_about">ABOUT</a>
-        <a href="/contact" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
-        <a href="/account" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
+        <a href="./" class="nav-item" data-i18n="nav_home">HOME</a>
+        <a href="about" class="nav-item" data-i18n="nav_about">ABOUT</a>
+        <a href="contact" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
+        <a href="account" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
         <button id="nav-donate-btn" class="nav-item" data-i18n="nav_donate"
           style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support Us</button>
       </div>
@@ -102,20 +101,15 @@
       <div class="account-tab-bar">
         <button id="tab-stats-btn" class="account-tab-btn active" data-i18n="tab_stats">📊 Analytics & Stats</button>
         <button id="tab-vault-btn" class="account-tab-btn" data-i18n="tab_vault">🗂️ Vault & Settings</button>
-        <button id="tab-offline-btn" class="account-tab-btn" data-i18n="tab_offline">📥 Offline Packages</button>
       </div>
 
-      <!-- =================================================================== -->
-      <!-- TAB 1: ACCURACY ANALYTICS & STATS VIEW                              -->
-      <!-- =================================================================== -->
+      <!-- TAB 1: ACCURACY ANALYTICS & STATS VIEW -->
       <div id="account-stats-view">
-        <!-- SVG Animated Full Pie Chart Card -->
         <div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-sub); margin-bottom: 1.5rem; text-align: center;">
           <h3 style="margin-top: 0; color: var(--text-main);" data-i18n="stats_overview_title">Overall Accuracy</h3>
           
           <div id="pie-chart-wrapper"></div>
 
-          <!-- Real-Time Metrics Summary Grid -->
           <div class="stats-summary-grid">
             <div class="stat-card">
               <span class="stat-label" data-i18n="stats_total_questions">Questions Attempted</span>
@@ -136,7 +130,6 @@
           </div>
         </div>
 
-        <!-- Professor & Subject Accuracy Breakdown -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
           <h3 style="margin: 0; color: var(--text-main);" data-i18n="stats_prof_breakdown">Accuracy by Professor & Subject</h3>
           <select id="stats-filter-select" class="lang-select" style="padding: 0.4rem 0.8rem;">
@@ -147,16 +140,11 @@
         <div id="stats-prof-list" class="subject-grid"></div>
       </div>
 
-      <!-- =================================================================== -->
-      <!-- TAB 2: VAULT & QUIZ SETTINGS VIEW                                   -->
-      <!-- =================================================================== -->
+      <!-- TAB 2: VAULT & QUIZ SETTINGS VIEW -->
       <div id="account-vault-view" class="hidden">
-        
-        <!-- Quiz Preferences Card -->
         <div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-sub); margin-bottom: 2rem;">
           <h3 style="margin-top: 0; color: var(--text-main);" data-i18n="account_pref_title">⚙️ Quiz Preferences</h3>
 
-          <!-- Auto Advance Toggle -->
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1rem;">
             <div>
               <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_autoadv_title">Auto-advance in Quiz Mode</h4>
@@ -170,7 +158,6 @@
             </label>
           </div>
 
-          <!-- Review Layout Switcher -->
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border-sub); flex-wrap: wrap;">
             <div style="flex: 1; min-width: 200px;">
               <h4 style="margin: 0; color: var(--text-main);" data-i18n="account_review_style_title">Result Review Display Style</h4>
@@ -185,7 +172,6 @@
           </div>
         </div>
 
-        <!-- Missed Questions Vault Section -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
           <h3 style="margin: 0; color: var(--text-main);" data-i18n="account_vault_title">📦 Missed Questions Vault</h3>
 
@@ -199,47 +185,6 @@
         </div>
 
         <div id="account-subject-list" class="subject-grid"></div>
-      </div>
-
-      <!-- =================================================================== -->
-      <!-- TAB 3: OFFLINE PACKAGES VIEW                                        -->
-      <!-- =================================================================== -->
-      <div id="account-offline-view" class="hidden">
-        
-        <!-- Offline Storage Status Card -->
-        <div class="info-card" style="background: var(--bg-subcard); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-sub); margin-bottom: 1.5rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <div>
-              <h3 style="margin: 0; color: var(--text-main);" data-i18n="offline_storage_title">💾 Offline Browser Storage</h3>
-              <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--text-sub);" data-i18n="offline_storage_desc">
-                Questions saved here are stored directly inside your browser database (IndexedDB) for full offline studying without internet access.
-              </p>
-            </div>
-            <button id="clear-all-offline-btn" class="btn danger-btn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
-              🗑️ Clear All Offline Data
-            </button>
-          </div>
-
-          <!-- Storage Statistics Summary -->
-          <div class="stats-summary-grid" style="margin-top: 1.25rem;">
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="offline_saved_profs">Saved Professors</span>
-              <span id="offline-count-val" class="stat-value">0</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="offline_total_qs">Total Questions</span>
-              <span id="offline-questions-val" class="stat-value" style="color: #0284c7;">0</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Downloaded Packages List Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <h3 style="margin: 0; color: var(--text-main);" data-i18n="offline_list_title">Downloaded Professor Packages</h3>
-        </div>
-
-        <!-- Dynamic Container for Offline Cards -->
-        <div id="offline-package-list" class="subject-grid"></div>
       </div>
 
     </div>
