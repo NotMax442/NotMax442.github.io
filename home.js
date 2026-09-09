@@ -98,7 +98,7 @@ const manifestData = {
         "PHYSIOLOGIE": [
           "Pr. Ku No",
           "Pr. Im Bunthoeun",
-          "Dr. Em Savoeun"
+          "Dr. Em Savoeun",
           "Dr. Bun Bora"
         ]
       }, 
