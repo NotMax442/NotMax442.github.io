@@ -80,7 +80,24 @@ const manifestData = {
         ]
       } 
     },
-    "3": { "1": {}, "2": {} },
+    "3": {
+      "1": {
+        "HISTOLOGIE": [
+          "Pr. Cheng Sam Ang",
+          "Pr. Chhut Serey Vathana"
+        ],
+        "TP-HISTOLOGIE": [
+          "Pr. Chhut SereyVathana"
+        ],
+        "TP-ANATOMIE": [
+          "Dr. Chuk Mol Kossama",
+          "Dr. Kong Vuthy",
+          "Dr. Ung Narin",
+          "Pr. Ast. Nhem Aklin"
+        ],
+      }, 
+      "2": {} 
+    },
     "4": { "1": {}, "2": {} },
     "5": { "1": {}, "2": {} },
     "6": { "1": {}, "2": {} }
