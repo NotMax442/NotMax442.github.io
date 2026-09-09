@@ -1931,19 +1931,147 @@ p {
     box-sizing: border-box;
 }
 
+/* ==========================================================================
+   MOBILE RESPONSIVE FIXES
+   ========================================================================== */
+
 @media (max-width: 640px) {
-    :fullscreen .app-container,
-    :-webkit-full-screen .app-container {
-        padding: 0.75rem;
+    .app-container {
+        padding: 0.85rem;
     }
 
-    :fullscreen .score-card,
-    :fullscreen .study-q-card,
-    :-webkit-full-screen .score-card,
-    :-webkit-full-screen .study-q-card {
+    /* Compact Navbar Wrapper */
+    .main-navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+        padding: 0.65rem 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    /* Balanced 2-Row Navigation Links */
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
         width: 100%;
-        padding: 1rem 0.75rem;
-        margin-right: 0;
-        margin-left: 0;
+        gap: 0.4rem;
+    }
+
+    /* Uniform Nav Button Pills */
+    .nav-item {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.65rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        line-height: 1.2;
+    }
+
+    .nav-item::after {
+        display: none;
+    }
+
+    /* Support Us Button - Matches Pill Style with Gold Accent */
+    #nav-donate-btn {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 !important;
+        background-color: rgba(245, 158, 11, 0.12) !important;
+        border: 1px solid rgba(245, 158, 11, 0.35) !important;
+        color: #f59e0b !important;
+    }
+
+    /* Compact Language & Theme Controls Row */
+    .nav-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .lang-select,
+    .theme-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        flex: 1;
+        max-width: 150px;
+        height: 34px;
+        padding: 0.35rem 0.5rem;
+        border-radius: var(--radius-md);
+        font-size: 0.8rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    .year-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .year-card {
+        padding: 1.25rem 0.5rem;
+        font-size: 1rem;
+    }
+
+    .subject-actions {
+        flex-direction: column;
+    }
+
+    .donate-card-wide {
+        padding: 2.75rem 1.25rem 1.25rem;
+    }
+
+    .donate-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        text-align: center;
+    }
+
+    .donate-info {
+        align-self: center;
+        padding-top: 0;
+        text-align: center;
+    }
+
+    .floating-pill-btn {
+        bottom: 1.25rem;
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .floating-round-btn {
+        right: 1rem;
+        bottom: 1.25rem;
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+
+    #professor-list {
+        grid-template-columns: 1fr 1fr;
     }
 }
