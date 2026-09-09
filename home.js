@@ -115,15 +115,15 @@ let currentYear = null;
 let currentSemester = null;
 let currentSubject = null;
 
-// Robust slug generator (strips dots, accents, ampersands, and spaces)
+// Robust slug generator
 function getProfSlug(name) {
   if (!name) return '';
   return name
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Removes accents
-    .replace(/[^a-z0-9\s-&]/g, '')                    // Keeps & symbol to match repo filenames
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-&]/g, '')
     .trim()
-    .replace(/\s+/g, '-');                            // Converts spaces to hyphens
+    .replace(/\s+/g, '-');
 }
 
 function getProfName(prof) {
@@ -143,7 +143,6 @@ function toggleProfDrawer(drawerId, btnEl) {
   }
 }
 
-// Automatically inspects the JSON file to fetch question length
 async function fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl) {
   if (!badgeEl) return;
   
@@ -151,13 +150,9 @@ async function fetchProfQuestionCount(major, year, semester, subject, profName, 
   const jsonPath = `data/${major.toLowerCase()}/year${year}/sem${semester}/${subject.toLowerCase()}/${profSlug}.json`;
   try {
     const res = await fetch(jsonPath);
-    if (!res.ok) {
-      console.warn(`Badge missing: File not found at "${jsonPath}"`);
-      return;
-    }
+    if (!res.ok) return;
     const data = await res.json();
     
-    // Supports array [...] or wrapped object { questions: [...] }
     const count = Array.isArray(data) 
       ? data.length 
       : (Array.isArray(data?.questions) ? data.questions.length : 0);
@@ -177,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initUpdateSystem();
 });
 
-// Directional Screen Switcher (Forward vs. Back Animations)
 function showScreen(screenId, direction = 'forward') {
   const screens = ['landing-screen', 'major-screen', 'year-screen', 'semester-screen', 'subject-screen', 'professor-screen'];
   
@@ -470,12 +464,7 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
           <h3 style="margin: 0;">${profName}</h3>
           ${missedCount > 0 ? `<p class="missed-badge" style="margin: 0.25rem 0 0 0;">${getTranslation('missed_badge', { count: missedCount })}</p>` : ''}
         </div>
-        <div style="display: flex; gap: 0.4rem; align-items: center;">
-          <button id="dl-btn-${profSlug}" class="btn secondary-btn" style="font-size: 0.78rem; padding: 0.35rem 0.65rem;" onclick="handleDownloadOffline('${profName}')">
-            ${getTranslation('btn_download_offline')}
-          </button>
-          <span class="prof-q-badge" style="display: none;"></span>
-        </div>
+        <span class="prof-q-badge" style="display: none;"></span>
       </div>
       <div style="margin-top: 0.75rem; width: 100%;">
         ${primaryActionsHTML}
@@ -498,77 +487,9 @@ function showProfessors(major, year, semester, subject, direction = 'forward') {
 
     profList.appendChild(card);
 
-    // Fetch and display total questions badge
     const badgeEl = card.querySelector('.prof-q-badge');
     fetchProfQuestionCount(major, year, semester, subject, profName, badgeEl);
-
-    // Check if package is already downloaded offline
-    checkAndSetOfflineStatus(major, year, semester, subject, profName, profSlug);
   });
-}
-
-// Check IndexedDB status and update Download button text accordingly
-async function checkAndSetOfflineStatus(major, year, semester, subject, profName, profSlug) {
-  const dlBtn = document.getElementById(`dl-btn-${profSlug}`);
-  if (!dlBtn) return;
-
-  if (typeof getOfflinePackage === 'function') {
-    const pkg = await getOfflinePackage(major, year, semester, subject, profName);
-    if (pkg) {
-      dlBtn.textContent = getTranslation('btn_downloaded');
-      dlBtn.style.background = 'rgba(16, 185, 129, 0.15)';
-      dlBtn.style.color = '#10b981';
-      dlBtn.style.borderColor = '#10b981';
-    }
-  }
-}
-
-// Download Professor's questions directly into IndexedDB for offline use
-async function handleDownloadOffline(profName) {
-  const profSlug = getProfSlug(profName);
-  const dlBtn = document.getElementById(`dl-btn-${profSlug}`);
-  const jsonPath = `data/${currentMajor.toLowerCase()}/year${currentYear}/sem${currentSemester}/${currentSubject.toLowerCase()}/${profSlug}.json`;
-
-  if (dlBtn) {
-    dlBtn.disabled = true;
-    dlBtn.textContent = "⏳ ...";
-  }
-
-  try {
-    const res = await fetch(jsonPath);
-    if (!res.ok) throw new Error("File not found");
-
-    const data = await res.json();
-    const questions = Array.isArray(data) ? data : (data?.questions || []);
-
-    if (questions.length === 0) {
-      alert("No questions found to download for this professor.");
-      if (dlBtn) {
-        dlBtn.disabled = false;
-        dlBtn.textContent = getTranslation('btn_download_offline');
-      }
-      return;
-    }
-
-    if (typeof saveOfflinePackage === 'function') {
-      await saveOfflinePackage(currentMajor, currentYear, currentSemester, currentSubject, profName, questions);
-      if (dlBtn) {
-        dlBtn.disabled = false;
-        dlBtn.textContent = getTranslation('btn_downloaded');
-        dlBtn.style.background = 'rgba(16, 185, 129, 0.15)';
-        dlBtn.style.color = '#10b981';
-        dlBtn.style.borderColor = '#10b981';
-      }
-      alert(getTranslation('offline_download_success'));
-    }
-  } catch (e) {
-    console.error(`Error downloading package for ${profName}:`, e);
-    alert(getTranslation('load_error_alert', { path: jsonPath }));
-    if (dlBtn) {
-      dlBtn.disabled = false;
-      dlBtn.textContent = getTranslation('btn_download_offline');
-    }
-  }
 }
 
 function startSubjectSession(mode) {
@@ -585,7 +506,7 @@ function startSubjectSession(mode) {
     resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = '/quiz';
+  window.location.href = 'quiz';
 }
 
 function startSession(profName, mode) {
@@ -600,7 +521,7 @@ function startSession(profName, mode) {
     resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = '/quiz';
+  window.location.href = 'quiz';
 }
 
 function continueStudySession(profName) {
@@ -615,7 +536,7 @@ function continueStudySession(profName) {
     resume: true
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = '/quiz';
+  window.location.href = 'quiz';
 }
 
 function startMissedSession(profName) {
@@ -630,7 +551,7 @@ function startMissedSession(profName) {
     resume: false
   };
   sessionStorage.setItem('activeSessionConfig', JSON.stringify(sessionConfig));
-  window.location.href = '/quiz';
+  window.location.href = 'quiz';
 }
 
 function clearSavedMissed(profName) {
@@ -642,9 +563,7 @@ function clearSavedMissed(profName) {
   showProfessors(currentMajor, currentYear, currentSemester, currentSubject, 'none');
 }
 
-// ==========================================================================
 // UPDATE NOTIFICATION SYSTEM
-// ==========================================================================
 const APP_VERSION = "1.0.1";
 let patchNotesEN = "";
 let patchNotesKM = "";
