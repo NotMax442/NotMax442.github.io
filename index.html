@@ -31,6 +31,9 @@
   <link rel="apple-touch-icon" href="assets/logo.png">
   <link rel="stylesheet" href="style.css">
 
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4210272281940886"
     crossorigin="anonymous"></script>
@@ -42,20 +45,23 @@
     <!-- Top Navigation Bar -->
     <nav class="main-navbar">
       <div class="nav-links">
-        <a href="/" class="nav-item" data-i18n="nav_home">HOME</a>
-        <a href="/about" class="nav-item" data-i18n="nav_about">ABOUT</a>
-        <a href="/contact" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
-        <a href="/account" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
+        <a href="./" class="nav-item" data-i18n="nav_home">HOME</a>
+        <a href="about" class="nav-item" data-i18n="nav_about">ABOUT</a>
+        <a href="contact" class="nav-item" data-i18n="nav_contact">CONTACT US</a>
+        <a href="account" class="nav-item" data-i18n="nav_account">MY ACCOUNT</a>
         <button id="nav-donate-btn" class="nav-item" data-i18n="nav_donate"
-          style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support
-          Us</button>
+          style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 0.35rem;">
+          <i data-lucide="coffee" style="width: 18px; height: 18px;"></i> Support Us
+        </button>
       </div>
       <div class="nav-controls" style="display: flex; gap: 0.5rem; align-items: center;">
         <select id="language-select" class="lang-select">
           <option value="en">English</option>
           <option value="km">ភាសាខ្មែរ</option>
         </select>
-        <button id="theme-toggle-btn" class="theme-btn">🌙 Dark</button>
+        <button id="theme-toggle-btn" class="theme-btn" style="display: flex; align-items: center; gap: 0.35rem;">
+          <i data-lucide="moon" style="width: 16px; height: 16px;"></i> Dark
+        </button>
       </div>
     </nav>
 
@@ -67,10 +73,14 @@
       <!-- Action Button Row -->
       <div class="landing-btn-group"
         style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 1.5rem;">
-        <button id="enter-study-btn" class="btn primary-btn" data-i18n="btn_start_study"
-          style="font-size: 1.1rem; padding: 0.75rem 2rem;">🚀 Start Studying</button>
-        <button id="update-info-btn" class="btn secondary-btn" style="font-size: 1.1rem; padding: 0.75rem 1.5rem;">📢
-          Update Info</button>
+        <button id="enter-study-btn" class="btn primary-btn hero-btn" data-i18n="btn_start_study"
+          style="font-size: 1.1rem; padding: 0.75rem 2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="rocket" style="width: 20px; height: 20px;"></i> Start Studying
+        </button>
+        <button id="update-info-btn" class="btn secondary-btn"
+          style="font-size: 1.1rem; padding: 0.75rem 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="megaphone" style="width: 20px; height: 20px;"></i> Update Info
+        </button>
       </div>
     </div>
 
@@ -98,8 +108,10 @@
 
     <!-- 2. Major Selection Screen -->
     <div id="major-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-landing-btn" class="btn back-btn" data-i18n="btn_back_home" style="margin-bottom: 1rem;">⬅️
-        Back to Home</button>
+      <button id="back-to-landing-btn" class="btn back-btn" data-i18n="btn_back_home"
+        style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Home
+      </button>
       <h2 data-i18n="title_select_major">Select Major</h2>
       <div id="major-grid" class="year-grid">
         <div class="year-card" data-major="MED" data-i18n="major_med">
@@ -110,8 +122,10 @@
 
     <!-- 3. Year Selection Section -->
     <div id="year-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-majors-btn" class="btn back-btn" data-i18n="btn_back_majors" style="margin-bottom: 1rem;">⬅️
-        Back to Majors</button>
+      <button id="back-to-majors-btn" class="btn back-btn" data-i18n="btn_back_majors"
+        style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Majors
+      </button>
       <h2 id="selected-major-title">Select Academic Year</h2>
       <div class="year-grid">
         <div class="year-card" data-year="1" data-i18n="year_1">Year 1</div>
@@ -125,8 +139,10 @@
 
     <!-- 3. Semester Selection Screen -->
     <div id="semester-screen" class="screen hidden" style="margin-top: 1rem;">
-      <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years" style="margin-bottom: 1rem;">⬅️
-        Back to Years</button>
+      <button id="back-to-years-btn" class="btn back-btn" data-i18n="btn_back_years"
+        style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Years
+      </button>
       <h2 id="selected-year-title">Select Semester</h2>
       <div class="year-grid">
         <div class="year-card" data-semester="1" data-i18n="semester_1">Semester 1</div>
@@ -137,7 +153,9 @@
     <!-- 4. Subject Selection Section -->
     <div id="subject-screen" class="screen hidden" style="margin-top: 1rem;">
       <button id="back-to-semesters-btn" class="btn back-btn" data-i18n="btn_back_semesters"
-        style="margin-bottom: 1rem;">⬅️ Back to Semesters</button>
+        style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Semesters
+      </button>
       <h2 id="selected-subject-screen-title">Subjects</h2>
       <div id="subject-list" class="subject-grid"></div>
     </div>
@@ -145,11 +163,12 @@
     <!-- 5. Professor Selection Section -->
     <div id="professor-screen" class="screen hidden" style="margin-top: 1rem;">
       <button id="back-to-subjects-btn" class="btn back-btn" data-i18n="btn_back_subjects"
-        style="margin-bottom: 1rem;">⬅️ Back to Subjects</button>
+        style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Subjects
+      </button>
       <h2 id="selected-prof-screen-title">Professors</h2>
       <div id="professor-list" class="subject-grid"></div>
     </div>
-
 
     <!-- Home Page AdSense Banner Unit -->
     <div class="home-ad-container"
@@ -225,6 +244,10 @@
 
   <script src="shared.js"></script>
   <script src="home.js"></script>
+  <script>
+    // Initialize Lucide SVG icons on DOM load
+    lucide.createIcons();
+  </script>
 </body>
 
 </html>
