@@ -19,13 +19,13 @@
 <body class="quiz-body">
   <div class="app-container">
 
-    <!-- Top Navigation Bar (Hidden on quiz page via CSS .quiz-body .main-navbar) -->
+    <!-- Top Navigation Bar -->
     <nav class="main-navbar">
       <div class="nav-links">
-        <a href="/" class="nav-item nav-leave-guard" data-i18n="nav_home">HOME</a>
-        <a href="/about" class="nav-item nav-leave-guard" data-i18n="nav_about">ABOUT</a>
-        <a href="/contact" class="nav-item nav-leave-guard" data-i18n="nav_contact">CONTACT US</a>
-        <a href="/account" class="nav-item nav-leave-guard" data-i18n="nav_account">MY ACCOUNT</a>
+        <a href="index.html" class="nav-item nav-leave-guard" data-i18n="nav_home">HOME</a>
+        <a href="about.html" class="nav-item nav-leave-guard" data-i18n="nav_about">ABOUT</a>
+        <a href="contact.html" class="nav-item nav-leave-guard" data-i18n="nav_contact">CONTACT US</a>
+        <a href="account.html" class="nav-item nav-leave-guard" data-i18n="nav_account">MY ACCOUNT</a>
         <button id="nav-donate-btn" class="nav-item nav-leave-guard" data-i18n="nav_donate"
           style="color: #f59e0b; font-weight: 700; background: none; border: none; cursor: pointer;">☕ Support Us</button>
       </div>
@@ -139,7 +139,7 @@
           <div class="donate-qr-wrapper"><img src="assets/khqr.png" alt="KHQR Code" class="khqr-card-img"></div>
         </div>
         <div style="margin-top: 1.5rem; text-align: center;">
-          <button id="bottom-close-donate-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;"
+          <button id="bottom-close-privacy-btn" class="btn secondary-btn" style="width: 100%; max-width: 200px;"
             data-i18n="btn_close">Close</button>
         </div>
       </div>
@@ -168,6 +168,7 @@
       </div>
     </div>
 
+    <!-- Correct script sequence -->
     <script src="shared.js"></script>
     <script src="quiz.js"></script>
   </div>
