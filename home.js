@@ -100,6 +100,13 @@ const manifestData = {
           "Pr. Im Bunthoeun",
           "Dr. Em Savoeun",
           "Dr. Bun Bora"
+        ],
+        "PHYSIOPATHOLOGIE": [
+          "Pr. Im Bunthoeun",
+          "Pr. Chan Sarin",
+          "Dr. Sou Siphana",
+          "Dr. Sann Sary",
+          "Dr. Heng Piseth"
         ]
       }, 
       "2": {} 
